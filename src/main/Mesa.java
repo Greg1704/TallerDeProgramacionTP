@@ -1,27 +1,19 @@
 package main;
 
 public class Mesa {
-	private Comanda comanda;
 	private int comensales;
 	private String estado;
 	private int numero;
 	
 	
-	public Mesa(Comanda comanda, int comensales, String estado, int numero) {
+	public Mesa(int comensales, String estado, int numero) {
 		super();
-		this.comanda = comanda;
 		this.comensales = comensales;
 		this.estado = estado;
 		this.numero = numero;
 	}
 	
 	
-	public Comanda getComanda() {
-		return comanda;
-	}
-	public void setComanda(Comanda comanda) {
-		this.comanda = comanda;
-	}
 	public int getComensales() {
 		return comensales;
 	}
