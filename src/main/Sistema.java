@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 
 public class Sistema {
-	private ArrayList<Promocion> promosFijas = new ArrayList<Promocion>();
+	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
 	//ArrayList promocion temporal
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
@@ -22,10 +22,10 @@ public class Sistema {
 	}
 	
 	
-	public ArrayList<Promocion> getPromosFijas() {
+	public ArrayList<PromocionPermanente> getPromosFijas() {
 		return promosFijas;
 	}
-	public void setPromosFijas(ArrayList<Promocion> promosFijas) {
+	public void setPromosFijas(ArrayList<PromocionPermanente> promosFijas) {
 		this.promosFijas = promosFijas;
 	}
 	public ArrayList<PromocionTemporal> getPromosTemporales() {
