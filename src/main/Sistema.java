@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
-	//ArrayList promocion temporal
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	private ArrayList<Operario> operarios = new ArrayList<Operario>();
 	private ArrayList<Producto> producto = new ArrayList<Producto>();

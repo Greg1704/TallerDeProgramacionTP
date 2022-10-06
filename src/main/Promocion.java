@@ -1,6 +1,6 @@
 package main;
 
-public class Promocion {
+public abstract class Promocion {
 	private boolean activo;
 	private String diaDePromo;
 	
