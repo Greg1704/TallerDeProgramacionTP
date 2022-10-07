@@ -24,7 +24,7 @@ public class Sistema {
 	*/
 	
 	private Sistema() {
-		
+		//Creacion del ADMIN
 	}
 	
 	
