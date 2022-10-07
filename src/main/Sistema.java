@@ -12,12 +12,25 @@ public class Sistema {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String nombre;
 	private Sueldo sueldo;
+	private static Sistema instancia = null;
 	
-	
+	/*
 	public Sistema(String nombre, Sueldo sueldo) {
 		super();
 		this.nombre = nombre;
 		this.sueldo = sueldo;
+	}
+	*/
+	
+	private Sistema() {
+		
+	}
+	
+	
+	public static Sistema getInstancia() {
+		if(instancia == null)
+			instancia = new Sistema();
+		return instancia;
 	}
 	
 	
