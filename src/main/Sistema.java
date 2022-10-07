@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import excepciones.*;
 
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
@@ -89,6 +90,18 @@ public class Sistema {
 		this.sueldo = sueldo;
 	}
 	
-	
-	
+		
+	public Operario loginOperario(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException {
+		int i=0;
+		while(i<operarios.size()) {
+			if(Sistema.getInstancia().getOperarios().get(i).getNombreDeUsuario().compareTo(usuario) == 0) {
+				if(Sistema.getInstancia().getOperarios().get(i).getPassword().compareTo(password) == 0)
+					return Sistema.getInstancia().getOperarios().get(i);
+				else
+					throw new ContraseniaIncorrectaException();
+			}
+			i++;
+		}
+		throw new UsuarioIncorrectoException();
+	}
 }
