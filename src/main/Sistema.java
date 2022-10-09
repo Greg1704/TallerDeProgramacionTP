@@ -14,6 +14,7 @@ public class Sistema {
 	private String nombre;
 	private Sueldo sueldo;
 	private static Sistema instancia = null;
+	private Operario admin;
 	
 	/*
 	public Sistema(String nombre, Sueldo sueldo) {
@@ -24,7 +25,7 @@ public class Sistema {
 	*/
 	
 	private Sistema() {
-		//Creacion del ADMIN
+		admin = new Operario("ADMIN","ADMIN1234",""); //Creacion de Operario Admin
 	}
 	
 	
