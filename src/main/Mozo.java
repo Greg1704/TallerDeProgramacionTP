@@ -5,14 +5,14 @@ import java.util.ArrayList;
 
 public class Mozo {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
-	private int estado;
+	private String estado;
 	private int hijos;
 	private String NombreYApellido;
 	private LocalDate fechaDeNacimiento;
 	
 	
 	
-	public Mozo(ArrayList<Mesa> mesas, int estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) {
+	public Mozo(ArrayList<Mesa> mesas, String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) {
 		super();
 		this.mesas = mesas;
 		this.estado = estado;
@@ -28,10 +28,10 @@ public class Mozo {
 	public void setMesas(ArrayList<Mesa> mesas) {
 		this.mesas = mesas;
 	}
-	public int getEstado() {
+	public String getEstado() {
 		return estado;
 	}
-	public void setEstado(int estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 	public int getHijos() {
