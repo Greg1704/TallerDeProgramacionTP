@@ -41,5 +41,7 @@ public class Operario {
 		this.nombreYApellido = nombreYApellido;
 	}
 	
-	
+	public void asignaMozoAMesa(Mozo mozo,Mesa mesa) {
+		mozo.agregarMesa(mesa);
+	}
 }

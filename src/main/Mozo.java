@@ -50,5 +50,8 @@ public class Mozo {
 		return fechaDeNacimiento;
 	}
 	
+	public void agregarMesa(Mesa mesa) {
+		mesas.add(mesa);
+	}
 	
 }
