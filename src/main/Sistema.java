@@ -105,4 +105,13 @@ public class Sistema {
 		}
 		throw new UsuarioIncorrectoException();
 	}
+	
+	public void estadoMozo(Mozo mozo, String estado) {
+		int i=0;
+		if(mozos.contains(mozo)) {
+			while(!mozos.get(i).equals(mozo))
+				i++;
+			mozos.get(i).setEstado(estado);
+		}//No se si podria llegar a existir el caso donde el mozo buscado no se encuentre en el sistema
+	}
 }
