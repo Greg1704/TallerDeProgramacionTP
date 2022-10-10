@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.MozoDuplicadoException;
 import excepciones.OperarioDuplicadoException;
+import excepciones.ProductoDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
 
 public class Sistema {
@@ -12,7 +13,7 @@ public class Sistema {
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	private ArrayList<Operario> operarios = new ArrayList<Operario>();
-	private ArrayList<Producto> producto = new ArrayList<Producto>();
+	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String nombre;
@@ -65,10 +66,10 @@ public class Sistema {
 		this.operarios = operarios;
 	}
 	public ArrayList<Producto> getProducto() {
-		return producto;
+		return productos;
 	}
 	public void setProducto(ArrayList<Producto> producto) {
-		this.producto = producto;
+		this.productos = producto;
 	}
 	public ArrayList<Mozo> getMozos() {
 		return mozos;
@@ -161,5 +162,24 @@ public class Sistema {
 		this.mozos.remove(m);
 	}
 	
+	public void agregaProductos(Producto p) throws ProductoDuplicadoException{
+		int j,i=0;
+		
+		j = this.productos.size() ;
+		
+		while(i < j && !(this.productos.get(i).getNombre().equalsIgnoreCase(p.getNombre()))) {
+			i++;
+		}
+		
+		if (i < j) {
+			throw new ProductoDuplicadoException("Error: el producto ya existe en el sistema");
+		}else {
+			this.productos.add(p) ;
+		}
+	}
+	
+	public void sacaProducto(Producto p){
+		this.productos.remove(p);
+	}
 	
 }
