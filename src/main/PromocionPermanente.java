@@ -1,5 +1,7 @@
 package main;
 
+import excepciones.NoHayPromoException;
+
 public class PromocionPermanente extends Promocion{
 	private int id_Promocion;
 	private Producto producto;
@@ -11,7 +13,7 @@ public class PromocionPermanente extends Promocion{
 	
 	public PromocionPermanente(boolean activo, String diaDePromo, int id_Promocion, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
-			double dtoPorCantidad_PrecioUnitario) {
+			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException{
 		super(activo, diaDePromo);
 		this.id_Promocion = id_Promocion;
 		this.producto = producto;
@@ -19,6 +21,9 @@ public class PromocionPermanente extends Promocion{
 		this.aplicaDtoPorCantidad = aplicaDtoPorCantidad;
 		this.dtoPorCantidad_cantidadMinima = dtoPorCantidad_cantidadMinima;
 		this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
+		
+		if(aplicaDosPorUno == false && aplicaDtoPorCantidad == false)
+			throw new NoHayPromoException("No pueden ser falsos ambos tipos de descuento.");
 	}
 
 

@@ -1,6 +1,6 @@
 package main;
 
-import excepciones.PrecioNegativoException;
+import excepciones.NegativoException;
 import excepciones.PrecioVentaMenorCostoException;
 
 public class Producto {
@@ -13,7 +13,7 @@ public class Producto {
 	
 	
 	
-	public Producto(int id, String nombre, double precioDeCosto, double precioDeVenta, int stock) throws PrecioNegativoException, PrecioVentaMenorCostoException{
+	public Producto(int id, String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -21,16 +21,15 @@ public class Producto {
 		this.stock = stock;
 		
 		if(precioDeCosto < 0)
-			throw new PrecioNegativoException("Precio de costo negativo.");
+			throw new NegativoException("Precio de costo negativo.");
 		else if (precioDeVenta < 0)
-			throw new PrecioNegativoException("Precio de venta negativo.");
+			throw new NegativoException("Precio de venta negativo.");
 		else if (precioDeCosto > precioDeVenta)
 			throw new PrecioVentaMenorCostoException("Precio de costo mayor que precio de venta.");
 		else {
 			this.precioDeCosto = precioDeCosto;
 			this.precioDeVenta = precioDeVenta;
 		}
-
 			
 	}
 	
@@ -55,9 +54,9 @@ public class Producto {
 		return precioDeCosto;
 	}
 	
-	public void setPrecioDeCosto(double precioDeCosto) throws PrecioNegativoException, PrecioVentaMenorCostoException {
+	public void setPrecioDeCosto(double precioDeCosto) throws NegativoException, PrecioVentaMenorCostoException {
 		if(precioDeCosto < 0)
-			throw new PrecioNegativoException("Precio de costo negativo.");
+			throw new NegativoException("Precio de costo negativo.");
 		else if (precioDeCosto > this.precioDeVenta)
 			throw new PrecioVentaMenorCostoException("Precio de costo mayor que precio de venta.");
 		else
@@ -68,9 +67,9 @@ public class Producto {
 		return precioDeVenta;
 	}
 	
-	public void setPrecioDeVenta(double precioDeVenta) throws PrecioNegativoException, PrecioVentaMenorCostoException {
+	public void setPrecioDeVenta(double precioDeVenta) throws NegativoException, PrecioVentaMenorCostoException {
 		if (precioDeVenta < 0)
-			throw new PrecioNegativoException("Precio de venta negativo.");
+			throw new NegativoException("Precio de venta negativo.");
 		else if (this.precioDeCosto > precioDeVenta)
 			throw new PrecioVentaMenorCostoException("Precio de costo mayor que precio de venta.");
 		else
