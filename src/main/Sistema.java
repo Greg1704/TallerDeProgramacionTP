@@ -3,6 +3,8 @@ package main;
 import java.util.ArrayList;
 import excepciones.*;
 
+import Excepciones.OperarioDuplicadoException;
+
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
@@ -114,5 +116,27 @@ public class Sistema {
 			mozos.get(i).setEstado(estado);
 		}//No se si podria llegar a existir el caso donde el mozo buscado no se encuentre en el sistema
 	}
+	
+	public void agregaOperario(Operario o) throws OperarioDuplicadoException{
+		int j,i=0;
+		
+		j = this.operarios.size() ;
+		
+		while(i < j && !(this.operarios.get(i).getNombreDeUsuario().equalsIgnoreCase(o.getNombreDeUsuario()))) {
+			i++;
+		}
+		
+		if (i < j) {
+			throw new OperarioDuplicadoException("Error: el operario ya existe en el sistema");
+		}else {
+			this.operarios.add(o) ;
+		}
+		
+	}
+	
+	public void sacaOperario(Operario o){
+		this.operarios.remove(o);
+	}
+	
 	
 }
