@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import excepciones.*;
 
+import Excepciones.MozoDuplicadoException;
 import Excepciones.OperarioDuplicadoException;
 
 public class Sistema {
@@ -136,6 +137,27 @@ public class Sistema {
 	
 	public void sacaOperario(Operario o){
 		this.operarios.remove(o);
+	}
+	
+	public void agregaMozo(Mozo m) throws MozoDuplicadoException{
+		int j,i=0;
+		
+		j = this.mozos.size() ;
+		
+		while(i < j && !(this.mozos.get(i).getNombreYApellido().equalsIgnoreCase(m.getNombreYApellido()))) {
+			i++;
+		}
+		
+		if (i < j) {
+			throw new MozoDuplicadoException("Error: el mozo ya existe en el sistema");
+		}else {
+			this.mozos.add(m) ;
+		}
+		
+	}
+	
+	public void sacaMozo(Mozo m){
+		this.mozos.remove(m);
 	}
 	
 	
