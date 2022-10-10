@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.MesaDuplicadaException;
 import excepciones.MozoDuplicadoException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.ProductoDuplicadoException;
@@ -180,6 +181,26 @@ public class Sistema {
 	
 	public void sacaProducto(Producto p){
 		this.productos.remove(p);
+	}
+	
+	public void agregaMesa(Mesa m) throws MesaDuplicadaException{
+		int j,i=0;
+		
+		j = this.mesas.size() ;
+		
+		while(i < j && !(this.mesas.get(i).getNumero() != m.getNumero())) {
+			i++;
+		}
+		
+		if (i < j) {
+			throw new MesaDuplicadaException("Error: la mesa ya existe en el sistema");
+		}else {
+			this.mesas.add(m) ;
+		}
+	}
+	
+	public void sacaMesa(Mesa m){
+		this.mesas.remove(m);
 	}
 	
 }
