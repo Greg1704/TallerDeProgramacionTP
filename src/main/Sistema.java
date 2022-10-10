@@ -3,8 +3,8 @@ package main;
 import java.util.ArrayList;
 import excepciones.*;
 
-import Excepciones.MozoDuplicadoException;
-import Excepciones.OperarioDuplicadoException;
+import excepciones.MozoDuplicadoException;
+import excepciones.OperarioDuplicadoException;
 
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
