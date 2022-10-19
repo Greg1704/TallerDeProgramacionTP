@@ -156,9 +156,15 @@ public class Sistema {
 		
 	}
 	
-	public void sacaMozo(Mozo m){
+	public void sacaMozo(Mozo m){ //throw exception que no cree
 		this.mozos.remove(m);
 	}
 	
-	
+	public void agregaMesa(int numero){
+		for(int i=0;i<mesas.size();i++){
+			if(mesas.get(i).getNumero() == numero)
+				//Tirar excepcion
+		}
+		mesas.add(new Mesa(0,"libre",numero));
+	}
 }
