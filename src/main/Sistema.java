@@ -3,9 +3,6 @@ package main;
 import java.util.ArrayList;
 import excepciones.*;
 
-import excepciones.MozoDuplicadoException;
-import excepciones.OperarioDuplicadoException;
-
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
@@ -160,10 +157,10 @@ public class Sistema {
 		this.mozos.remove(m);
 	}
 	
-	public void agregaMesa(int numero){
+	public void agregaMesa(int numero) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
 			if(mesas.get(i).getNumero() == numero)
-				//Tirar excepcion
+				throw new MesaYaExistenteException();
 		}
 		mesas.add(new Mesa(0,"libre",numero));
 	}
