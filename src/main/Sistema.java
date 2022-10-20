@@ -159,9 +159,34 @@ public class Sistema {
 	
 	public void agregaMesa(int numero) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
-			if(mesas.get(i).getNumero() == numero)
+			if(this.mesas.get(i).getNumero() == numero)
 				throw new MesaYaExistenteException();
 		}
 		mesas.add(new Mesa(0,"libre",numero));
+	}
+	
+	public void sacaMesa(Mesa mesa) {
+		this.mesas.remove(mesa);
+	}
+	
+	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException {
+		int i=0,j=this.mesas.size();
+		Mesa mesa;
+		while(i<j && this.mesas.get(i).getNumero() != numero)
+			i++;
+		
+		if(i == j) 
+			throw new MesaNoExistenteException();
+		else {
+			mesa = this.mesas.get(i);
+			if(mesa.getEstado().equals("libre")) 
+				if((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
+					mesa.setComensales(cantComensales);
+					this.comandas.add(new Comanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
+				}else
+					throw new ComensalesInsuficientesException();
+			else
+				throw new MesaOcupadaException();
+		}
 	}
 }

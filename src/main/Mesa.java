@@ -2,7 +2,7 @@ package main;
 
 public class Mesa {
 	private int comensales;
-	private String estado;
+	private String estado; //libre u ocupada
 	private int numero;
 	
 	

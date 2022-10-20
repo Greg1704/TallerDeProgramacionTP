@@ -12,9 +12,8 @@ public class Comanda {
 	
 	
 	
-	public Comanda(ArrayList<Pedido> pedidos, Mesa mesa) {
+	public Comanda(Mesa mesa) {
 		super();
-		this.pedidos = pedidos;
 		this.estado = "Abierta";
 		this.mesa = mesa;
 	}
