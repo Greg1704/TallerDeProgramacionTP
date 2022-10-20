@@ -8,7 +8,7 @@ public class Sistema {
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
 	private ArrayList<Comanda> comandas = new ArrayList<Comanda>();
 	private ArrayList<Operario> operarios = new ArrayList<Operario>();
-	private ArrayList<Producto> producto = new ArrayList<Producto>();
+	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String nombre;
@@ -61,10 +61,10 @@ public class Sistema {
 		this.operarios = operarios;
 	}
 	public ArrayList<Producto> getProducto() {
-		return producto;
+		return productos;
 	}
 	public void setProducto(ArrayList<Producto> producto) {
-		this.producto = producto;
+		this.productos = producto;
 	}
 	public ArrayList<Mozo> getMozos() {
 		return mozos;
@@ -169,7 +169,7 @@ public class Sistema {
 		this.mesas.remove(mesa);
 	}
 	
-	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException {
+	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException {
 		int i=0,j=this.mesas.size();
 		Mesa mesa;
 		while(i<j && this.mesas.get(i).getNumero() != numero)
@@ -182,11 +182,28 @@ public class Sistema {
 			if(mesa.getEstado().equals("libre")) 
 				if((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
 					mesa.setComensales(cantComensales);
-					this.comandas.add(new Comanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
+					mesa.setEstado("ocupada");
+					this.comandas.add(creaComanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
 				}else
 					throw new ComensalesInsuficientesException();
 			else
 				throw new MesaOcupadaException();
 		}
+	}
+	
+	
+	/*No es posible crear una nueva comanda si el local:
+	  -no tiene mesas habilitadas--------------------------------->VERIFICADO DE ANTEMANO
+	  -la mesa asociada debe tener un mozo activo asociado-------->ESTO PODRIA SER VERIFICADO DESDE EL CONTROLADOR TAL VEZ?
+	  -no tiene mozos activos------------------------------------->ESTO PODRIA SER VERIFICADO DESDE EL CONTROLADOR TAL VEZ?
+	  -al menos 2 productos están en promoción activa
+	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
+	 * */
+	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException {
+		
+		if(this.productos.size() == 0)
+			throw new NoHayProductosException();
+		
+		return new Comanda(mesa);
 	}
 }
