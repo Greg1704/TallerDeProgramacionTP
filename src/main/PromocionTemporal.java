@@ -4,14 +4,16 @@ public class PromocionTemporal extends Promocion{
 	private String nombre;
 	private int porcentajeDeDto;
 	private boolean esAcumulable;
+	private String formaPago;
 	
 	
 	public PromocionTemporal(boolean activo, String diaDePromo, String nombre, int porcentajeDeDto,
-			boolean esAcumulable) {
+			boolean esAcumulable,String formaPago) {
 		super(activo, diaDePromo);
 		this.nombre = nombre;
 		this.porcentajeDeDto = porcentajeDeDto;
 		this.esAcumulable = esAcumulable;
+		this.formaPago = formaPago;
 	}
 
 

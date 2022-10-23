@@ -1,6 +1,7 @@
 package main;
 
 import java.util.ArrayList;
+import excepciones.*;
 
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
@@ -224,5 +225,14 @@ public class Sistema {
 			throw new NoHayProductosException();
 		
 		return new Comanda(mesa);
+	}
+	
+	
+	public void agregaPromocionTemporal(PromocionTemporal pt) {
+		this.promosTemporales.add(pt);
+	}
+	
+	public void sacaPromocionTemporal(PromocionTemporal pt) {
+		this.promosTemporales.remove(pt);
 	}
 }
