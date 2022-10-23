@@ -1,7 +1,6 @@
 package main;
 
 import java.util.ArrayList;
-import excepciones.*;
 
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
@@ -155,6 +154,26 @@ public class Sistema {
 	
 	public void sacaMozo(Mozo m){ //throw exception que no cree
 		this.mozos.remove(m);
+	}
+	
+	public void agregaProductos(Producto p) throws ProductoDuplicadoException{
+		int j,i=0;
+		
+		j = this.productos.size() ;
+		
+		while(i < j && !(this.productos.get(i).getNombre().equalsIgnoreCase(p.getNombre()))) {
+			i++;
+		}
+		
+		if (i < j) {
+			throw new ProductoDuplicadoException("Error: el producto ya existe en el sistema");
+		}else {
+			this.productos.add(p) ;
+		}
+	}
+	
+	public void sacaProducto(Producto p){
+		this.productos.remove(p);
 	}
 	
 	public void agregaMesa(int numero) throws MesaYaExistenteException{

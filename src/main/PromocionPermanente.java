@@ -1,5 +1,8 @@
 package main;
 
+import excepciones.NegativoException;
+import excepciones.NoHayPromoException;
+
 public class PromocionPermanente extends Promocion{
 	private int id_Promocion;
 	private Producto producto;
@@ -11,14 +14,24 @@ public class PromocionPermanente extends Promocion{
 	
 	public PromocionPermanente(boolean activo, String diaDePromo, int id_Promocion, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
-			double dtoPorCantidad_PrecioUnitario) {
+			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException,NegativoException{
 		super(activo, diaDePromo);
 		this.id_Promocion = id_Promocion;
 		this.producto = producto;
-		this.aplicaDosPorUno = aplicaDosPorUno;
-		this.aplicaDtoPorCantidad = aplicaDtoPorCantidad;
-		this.dtoPorCantidad_cantidadMinima = dtoPorCantidad_cantidadMinima;
-		this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
+		
+		
+		if(aplicaDosPorUno == false && aplicaDtoPorCantidad == false)
+			throw new NoHayPromoException("No pueden ser falsos ambos tipos de descuento.");
+		else if (dtoPorCantidad_cantidadMinima < 0)
+			throw new NegativoException("Cantidad minima menor que cero.");
+		else if (dtoPorCantidad_PrecioUnitario < 0)
+			throw new NegativoException("Precio unitario negativo.");
+		else {
+			this.aplicaDosPorUno = aplicaDosPorUno;
+			this.aplicaDtoPorCantidad = aplicaDtoPorCantidad;
+			this.dtoPorCantidad_cantidadMinima = dtoPorCantidad_cantidadMinima;
+			this.dtoPorCantidad_PrecioUnitario = dtoPorCantidad_PrecioUnitario;
+		}
 	}
 
 
