@@ -69,7 +69,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JPanel panelPromPerm;
 	private JPanel panelPromTemp;
 	private JPanel panelPromPermAlta;
-	private JTextField textFieldPromPermDiasAlta;
+	private JComboBox comboBoxPromPermDiasAlta;
 	private JLabel lblPromPermDiasAlta;
 	private JComboBox comboBoxPromPermDosPorUnoAlta;
 	private JLabel lblPromPermDosPorUnoAlta;
@@ -83,7 +83,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JList listPromPerm;
 	private JButton btnPromPermBaja;
 	private JPanel panelPromPermModif;
-	private JTextField textFieldPromPermDiasModif;
+	private JComboBox comboBoxPromPermDiasModif;
 	private JLabel lblPromPermDiasModif;
 	private JComboBox comboBoxPromPermDosPorUnoAltaModif;
 	private JLabel lblPromPermDosPorUnoModif;
@@ -98,6 +98,20 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JComboBox comboBoxPromPermProductoAlta;
 	private JComboBox comboBoxPromPermProductoModif;
 	private JLabel lblPromPermProductoModif;
+	private JComboBox comboBoxPromPermEstadoModif;
+	private JLabel lblPromPermEstadoModif;
+	private JPanel panelPromTempAlta;
+	private JComboBox comboBoxPromTempDiasAlta;
+	private JLabel lblPromTempDiasAlta;
+	private JTextField textFieldPromTempPorcentajeDtoAlta;
+	private JLabel lblPromTempPorcentajeDtoAlta;
+	private JLabel lblPromTempAcumulableAlta;
+	private JComboBox comboBoxPromTempAcumulableAlta;
+	private JButton btnPromPermAlta_1;
+	private JComboBox comboBoxPromTempMetodoPagoAlta;
+	private JLabel lblPromTempMetodoPagoAlta;
+	private JLabel lblPromTempNombreAlta;
+	private JTextField textFieldPromTempNombreAlta;
 
 	/**
 	 * Launch the application.
@@ -319,13 +333,12 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.panelPromPermAlta = new JPanel();
 		this.panelPromPermAlta.setLayout(null);
 		this.panelPromPermAlta.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alta de Promociones permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.panelPromPermAlta.setBounds(30, 33, 364, 278);
+		this.panelPromPermAlta.setBounds(30, 24, 364, 287);
 		this.panelPromPerm.add(this.panelPromPermAlta);
 		
-		this.textFieldPromPermDiasAlta = new JTextField();
-		this.textFieldPromPermDiasAlta.setColumns(10);
-		this.textFieldPromPermDiasAlta.setBounds(183, 41, 122, 20);
-		this.panelPromPermAlta.add(this.textFieldPromPermDiasAlta);
+		this.comboBoxPromPermDiasAlta = new JComboBox();
+		this.comboBoxPromPermDiasAlta.setBounds(183, 41, 122, 20);
+		this.panelPromPermAlta.add(this.comboBoxPromPermDiasAlta);
 		
 		this.lblPromPermDiasAlta = new JLabel("Dias de promo");
 		this.lblPromPermDiasAlta.setBounds(44, 41, 77, 14);
@@ -379,7 +392,7 @@ public class Ventanal extends JFrame implements ActionListener {
 		
 		this.listPromPerm = new JList();
 		this.listPromPerm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Promociones Permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.listPromPerm.setBounds(467, 32, 364, 280);
+		this.listPromPerm.setBounds(467, 24, 364, 288);
 		this.panelPromPerm.add(this.listPromPerm);
 		
 		this.btnPromPermBaja = new JButton("Eliminar");
@@ -389,66 +402,124 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.panelPromPermModif = new JPanel();
 		this.panelPromPermModif.setLayout(null);
 		this.panelPromPermModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Promociones permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.panelPromPermModif.setBounds(912, 33, 364, 278);
+		this.panelPromPermModif.setBounds(912, 23, 364, 288);
 		this.panelPromPerm.add(this.panelPromPermModif);
 		
-		this.textFieldPromPermDiasModif = new JTextField();
-		this.textFieldPromPermDiasModif.setColumns(10);
-		this.textFieldPromPermDiasModif.setBounds(183, 46, 122, 20);
-		this.panelPromPermModif.add(this.textFieldPromPermDiasModif);
+		this.comboBoxPromPermDiasModif = new JComboBox();
+		this.comboBoxPromPermDiasModif.setBounds(183, 52, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermDiasModif);
 		
 		this.lblPromPermDiasModif = new JLabel("Dias de promo");
-		this.lblPromPermDiasModif.setBounds(44, 49, 77, 14);
+		this.lblPromPermDiasModif.setBounds(44, 55, 77, 14);
 		this.panelPromPermModif.add(this.lblPromPermDiasModif);
 		
 		this.comboBoxPromPermDosPorUnoAltaModif = new JComboBox();
-		this.comboBoxPromPermDosPorUnoAltaModif.setBounds(183, 107, 122, 20);
+		this.comboBoxPromPermDosPorUnoAltaModif.setBounds(183, 114, 122, 20);
 		this.panelPromPermModif.add(this.comboBoxPromPermDosPorUnoAltaModif);
 		
 		this.lblPromPermDosPorUnoModif = new JLabel("Dos por uno");
-		this.lblPromPermDosPorUnoModif.setBounds(44, 107, 77, 14);
+		this.lblPromPermDosPorUnoModif.setBounds(44, 117, 77, 14);
 		this.panelPromPermModif.add(this.lblPromPermDosPorUnoModif);
 		
 		this.lblPromPermDtoPorCantModif = new JLabel("Descuento por cantidad");
-		this.lblPromPermDtoPorCantModif.setBounds(44, 141, 122, 14);
+		this.lblPromPermDtoPorCantModif.setBounds(44, 148, 122, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantModif);
 		
 		this.comboBoxPromPermDtoPorCantModif = new JComboBox();
-		this.comboBoxPromPermDtoPorCantModif.setBounds(183, 138, 122, 20);
+		this.comboBoxPromPermDtoPorCantModif.setBounds(183, 145, 122, 20);
 		this.panelPromPermModif.add(this.comboBoxPromPermDtoPorCantModif);
 		
 		this.btnPromPermModif = new JButton("Modificar");
-		this.btnPromPermModif.setBounds(119, 231, 89, 23);
+		this.btnPromPermModif.setBounds(119, 238, 89, 23);
 		this.panelPromPermModif.add(this.btnPromPermModif);
 		
 		this.textFieldPromPermDtoPorCantMinimoModif = new JTextField();
 		this.textFieldPromPermDtoPorCantMinimoModif.setColumns(10);
-		this.textFieldPromPermDtoPorCantMinimoModif.setBounds(183, 169, 122, 20);
+		this.textFieldPromPermDtoPorCantMinimoModif.setBounds(183, 176, 122, 20);
 		this.panelPromPermModif.add(this.textFieldPromPermDtoPorCantMinimoModif);
 		
 		this.textFieldPromPermDtoPorCantPrecioUnitarioModif = new JTextField();
 		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setColumns(10);
-		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setBounds(183, 200, 122, 20);
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setBounds(183, 207, 122, 20);
 		this.panelPromPermModif.add(this.textFieldPromPermDtoPorCantPrecioUnitarioModif);
 		
 		this.lblPromPermDtoPorCantMinimoModif = new JLabel("Cantidad minima");
-		this.lblPromPermDtoPorCantMinimoModif.setBounds(44, 172, 122, 14);
+		this.lblPromPermDtoPorCantMinimoModif.setBounds(44, 179, 122, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantMinimoModif);
 		
 		this.lblPromPermDtoPorCantPrecioUnitarioModif = new JLabel("Precio unitario");
-		this.lblPromPermDtoPorCantPrecioUnitarioModif.setBounds(44, 206, 122, 14);
+		this.lblPromPermDtoPorCantPrecioUnitarioModif.setBounds(44, 210, 122, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantPrecioUnitarioModif);
 		
 		this.comboBoxPromPermProductoModif = new JComboBox();
-		this.comboBoxPromPermProductoModif.setBounds(183, 76, 122, 20);
+		this.comboBoxPromPermProductoModif.setBounds(183, 83, 122, 20);
 		this.panelPromPermModif.add(this.comboBoxPromPermProductoModif);
 		
 		this.lblPromPermProductoModif = new JLabel("Producto");
-		this.lblPromPermProductoModif.setBounds(44, 82, 77, 14);
+		this.lblPromPermProductoModif.setBounds(44, 86, 77, 14);
 		this.panelPromPermModif.add(this.lblPromPermProductoModif);
+		
+		this.comboBoxPromPermEstadoModif = new JComboBox();
+		this.comboBoxPromPermEstadoModif.setBounds(183, 21, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermEstadoModif);
+		
+		this.lblPromPermEstadoModif = new JLabel("Estado");
+		this.lblPromPermEstadoModif.setBounds(44, 24, 77, 14);
+		this.panelPromPermModif.add(this.lblPromPermEstadoModif);
 		
 		this.panelPromTemp = new JPanel();
 		this.panelPromociones.add(this.panelPromTemp);
+		this.panelPromTemp.setLayout(null);
+		
+		this.panelPromTempAlta = new JPanel();
+		this.panelPromTempAlta.setLayout(null);
+		this.panelPromTempAlta.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alta de Promociones permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelPromTempAlta.setBounds(32, 27, 364, 287);
+		this.panelPromTemp.add(this.panelPromTempAlta);
+		
+		this.comboBoxPromTempDiasAlta = new JComboBox();
+		this.comboBoxPromTempDiasAlta.setBounds(183, 41, 122, 20);
+		this.panelPromTempAlta.add(this.comboBoxPromTempDiasAlta);
+		
+		this.lblPromTempDiasAlta = new JLabel("Dias de promo");
+		this.lblPromTempDiasAlta.setBounds(44, 41, 77, 14);
+		this.panelPromTempAlta.add(this.lblPromTempDiasAlta);
+		
+		this.textFieldPromTempPorcentajeDtoAlta = new JTextField();
+		this.textFieldPromTempPorcentajeDtoAlta.setBounds(183, 103, 122, 20);
+		this.panelPromTempAlta.add(this.textFieldPromTempPorcentajeDtoAlta);
+		
+		this.lblPromTempPorcentajeDtoAlta = new JLabel("Porcentaje de descuento");
+		this.lblPromTempPorcentajeDtoAlta.setBounds(44, 106, 129, 14);
+		this.panelPromTempAlta.add(this.lblPromTempPorcentajeDtoAlta);
+		
+		this.lblPromTempAcumulableAlta = new JLabel("Acumulable");
+		this.lblPromTempAcumulableAlta.setBounds(44, 137, 122, 14);
+		this.panelPromTempAlta.add(this.lblPromTempAcumulableAlta);
+		
+		this.comboBoxPromTempAcumulableAlta = new JComboBox();
+		this.comboBoxPromTempAcumulableAlta.setBounds(183, 134, 122, 20);
+		this.panelPromTempAlta.add(this.comboBoxPromTempAcumulableAlta);
+		
+		this.btnPromPermAlta_1 = new JButton("Crear");
+		this.btnPromPermAlta_1.setBounds(117, 227, 89, 23);
+		this.panelPromTempAlta.add(this.btnPromPermAlta_1);
+		
+		this.comboBoxPromTempMetodoPagoAlta = new JComboBox();
+		this.comboBoxPromTempMetodoPagoAlta.setBounds(183, 165, 122, 20);
+		this.panelPromTempAlta.add(this.comboBoxPromTempMetodoPagoAlta);
+		
+		this.lblPromTempMetodoPagoAlta = new JLabel("Metodo de pago");
+		this.lblPromTempMetodoPagoAlta.setBounds(44, 168, 122, 14);
+		this.panelPromTempAlta.add(this.lblPromTempMetodoPagoAlta);
+		
+		this.lblPromTempNombreAlta = new JLabel("Nombre");
+		this.lblPromTempNombreAlta.setBounds(44, 72, 77, 14);
+		this.panelPromTempAlta.add(this.lblPromTempNombreAlta);
+		
+		this.textFieldPromTempNombreAlta = new JTextField();
+		this.textFieldPromTempNombreAlta.setBounds(183, 72, 122, 20);
+		this.panelPromTempAlta.add(this.textFieldPromTempNombreAlta);
 		
 		this.panel_2 = new JPanel();
 		this.tabbedPane.addTab("New tab", null, this.panel_2, null);
