@@ -16,7 +16,6 @@ public class Mesa {
 		this.numero = numero;
 		this.cantCompras = 0;
 		this.totalGanado = 0;
-		this.promedio = 0;
 	}
 	
 	
@@ -34,9 +33,6 @@ public class Mesa {
 	}
 	public double getPromedio() {
 		return promedio;
-	}
-	public void setPromedio(double promedio) {
-		this.promedio = promedio;
 	}
 
 
@@ -59,5 +55,25 @@ public class Mesa {
 		this.numero = numero;
 	}
 	
+	
+	public void generaPromedio() {
+		
+		if(this.cantCompras != 0) {
+			this.promedio = this.totalGanado / this.cantCompras;
+		}else {
+			this.promedio = 0;
+		}
+		//no se si deberia ir la inicializacion en 0 de nuevo
+		
+	}
+	
+	public void inicializaValores() {
+		this.cantCompras = 0;
+		this.totalGanado = 0;
+	}
+	
+	public String muestraProm() {
+		return "Mesa numero: " + this.numero + " tiene un promedio de $" + this.promedio;
+	}
 	
 }

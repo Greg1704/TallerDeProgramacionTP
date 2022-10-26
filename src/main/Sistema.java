@@ -236,8 +236,36 @@ public class Sistema {
 		this.promosTemporales.remove(pt);
 	}
 	
+	
+	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
+		int i = 0;
+		int j;
+		Mozo mozoAct;
+		
+		while(i < this.mozos.size()) {
+			
+			j = 0;
+			
+			while(j < this.mozos.get(i).getMesas().size()){
+				
+				if(this.mozos.get(i).getMesas().get(j).getNumero() == mesa.getNumero()) 
+					return this.mozos.get(i);	
+				
+				j++;
+				
+			}
+			
+			i++;
+			
+		}
+		
+		return null;
+	}
+	
 	public double informeMasVende() {
 		double masVendio = 0;
+		
+		
 		
 		return masVendio;
 		
@@ -246,9 +274,12 @@ public class Sistema {
 	public double informeMenosVende() {
 		double menosVendio = 0;
 		
+		
+		
 		return menosVendio;
 	}
 	
+	// para la estadistica de consumo promedio de mesas deberiamos retornar un arraylist de mesas con las stats correspondientes
 	
 	
 }
