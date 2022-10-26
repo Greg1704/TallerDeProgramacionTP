@@ -235,4 +235,20 @@ public class Sistema {
 	public void sacaPromocionTemporal(PromocionTemporal pt) {
 		this.promosTemporales.remove(pt);
 	}
+	
+	public double informeMasVende() {
+		double masVendio = 0;
+		
+		return masVendio;
+		
+	}
+	
+	public double informeMenosVende() {
+		double menosVendio = 0;
+		
+		return menosVendio;
+	}
+	
+	
+	
 }

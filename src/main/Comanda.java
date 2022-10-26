@@ -11,7 +11,6 @@ public class Comanda {
 	
 	
 	
-	
 	public Comanda(Mesa mesa) {
 		super();
 		this.estado = "Abierta";
