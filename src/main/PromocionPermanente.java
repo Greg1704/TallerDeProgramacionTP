@@ -10,13 +10,14 @@ public class PromocionPermanente extends Promocion{
 	private boolean aplicaDtoPorCantidad;
 	private int dtoPorCantidad_cantidadMinima;
 	private double dtoPorCantidad_PrecioUnitario;
+	private static int numeroId=0;
 	
 	
-	public PromocionPermanente(boolean activo, String diaDePromo, int id_Promocion, Producto producto,
+	public PromocionPermanente(boolean activo, String diaDePromo, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
 			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException,NegativoException{
 		super(activo, diaDePromo);
-		this.id_Promocion = id_Promocion;
+		this.id_Promocion = ++numeroId;
 		this.producto = producto;
 		
 		

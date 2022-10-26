@@ -23,8 +23,8 @@ public class Ventanal extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
-	private JPanel panelOperario;
-	private JPanel panel_1;
+	private JPanel panelOperarioYMesa;
+	private JPanel panelPromociones;
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JPanel panel_4;
@@ -35,7 +35,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JTextField textFieldOperarioUsuarioAlta;
 	private JLabel lblOperarioUsuarioAlta;
 	private JTextField textFieldOperarioContraseniaAlta;
-	private JLabel lbltextFieldOperarioContraseniaAlta;
+	private JLabel lblOperarioContraseniaAlta;
 	private JLabel lblOperarioNyAAlta;
 	private JTextField textFieldOperarioNyAAlta;
 	private JButton btnOperarioAlta;
@@ -66,6 +66,38 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JLabel lblMesaEstadoModif;
 	private JTextField textFieldMesaCantidadComensalesModif;
 	private JButton btnNewButton_1;
+	private JPanel panelPromPerm;
+	private JPanel panelPromTemp;
+	private JPanel panelPromPermAlta;
+	private JTextField textFieldPromPermDiasAlta;
+	private JLabel lblPromPermDiasAlta;
+	private JComboBox comboBoxPromPermDosPorUnoAlta;
+	private JLabel lblPromPermDosPorUnoAlta;
+	private JLabel lblPromPermDtoPorCantAlta;
+	private JComboBox comboBoxPromPermDtoPorCantAlta;
+	private JButton btnPromPermAlta;
+	private JTextField textFieldPromPermDtoPorCantMinimoAlta;
+	private JTextField textFieldPromPermDtoPorCantPrecioUnitarioAlta;
+	private JLabel lblPromPermDtoPorCantMinimoAlta;
+	private JLabel lblPromPermDtoPorCantPrecioUnitarioAlta;
+	private JList listPromPerm;
+	private JButton btnPromPermBaja;
+	private JPanel panelPromPermModif;
+	private JTextField textFieldPromPermDiasModif;
+	private JLabel lblPromPermDiasModif;
+	private JComboBox comboBoxPromPermDosPorUnoAltaModif;
+	private JLabel lblPromPermDosPorUnoModif;
+	private JLabel lblPromPermDtoPorCantModif;
+	private JComboBox comboBoxPromPermDtoPorCantModif;
+	private JButton btnPromPermModif;
+	private JTextField textFieldPromPermDtoPorCantMinimoModif;
+	private JTextField textFieldPromPermDtoPorCantPrecioUnitarioModif;
+	private JLabel lblPromPermDtoPorCantMinimoModif;
+	private JLabel lblPromPermDtoPorCantPrecioUnitarioModif;
+	private JLabel lblPromPermProductoAlta;
+	private JComboBox comboBoxPromPermProductoAlta;
+	private JComboBox comboBoxPromPermProductoModif;
+	private JLabel lblPromPermProductoModif;
 
 	/**
 	 * Launch the application.
@@ -97,13 +129,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 		
-		this.panelOperario = new JPanel();
-		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperario, null);
-		this.panelOperario.setLayout(new GridLayout(2, 1, 0, 0));
+		this.panelOperarioYMesa = new JPanel();
+		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperarioYMesa, null);
+		this.panelOperarioYMesa.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		this.panelOperarioABM = new JPanel();
 		this.panelOperarioABM.setBorder(new TitledBorder(null, "Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.panelOperario.add(this.panelOperarioABM);
+		this.panelOperarioYMesa.add(this.panelOperarioABM);
 		this.panelOperarioABM.setLayout(null);
 		
 		this.panelOperarioCreacion = new JPanel();
@@ -126,9 +158,9 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.textFieldOperarioContraseniaAlta.setBounds(183, 95, 122, 20);
 		this.panelOperarioCreacion.add(this.textFieldOperarioContraseniaAlta);
 		
-		this.lbltextFieldOperarioContraseniaAlta = new JLabel("Contraseña");
-		this.lbltextFieldOperarioContraseniaAlta.setBounds(44, 98, 61, 14);
-		this.panelOperarioCreacion.add(this.lbltextFieldOperarioContraseniaAlta);
+		this.lblOperarioContraseniaAlta = new JLabel("Contraseña");
+		this.lblOperarioContraseniaAlta.setBounds(44, 98, 61, 14);
+		this.panelOperarioCreacion.add(this.lblOperarioContraseniaAlta);
 		
 		this.lblOperarioNyAAlta = new JLabel("Nombre y Apellido");
 		this.lblOperarioNyAAlta.setBounds(44, 151, 96, 14);
@@ -200,7 +232,7 @@ public class Ventanal extends JFrame implements ActionListener {
 		
 		this.panelMesaABM = new JPanel();
 		this.panelMesaABM.setBorder(new TitledBorder(null, "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.panelOperario.add(this.panelMesaABM);
+		this.panelOperarioYMesa.add(this.panelMesaABM);
 		this.panelMesaABM.setLayout(null);
 		
 		this.panelMesaCreacion = new JPanel();
@@ -276,8 +308,147 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.btnNewButton_1.setBounds(156, 217, 89, 23);
 		this.panelMesaModif.add(this.btnNewButton_1);
 		
-		this.panel_1 = new JPanel();
-		this.tabbedPane.addTab("New tab", null, this.panel_1, null);
+		this.panelPromociones = new JPanel();
+		this.tabbedPane.addTab("Promociones", null, this.panelPromociones, null);
+		this.panelPromociones.setLayout(new GridLayout(2, 1, 0, 0));
+		
+		this.panelPromPerm = new JPanel();
+		this.panelPromociones.add(this.panelPromPerm);
+		this.panelPromPerm.setLayout(null);
+		
+		this.panelPromPermAlta = new JPanel();
+		this.panelPromPermAlta.setLayout(null);
+		this.panelPromPermAlta.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alta de Promociones permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelPromPermAlta.setBounds(30, 33, 364, 278);
+		this.panelPromPerm.add(this.panelPromPermAlta);
+		
+		this.textFieldPromPermDiasAlta = new JTextField();
+		this.textFieldPromPermDiasAlta.setColumns(10);
+		this.textFieldPromPermDiasAlta.setBounds(183, 41, 122, 20);
+		this.panelPromPermAlta.add(this.textFieldPromPermDiasAlta);
+		
+		this.lblPromPermDiasAlta = new JLabel("Dias de promo");
+		this.lblPromPermDiasAlta.setBounds(44, 41, 77, 14);
+		this.panelPromPermAlta.add(this.lblPromPermDiasAlta);
+		
+		this.comboBoxPromPermDosPorUnoAlta = new JComboBox();
+		this.comboBoxPromPermDosPorUnoAlta.setBounds(183, 103, 122, 20);
+		this.panelPromPermAlta.add(this.comboBoxPromPermDosPorUnoAlta);
+		
+		this.lblPromPermDosPorUnoAlta = new JLabel("Dos por uno");
+		this.lblPromPermDosPorUnoAlta.setBounds(44, 106, 77, 14);
+		this.panelPromPermAlta.add(this.lblPromPermDosPorUnoAlta);
+		
+		this.lblPromPermDtoPorCantAlta = new JLabel("Descuento por cantidad");
+		this.lblPromPermDtoPorCantAlta.setBounds(44, 137, 122, 14);
+		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantAlta);
+		
+		this.comboBoxPromPermDtoPorCantAlta = new JComboBox();
+		this.comboBoxPromPermDtoPorCantAlta.setBounds(183, 134, 122, 20);
+		this.panelPromPermAlta.add(this.comboBoxPromPermDtoPorCantAlta);
+		
+		this.btnPromPermAlta = new JButton("Crear");
+		this.btnPromPermAlta.setBounds(117, 227, 89, 23);
+		this.panelPromPermAlta.add(this.btnPromPermAlta);
+		
+		this.textFieldPromPermDtoPorCantMinimoAlta = new JTextField();
+		this.textFieldPromPermDtoPorCantMinimoAlta.setColumns(10);
+		this.textFieldPromPermDtoPorCantMinimoAlta.setBounds(183, 165, 122, 20);
+		this.panelPromPermAlta.add(this.textFieldPromPermDtoPorCantMinimoAlta);
+		
+		this.textFieldPromPermDtoPorCantPrecioUnitarioAlta = new JTextField();
+		this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setColumns(10);
+		this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setBounds(183, 196, 122, 20);
+		this.panelPromPermAlta.add(this.textFieldPromPermDtoPorCantPrecioUnitarioAlta);
+		
+		this.lblPromPermDtoPorCantMinimoAlta = new JLabel("Cantidad minima");
+		this.lblPromPermDtoPorCantMinimoAlta.setBounds(44, 168, 122, 14);
+		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantMinimoAlta);
+		
+		this.lblPromPermDtoPorCantPrecioUnitarioAlta = new JLabel("Precio unitario");
+		this.lblPromPermDtoPorCantPrecioUnitarioAlta.setBounds(44, 202, 122, 14);
+		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantPrecioUnitarioAlta);
+		
+		this.lblPromPermProductoAlta = new JLabel("Producto");
+		this.lblPromPermProductoAlta.setBounds(44, 72, 77, 14);
+		this.panelPromPermAlta.add(this.lblPromPermProductoAlta);
+		
+		this.comboBoxPromPermProductoAlta = new JComboBox();
+		this.comboBoxPromPermProductoAlta.setBounds(183, 72, 122, 20);
+		this.panelPromPermAlta.add(this.comboBoxPromPermProductoAlta);
+		
+		this.listPromPerm = new JList();
+		this.listPromPerm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Promociones Permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.listPromPerm.setBounds(467, 32, 364, 280);
+		this.panelPromPerm.add(this.listPromPerm);
+		
+		this.btnPromPermBaja = new JButton("Eliminar");
+		this.btnPromPermBaja.setBounds(602, 323, 89, 23);
+		this.panelPromPerm.add(this.btnPromPermBaja);
+		
+		this.panelPromPermModif = new JPanel();
+		this.panelPromPermModif.setLayout(null);
+		this.panelPromPermModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Promociones permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelPromPermModif.setBounds(912, 33, 364, 278);
+		this.panelPromPerm.add(this.panelPromPermModif);
+		
+		this.textFieldPromPermDiasModif = new JTextField();
+		this.textFieldPromPermDiasModif.setColumns(10);
+		this.textFieldPromPermDiasModif.setBounds(183, 46, 122, 20);
+		this.panelPromPermModif.add(this.textFieldPromPermDiasModif);
+		
+		this.lblPromPermDiasModif = new JLabel("Dias de promo");
+		this.lblPromPermDiasModif.setBounds(44, 49, 77, 14);
+		this.panelPromPermModif.add(this.lblPromPermDiasModif);
+		
+		this.comboBoxPromPermDosPorUnoAltaModif = new JComboBox();
+		this.comboBoxPromPermDosPorUnoAltaModif.setBounds(183, 107, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermDosPorUnoAltaModif);
+		
+		this.lblPromPermDosPorUnoModif = new JLabel("Dos por uno");
+		this.lblPromPermDosPorUnoModif.setBounds(44, 107, 77, 14);
+		this.panelPromPermModif.add(this.lblPromPermDosPorUnoModif);
+		
+		this.lblPromPermDtoPorCantModif = new JLabel("Descuento por cantidad");
+		this.lblPromPermDtoPorCantModif.setBounds(44, 141, 122, 14);
+		this.panelPromPermModif.add(this.lblPromPermDtoPorCantModif);
+		
+		this.comboBoxPromPermDtoPorCantModif = new JComboBox();
+		this.comboBoxPromPermDtoPorCantModif.setBounds(183, 138, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermDtoPorCantModif);
+		
+		this.btnPromPermModif = new JButton("Modificar");
+		this.btnPromPermModif.setBounds(119, 231, 89, 23);
+		this.panelPromPermModif.add(this.btnPromPermModif);
+		
+		this.textFieldPromPermDtoPorCantMinimoModif = new JTextField();
+		this.textFieldPromPermDtoPorCantMinimoModif.setColumns(10);
+		this.textFieldPromPermDtoPorCantMinimoModif.setBounds(183, 169, 122, 20);
+		this.panelPromPermModif.add(this.textFieldPromPermDtoPorCantMinimoModif);
+		
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif = new JTextField();
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setColumns(10);
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setBounds(183, 200, 122, 20);
+		this.panelPromPermModif.add(this.textFieldPromPermDtoPorCantPrecioUnitarioModif);
+		
+		this.lblPromPermDtoPorCantMinimoModif = new JLabel("Cantidad minima");
+		this.lblPromPermDtoPorCantMinimoModif.setBounds(44, 172, 122, 14);
+		this.panelPromPermModif.add(this.lblPromPermDtoPorCantMinimoModif);
+		
+		this.lblPromPermDtoPorCantPrecioUnitarioModif = new JLabel("Precio unitario");
+		this.lblPromPermDtoPorCantPrecioUnitarioModif.setBounds(44, 206, 122, 14);
+		this.panelPromPermModif.add(this.lblPromPermDtoPorCantPrecioUnitarioModif);
+		
+		this.comboBoxPromPermProductoModif = new JComboBox();
+		this.comboBoxPromPermProductoModif.setBounds(183, 76, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermProductoModif);
+		
+		this.lblPromPermProductoModif = new JLabel("Producto");
+		this.lblPromPermProductoModif.setBounds(44, 82, 77, 14);
+		this.panelPromPermModif.add(this.lblPromPermProductoModif);
+		
+		this.panelPromTemp = new JPanel();
+		this.panelPromociones.add(this.panelPromTemp);
 		
 		this.panel_2 = new JPanel();
 		this.tabbedPane.addTab("New tab", null, this.panel_2, null);
