@@ -15,6 +15,9 @@ import javax.swing.JList;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
+import javax.swing.JComboBox;
 
 public class Ventanal extends JFrame implements ActionListener {
 
@@ -26,9 +29,8 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JPanel panel_5;
-	private JPanel panelOperarioAlta;
-	private JPanel panelOperarioBaja;
-	private JPanel panelOperarioModificación;
+	private JPanel panelOperarioABM;
+	private JPanel panelMesaABM;
 	private JPanel panelOperarioCreacion;
 	private JTextField textFieldOperarioUsuarioAlta;
 	private JLabel lblOperarioUsuarioAlta;
@@ -47,8 +49,23 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JLabel lblOperarioEstadoModif;
 	private JTextField textFieldOperarioContraseniaModif;
 	private JTextField textFieldOperarioNyAModif;
-	private JTextField textFieldOperarioEstadoModif;
+	private JComboBox comboBoxOperarioEstadoModif;
 	private JButton btnNewButton;
+	private JPanel panelMesaCreacion;
+	private JTextField textFieldMesaNumeroAlta;
+	private JLabel lblMesaNumeroAlta;
+	private JTextField textFieldMesaCantidadComensalesAlta;
+	private JLabel lblMesaCantidadComensalesAlta;
+	private JButton btnMesaAlta;
+	private JList listMesas;
+	private JButton btnMesaBaja;
+	private JPanel panelMesaModif;
+	private JLabel lblMesaNumeroModif;
+	private JTextField textFieldMesaNumeroModif;
+	private JLabel lblMesaCantidadComensalesModif;
+	private JLabel lblMesaEstadoModif;
+	private JTextField textFieldMesaCantidadComensalesModif;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -81,17 +98,18 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 		
 		this.panelOperario = new JPanel();
-		this.tabbedPane.addTab("Operario", null, this.panelOperario, null);
-		this.panelOperario.setLayout(new GridLayout(0, 3, 0, 0));
+		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperario, null);
+		this.panelOperario.setLayout(new GridLayout(2, 1, 0, 0));
 		
-		this.panelOperarioAlta = new JPanel();
-		this.panelOperario.add(this.panelOperarioAlta);
-		this.panelOperarioAlta.setLayout(null);
+		this.panelOperarioABM = new JPanel();
+		this.panelOperarioABM.setBorder(new TitledBorder(null, "Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelOperario.add(this.panelOperarioABM);
+		this.panelOperarioABM.setLayout(null);
 		
 		this.panelOperarioCreacion = new JPanel();
-		this.panelOperarioCreacion.setBorder(new TitledBorder(null, "Alta de Operario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelOperarioCreacion.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alta de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		this.panelOperarioCreacion.setBounds(36, 36, 364, 278);
-		this.panelOperarioAlta.add(this.panelOperarioCreacion);
+		this.panelOperarioABM.add(this.panelOperarioCreacion);
 		this.panelOperarioCreacion.setLayout(null);
 		
 		this.textFieldOperarioUsuarioAlta = new JTextField();
@@ -126,27 +144,10 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.btnOperarioAlta.setBounds(117, 214, 89, 23);
 		this.panelOperarioCreacion.add(this.btnOperarioAlta);
 		
-		this.panelOperarioBaja = new JPanel();
-		this.panelOperario.add(this.panelOperarioBaja);
-		this.panelOperarioBaja.setLayout(null);
-		
-		this.listOperarios = new JList();
-		this.listOperarios.setBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.listOperarios.setBounds(43, 36, 364, 280);
-		this.panelOperarioBaja.add(this.listOperarios);
-		
-		this.btnOperarioBaja = new JButton("Eliminar");
-		this.btnOperarioBaja.setBounds(167, 327, 89, 23);
-		this.panelOperarioBaja.add(this.btnOperarioBaja);
-		
-		this.panelOperarioModificación = new JPanel();
-		this.panelOperario.add(this.panelOperarioModificación);
-		this.panelOperarioModificación.setLayout(null);
-		
 		this.panelOperarioModif = new JPanel();
+		this.panelOperarioModif.setBounds(898, 36, 402, 278);
+		this.panelOperarioABM.add(this.panelOperarioModif);
 		this.panelOperarioModif.setBorder(new TitledBorder(null, "Modificaci\u00F3n de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.panelOperarioModif.setBounds(21, 36, 402, 278);
-		this.panelOperarioModificación.add(this.panelOperarioModif);
 		this.panelOperarioModif.setLayout(null);
 		
 		this.lblOperarioUsuarioModif = new JLabel("Usuario");
@@ -180,14 +181,100 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.textFieldOperarioNyAModif.setBounds(216, 112, 122, 20);
 		this.panelOperarioModif.add(this.textFieldOperarioNyAModif);
 		
-		this.textFieldOperarioEstadoModif = new JTextField();
-		this.textFieldOperarioEstadoModif.setColumns(10);
-		this.textFieldOperarioEstadoModif.setBounds(216, 152, 122, 20);
-		this.panelOperarioModif.add(this.textFieldOperarioEstadoModif);
+		this.comboBoxOperarioEstadoModif = new JComboBox();
+		this.comboBoxOperarioEstadoModif.setBounds(216, 152, 122, 20);
+		this.panelOperarioModif.add(this.comboBoxOperarioEstadoModif);
 		
 		this.btnNewButton = new JButton("Modificar");
 		this.btnNewButton.setBounds(156, 217, 89, 23);
 		this.panelOperarioModif.add(this.btnNewButton);
+		
+		this.listOperarios = new JList();
+		this.listOperarios.setBounds(463, 36, 364, 280);
+		this.panelOperarioABM.add(this.listOperarios);
+		this.listOperarios.setBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
+		this.btnOperarioBaja = new JButton("Eliminar");
+		this.btnOperarioBaja.setBounds(592, 327, 89, 23);
+		this.panelOperarioABM.add(this.btnOperarioBaja);
+		
+		this.panelMesaABM = new JPanel();
+		this.panelMesaABM.setBorder(new TitledBorder(null, "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelOperario.add(this.panelMesaABM);
+		this.panelMesaABM.setLayout(null);
+		
+		this.panelMesaCreacion = new JPanel();
+		this.panelMesaCreacion.setLayout(null);
+		this.panelMesaCreacion.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Alta de Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelMesaCreacion.setBounds(31, 36, 364, 278);
+		this.panelMesaABM.add(this.panelMesaCreacion);
+		
+		this.textFieldMesaNumeroAlta = new JTextField();
+		this.textFieldMesaNumeroAlta.setColumns(10);
+		this.textFieldMesaNumeroAlta.setBounds(183, 43, 122, 20);
+		this.panelMesaCreacion.add(this.textFieldMesaNumeroAlta);
+		
+		this.lblMesaNumeroAlta = new JLabel("Numero de Mesa");
+		this.lblMesaNumeroAlta.setBounds(44, 46, 96, 14);
+		this.panelMesaCreacion.add(this.lblMesaNumeroAlta);
+		
+		this.textFieldMesaCantidadComensalesAlta = new JTextField();
+		this.textFieldMesaCantidadComensalesAlta.setColumns(10);
+		this.textFieldMesaCantidadComensalesAlta.setBounds(183, 131, 122, 20);
+		this.panelMesaCreacion.add(this.textFieldMesaCantidadComensalesAlta);
+		
+		this.lblMesaCantidadComensalesAlta = new JLabel("Cantidad de comensales");
+		this.lblMesaCantidadComensalesAlta.setBounds(44, 134, 122, 14);
+		this.panelMesaCreacion.add(this.lblMesaCantidadComensalesAlta);
+		
+		this.btnMesaAlta = new JButton("Crear");
+		this.btnMesaAlta.setBounds(117, 214, 89, 23);
+		this.panelMesaCreacion.add(this.btnMesaAlta);
+		
+		this.listMesas = new JList();
+		this.listMesas.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.listMesas.setBounds(463, 35, 364, 280);
+		this.panelMesaABM.add(this.listMesas);
+		
+		this.btnMesaBaja = new JButton("Eliminar");
+		this.btnMesaBaja.setBounds(599, 326, 89, 23);
+		this.panelMesaABM.add(this.btnMesaBaja);
+		
+		this.panelMesaModif = new JPanel();
+		this.panelMesaModif.setLayout(null);
+		this.panelMesaModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelMesaModif.setBounds(899, 36, 402, 278);
+		this.panelMesaABM.add(this.panelMesaModif);
+		
+		this.lblMesaNumeroModif = new JLabel("Numero de Mesa");
+		this.lblMesaNumeroModif.setBounds(65, 38, 102, 14);
+		this.panelMesaModif.add(this.lblMesaNumeroModif);
+		
+		this.textFieldMesaNumeroModif = new JTextField();
+		this.textFieldMesaNumeroModif.setColumns(10);
+		this.textFieldMesaNumeroModif.setBounds(216, 35, 122, 20);
+		this.panelMesaModif.add(this.textFieldMesaNumeroModif);
+		
+		this.lblMesaCantidadComensalesModif = new JLabel("Cantidad de comensales");
+		this.lblMesaCantidadComensalesModif.setBounds(65, 76, 122, 14);
+		this.panelMesaModif.add(this.lblMesaCantidadComensalesModif);
+		
+		this.lblMesaEstadoModif = new JLabel("Estado");
+		this.lblMesaEstadoModif.setBounds(65, 115, 102, 17);
+		this.panelMesaModif.add(this.lblMesaEstadoModif);
+		
+		this.textFieldMesaCantidadComensalesModif = new JTextField();
+		this.textFieldMesaCantidadComensalesModif.setColumns(10);
+		this.textFieldMesaCantidadComensalesModif.setBounds(216, 73, 122, 20);
+		this.panelMesaModif.add(this.textFieldMesaCantidadComensalesModif);
+		
+		JComboBox comboBoxMesaEstadoModif = new JComboBox();
+		comboBoxMesaEstadoModif.setBounds(216, 112, 122, 20);
+		this.panelMesaModif.add(comboBoxMesaEstadoModif);
+		
+		this.btnNewButton_1 = new JButton("Modificar");
+		this.btnNewButton_1.setBounds(156, 217, 89, 23);
+		this.panelMesaModif.add(this.btnNewButton_1);
 		
 		this.panel_1 = new JPanel();
 		this.tabbedPane.addTab("New tab", null, this.panel_1, null);
