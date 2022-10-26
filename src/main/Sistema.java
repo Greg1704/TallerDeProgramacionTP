@@ -11,6 +11,7 @@ public class Sistema {
 	private ArrayList<Producto> productos = new ArrayList<Producto>();
 	private ArrayList<Mozo> mozos = new ArrayList<Mozo>();
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+	private ArrayList<Factura> facturas = new ArrayList<Factura>();
 	private String nombre;
 	private Sueldo sueldo;
 	private static Sistema instancia = null;
@@ -36,6 +37,13 @@ public class Sistema {
 	}
 	
 	
+	
+	public ArrayList<Factura> getFacturas() {
+		return facturas;
+	}
+	public void setFacturas(ArrayList<Factura> facturas) {
+		this.facturas = facturas;
+	}
 	public ArrayList<PromocionPermanente> getPromosFijas() {
 		return promosFijas;
 	}
@@ -236,19 +244,45 @@ public class Sistema {
 		this.promosTemporales.remove(pt);
 	}
 	
-	public double informeMasVende() {
-		double masVendio = 0;
+	
+	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
+		int i = 0;
+		int j;
+		Mozo mozoAct;
 		
-		return masVendio;
-		
+		while(i < this.mozos.size()) {
+			j = 0;
+			while(j < this.mozos.get(i).getMesas().size()){
+				if(this.mozos.get(i).getMesas().get(j).getNumero() == mesa.getNumero()) 
+					return this.mozos.get(i);	
+				j++;	
+			}
+			i++;	
+		}
+		return null;
 	}
+	
+	/*public String informeMasVende() {
+		double masVendio = 0;
+		int i = 0;
+		
+		//while(i < this.comandas) {
+			
+		//}
+		
+		//return masVendio;
+		
+	}*/
 	
 	public double informeMenosVende() {
 		double menosVendio = 0;
 		
+		
+		
 		return menosVendio;
 	}
 	
+	// para la estadistica de consumo promedio de mesas deberiamos retornar un arraylist de mesas con las stats correspondientes
 	
 	
 }

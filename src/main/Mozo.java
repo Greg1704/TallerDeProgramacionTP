@@ -9,7 +9,7 @@ public class Mozo {
 	private int hijos;
 	private String NombreYApellido;
 	private LocalDate fechaDeNacimiento;
-	
+	private double cantidadRecaudada;
 	
 	
 	public Mozo(ArrayList<Mesa> mesas, String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) {
