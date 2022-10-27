@@ -32,9 +32,8 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JPanel panelOperarioYMesa;
 	private JPanel panelPromociones;
 	private JPanel panelMozo;
-	private JPanel panel_3;
+	private JPanel panelProducto;
 	private JPanel panel_4;
-	private JPanel panel_5;
 	private JPanel panelOperarioABM;
 	private JPanel panelMesaABM;
 	private JPanel panelOperarioCreacion;
@@ -159,6 +158,38 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JButton btnMozoEstadMesaConsumoProm;
 	private JScrollPane scrollPaneEstadisticas;
 	private JTextArea textAreaEstadisticas;
+	private JPanel panelProductoAlta;
+	private JLabel lblProductoNombreAlta;
+	private JTextField textFieldProductoNombreAlta;
+	private JLabel lblProductoPrecioCostoAlta;
+	private JTextField textFieldProductoPrecioCostoAlta;
+	private JLabel lblProductoPrecioVentaAlta;
+	private JTextField textFieldProductoPrecioVentaAlta;
+	private JLabel lblProductoStockInicialAlta;
+	private JTextField textFieldProductoStockInicialAlta;
+	private JButton btnProductoAlta;
+	private JPanel panelProductoModif;
+	private JLabel lblProductoNombreModif;
+	private JTextField textFieldProductoNombreModif;
+	private JLabel lblProductoPrecioCostoModif;
+	private JTextField textFieldProductoPrecioCostoModif;
+	private JLabel lblProductoPrecioVentaModif;
+	private JTextField textFieldProductoPrecioVentaModif;
+	private JLabel lblProductoStockInicialModif;
+	private JTextField textFieldProductoStockInicialModif;
+	private JButton btnProductoAlta_1;
+	private JList listProductos;
+	private JButton btnProductoBaja;
+	private JPanel panel;
+	private JLabel lblProductoStockNuevo;
+	private JTextField textField_1;
+	private JButton btnProductoNuevoStock;
+	private JScrollPane scrollPaneListaOperarios;
+	private JScrollPane scrollPaneListaMesas;
+	private JScrollPane scrollPaneListaPromPerm;
+	private JScrollPane scrollPaneListaPromTemp;
+	private JScrollPane scrollPaneListaMozos;
+	private JScrollPane scrollPaneListaProductos;
 
 	/**
 	 * Launch the application.
@@ -282,10 +313,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.btnNewButton.setBounds(156, 217, 89, 23);
 		this.panelOperarioModif.add(this.btnNewButton);
 		
+		this.scrollPaneListaOperarios = new JScrollPane();
+		this.scrollPaneListaOperarios.setViewportBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaOperarios.setBounds(463, 36, 364, 280);
+		this.panelOperarioABM.add(this.scrollPaneListaOperarios);
+		
 		this.listOperarios = new JList();
-		this.listOperarios.setBounds(463, 36, 364, 280);
-		this.panelOperarioABM.add(this.listOperarios);
-		this.listOperarios.setBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaOperarios.setViewportView(this.listOperarios);
 		
 		this.btnOperarioBaja = new JButton("Eliminar");
 		this.btnOperarioBaja.setBounds(592, 327, 89, 23);
@@ -324,10 +358,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.btnMesaAlta.setBounds(117, 214, 89, 23);
 		this.panelMesaCreacion.add(this.btnMesaAlta);
 		
+		this.scrollPaneListaMesas = new JScrollPane();
+		this.scrollPaneListaMesas.setViewportBorder(new TitledBorder(null, "Lista de Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaMesas.setBounds(463, 35, 364, 280);
+		this.panelMesaABM.add(this.scrollPaneListaMesas);
+		
 		this.listMesas = new JList();
-		this.listMesas.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.listMesas.setBounds(463, 35, 364, 280);
-		this.panelMesaABM.add(this.listMesas);
+		this.scrollPaneListaMesas.setViewportView(this.listMesas);
 		
 		this.btnMesaBaja = new JButton("Eliminar");
 		this.btnMesaBaja.setBounds(599, 326, 89, 23);
@@ -438,10 +475,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.comboBoxPromPermProductoAlta.setBounds(183, 72, 122, 20);
 		this.panelPromPermAlta.add(this.comboBoxPromPermProductoAlta);
 		
+		this.scrollPaneListaPromPerm = new JScrollPane();
+		this.scrollPaneListaPromPerm.setViewportBorder(new TitledBorder(null, "Lista de Promociones Permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaPromPerm.setBounds(467, 24, 364, 288);
+		this.panelPromPerm.add(this.scrollPaneListaPromPerm);
+		
 		this.listPromPerm = new JList();
-		this.listPromPerm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Promociones Permanentes", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.listPromPerm.setBounds(467, 24, 364, 288);
-		this.panelPromPerm.add(this.listPromPerm);
+		this.scrollPaneListaPromPerm.setViewportView(this.listPromPerm);
 		
 		this.btnPromPermBaja = new JButton("Eliminar");
 		this.btnPromPermBaja.setBounds(601, 323, 89, 23);
@@ -570,10 +610,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.textFieldPromTempNombreAlta.setBounds(183, 72, 122, 20);
 		this.panelPromTempAlta.add(this.textFieldPromTempNombreAlta);
 		
+		this.scrollPaneListaPromTemp = new JScrollPane();
+		this.scrollPaneListaPromTemp.setViewportBorder(new TitledBorder(null, "Lista de Promociones Temporales", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaPromTemp.setBounds(461, 26, 364, 288);
+		this.panelPromTemp.add(this.scrollPaneListaPromTemp);
+		
 		this.listPromTemp = new JList();
-		this.listPromTemp.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Lista de Promociones Temporales", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.listPromTemp.setBounds(461, 26, 364, 288);
-		this.panelPromTemp.add(this.listPromTemp);
+		this.scrollPaneListaPromTemp.setViewportView(this.listPromTemp);
 		
 		this.btnPromTempBaja = new JButton("Eliminar");
 		this.btnPromTempBaja.setBounds(599, 325, 89, 23);
@@ -713,10 +756,13 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.comboBoxMozoEstadoModif.setBounds(165, 170, 159, 22);
 		this.panelMozoModif.add(this.comboBoxMozoEstadoModif);
 		
+		this.scrollPaneListaMozos = new JScrollPane();
+		this.scrollPaneListaMozos.setViewportBorder(new TitledBorder(null, "Lista de Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaMozos.setBounds(412, 38, 430, 274);
+		this.panelMozo.add(this.scrollPaneListaMozos);
+		
 		this.listMozos = new JList();
-		this.listMozos.setBorder(new TitledBorder(null, "Lista de Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.listMozos.setBounds(412, 38, 430, 274);
-		this.panelMozo.add(this.listMozos);
+		this.scrollPaneListaMozos.setViewportView(this.listMozos);
 		
 		this.btnMozoBaja = new JButton("Eliminar");
 		this.btnMozoBaja.setBounds(570, 337, 89, 23);
@@ -752,14 +798,135 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.textAreaEstadisticas = new JTextArea();
 		this.scrollPaneEstadisticas.setViewportView(this.textAreaEstadisticas);
 		
-		this.panel_3 = new JPanel();
-		this.tabbedPane.addTab("New tab", null, this.panel_3, null);
+		this.panelProducto = new JPanel();
+		this.tabbedPane.addTab("Productos", null, this.panelProducto, null);
+		this.panelProducto.setLayout(null);
+		
+		this.panelProductoAlta = new JPanel();
+		this.panelProductoAlta.setBorder(new TitledBorder(null, "Alta de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelProductoAlta.setBounds(10, 41, 411, 289);
+		this.panelProducto.add(this.panelProductoAlta);
+		this.panelProductoAlta.setLayout(null);
+		
+		this.lblProductoNombreAlta = new JLabel("Nombre");
+		this.lblProductoNombreAlta.setBounds(70, 40, 46, 14);
+		this.panelProductoAlta.add(this.lblProductoNombreAlta);
+		
+		this.textFieldProductoNombreAlta = new JTextField();
+		this.textFieldProductoNombreAlta.setBounds(181, 37, 155, 20);
+		this.panelProductoAlta.add(this.textFieldProductoNombreAlta);
+		this.textFieldProductoNombreAlta.setColumns(10);
+		
+		this.lblProductoPrecioCostoAlta = new JLabel("Precio costo");
+		this.lblProductoPrecioCostoAlta.setBounds(70, 84, 69, 14);
+		this.panelProductoAlta.add(this.lblProductoPrecioCostoAlta);
+		
+		this.textFieldProductoPrecioCostoAlta = new JTextField();
+		this.textFieldProductoPrecioCostoAlta.setColumns(10);
+		this.textFieldProductoPrecioCostoAlta.setBounds(181, 81, 155, 20);
+		this.panelProductoAlta.add(this.textFieldProductoPrecioCostoAlta);
+		
+		this.lblProductoPrecioVentaAlta = new JLabel("Precio venta");
+		this.lblProductoPrecioVentaAlta.setBounds(70, 127, 69, 14);
+		this.panelProductoAlta.add(this.lblProductoPrecioVentaAlta);
+		
+		this.textFieldProductoPrecioVentaAlta = new JTextField();
+		this.textFieldProductoPrecioVentaAlta.setColumns(10);
+		this.textFieldProductoPrecioVentaAlta.setBounds(181, 124, 155, 20);
+		this.panelProductoAlta.add(this.textFieldProductoPrecioVentaAlta);
+		
+		this.lblProductoStockInicialAlta = new JLabel("Stock inicial");
+		this.lblProductoStockInicialAlta.setBounds(70, 171, 69, 14);
+		this.panelProductoAlta.add(this.lblProductoStockInicialAlta);
+		
+		this.textFieldProductoStockInicialAlta = new JTextField();
+		this.textFieldProductoStockInicialAlta.setColumns(10);
+		this.textFieldProductoStockInicialAlta.setBounds(181, 168, 155, 20);
+		this.panelProductoAlta.add(this.textFieldProductoStockInicialAlta);
+		
+		this.btnProductoAlta = new JButton("Crear");
+		this.btnProductoAlta.setBounds(145, 228, 89, 23);
+		this.panelProductoAlta.add(this.btnProductoAlta);
+		
+		this.panelProductoModif = new JPanel();
+		this.panelProductoModif.setLayout(null);
+		this.panelProductoModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelProductoModif.setBounds(10, 384, 411, 289);
+		this.panelProducto.add(this.panelProductoModif);
+		
+		this.lblProductoNombreModif = new JLabel("Nombre");
+		this.lblProductoNombreModif.setBounds(70, 40, 46, 14);
+		this.panelProductoModif.add(this.lblProductoNombreModif);
+		
+		this.textFieldProductoNombreModif = new JTextField();
+		this.textFieldProductoNombreModif.setColumns(10);
+		this.textFieldProductoNombreModif.setBounds(181, 37, 155, 20);
+		this.panelProductoModif.add(this.textFieldProductoNombreModif);
+		
+		this.lblProductoPrecioCostoModif = new JLabel("Precio costo");
+		this.lblProductoPrecioCostoModif.setBounds(70, 84, 69, 14);
+		this.panelProductoModif.add(this.lblProductoPrecioCostoModif);
+		
+		this.textFieldProductoPrecioCostoModif = new JTextField();
+		this.textFieldProductoPrecioCostoModif.setColumns(10);
+		this.textFieldProductoPrecioCostoModif.setBounds(181, 81, 155, 20);
+		this.panelProductoModif.add(this.textFieldProductoPrecioCostoModif);
+		
+		this.lblProductoPrecioVentaModif = new JLabel("Precio venta");
+		this.lblProductoPrecioVentaModif.setBounds(70, 127, 69, 14);
+		this.panelProductoModif.add(this.lblProductoPrecioVentaModif);
+		
+		this.textFieldProductoPrecioVentaModif = new JTextField();
+		this.textFieldProductoPrecioVentaModif.setColumns(10);
+		this.textFieldProductoPrecioVentaModif.setBounds(181, 124, 155, 20);
+		this.panelProductoModif.add(this.textFieldProductoPrecioVentaModif);
+		
+		this.lblProductoStockInicialModif = new JLabel("Stock inicial");
+		this.lblProductoStockInicialModif.setBounds(70, 171, 69, 14);
+		this.panelProductoModif.add(this.lblProductoStockInicialModif);
+		
+		this.textFieldProductoStockInicialModif = new JTextField();
+		this.textFieldProductoStockInicialModif.setColumns(10);
+		this.textFieldProductoStockInicialModif.setBounds(181, 168, 155, 20);
+		this.panelProductoModif.add(this.textFieldProductoStockInicialModif);
+		
+		this.btnProductoAlta_1 = new JButton("Crear");
+		this.btnProductoAlta_1.setBounds(145, 228, 89, 23);
+		this.panelProductoModif.add(this.btnProductoAlta_1);
+		
+		this.scrollPaneListaProductos = new JScrollPane();
+		this.scrollPaneListaProductos.setViewportBorder(new TitledBorder(null, "Lista de Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneListaProductos.setBounds(460, 41, 416, 598);
+		this.panelProducto.add(this.scrollPaneListaProductos);
+		
+		this.listProductos = new JList();
+		this.scrollPaneListaProductos.setViewportView(this.listProductos);
+		
+		this.btnProductoBaja = new JButton("Eliminar");
+		this.btnProductoBaja.setBounds(619, 650, 89, 23);
+		this.panelProducto.add(this.btnProductoBaja);
+		
+		this.panel = new JPanel();
+		this.panel.setBorder(new TitledBorder(null, "Actualizar Stock de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panel.setBounds(929, 41, 397, 188);
+		this.panelProducto.add(this.panel);
+		this.panel.setLayout(null);
+		
+		this.lblProductoStockNuevo = new JLabel("Nuevo Stock");
+		this.lblProductoStockNuevo.setBounds(35, 50, 72, 14);
+		this.panel.add(this.lblProductoStockNuevo);
+		
+		this.textField_1 = new JTextField();
+		this.textField_1.setBounds(150, 47, 216, 20);
+		this.panel.add(this.textField_1);
+		this.textField_1.setColumns(10);
+		
+		this.btnProductoNuevoStock = new JButton("Actualizar");
+		this.btnProductoNuevoStock.setBounds(158, 116, 89, 23);
+		this.panel.add(this.btnProductoNuevoStock);
 		
 		this.panel_4 = new JPanel();
 		this.tabbedPane.addTab("New tab", null, this.panel_4, null);
-		
-		this.panel_5 = new JPanel();
-		this.tabbedPane.addTab("New tab", null, this.panel_5, null);
 	}
 	public void actionPerformed(ActionEvent e) {
 	}
