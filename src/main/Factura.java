@@ -10,18 +10,24 @@ public class Factura {
 	private String formaDePago;
 	private Mesa mesa;
 	private double total;
+	private Mozo mozo;
 	
 	
-	
-	public Factura(ArrayList<Pedido> pedidos, String formaDePago, Mesa mesa, double total) {
-		super();
+	public Factura(ArrayList<Pedido> pedidos, String formaDePago, Mesa mesa, double total,Mozo mozo) {
 		this.pedidos = pedidos;
 		this.formaDePago = formaDePago;
 		this.mesa = mesa;
 		this.total = total;
+		this.mozo = mozo;
 	}
 	
 	
+	public Mozo getMozo() {
+		return mozo;
+	}
+	public void setMozo(Mozo mozo) {
+		this.mozo = mozo;
+	}
 	public ArrayList<Pedido> getPedidos() {
 		return pedidos;
 	}
