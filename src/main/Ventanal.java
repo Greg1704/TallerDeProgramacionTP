@@ -18,6 +18,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.DropMode;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.JEditorPane;
+import javax.swing.JTextArea;
 
 public class Ventanal extends JFrame implements ActionListener {
 
@@ -25,7 +31,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JTabbedPane tabbedPane;
 	private JPanel panelOperarioYMesa;
 	private JPanel panelPromociones;
-	private JPanel panel_2;
+	private JPanel panelMozo;
 	private JPanel panel_3;
 	private JPanel panel_4;
 	private JPanel panel_5;
@@ -128,6 +134,31 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JTextField textFieldPromTempNombreModif;
 	private JComboBox comboBoxPromTempEstadoModif;
 	private JLabel lblPromTempEstadoModif;
+	private JPanel panelMozoAlta;
+	private JLabel lblMozoNyAAlta;
+	private JTextField textFieldMozoNyAAlta;
+	private JLabel lblMozoFechaDeNacimientoAlta;
+	private JLabel lblMozoHijosAlta;
+	private JTextField textField;
+	private JButton btnMozoAlta;
+	private JPanel panelMozoModif;
+	private JLabel lblMozoNyAModif;
+	private JTextField textFieldMozoNyAModif;
+	private JLabel lblMozoFechaDeNacimientoModif;
+	private JLabel lblMozoHijosModif;
+	private JTextField textFieldMozoHijosModif;
+	private JButton btnMozoModif;
+	private JLabel lblMozoEstadoModif;
+	private JComboBox comboBoxMozoEstadoModif;
+	private JList listMozos;
+	private JButton btnMozoBaja;
+	private JPanel panelEstadisticas;
+	private JButton btnMozoEstadEmp;
+	private JButton btnMozoEstadEmpMayorVolVenta;
+	private JButton btnMozoEstadEmpMenorVolVenta;
+	private JButton btnMozoEstadMesaConsumoProm;
+	private JScrollPane scrollPaneEstadisticas;
+	private JTextArea textAreaEstadisticas;
 
 	/**
 	 * Launch the application.
@@ -606,8 +637,120 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.lblPromTempEstadoModif.setBounds(44, 26, 77, 14);
 		this.panelPromTempModif.add(this.lblPromTempEstadoModif);
 		
-		this.panel_2 = new JPanel();
-		this.tabbedPane.addTab("New tab", null, this.panel_2, null);
+		this.panelMozo = new JPanel();
+		this.tabbedPane.addTab("Mozos", null, this.panelMozo, null);
+		this.panelMozo.setLayout(null);
+		
+		this.panelMozoAlta = new JPanel();
+		this.panelMozoAlta.setBorder(new TitledBorder(null, "Alta de Mozo", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelMozoAlta.setBounds(10, 39, 346, 274);
+		this.panelMozo.add(this.panelMozoAlta);
+		this.panelMozoAlta.setLayout(null);
+		
+		this.lblMozoNyAAlta = new JLabel("Nombre y Apellido");
+		this.lblMozoNyAAlta.setBounds(31, 33, 92, 14);
+		this.panelMozoAlta.add(this.lblMozoNyAAlta);
+		
+		this.textFieldMozoNyAAlta = new JTextField();
+		this.textFieldMozoNyAAlta.setBounds(165, 30, 159, 20);
+		this.panelMozoAlta.add(this.textFieldMozoNyAAlta);
+		this.textFieldMozoNyAAlta.setColumns(10);
+		
+		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento");
+		this.lblMozoFechaDeNacimientoAlta.setBounds(31, 81, 109, 14);
+		this.panelMozoAlta.add(this.lblMozoFechaDeNacimientoAlta);
+		
+		this.lblMozoHijosAlta = new JLabel("Hijos");
+		this.lblMozoHijosAlta.setBounds(31, 128, 92, 14);
+		this.panelMozoAlta.add(this.lblMozoHijosAlta);
+		
+		this.textField = new JTextField();
+		this.textField.setColumns(10);
+		this.textField.setBounds(165, 125, 159, 20);
+		this.panelMozoAlta.add(this.textField);
+		
+		this.btnMozoAlta = new JButton("Crear");
+		this.btnMozoAlta.setBounds(114, 202, 89, 23);
+		this.panelMozoAlta.add(this.btnMozoAlta);
+		
+		this.panelMozoModif = new JPanel();
+		this.panelMozoModif.setLayout(null);
+		this.panelMozoModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Mozo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelMozoModif.setBounds(10, 380, 346, 274);
+		this.panelMozo.add(this.panelMozoModif);
+		
+		this.lblMozoNyAModif = new JLabel("Nombre y Apellido");
+		this.lblMozoNyAModif.setBounds(31, 33, 92, 14);
+		this.panelMozoModif.add(this.lblMozoNyAModif);
+		
+		this.textFieldMozoNyAModif = new JTextField();
+		this.textFieldMozoNyAModif.setColumns(10);
+		this.textFieldMozoNyAModif.setBounds(165, 30, 159, 20);
+		this.panelMozoModif.add(this.textFieldMozoNyAModif);
+		
+		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento");
+		this.lblMozoFechaDeNacimientoModif.setBounds(31, 81, 109, 14);
+		this.panelMozoModif.add(this.lblMozoFechaDeNacimientoModif);
+		
+		this.lblMozoHijosModif = new JLabel("Hijos");
+		this.lblMozoHijosModif.setBounds(31, 128, 92, 14);
+		this.panelMozoModif.add(this.lblMozoHijosModif);
+		
+		this.textFieldMozoHijosModif = new JTextField();
+		this.textFieldMozoHijosModif.setColumns(10);
+		this.textFieldMozoHijosModif.setBounds(165, 125, 159, 20);
+		this.panelMozoModif.add(this.textFieldMozoHijosModif);
+		
+		this.btnMozoModif = new JButton("Modificar");
+		this.btnMozoModif.setBounds(114, 210, 89, 23);
+		this.panelMozoModif.add(this.btnMozoModif);
+		
+		this.lblMozoEstadoModif = new JLabel("Estado");
+		this.lblMozoEstadoModif.setBounds(31, 174, 92, 14);
+		this.panelMozoModif.add(this.lblMozoEstadoModif);
+		
+		this.comboBoxMozoEstadoModif = new JComboBox();
+		this.comboBoxMozoEstadoModif.setBounds(165, 170, 159, 22);
+		this.panelMozoModif.add(this.comboBoxMozoEstadoModif);
+		
+		this.listMozos = new JList();
+		this.listMozos.setBorder(new TitledBorder(null, "Lista de Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.listMozos.setBounds(412, 38, 430, 274);
+		this.panelMozo.add(this.listMozos);
+		
+		this.btnMozoBaja = new JButton("Eliminar");
+		this.btnMozoBaja.setBounds(570, 337, 89, 23);
+		this.panelMozo.add(this.btnMozoBaja);
+		
+		this.panelEstadisticas = new JPanel();
+		this.panelEstadisticas.setBorder(new TitledBorder(null, "Estadisticas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelEstadisticas.setBounds(412, 380, 430, 268);
+		this.panelMozo.add(this.panelEstadisticas);
+		this.panelEstadisticas.setLayout(null);
+		
+		this.btnMozoEstadEmp = new JButton("Estadisticas de un empleado");
+		this.btnMozoEstadEmp.setBounds(89, 29, 228, 43);
+		this.panelEstadisticas.add(this.btnMozoEstadEmp);
+		
+		this.btnMozoEstadEmpMayorVolVenta = new JButton("Empleado con mayor volumen de venta");
+		this.btnMozoEstadEmpMayorVolVenta.setBounds(89, 83, 228, 43);
+		this.panelEstadisticas.add(this.btnMozoEstadEmpMayorVolVenta);
+		
+		this.btnMozoEstadEmpMenorVolVenta = new JButton("Empleado con menor volumen de venta");
+		this.btnMozoEstadEmpMenorVolVenta.setBounds(89, 137, 228, 43);
+		this.panelEstadisticas.add(this.btnMozoEstadEmpMenorVolVenta);
+		
+		this.btnMozoEstadMesaConsumoProm = new JButton("Consumo promedio por mesa");
+		this.btnMozoEstadMesaConsumoProm.setBounds(89, 191, 228, 43);
+		this.panelEstadisticas.add(this.btnMozoEstadMesaConsumoProm);
+		
+		this.scrollPaneEstadisticas = new JScrollPane();
+		this.scrollPaneEstadisticas.setViewportBorder(new TitledBorder(null, "Estadisticas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneEstadisticas.setBounds(870, 39, 415, 607);
+		this.panelMozo.add(this.scrollPaneEstadisticas);
+		
+		this.textAreaEstadisticas = new JTextArea();
+		this.scrollPaneEstadisticas.setViewportView(this.textAreaEstadisticas);
 		
 		this.panel_3 = new JPanel();
 		this.tabbedPane.addTab("New tab", null, this.panel_3, null);
