@@ -58,7 +58,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JTextField textFieldOperarioContraseniaModif;
 	private JTextField textFieldOperarioNyAModif;
 	private JComboBox comboBoxOperarioEstadoModif;
-	private JButton btnNewButton;
+	private JButton btnOperarioModificacion;
 	private JPanel panelMesaCreacion;
 	private JTextField textFieldMesaNumeroAlta;
 	private JLabel lblMesaNumeroAlta;
@@ -73,7 +73,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JLabel lblMesaCantidadComensalesModif;
 	private JLabel lblMesaEstadoModif;
 	private JTextField textFieldMesaCantidadComensalesModif;
-	private JButton btnNewButton_1;
+	private JButton btnMesaModificacion;
 	private JPanel panelPromPerm;
 	private JPanel panelPromTemp;
 	private JPanel panelPromPermAlta;
@@ -180,10 +180,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JTextField textFieldProductoPrecioVentaModif;
 	private JLabel lblProductoStockInicialModif;
 	private JTextField textFieldProductoStockInicialModif;
-	private JButton btnProductoAlta_1;
+	private JButton btnProductoModificacion;
 	private JList listProductos;
 	private JButton btnProductoBaja;
-	private JPanel panel;
+	private JPanel panelNuevoStockProducto;
 	private JLabel lblProductoStockNuevo;
 	private JTextField textField_1;
 	private JButton btnProductoNuevoStock;
@@ -203,6 +203,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JButton btnEstadoConfirmar;
 	private final ButtonGroup buttonGroupEstadosMozos = new ButtonGroup();
 	private JPanel panelAsignacionMesas;
+	private JList listMozosActivos;
+	private JScrollPane scrollPaneMozosActivos;
+	private JScrollPane scrollPaneMesas;
+	private JList listMesasAsignables;
+	private JButton btnAsignarMozoMesa;
+	private JPanel panelFacturacion;
 
 	/**
 	 * Launch the application.
@@ -277,7 +283,33 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelSeleccionEstadosMozos.add(this.btnEstadoConfirmar);
 		
 		this.panelAsignacionMesas = new JPanel();
+		this.panelAsignacionMesas.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.panelGeneral.add(this.panelAsignacionMesas);
+		this.panelAsignacionMesas.setLayout(null);
+		
+		this.scrollPaneMozosActivos = new JScrollPane();
+		this.scrollPaneMozosActivos.setViewportBorder(new TitledBorder(null, "Mozos activos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneMozosActivos.setBounds(10, 11, 425, 261);
+		this.panelAsignacionMesas.add(this.scrollPaneMozosActivos);
+		
+		this.listMozosActivos = new JList();
+		this.scrollPaneMozosActivos.setViewportView(this.listMozosActivos);
+		
+		this.scrollPaneMesas = new JScrollPane();
+		this.scrollPaneMesas.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.scrollPaneMesas.setBounds(10, 284, 425, 316);
+		this.panelAsignacionMesas.add(this.scrollPaneMesas);
+		
+		this.listMesasAsignables = new JList();
+		this.scrollPaneMesas.setViewportView(this.listMesasAsignables);
+		
+		this.btnAsignarMozoMesa = new JButton("Asignar");
+		this.btnAsignarMozoMesa.setBounds(172, 652, 89, 23);
+		this.panelAsignacionMesas.add(this.btnAsignarMozoMesa);
+		
+		this.panelFacturacion = new JPanel();
+		this.panelGeneral.add(this.panelFacturacion);
+		this.panelFacturacion.setLayout(null);
 		
 		this.panelOperarioYMesa = new JPanel();
 		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperarioYMesa, null);
@@ -367,9 +399,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.comboBoxOperarioEstadoModif.setBounds(216, 152, 122, 20);
 		this.panelOperarioModif.add(this.comboBoxOperarioEstadoModif);
 		
-		this.btnNewButton = new JButton("Modificar");
-		this.btnNewButton.setBounds(156, 217, 89, 23);
-		this.panelOperarioModif.add(this.btnNewButton);
+		this.btnOperarioModificacion = new JButton("Modificar");
+		this.btnOperarioModificacion.setBounds(156, 217, 89, 23);
+		this.panelOperarioModif.add(this.btnOperarioModificacion);
 		
 		this.scrollPaneListaOperarios = new JScrollPane();
 		this.scrollPaneListaOperarios.setViewportBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -460,9 +492,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		comboBoxMesaEstadoModif.setBounds(216, 112, 122, 20);
 		this.panelMesaModif.add(comboBoxMesaEstadoModif);
 		
-		this.btnNewButton_1 = new JButton("Modificar");
-		this.btnNewButton_1.setBounds(156, 217, 89, 23);
-		this.panelMesaModif.add(this.btnNewButton_1);
+		this.btnMesaModificacion = new JButton("Modificar");
+		this.btnMesaModificacion.setBounds(156, 217, 89, 23);
+		this.panelMesaModif.add(this.btnMesaModificacion);
 		
 		this.panelPromociones = new JPanel();
 		this.tabbedPane.addTab("Promociones", null, this.panelPromociones, null);
@@ -948,9 +980,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.textFieldProductoStockInicialModif.setBounds(181, 168, 155, 20);
 		this.panelProductoModif.add(this.textFieldProductoStockInicialModif);
 		
-		this.btnProductoAlta_1 = new JButton("Crear");
-		this.btnProductoAlta_1.setBounds(145, 228, 89, 23);
-		this.panelProductoModif.add(this.btnProductoAlta_1);
+		this.btnProductoModificacion = new JButton("Modificar");
+		this.btnProductoModificacion.setBounds(145, 228, 89, 23);
+		this.panelProductoModif.add(this.btnProductoModificacion);
 		
 		this.scrollPaneListaProductos = new JScrollPane();
 		this.scrollPaneListaProductos.setViewportBorder(new TitledBorder(null, "Lista de Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -964,24 +996,24 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.btnProductoBaja.setBounds(619, 650, 89, 23);
 		this.panelProducto.add(this.btnProductoBaja);
 		
-		this.panel = new JPanel();
-		this.panel.setBorder(new TitledBorder(null, "Actualizar Stock de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.panel.setBounds(929, 41, 397, 188);
-		this.panelProducto.add(this.panel);
-		this.panel.setLayout(null);
+		this.panelNuevoStockProducto = new JPanel();
+		this.panelNuevoStockProducto.setBorder(new TitledBorder(null, "Actualizar Stock de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelNuevoStockProducto.setBounds(929, 41, 397, 188);
+		this.panelProducto.add(this.panelNuevoStockProducto);
+		this.panelNuevoStockProducto.setLayout(null);
 		
 		this.lblProductoStockNuevo = new JLabel("Nuevo Stock");
 		this.lblProductoStockNuevo.setBounds(35, 50, 72, 14);
-		this.panel.add(this.lblProductoStockNuevo);
+		this.panelNuevoStockProducto.add(this.lblProductoStockNuevo);
 		
 		this.textField_1 = new JTextField();
 		this.textField_1.setBounds(150, 47, 216, 20);
-		this.panel.add(this.textField_1);
+		this.panelNuevoStockProducto.add(this.textField_1);
 		this.textField_1.setColumns(10);
 		
 		this.btnProductoNuevoStock = new JButton("Actualizar");
 		this.btnProductoNuevoStock.setBounds(158, 116, 89, 23);
-		this.panel.add(this.btnProductoNuevoStock);
+		this.panelNuevoStockProducto.add(this.btnProductoNuevoStock);
 		
 		
 	}
