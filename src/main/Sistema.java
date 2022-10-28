@@ -197,7 +197,7 @@ public class Sistema {
 		this.mesas.remove(mesa);
 	}
 	
-	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException {
+	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException, MesaNoAsignadaException {
 		int i=0,j=this.mesas.size();
 		Mesa mesa;
 		while(i<j && this.mesas.get(i).getNumero() != numero)
@@ -227,7 +227,7 @@ public class Sistema {
 	  -al menos 2 productos están en promoción activa
 	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
 	 * */
-	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException {
+	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException {
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
@@ -248,7 +248,6 @@ public class Sistema {
 	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
 		int i = 0;
 		int j;
-		Mozo mozoAct;
 		
 		while(i < this.mozos.size()) {
 			j = 0;
@@ -262,27 +261,58 @@ public class Sistema {
 		return null;
 	}
 	
-	/*public String informeMasVende() {
-		double masVendio = 0;
+	public String informeMasVende() {
 		int i = 0;
+		double maxCant = 0;
+		String masVendio = "";
 		
-		//while(i < this.comandas) {
-			
-		//}
+		while(i < this.mozos.size()) {
+			if (maxCant < this.mozos.get(i).getCantidadRecaudada()) {
+				maxCant = this.mozos.get(i).getCantidadRecaudada();
+				masVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que mas dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
+				i++;
+			}
+		}
 		
-		//return masVendio;
+		return masVendio;
 		
-	}*/
+	}
 	
-	public double informeMenosVende() {
-		double menosVendio = 0;
+	public String informeMenosVende() {
+		int i = 1;
+		double minCant = this.mozos.get(0).getCantidadRecaudada();
+		String menosVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
 		
-		
+		while(i < this.mozos.size()) {
+			if (minCant > this.mozos.get(i).getCantidadRecaudada()) {
+				minCant = this.mozos.get(i).getCantidadRecaudada();
+				menosVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
+				i++;
+			}
+		}
 		
 		return menosVendio;
 	}
 	
-	// para la estadistica de consumo promedio de mesas deberiamos retornar un arraylist de mesas con las stats correspondientes
+	// desde el controlador hay que invocar las mesas que haya
+	public String retornaMesaConEstadisticas(Mesa mesa,int i) {
+		
+		return this.mesas.get(i).getNumero() + " recaudo $" + this.mesas.get(i).generaPromedio();
+		
+	}
 	
+	//precondicion: el nombre debe existir
+	public String retornaEstadisticasMozo(String nombre) {
+		int i = 0;
+		
+		while(!nombre.equals(this.mozos.get(i).getNombreYApellido())) {
+			i++;
+		}
+		return this.mozos.get(i).datosEmpleado();	
+	}
+	
+	public void cierraComanda(Comanda comanda){
+		
+	}
 	
 }

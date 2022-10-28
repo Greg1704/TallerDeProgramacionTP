@@ -13,10 +13,11 @@ public class Comanda {
 	private Mozo mozo;
 	
 	
-	public Comanda(Mesa mesa) {
+	public Comanda(Mesa mesa) throws MesaNoAsignadaException {
 		super();
 		this.estado = "Abierta";
 		this.mesa = mesa;
+		this.mozo = obtenerMozo();
 	}
 	
 	public ArrayList<Pedido> getPedidos() {
@@ -41,11 +42,11 @@ public class Comanda {
 		return fecha;
 	}
 	
-	public void obtenerMozo() throws MesaNoAsignadaException{
+	public Mozo obtenerMozo() throws MesaNoAsignadaException{
 		if (Sistema.getInstancia().buscaMozo(mesa) == null) 
 			throw new MesaNoAsignadaException();
 		else
-			this.mozo = Sistema.getInstancia().buscaMozo(mesa);
+			return Sistema.getInstancia().buscaMozo(mesa);
 	}
 	
 }

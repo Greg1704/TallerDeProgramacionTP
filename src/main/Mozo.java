@@ -3,6 +3,8 @@ package main;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import excepciones.HijosNegativosException;
+
 public class Mozo {
 	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String estado;
@@ -10,15 +12,16 @@ public class Mozo {
 	private String NombreYApellido;
 	private LocalDate fechaDeNacimiento;
 	private double cantidadRecaudada;
+	private int mesasAtendidas;
 	
-	
-	public Mozo(ArrayList<Mesa> mesas, String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) {
-		super();
+	public Mozo(ArrayList<Mesa> mesas, String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException{
 		this.mesas = mesas;
 		this.estado = estado;
 		this.hijos = hijos;
-		NombreYApellido = nombreYApellido;
+		this.NombreYApellido = nombreYApellido;
 		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.mesasAtendidas = 0;
+		this.cantidadRecaudada = 0;
 	}
 	
 	
@@ -53,5 +56,23 @@ public class Mozo {
 	public void agregarMesa(Mesa mesa) {
 		mesas.add(mesa);
 	}
+	public double getCantidadRecaudada() {
+		return cantidadRecaudada;
+	}
+	public void setCantidadRecaudada(double cantidadRecaudada) {
+		this.cantidadRecaudada = cantidadRecaudada;
+	}
+	public int getMesasAtendidas() {
+		return mesasAtendidas;
+	}
+	public void setMesasAtendidas(int mesasAtendidas) {
+		this.mesasAtendidas = mesasAtendidas;
+	}
 	
+	public String datosEmpleado() {
+		
+		return this.NombreYApellido + " recaudo $" + this.cantidadRecaudada + " y atendio " + this.mesasAtendidas + " mesas.";
+		
+	}
+
 }
