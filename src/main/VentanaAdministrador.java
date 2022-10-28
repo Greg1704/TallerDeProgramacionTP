@@ -27,6 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.border.LineBorder;
+import java.awt.Font;
 
 public class VentanaAdministrador extends JFrame implements ActionListener {
 
@@ -141,7 +142,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JTextField textFieldMozoNyAAlta;
 	private JLabel lblMozoFechaDeNacimientoAlta;
 	private JLabel lblMozoHijosAlta;
-	private JTextField textField;
+	private JTextField textFieldMozoHijosAlta;
 	private JButton btnMozoAlta;
 	private JPanel panelMozoModif;
 	private JLabel lblMozoNyAModif;
@@ -185,7 +186,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JButton btnProductoBaja;
 	private JPanel panelNuevoStockProducto;
 	private JLabel lblProductoStockNuevo;
-	private JTextField textField_1;
+	private JTextField textFieldProductoNuevoStock;
 	private JButton btnProductoNuevoStock;
 	private JScrollPane scrollPaneListaOperarios;
 	private JScrollPane scrollPaneListaMesas;
@@ -209,6 +210,35 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JList listMesasAsignables;
 	private JButton btnAsignarMozoMesa;
 	private JPanel panelFacturacion;
+	private JPanel panelOcupacionMesa;
+	private JLabel lblOcupacionComensales;
+	private JButton btnOcuparMesa;
+	private JTextField textFieldOcupacionComensales;
+	private JList listComandasActivas;
+	private JScrollPane scrollPaneComandasActivas;
+	private JList list;
+	private JScrollPane scrollPaneProductosPedidos;
+	private JPanel panelAgregaPedido;
+	private JPanel panelCerrarComanda;
+	private JLabel lblCantidadProducto;
+	private JTextField textFieldCantidadProducto;
+	private JButton btnAgregarPedidoAComanda;
+	private JButton btnCerrarComanda;
+	private JPanel panelLoginSerialización;
+	private JPanel panelLogin;
+	private JLabel lblLoginUsuario;
+	private JTextField textFieldLoginUsuario;
+	private JLabel lblLoginContrasenia;
+	private JTextField textFieldUsuarioContrasenia;
+	private JButton btnLogin;
+	private JPanel panelSerialización;
+	private JButton btnRecuperarSistema;
+	private JButton btnNuevoSistema;
+	private JButton btnGuardarSistema;
+	private JButton btnLogout;
+	private JPanel panel;
+	private JLabel lblNombreLocal;
+	private JTextField textFieldNombreLocal;
 
 	/**
 	 * Launch the application.
@@ -240,6 +270,79 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 		
+		this.panelLoginSerialización = new JPanel();
+		this.tabbedPane.addTab("Login", null, this.panelLoginSerialización, null);
+		this.panelLoginSerialización.setLayout(null);
+		
+		this.panelLogin = new JPanel();
+		this.panelLogin.setBorder(new TitledBorder(null, "Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelLogin.setBounds(392, 139, 511, 176);
+		this.panelLoginSerialización.add(this.panelLogin);
+		this.panelLogin.setLayout(null);
+		
+		this.lblLoginUsuario = new JLabel("Usuario");
+		this.lblLoginUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.lblLoginUsuario.setBounds(88, 36, 57, 27);
+		this.panelLogin.add(this.lblLoginUsuario);
+		
+		this.textFieldLoginUsuario = new JTextField();
+		this.textFieldLoginUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.textFieldLoginUsuario.setBounds(187, 41, 271, 20);
+		this.panelLogin.add(this.textFieldLoginUsuario);
+		this.textFieldLoginUsuario.setColumns(10);
+		
+		this.lblLoginContrasenia = new JLabel("Contraseña");
+		this.lblLoginContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.lblLoginContrasenia.setBounds(88, 74, 86, 27);
+		this.panelLogin.add(this.lblLoginContrasenia);
+		
+		this.textFieldUsuarioContrasenia = new JTextField();
+		this.textFieldUsuarioContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.textFieldUsuarioContrasenia.setColumns(10);
+		this.textFieldUsuarioContrasenia.setBounds(187, 79, 271, 20);
+		this.panelLogin.add(this.textFieldUsuarioContrasenia);
+		
+		this.btnLogin = new JButton("Login");
+		this.btnLogin.setBounds(139, 123, 89, 23);
+		this.panelLogin.add(this.btnLogin);
+		
+		this.btnLogout = new JButton("Logout");
+		this.btnLogout.setBounds(301, 123, 89, 23);
+		this.panelLogin.add(this.btnLogout);
+		
+		this.panelSerialización = new JPanel();
+		this.panelSerialización.setBorder(new TitledBorder(null, "Serializaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelSerialización.setBounds(392, 326, 511, 369);
+		this.panelLoginSerialización.add(this.panelSerialización);
+		this.panelSerialización.setLayout(null);
+		
+		this.btnRecuperarSistema = new JButton("Recuperar Sistema");
+		this.btnRecuperarSistema.setBounds(40, 117, 157, 47);
+		this.panelSerialización.add(this.btnRecuperarSistema);
+		
+		this.btnGuardarSistema = new JButton("Guardar Sistema");
+		this.btnGuardarSistema.setBounds(40, 45, 157, 47);
+		this.panelSerialización.add(this.btnGuardarSistema);
+		
+		this.panel = new JPanel();
+		this.panel.setBounds(40, 214, 436, 69);
+		this.panelSerialización.add(this.panel);
+		this.panel.setLayout(null);
+		
+		this.btnNuevoSistema = new JButton("Nuevo Sistema");
+		this.btnNuevoSistema.setBounds(257, 11, 157, 47);
+		this.panel.add(this.btnNuevoSistema);
+		
+		this.lblNombreLocal = new JLabel("Nombre del local:");
+		this.lblNombreLocal.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.lblNombreLocal.setBounds(10, 11, 169, 14);
+		this.panel.add(this.lblNombreLocal);
+		
+		this.textFieldNombreLocal = new JTextField();
+		this.textFieldNombreLocal.setBounds(10, 36, 204, 20);
+		this.panel.add(this.textFieldNombreLocal);
+		this.textFieldNombreLocal.setColumns(10);
+		
 		this.panelGeneral = new JPanel();
 		this.tabbedPane.addTab("General", null, this.panelGeneral, null);
 		this.panelGeneral.setLayout(new GridLayout(0, 3, 0, 0));
@@ -270,7 +373,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		
 		this.rdbtnEstadoAusente = new JRadioButton("Ausente");
 		buttonGroupEstadosMozos.add(this.rdbtnEstadoAusente);
-		this.rdbtnEstadoAusente.setBounds(250, 25, 69, 23);
+		this.rdbtnEstadoAusente.setBounds(250, 25, 89, 23);
 		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoAusente);
 		
 		this.rdbtnEstadoDeFranco = new JRadioButton("De franco");
@@ -289,7 +392,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		
 		this.scrollPaneMozosActivos = new JScrollPane();
 		this.scrollPaneMozosActivos.setViewportBorder(new TitledBorder(null, "Mozos activos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.scrollPaneMozosActivos.setBounds(10, 11, 425, 261);
+		this.scrollPaneMozosActivos.setBounds(10, 11, 425, 210);
 		this.panelAsignacionMesas.add(this.scrollPaneMozosActivos);
 		
 		this.listMozosActivos = new JList();
@@ -297,19 +400,84 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		
 		this.scrollPaneMesas = new JScrollPane();
 		this.scrollPaneMesas.setViewportBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Mesas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		this.scrollPaneMesas.setBounds(10, 284, 425, 316);
+		this.scrollPaneMesas.setBounds(10, 232, 425, 316);
 		this.panelAsignacionMesas.add(this.scrollPaneMesas);
 		
 		this.listMesasAsignables = new JList();
 		this.scrollPaneMesas.setViewportView(this.listMesasAsignables);
 		
 		this.btnAsignarMozoMesa = new JButton("Asignar");
-		this.btnAsignarMozoMesa.setBounds(172, 652, 89, 23);
+		this.btnAsignarMozoMesa.setBounds(169, 559, 89, 23);
 		this.panelAsignacionMesas.add(this.btnAsignarMozoMesa);
 		
+		this.panelOcupacionMesa = new JPanel();
+		this.panelOcupacionMesa.setBounds(10, 593, 425, 119);
+		this.panelAsignacionMesas.add(this.panelOcupacionMesa);
+		this.panelOcupacionMesa.setBorder(new TitledBorder(null, "Ocupaci\u00F3n de mesas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelOcupacionMesa.setLayout(null);
+		
+		this.lblOcupacionComensales = new JLabel("Cantidad de comensales");
+		this.lblOcupacionComensales.setBounds(67, 30, 187, 14);
+		this.panelOcupacionMesa.add(this.lblOcupacionComensales);
+		
+		this.btnOcuparMesa = new JButton("Ocupar");
+		this.btnOcuparMesa.setBounds(171, 81, 89, 23);
+		this.panelOcupacionMesa.add(this.btnOcuparMesa);
+		
+		this.textFieldOcupacionComensales = new JTextField();
+		this.textFieldOcupacionComensales.setBounds(264, 27, 99, 20);
+		this.panelOcupacionMesa.add(this.textFieldOcupacionComensales);
+		this.textFieldOcupacionComensales.setColumns(10);
+		
 		this.panelFacturacion = new JPanel();
+		this.panelFacturacion.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.panelGeneral.add(this.panelFacturacion);
 		this.panelFacturacion.setLayout(null);
+		
+		this.scrollPaneComandasActivas = new JScrollPane();
+		this.scrollPaneComandasActivas.setViewportBorder(new TitledBorder(null, "Comandas Activas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneComandasActivas.setBounds(10, 11, 425, 254);
+		this.panelFacturacion.add(this.scrollPaneComandasActivas);
+		
+		this.listComandasActivas = new JList();
+		this.scrollPaneComandasActivas.setViewportView(this.listComandasActivas);
+		
+		this.scrollPaneProductosPedidos = new JScrollPane();
+		this.scrollPaneProductosPedidos.setViewportBorder(new TitledBorder(null, "Productos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneProductosPedidos.setBounds(10, 276, 425, 284);
+		this.panelFacturacion.add(this.scrollPaneProductosPedidos);
+		
+		this.list = new JList();
+		this.scrollPaneProductosPedidos.setViewportView(this.list);
+		
+		this.panelAgregaPedido = new JPanel();
+		this.panelAgregaPedido.setBorder(new TitledBorder(null, "Agregar pedido a Comanda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelAgregaPedido.setBounds(10, 571, 202, 137);
+		this.panelFacturacion.add(this.panelAgregaPedido);
+		this.panelAgregaPedido.setLayout(null);
+		
+		this.lblCantidadProducto = new JLabel("Cantidad de producto");
+		this.lblCantidadProducto.setBounds(38, 30, 154, 14);
+		this.panelAgregaPedido.add(this.lblCantidadProducto);
+		
+		this.textFieldCantidadProducto = new JTextField();
+		this.textFieldCantidadProducto.setBounds(48, 55, 86, 20);
+		this.panelAgregaPedido.add(this.textFieldCantidadProducto);
+		this.textFieldCantidadProducto.setColumns(10);
+		
+		this.btnAgregarPedidoAComanda = new JButton("Agregar");
+		this.btnAgregarPedidoAComanda.setBounds(45, 103, 89, 23);
+		this.panelAgregaPedido.add(this.btnAgregarPedidoAComanda);
+		
+		this.panelCerrarComanda = new JPanel();
+		this.panelCerrarComanda.setBorder(new TitledBorder(null, "Cerrar Comanda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelCerrarComanda.setBounds(233, 571, 202, 137);
+		this.panelFacturacion.add(this.panelCerrarComanda);
+		this.panelCerrarComanda.setLayout(null);
+		
+		this.btnCerrarComanda = new JButton("Cerrar");
+		this.btnCerrarComanda.setBounds(56, 67, 89, 23);
+		this.panelCerrarComanda.add(this.btnCerrarComanda);
 		
 		this.panelOperarioYMesa = new JPanel();
 		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperarioYMesa, null);
@@ -341,11 +509,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelOperarioCreacion.add(this.textFieldOperarioContraseniaAlta);
 		
 		this.lblOperarioContraseniaAlta = new JLabel("Contraseña");
-		this.lblOperarioContraseniaAlta.setBounds(44, 98, 61, 14);
+		this.lblOperarioContraseniaAlta.setBounds(44, 98, 82, 14);
 		this.panelOperarioCreacion.add(this.lblOperarioContraseniaAlta);
 		
 		this.lblOperarioNyAAlta = new JLabel("Nombre y Apellido");
-		this.lblOperarioNyAAlta.setBounds(44, 151, 96, 14);
+		this.lblOperarioNyAAlta.setBounds(44, 151, 114, 14);
 		this.panelOperarioCreacion.add(this.lblOperarioNyAAlta);
 		
 		this.textFieldOperarioNyAAlta = new JTextField();
@@ -374,11 +542,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelOperarioModif.add(this.textFieldOperarioUsuarioModif);
 		
 		this.lblOperarioContraseniaModif = new JLabel("Contraseña");
-		this.lblOperarioContraseniaModif.setBounds(65, 76, 61, 14);
+		this.lblOperarioContraseniaModif.setBounds(65, 76, 102, 14);
 		this.panelOperarioModif.add(this.lblOperarioContraseniaModif);
 		
 		this.lblOperarioNyAModif = new JLabel("Nombre y Apellido");
-		this.lblOperarioNyAModif.setBounds(65, 115, 102, 17);
+		this.lblOperarioNyAModif.setBounds(65, 115, 122, 17);
 		this.panelOperarioModif.add(this.lblOperarioNyAModif);
 		
 		this.lblOperarioEstadoModif = new JLabel("Estado");
@@ -432,7 +600,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMesaCreacion.add(this.textFieldMesaNumeroAlta);
 		
 		this.lblMesaNumeroAlta = new JLabel("Numero de Mesa");
-		this.lblMesaNumeroAlta.setBounds(44, 46, 96, 14);
+		this.lblMesaNumeroAlta.setBounds(22, 46, 96, 14);
 		this.panelMesaCreacion.add(this.lblMesaNumeroAlta);
 		
 		this.textFieldMesaCantidadComensalesAlta = new JTextField();
@@ -441,7 +609,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMesaCreacion.add(this.textFieldMesaCantidadComensalesAlta);
 		
 		this.lblMesaCantidadComensalesAlta = new JLabel("Cantidad de comensales");
-		this.lblMesaCantidadComensalesAlta.setBounds(44, 134, 122, 14);
+		this.lblMesaCantidadComensalesAlta.setBounds(22, 134, 151, 14);
 		this.panelMesaCreacion.add(this.lblMesaCantidadComensalesAlta);
 		
 		this.btnMesaAlta = new JButton("Crear");
@@ -516,7 +684,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermAlta.add(this.comboBoxPromPermDiasAlta);
 		
 		this.lblPromPermDiasAlta = new JLabel("Dias de promo");
-		this.lblPromPermDiasAlta.setBounds(44, 41, 77, 14);
+		this.lblPromPermDiasAlta.setBounds(21, 41, 122, 14);
 		this.panelPromPermAlta.add(this.lblPromPermDiasAlta);
 		
 		this.comboBoxPromPermDosPorUnoAlta = new JComboBox();
@@ -524,11 +692,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermAlta.add(this.comboBoxPromPermDosPorUnoAlta);
 		
 		this.lblPromPermDosPorUnoAlta = new JLabel("Dos por uno");
-		this.lblPromPermDosPorUnoAlta.setBounds(44, 106, 77, 14);
+		this.lblPromPermDosPorUnoAlta.setBounds(21, 106, 77, 14);
 		this.panelPromPermAlta.add(this.lblPromPermDosPorUnoAlta);
 		
 		this.lblPromPermDtoPorCantAlta = new JLabel("Descuento por cantidad");
-		this.lblPromPermDtoPorCantAlta.setBounds(44, 137, 122, 14);
+		this.lblPromPermDtoPorCantAlta.setBounds(21, 137, 145, 14);
 		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantAlta);
 		
 		this.comboBoxPromPermDtoPorCantAlta = new JComboBox();
@@ -550,15 +718,15 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermAlta.add(this.textFieldPromPermDtoPorCantPrecioUnitarioAlta);
 		
 		this.lblPromPermDtoPorCantMinimoAlta = new JLabel("Cantidad minima");
-		this.lblPromPermDtoPorCantMinimoAlta.setBounds(44, 168, 122, 14);
+		this.lblPromPermDtoPorCantMinimoAlta.setBounds(21, 168, 122, 14);
 		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantMinimoAlta);
 		
 		this.lblPromPermDtoPorCantPrecioUnitarioAlta = new JLabel("Precio unitario");
-		this.lblPromPermDtoPorCantPrecioUnitarioAlta.setBounds(44, 202, 122, 14);
+		this.lblPromPermDtoPorCantPrecioUnitarioAlta.setBounds(21, 202, 122, 14);
 		this.panelPromPermAlta.add(this.lblPromPermDtoPorCantPrecioUnitarioAlta);
 		
 		this.lblPromPermProductoAlta = new JLabel("Producto");
-		this.lblPromPermProductoAlta.setBounds(44, 72, 77, 14);
+		this.lblPromPermProductoAlta.setBounds(21, 75, 77, 14);
 		this.panelPromPermAlta.add(this.lblPromPermProductoAlta);
 		
 		this.comboBoxPromPermProductoAlta = new JComboBox();
@@ -588,7 +756,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermModif.add(this.comboBoxPromPermDiasModif);
 		
 		this.lblPromPermDiasModif = new JLabel("Dias de promo");
-		this.lblPromPermDiasModif.setBounds(44, 55, 77, 14);
+		this.lblPromPermDiasModif.setBounds(20, 55, 101, 14);
 		this.panelPromPermModif.add(this.lblPromPermDiasModif);
 		
 		this.comboBoxPromPermDosPorUnoAltaModif = new JComboBox();
@@ -596,11 +764,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermModif.add(this.comboBoxPromPermDosPorUnoAltaModif);
 		
 		this.lblPromPermDosPorUnoModif = new JLabel("Dos por uno");
-		this.lblPromPermDosPorUnoModif.setBounds(44, 117, 77, 14);
+		this.lblPromPermDosPorUnoModif.setBounds(20, 117, 101, 14);
 		this.panelPromPermModif.add(this.lblPromPermDosPorUnoModif);
 		
 		this.lblPromPermDtoPorCantModif = new JLabel("Descuento por cantidad");
-		this.lblPromPermDtoPorCantModif.setBounds(44, 148, 122, 14);
+		this.lblPromPermDtoPorCantModif.setBounds(20, 148, 146, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantModif);
 		
 		this.comboBoxPromPermDtoPorCantModif = new JComboBox();
@@ -622,11 +790,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermModif.add(this.textFieldPromPermDtoPorCantPrecioUnitarioModif);
 		
 		this.lblPromPermDtoPorCantMinimoModif = new JLabel("Cantidad minima");
-		this.lblPromPermDtoPorCantMinimoModif.setBounds(44, 179, 122, 14);
+		this.lblPromPermDtoPorCantMinimoModif.setBounds(20, 179, 146, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantMinimoModif);
 		
 		this.lblPromPermDtoPorCantPrecioUnitarioModif = new JLabel("Precio unitario");
-		this.lblPromPermDtoPorCantPrecioUnitarioModif.setBounds(44, 210, 122, 14);
+		this.lblPromPermDtoPorCantPrecioUnitarioModif.setBounds(20, 210, 146, 14);
 		this.panelPromPermModif.add(this.lblPromPermDtoPorCantPrecioUnitarioModif);
 		
 		this.comboBoxPromPermProductoModif = new JComboBox();
@@ -634,7 +802,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermModif.add(this.comboBoxPromPermProductoModif);
 		
 		this.lblPromPermProductoModif = new JLabel("Producto");
-		this.lblPromPermProductoModif.setBounds(44, 86, 77, 14);
+		this.lblPromPermProductoModif.setBounds(20, 86, 101, 14);
 		this.panelPromPermModif.add(this.lblPromPermProductoModif);
 		
 		this.comboBoxPromPermEstadoModif = new JComboBox();
@@ -642,7 +810,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromPermModif.add(this.comboBoxPromPermEstadoModif);
 		
 		this.lblPromPermEstadoModif = new JLabel("Estado");
-		this.lblPromPermEstadoModif.setBounds(44, 24, 77, 14);
+		this.lblPromPermEstadoModif.setBounds(20, 24, 77, 14);
 		this.panelPromPermModif.add(this.lblPromPermEstadoModif);
 		
 		this.panelPromTemp = new JPanel();
@@ -661,7 +829,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempAlta.add(this.comboBoxPromTempDiasAlta);
 		
 		this.lblPromTempDiasAlta = new JLabel("Dias de promo");
-		this.lblPromTempDiasAlta.setBounds(44, 41, 77, 14);
+		this.lblPromTempDiasAlta.setBounds(20, 41, 101, 14);
 		this.panelPromTempAlta.add(this.lblPromTempDiasAlta);
 		
 		this.textFieldPromTempPorcentajeDtoAlta = new JTextField();
@@ -669,11 +837,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempAlta.add(this.textFieldPromTempPorcentajeDtoAlta);
 		
 		this.lblPromTempPorcentajeDtoAlta = new JLabel("Porcentaje de descuento");
-		this.lblPromTempPorcentajeDtoAlta.setBounds(44, 106, 129, 14);
+		this.lblPromTempPorcentajeDtoAlta.setBounds(20, 106, 153, 14);
 		this.panelPromTempAlta.add(this.lblPromTempPorcentajeDtoAlta);
 		
 		this.lblPromTempAcumulableAlta = new JLabel("Acumulable");
-		this.lblPromTempAcumulableAlta.setBounds(44, 137, 122, 14);
+		this.lblPromTempAcumulableAlta.setBounds(20, 137, 146, 14);
 		this.panelPromTempAlta.add(this.lblPromTempAcumulableAlta);
 		
 		this.comboBoxPromTempAcumulableAlta = new JComboBox();
@@ -689,11 +857,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempAlta.add(this.comboBoxPromTempMetodoPagoAlta);
 		
 		this.lblPromTempMetodoPagoAlta = new JLabel("Metodo de pago");
-		this.lblPromTempMetodoPagoAlta.setBounds(44, 168, 122, 14);
+		this.lblPromTempMetodoPagoAlta.setBounds(20, 168, 146, 14);
 		this.panelPromTempAlta.add(this.lblPromTempMetodoPagoAlta);
 		
 		this.lblPromTempNombreAlta = new JLabel("Nombre");
-		this.lblPromTempNombreAlta.setBounds(44, 72, 77, 14);
+		this.lblPromTempNombreAlta.setBounds(20, 72, 101, 14);
 		this.panelPromTempAlta.add(this.lblPromTempNombreAlta);
 		
 		this.textFieldPromTempNombreAlta = new JTextField();
@@ -723,7 +891,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempModif.add(this.comboBoxPromTempDiasModif);
 		
 		this.lblPromTempDiasModif = new JLabel("Dias de promo");
-		this.lblPromTempDiasModif.setBounds(44, 58, 77, 14);
+		this.lblPromTempDiasModif.setBounds(20, 58, 101, 14);
 		this.panelPromTempModif.add(this.lblPromTempDiasModif);
 		
 		this.textFieldPromTempPorcentajeDtoModif = new JTextField();
@@ -731,11 +899,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempModif.add(this.textFieldPromTempPorcentajeDtoModif);
 		
 		this.lblPromTempPorcentajeDtoModif = new JLabel("Porcentaje de descuento");
-		this.lblPromTempPorcentajeDtoModif.setBounds(44, 120, 129, 14);
+		this.lblPromTempPorcentajeDtoModif.setBounds(20, 120, 153, 14);
 		this.panelPromTempModif.add(this.lblPromTempPorcentajeDtoModif);
 		
 		this.lblPromTempAcumulableModif = new JLabel("Acumulable");
-		this.lblPromTempAcumulableModif.setBounds(44, 151, 122, 14);
+		this.lblPromTempAcumulableModif.setBounds(20, 151, 146, 14);
 		this.panelPromTempModif.add(this.lblPromTempAcumulableModif);
 		
 		this.comboBoxPromTempAcumulableModif = new JComboBox();
@@ -751,11 +919,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempModif.add(this.comboBoxPromTempMetodoPagoModif);
 		
 		this.lblPromTempMetodoPagoModif = new JLabel("Metodo de pago");
-		this.lblPromTempMetodoPagoModif.setBounds(44, 182, 122, 14);
+		this.lblPromTempMetodoPagoModif.setBounds(20, 182, 146, 14);
 		this.panelPromTempModif.add(this.lblPromTempMetodoPagoModif);
 		
 		this.lblPromTempNombreModif = new JLabel("Nombre");
-		this.lblPromTempNombreModif.setBounds(44, 89, 77, 14);
+		this.lblPromTempNombreModif.setBounds(20, 89, 101, 14);
 		this.panelPromTempModif.add(this.lblPromTempNombreModif);
 		
 		this.textFieldPromTempNombreModif = new JTextField();
@@ -767,7 +935,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelPromTempModif.add(this.comboBoxPromTempEstadoModif);
 		
 		this.lblPromTempEstadoModif = new JLabel("Estado");
-		this.lblPromTempEstadoModif.setBounds(44, 26, 77, 14);
+		this.lblPromTempEstadoModif.setBounds(20, 26, 101, 14);
 		this.panelPromTempModif.add(this.lblPromTempEstadoModif);
 		
 		this.panelMozo = new JPanel();
@@ -781,7 +949,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMozoAlta.setLayout(null);
 		
 		this.lblMozoNyAAlta = new JLabel("Nombre y Apellido");
-		this.lblMozoNyAAlta.setBounds(31, 33, 92, 14);
+		this.lblMozoNyAAlta.setBounds(10, 33, 113, 14);
 		this.panelMozoAlta.add(this.lblMozoNyAAlta);
 		
 		this.textFieldMozoNyAAlta = new JTextField();
@@ -790,17 +958,17 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.textFieldMozoNyAAlta.setColumns(10);
 		
 		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento");
-		this.lblMozoFechaDeNacimientoAlta.setBounds(31, 81, 109, 14);
+		this.lblMozoFechaDeNacimientoAlta.setBounds(10, 81, 130, 14);
 		this.panelMozoAlta.add(this.lblMozoFechaDeNacimientoAlta);
 		
 		this.lblMozoHijosAlta = new JLabel("Hijos");
-		this.lblMozoHijosAlta.setBounds(31, 128, 92, 14);
+		this.lblMozoHijosAlta.setBounds(10, 128, 113, 14);
 		this.panelMozoAlta.add(this.lblMozoHijosAlta);
 		
-		this.textField = new JTextField();
-		this.textField.setColumns(10);
-		this.textField.setBounds(165, 125, 159, 20);
-		this.panelMozoAlta.add(this.textField);
+		this.textFieldMozoHijosAlta = new JTextField();
+		this.textFieldMozoHijosAlta.setColumns(10);
+		this.textFieldMozoHijosAlta.setBounds(165, 125, 159, 20);
+		this.panelMozoAlta.add(this.textFieldMozoHijosAlta);
 		
 		this.btnMozoAlta = new JButton("Crear");
 		this.btnMozoAlta.setBounds(114, 202, 89, 23);
@@ -813,7 +981,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMozo.add(this.panelMozoModif);
 		
 		this.lblMozoNyAModif = new JLabel("Nombre y Apellido");
-		this.lblMozoNyAModif.setBounds(31, 33, 92, 14);
+		this.lblMozoNyAModif.setBounds(10, 33, 113, 14);
 		this.panelMozoModif.add(this.lblMozoNyAModif);
 		
 		this.textFieldMozoNyAModif = new JTextField();
@@ -822,11 +990,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMozoModif.add(this.textFieldMozoNyAModif);
 		
 		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento");
-		this.lblMozoFechaDeNacimientoModif.setBounds(31, 81, 109, 14);
+		this.lblMozoFechaDeNacimientoModif.setBounds(10, 81, 130, 14);
 		this.panelMozoModif.add(this.lblMozoFechaDeNacimientoModif);
 		
 		this.lblMozoHijosModif = new JLabel("Hijos");
-		this.lblMozoHijosModif.setBounds(31, 128, 92, 14);
+		this.lblMozoHijosModif.setBounds(10, 128, 113, 14);
 		this.panelMozoModif.add(this.lblMozoHijosModif);
 		
 		this.textFieldMozoHijosModif = new JTextField();
@@ -839,7 +1007,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMozoModif.add(this.btnMozoModif);
 		
 		this.lblMozoEstadoModif = new JLabel("Estado");
-		this.lblMozoEstadoModif.setBounds(31, 174, 92, 14);
+		this.lblMozoEstadoModif.setBounds(10, 174, 113, 14);
 		this.panelMozoModif.add(this.lblMozoEstadoModif);
 		
 		this.comboBoxMozoEstadoModif = new JComboBox();
@@ -865,19 +1033,19 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelEstadisticas.setLayout(null);
 		
 		this.btnMozoEstadEmp = new JButton("Estadisticas de un empleado");
-		this.btnMozoEstadEmp.setBounds(89, 29, 228, 43);
+		this.btnMozoEstadEmp.setBounds(57, 29, 308, 43);
 		this.panelEstadisticas.add(this.btnMozoEstadEmp);
 		
 		this.btnMozoEstadEmpMayorVolVenta = new JButton("Empleado con mayor volumen de venta");
-		this.btnMozoEstadEmpMayorVolVenta.setBounds(89, 83, 228, 43);
+		this.btnMozoEstadEmpMayorVolVenta.setBounds(57, 83, 308, 43);
 		this.panelEstadisticas.add(this.btnMozoEstadEmpMayorVolVenta);
 		
 		this.btnMozoEstadEmpMenorVolVenta = new JButton("Empleado con menor volumen de venta");
-		this.btnMozoEstadEmpMenorVolVenta.setBounds(89, 137, 228, 43);
+		this.btnMozoEstadEmpMenorVolVenta.setBounds(57, 137, 308, 43);
 		this.panelEstadisticas.add(this.btnMozoEstadEmpMenorVolVenta);
 		
 		this.btnMozoEstadMesaConsumoProm = new JButton("Consumo promedio por mesa");
-		this.btnMozoEstadMesaConsumoProm.setBounds(89, 191, 228, 43);
+		this.btnMozoEstadMesaConsumoProm.setBounds(57, 191, 308, 43);
 		this.panelEstadisticas.add(this.btnMozoEstadMesaConsumoProm);
 		
 		this.scrollPaneEstadisticas = new JScrollPane();
@@ -899,7 +1067,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoAlta.setLayout(null);
 		
 		this.lblProductoNombreAlta = new JLabel("Nombre");
-		this.lblProductoNombreAlta.setBounds(70, 40, 46, 14);
+		this.lblProductoNombreAlta.setBounds(47, 40, 69, 14);
 		this.panelProductoAlta.add(this.lblProductoNombreAlta);
 		
 		this.textFieldProductoNombreAlta = new JTextField();
@@ -908,7 +1076,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.textFieldProductoNombreAlta.setColumns(10);
 		
 		this.lblProductoPrecioCostoAlta = new JLabel("Precio costo");
-		this.lblProductoPrecioCostoAlta.setBounds(70, 84, 69, 14);
+		this.lblProductoPrecioCostoAlta.setBounds(47, 84, 92, 14);
 		this.panelProductoAlta.add(this.lblProductoPrecioCostoAlta);
 		
 		this.textFieldProductoPrecioCostoAlta = new JTextField();
@@ -917,7 +1085,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoAlta.add(this.textFieldProductoPrecioCostoAlta);
 		
 		this.lblProductoPrecioVentaAlta = new JLabel("Precio venta");
-		this.lblProductoPrecioVentaAlta.setBounds(70, 127, 69, 14);
+		this.lblProductoPrecioVentaAlta.setBounds(47, 127, 92, 14);
 		this.panelProductoAlta.add(this.lblProductoPrecioVentaAlta);
 		
 		this.textFieldProductoPrecioVentaAlta = new JTextField();
@@ -926,7 +1094,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoAlta.add(this.textFieldProductoPrecioVentaAlta);
 		
 		this.lblProductoStockInicialAlta = new JLabel("Stock inicial");
-		this.lblProductoStockInicialAlta.setBounds(70, 171, 69, 14);
+		this.lblProductoStockInicialAlta.setBounds(47, 171, 92, 14);
 		this.panelProductoAlta.add(this.lblProductoStockInicialAlta);
 		
 		this.textFieldProductoStockInicialAlta = new JTextField();
@@ -945,7 +1113,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProducto.add(this.panelProductoModif);
 		
 		this.lblProductoNombreModif = new JLabel("Nombre");
-		this.lblProductoNombreModif.setBounds(70, 40, 46, 14);
+		this.lblProductoNombreModif.setBounds(47, 40, 69, 14);
 		this.panelProductoModif.add(this.lblProductoNombreModif);
 		
 		this.textFieldProductoNombreModif = new JTextField();
@@ -954,7 +1122,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoModif.add(this.textFieldProductoNombreModif);
 		
 		this.lblProductoPrecioCostoModif = new JLabel("Precio costo");
-		this.lblProductoPrecioCostoModif.setBounds(70, 84, 69, 14);
+		this.lblProductoPrecioCostoModif.setBounds(47, 84, 92, 14);
 		this.panelProductoModif.add(this.lblProductoPrecioCostoModif);
 		
 		this.textFieldProductoPrecioCostoModif = new JTextField();
@@ -963,7 +1131,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoModif.add(this.textFieldProductoPrecioCostoModif);
 		
 		this.lblProductoPrecioVentaModif = new JLabel("Precio venta");
-		this.lblProductoPrecioVentaModif.setBounds(70, 127, 69, 14);
+		this.lblProductoPrecioVentaModif.setBounds(47, 127, 92, 14);
 		this.panelProductoModif.add(this.lblProductoPrecioVentaModif);
 		
 		this.textFieldProductoPrecioVentaModif = new JTextField();
@@ -972,7 +1140,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelProductoModif.add(this.textFieldProductoPrecioVentaModif);
 		
 		this.lblProductoStockInicialModif = new JLabel("Stock inicial");
-		this.lblProductoStockInicialModif.setBounds(70, 171, 69, 14);
+		this.lblProductoStockInicialModif.setBounds(47, 171, 92, 14);
 		this.panelProductoModif.add(this.lblProductoStockInicialModif);
 		
 		this.textFieldProductoStockInicialModif = new JTextField();
@@ -1006,16 +1174,22 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.lblProductoStockNuevo.setBounds(35, 50, 72, 14);
 		this.panelNuevoStockProducto.add(this.lblProductoStockNuevo);
 		
-		this.textField_1 = new JTextField();
-		this.textField_1.setBounds(150, 47, 216, 20);
-		this.panelNuevoStockProducto.add(this.textField_1);
-		this.textField_1.setColumns(10);
+		this.textFieldProductoNuevoStock = new JTextField();
+		this.textFieldProductoNuevoStock.setBounds(150, 47, 216, 20);
+		this.panelNuevoStockProducto.add(this.textFieldProductoNuevoStock);
+		this.textFieldProductoNuevoStock.setColumns(10);
 		
 		this.btnProductoNuevoStock = new JButton("Actualizar");
-		this.btnProductoNuevoStock.setBounds(158, 116, 89, 23);
+		this.btnProductoNuevoStock.setBounds(158, 116, 101, 23);
 		this.panelNuevoStockProducto.add(this.btnProductoNuevoStock);
 		
-		
+		/*
+		this.tabbedPane.setEnabledAt(1, false);
+		this.tabbedPane.setEnabledAt(2, false);
+		this.tabbedPane.setEnabledAt(3, false);
+		this.tabbedPane.setEnabledAt(4, false);
+		this.tabbedPane.setEnabledAt(5, false);
+		*/
 	}
 	public void actionPerformed(ActionEvent e) {
 	}
