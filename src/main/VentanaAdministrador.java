@@ -24,8 +24,11 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
+import javax.swing.JRadioButton;
+import javax.swing.ButtonGroup;
+import javax.swing.border.LineBorder;
 
-public class Ventanal extends JFrame implements ActionListener {
+public class VentanaAdministrador extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
@@ -33,7 +36,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JPanel panelPromociones;
 	private JPanel panelMozo;
 	private JPanel panelProducto;
-	private JPanel panel_4;
+	private JPanel panelGeneral;
 	private JPanel panelOperarioABM;
 	private JPanel panelMesaABM;
 	private JPanel panelOperarioCreacion;
@@ -190,6 +193,16 @@ public class Ventanal extends JFrame implements ActionListener {
 	private JScrollPane scrollPaneListaPromTemp;
 	private JScrollPane scrollPaneListaMozos;
 	private JScrollPane scrollPaneListaProductos;
+	private JPanel panelEstadoMozos;
+	private JList listMozosEstados;
+	private JScrollPane scrollPaneMozosEstado;
+	private JPanel panelSeleccionEstadosMozos;
+	private JRadioButton rdbtnEstadoActivo;
+	private JRadioButton rdbtnEstadoAusente;
+	private JRadioButton rdbtnEstadoDeFranco;
+	private JButton btnEstadoConfirmar;
+	private final ButtonGroup buttonGroupEstadosMozos = new ButtonGroup();
+	private JPanel panelAsignacionMesas;
 
 	/**
 	 * Launch the application.
@@ -198,7 +211,7 @@ public class Ventanal extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Ventanal frame = new Ventanal();
+					VentanaAdministrador frame = new VentanaAdministrador();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -210,7 +223,7 @@ public class Ventanal extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public Ventanal() {
+	public VentanaAdministrador() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1367, 796);
 		this.contentPane = new JPanel();
@@ -220,6 +233,51 @@ public class Ventanal extends JFrame implements ActionListener {
 		
 		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
+		
+		this.panelGeneral = new JPanel();
+		this.tabbedPane.addTab("General", null, this.panelGeneral, null);
+		this.panelGeneral.setLayout(new GridLayout(0, 3, 0, 0));
+		
+		this.panelEstadoMozos = new JPanel();
+		this.panelEstadoMozos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		this.panelGeneral.add(this.panelEstadoMozos);
+		this.panelEstadoMozos.setLayout(null);
+		
+		this.scrollPaneMozosEstado = new JScrollPane();
+		this.scrollPaneMozosEstado.setViewportBorder(new TitledBorder(null, "Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.scrollPaneMozosEstado.setBounds(10, 11, 425, 564);
+		this.panelEstadoMozos.add(this.scrollPaneMozosEstado);
+		
+		this.listMozosEstados = new JList();
+		this.scrollPaneMozosEstado.setViewportView(this.listMozosEstados);
+		
+		this.panelSeleccionEstadosMozos = new JPanel();
+		this.panelSeleccionEstadosMozos.setBorder(new TitledBorder(null, "Estados", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelSeleccionEstadosMozos.setBounds(10, 594, 425, 114);
+		this.panelEstadoMozos.add(this.panelSeleccionEstadosMozos);
+		this.panelSeleccionEstadosMozos.setLayout(null);
+		
+		this.rdbtnEstadoActivo = new JRadioButton("Activo");
+		buttonGroupEstadosMozos.add(this.rdbtnEstadoActivo);
+		this.rdbtnEstadoActivo.setBounds(69, 25, 69, 23);
+		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoActivo);
+		
+		this.rdbtnEstadoAusente = new JRadioButton("Ausente");
+		buttonGroupEstadosMozos.add(this.rdbtnEstadoAusente);
+		this.rdbtnEstadoAusente.setBounds(250, 25, 69, 23);
+		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoAusente);
+		
+		this.rdbtnEstadoDeFranco = new JRadioButton("De franco");
+		buttonGroupEstadosMozos.add(this.rdbtnEstadoDeFranco);
+		this.rdbtnEstadoDeFranco.setBounds(153, 25, 89, 23);
+		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoDeFranco);
+		
+		this.btnEstadoConfirmar = new JButton("Confirmar");
+		this.btnEstadoConfirmar.setBounds(153, 80, 89, 23);
+		this.panelSeleccionEstadosMozos.add(this.btnEstadoConfirmar);
+		
+		this.panelAsignacionMesas = new JPanel();
+		this.panelGeneral.add(this.panelAsignacionMesas);
 		
 		this.panelOperarioYMesa = new JPanel();
 		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperarioYMesa, null);
@@ -925,9 +983,7 @@ public class Ventanal extends JFrame implements ActionListener {
 		this.btnProductoNuevoStock.setBounds(158, 116, 89, 23);
 		this.panel.add(this.btnProductoNuevoStock);
 		
-		this.panel_4 = new JPanel();
-		this.tabbedPane.addTab("New tab", null, this.panel_4, null);
-		this.panel_4.setLayout(null);
+		
 	}
 	public void actionPerformed(ActionEvent e) {
 	}
