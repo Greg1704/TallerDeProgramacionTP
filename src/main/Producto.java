@@ -11,8 +11,6 @@ public class Producto {
 	private int stock;
 	
 	
-	
-	
 	public Producto(int id, String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
 		this.id = id;
