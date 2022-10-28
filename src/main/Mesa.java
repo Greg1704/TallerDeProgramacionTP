@@ -8,8 +8,7 @@ public class Mesa {
 	private double totalGanado;
 	
 	
-	public Mesa(int comensales, String estado, int numero) {
-		super();
+	public Mesa(int comensales, String estado, int numero){
 		this.comensales = comensales;
 		this.estado = estado;
 		this.numero = numero;

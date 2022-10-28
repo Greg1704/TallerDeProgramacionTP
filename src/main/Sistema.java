@@ -313,6 +313,8 @@ public class Sistema {
 	
 	public void cierraComanda(Comanda comanda){
 		
+		
+		
 	}
 	
 }
