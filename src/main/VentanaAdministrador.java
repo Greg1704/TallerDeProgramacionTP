@@ -1,5 +1,6 @@
 package main;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -14,6 +15,10 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -29,7 +34,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 
-public class VentanaAdministrador extends JFrame implements ActionListener {
+public class VentanaAdministrador extends JFrame implements ActionListener, KeyListener, IVista, MouseListener {
+	Controlador c;
 
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
@@ -229,7 +235,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JLabel lblLoginUsuario;
 	private JTextField textFieldLoginUsuario;
 	private JLabel lblLoginContrasenia;
-	private JTextField textFieldUsuarioContrasenia;
+	private JTextField textFieldLoginContrasenia;
 	private JButton btnLogin;
 	private JPanel panelSerializacion;
 	private JButton btnRecuperarSistema;
@@ -241,6 +247,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JTextField textFieldNombreLocal;
 	private JFormattedTextField formattedTextFieldFechaNacimientoAlta;
 	private JFormattedTextField formattedTextFieldFechaNacimientoModif;
+	
 
 	/**
 	 * Launch the application.
@@ -298,11 +305,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.lblLoginContrasenia.setBounds(88, 74, 86, 27);
 		this.panelLogin.add(this.lblLoginContrasenia);
 		
-		this.textFieldUsuarioContrasenia = new JTextField();
-		this.textFieldUsuarioContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		this.textFieldUsuarioContrasenia.setColumns(10);
-		this.textFieldUsuarioContrasenia.setBounds(187, 79, 271, 20);
-		this.panelLogin.add(this.textFieldUsuarioContrasenia);
+		this.textFieldLoginContrasenia = new JTextField();
+		this.textFieldLoginContrasenia.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		this.textFieldLoginContrasenia.setColumns(10);
+		this.textFieldLoginContrasenia.setBounds(187, 79, 271, 20);
+		this.panelLogin.add(this.textFieldLoginContrasenia);
 		
 		this.btnLogin = new JButton("Login");
 		this.btnLogin.setBounds(139, 123, 89, 23);
@@ -1204,7 +1211,88 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.tabbedPane.setEnabledAt(4, false);
 		this.tabbedPane.setEnabledAt(5, false);
 		*/
+
 	}
+	
 	public void actionPerformed(ActionEvent e) {
+	}
+	
+	public void setControlador(Controlador c) {
+		this.c = c;
+		setDefault();
+	}
+	public void setDefault() {
+		//Ventana Login
+		
+		this.textFieldLoginUsuario.addKeyListener(this);
+		this.textFieldLoginContrasenia.addKeyListener(this);
+		this.textFieldNombreLocal.addKeyListener(this);
+		
+		this.btnLogin.setActionCommand(confirmaLoginUsuario);
+		this.btnLogout.setActionCommand(confirmaLogoutUsuario);
+		this.btnGuardarSistema.setActionCommand(guardaSistema);
+		this.btnRecuperarSistema.setActionCommand(recuperaSistema);
+		this.btnNuevoSistema.setActionCommand(nuevoSistema);
+		
+		this.btnLogin.addActionListener(c);
+		this.btnLogout.addActionListener(c);
+		this.btnGuardarSistema.addActionListener(c);
+		this.btnRecuperarSistema.addActionListener(c);
+		this.btnNuevoSistema.addActionListener(c);
+		
+		this.btnLogin.addMouseListener(this);
+		this.btnLogout.addMouseListener(this);
+		this.btnGuardarSistema.addMouseListener(this);
+		this.btnRecuperarSistema.addMouseListener(this);
+		this.btnNuevoSistema.addMouseListener(this);
+		
+		
+	}
+	
+	
+	public void mouseClicked(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
