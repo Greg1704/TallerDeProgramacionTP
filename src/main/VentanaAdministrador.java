@@ -98,7 +98,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JPanel panelPromPermModif;
 	private JComboBox comboBoxPromPermDiasModif;
 	private JLabel lblPromPermDiasModif;
-	private JComboBox comboBoxPromPermDosPorUnoAltaModif;
+	private JComboBox comboBoxPromPermDosPorUnoModif;
 	private JLabel lblPromPermDosPorUnoModif;
 	private JLabel lblPromPermDtoPorCantModif;
 	private JComboBox comboBoxPromPermDtoPorCantModif;
@@ -155,8 +155,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JLabel lblMozoHijosModif;
 	private JTextField textFieldMozoHijosModif;
 	private JButton btnMozoModif;
-	private JLabel lblMozoEstadoModif;
-	private JComboBox comboBoxMozoEstadoModif;
 	private JList listMozos;
 	private JButton btnMozoBaja;
 	private JPanel panelEstadisticas;
@@ -245,6 +243,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JTextField textFieldNombreLocal;
 	private JFormattedTextField formattedTextFieldFechaNacimientoAlta;
 	private JFormattedTextField formattedTextFieldFechaNacimientoModif;
+	private JLabel lblOperarioEstadoModif;
+	private JComboBox comboBoxOperarioEstadoModif;
 	
 
 	/**
@@ -549,26 +549,34 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelOperarioModif.add(this.textFieldOperarioUsuarioModif);
 		
 		this.lblOperarioContraseniaModif = new JLabel("Contraseña");
-		this.lblOperarioContraseniaModif.setBounds(65, 104, 102, 14);
+		this.lblOperarioContraseniaModif.setBounds(65, 78, 102, 14);
 		this.panelOperarioModif.add(this.lblOperarioContraseniaModif);
 		
 		this.lblOperarioNyAModif = new JLabel("Nombre y Apellido");
-		this.lblOperarioNyAModif.setBounds(62, 164, 122, 17);
+		this.lblOperarioNyAModif.setBounds(65, 114, 122, 17);
 		this.panelOperarioModif.add(this.lblOperarioNyAModif);
 		
 		this.textFieldOperarioContraseniaModif = new JTextField();
 		this.textFieldOperarioContraseniaModif.setColumns(10);
-		this.textFieldOperarioContraseniaModif.setBounds(216, 101, 122, 20);
+		this.textFieldOperarioContraseniaModif.setBounds(216, 75, 122, 20);
 		this.panelOperarioModif.add(this.textFieldOperarioContraseniaModif);
 		
 		this.textFieldOperarioNyAModif = new JTextField();
 		this.textFieldOperarioNyAModif.setColumns(10);
-		this.textFieldOperarioNyAModif.setBounds(216, 162, 122, 20);
+		this.textFieldOperarioNyAModif.setBounds(216, 112, 122, 20);
 		this.panelOperarioModif.add(this.textFieldOperarioNyAModif);
 		
 		this.btnOperarioModificacion = new JButton("Modificar");
 		this.btnOperarioModificacion.setBounds(156, 217, 89, 23);
 		this.panelOperarioModif.add(this.btnOperarioModificacion);
+		
+		this.lblOperarioEstadoModif = new JLabel("Estado");
+		this.lblOperarioEstadoModif.setBounds(65, 160, 61, 14);
+		this.panelOperarioModif.add(this.lblOperarioEstadoModif);
+		
+		this.comboBoxOperarioEstadoModif = new JComboBox();
+		this.comboBoxOperarioEstadoModif.setBounds(216, 156, 122, 22);
+		this.panelOperarioModif.add(this.comboBoxOperarioEstadoModif);
 		
 		this.scrollPaneListaOperarios = new JScrollPane();
 		this.scrollPaneListaOperarios.setViewportBorder(new TitledBorder(null, "Lista de Operarios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -750,9 +758,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.lblPromPermDiasModif.setBounds(20, 55, 101, 14);
 		this.panelPromPermModif.add(this.lblPromPermDiasModif);
 		
-		this.comboBoxPromPermDosPorUnoAltaModif = new JComboBox();
-		this.comboBoxPromPermDosPorUnoAltaModif.setBounds(183, 114, 122, 20);
-		this.panelPromPermModif.add(this.comboBoxPromPermDosPorUnoAltaModif);
+		this.comboBoxPromPermDosPorUnoModif = new JComboBox();
+		this.comboBoxPromPermDosPorUnoModif.setBounds(183, 114, 122, 20);
+		this.panelPromPermModif.add(this.comboBoxPromPermDosPorUnoModif);
 		
 		this.lblPromPermDosPorUnoModif = new JLabel("Dos por uno");
 		this.lblPromPermDosPorUnoModif.setBounds(20, 117, 101, 14);
@@ -1003,14 +1011,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnMozoModif.setBounds(114, 210, 89, 23);
 		this.panelMozoModif.add(this.btnMozoModif);
 		
-		this.lblMozoEstadoModif = new JLabel("Estado");
-		this.lblMozoEstadoModif.setBounds(10, 174, 113, 14);
-		this.panelMozoModif.add(this.lblMozoEstadoModif);
-		
-		this.comboBoxMozoEstadoModif = new JComboBox();
-		this.comboBoxMozoEstadoModif.setBounds(165, 170, 159, 22);
-		this.panelMozoModif.add(this.comboBoxMozoEstadoModif);
-		
 		this.formattedTextFieldFechaNacimientoModif = new JFormattedTextField();
 		this.formattedTextFieldFechaNacimientoModif.setBounds(213, 78, 111, 20);
 		this.panelMozoModif.add(this.formattedTextFieldFechaNacimientoModif);
@@ -1204,7 +1204,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		setDefault();
 	}
 	public void setDefault() {
-		//Ventana Login
+		//Ventana Login--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.textFieldLoginUsuario.addKeyListener(this);
 		this.textFieldLoginContrasenia.addKeyListener(this);
@@ -1231,7 +1231,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnLogin.setEnabled(false);
 		this.btnLogout.setEnabled(false);
 		
-		//Ventana general
+		//Ventana general--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listMozosEstados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.listMozosActivos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -1266,10 +1266,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnAgregarPedidoAComanda.setEnabled(false);
 		this.btnCerrarComanda.setEnabled(false);
 		
-		//Ventana Operarios y Mesas
+		//Ventana Operarios y Mesas--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listOperarios.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.listMesas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		this.comboBoxOperarioEstadoModif.addItem("Activo");
+		this.comboBoxOperarioEstadoModif.addItem("Inactivo");
 		
 		this.textFieldOperarioUsuarioAlta.addKeyListener(this);
 		this.textFieldOperarioContraseniaAlta.addKeyListener(this);
@@ -1303,6 +1306,175 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnMesaBaja.setEnabled(false);
 		this.btnMesaModificacion.setEnabled(false);
 		
+		//Ventana promociones--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		this.listPromPerm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listPromTemp.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		this.comboBoxPromPermDiasAlta.addItem("Lunes");
+		this.comboBoxPromPermDiasAlta.addItem("Martes");
+		this.comboBoxPromPermDiasAlta.addItem("Miercoles");
+		this.comboBoxPromPermDiasAlta.addItem("Jueves");
+		this.comboBoxPromPermDiasAlta.addItem("Viernes");
+		this.comboBoxPromPermDiasAlta.addItem("Sabado");
+		this.comboBoxPromPermDiasAlta.addItem("Domingo");
+		
+		//QUE MIERDA HAGO CON PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		
+		this.comboBoxPromPermDosPorUnoAlta.addItem("Si");
+		this.comboBoxPromPermDosPorUnoAlta.addItem("No");
+		
+		this.comboBoxPromPermDtoPorCantAlta.addItem("Si");
+		this.comboBoxPromPermDtoPorCantAlta.addItem("No");
+		
+		this.comboBoxPromPermEstadoModif.addItem("Activa");
+		this.comboBoxPromPermEstadoModif.addItem("Inactiva");
+		
+		this.comboBoxPromPermDiasModif.addItem("Lunes");
+		this.comboBoxPromPermDiasModif.addItem("Martes");
+		this.comboBoxPromPermDiasModif.addItem("Miercoles");
+		this.comboBoxPromPermDiasModif.addItem("Jueves");
+		this.comboBoxPromPermDiasModif.addItem("Viernes");
+		this.comboBoxPromPermDiasModif.addItem("Sabado");
+		this.comboBoxPromPermDiasModif.addItem("Domingo");
+		
+		//QUE MIERDA HAGO CON PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		
+		this.comboBoxPromPermDosPorUnoModif.addItem("Si");
+		this.comboBoxPromPermDosPorUnoModif.addItem("No");
+		
+		this.comboBoxPromPermDtoPorCantModif.addItem("Si");
+		this.comboBoxPromPermDtoPorCantModif.addItem("No");
+		
+		this.comboBoxPromTempDiasAlta.addItem("Lunes");
+		this.comboBoxPromTempDiasAlta.addItem("Martes");
+		this.comboBoxPromTempDiasAlta.addItem("Miercoles");
+		this.comboBoxPromTempDiasAlta.addItem("Jueves");
+		this.comboBoxPromTempDiasAlta.addItem("Viernes");
+		this.comboBoxPromTempDiasAlta.addItem("Sabado");
+		this.comboBoxPromTempDiasAlta.addItem("Domingo");
+		
+		this.comboBoxPromTempAcumulableAlta.addItem("Si");
+		this.comboBoxPromTempAcumulableAlta.addItem("No");
+		
+		this.comboBoxPromTempMetodoPagoAlta.addItem("Efectivo");
+		this.comboBoxPromTempMetodoPagoAlta.addItem("Tarjeta");
+		this.comboBoxPromTempMetodoPagoAlta.addItem("MercPago");
+		this.comboBoxPromTempMetodoPagoAlta.addItem("CtaDNI");
+		
+		this.comboBoxPromTempEstadoModif.addItem("Activa");
+		this.comboBoxPromTempEstadoModif.addItem("Inactiva");
+		
+		this.comboBoxPromTempDiasModif.addItem("Lunes");
+		this.comboBoxPromTempDiasModif.addItem("Martes");
+		this.comboBoxPromTempDiasModif.addItem("Miercoles");
+		this.comboBoxPromTempDiasModif.addItem("Jueves");
+		this.comboBoxPromTempDiasModif.addItem("Viernes");
+		this.comboBoxPromTempDiasModif.addItem("Sabado");
+		this.comboBoxPromTempDiasModif.addItem("Domingo");
+		
+		this.comboBoxPromTempAcumulableModif.addItem("Si");
+		this.comboBoxPromTempAcumulableModif.addItem("No");
+		
+		this.comboBoxPromTempMetodoPagoModif.addItem("Efectivo");
+		this.comboBoxPromTempMetodoPagoModif.addItem("Tarjeta");
+		this.comboBoxPromTempMetodoPagoModif.addItem("MercPago");
+		this.comboBoxPromTempMetodoPagoModif.addItem("CtaDNI");
+		
+		this.textFieldPromPermDtoPorCantMinimoAlta.addKeyListener(this);
+		this.textFieldPromPermDtoPorCantMinimoModif.addKeyListener(this);
+		this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.addKeyListener(this);
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.addKeyListener(this);
+		this.textFieldPromTempNombreAlta.addKeyListener(this);
+		this.textFieldPromTempNombreModif.addKeyListener(this);
+		this.textFieldPromTempPorcentajeDtoAlta.addKeyListener(this);
+		this.textFieldPromTempPorcentajeDtoModif.addKeyListener(this);
+		
+		this.btnPromPermAlta.setActionCommand(crearPromPerm);
+		this.btnPromPermBaja.setActionCommand(eliminarPromPerm);
+		this.btnPromPermModif.setActionCommand(modificarPromPerm);
+		this.btnPromTempAlta.setActionCommand(crearPromTemp);
+		this.btnPromTempBaja.setActionCommand(eliminarPromTemp);
+		this.btnPromTempModif.setActionCommand(modificarPromTemp);
+		
+		this.btnPromPermAlta.addActionListener(c);
+		this.btnPromPermBaja.addActionListener(c);
+		this.btnPromPermModif.addActionListener(c);
+		this.btnPromTempAlta.addActionListener(c);
+		this.btnPromTempBaja.addActionListener(c);
+		this.btnPromTempModif.addActionListener(c);
+		
+		this.btnPromPermAlta.setEnabled(false);
+		this.btnPromPermBaja.setEnabled(false);
+		this.btnPromPermModif.setEnabled(false);
+		this.btnPromTempAlta.setEnabled(false);
+		this.btnPromTempBaja.setEnabled(false);
+		this.btnPromTempModif.setEnabled(false);
+		
+		//Ventana Mozos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		this.listMozos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.textAreaEstadisticas.setEnabled(false);
+		
+		this.textFieldMozoNyAAlta.addKeyListener(this);
+		this.textFieldMozoNyAModif.addKeyListener(this);
+		this.textFieldMozoHijosAlta.addKeyListener(this);
+		this.textFieldMozoHijosModif.addKeyListener(this);
+		this.formattedTextFieldFechaNacimientoAlta.addKeyListener(this);
+		this.formattedTextFieldFechaNacimientoModif.addKeyListener(this);
+		
+		this.btnMozoAlta.setActionCommand(crearMozo);
+		this.btnMozoBaja.setActionCommand(eliminarMozo);
+		this.btnMozoModif.setActionCommand(modificarMozo);
+		this.btnMozoEstadEmp.setActionCommand(estadEmpleado);
+		this.btnMozoEstadEmpMayorVolVenta.setActionCommand(estadEmpleadoMayorVol);
+		this.btnMozoEstadEmpMenorVolVenta.setActionCommand(estadEmpleadoMenorVol);
+		this.btnMozoEstadMesaConsumoProm.setActionCommand(estadPromMesas);
+		
+		this.btnMozoAlta.addActionListener(c);
+		this.btnMozoBaja.addActionListener(c);
+		this.btnMozoModif.addActionListener(c);
+		this.btnMozoEstadEmp.addActionListener(c);
+		this.btnMozoEstadEmpMayorVolVenta.addActionListener(c);
+		this.btnMozoEstadEmpMenorVolVenta.addActionListener(c);
+		this.btnMozoEstadMesaConsumoProm.addActionListener(c);
+		
+		this.btnMozoAlta.setEnabled(false);
+		this.btnMozoBaja.setEnabled(false);
+		this.btnMozoModif.setEnabled(false);
+		this.btnMozoEstadEmp.setEnabled(false);
+		this.btnMozoEstadEmpMayorVolVenta.setEnabled(false);
+		this.btnMozoEstadEmpMenorVolVenta.setEnabled(false);
+		this.btnMozoEstadMesaConsumoProm.setEnabled(false);
+		
+		//Ventana Productos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		this.listProductos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		this.textFieldProductoNombreAlta.addKeyListener(this);
+		this.textFieldProductoNombreModif.addKeyListener(this);
+		this.textFieldProductoPrecioCostoAlta.addKeyListener(this);
+		this.textFieldProductoPrecioCostoModif.addKeyListener(this);
+		this.textFieldProductoPrecioVentaAlta.addKeyListener(this);
+		this.textFieldProductoPrecioVentaModif.addKeyListener(this);
+		this.textFieldProductoStockInicialAlta.addKeyListener(this);
+		this.textFieldProductoStockInicialModif.addKeyListener(this);
+		this.textFieldProductoNuevoStock.addKeyListener(this);
+		
+		this.btnProductoAlta.setActionCommand(crearProducto);
+		this.btnProductoBaja.setActionCommand(eliminarProducto);
+		this.btnProductoModificacion.setActionCommand(modificarProducto);
+		this.btnProductoNuevoStock.setActionCommand(actualizarStockProducto);
+		
+		this.btnProductoAlta.addActionListener(c);
+		this.btnProductoBaja.addActionListener(c);
+		this.btnProductoModificacion.addActionListener(c);
+		this.btnProductoNuevoStock.addActionListener(c);
+
+		this.btnProductoAlta.setEnabled(false);
+		this.btnProductoBaja.setEnabled(false);
+		this.btnProductoModificacion.setEnabled(false);
+		this.btnProductoNuevoStock.setEnabled(false);
 		
 	}
 	
