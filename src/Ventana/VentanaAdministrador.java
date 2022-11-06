@@ -1,4 +1,4 @@
-package main;
+package Ventana;
 
 
 import java.awt.BorderLayout;
@@ -15,6 +15,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.border.TitledBorder;
+
+import controlador.Controlador;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -267,6 +270,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	 * Create the frame.
 	 */
 	public VentanaAdministrador() {
+		
+		
+		this.setVisible(true);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1367, 796);
 		this.contentPane = new JPanel();

@@ -1,4 +1,6 @@
-package main;
+package prueba;
+
+import main.Pedido;
 
 public class prueba {
 

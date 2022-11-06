@@ -1,4 +1,4 @@
-package main;
+package Ventana;
 
 public interface IVista {
 	//Ventana login

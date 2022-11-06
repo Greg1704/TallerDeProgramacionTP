@@ -1,7 +1,9 @@
-package main;
+package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import Ventana.VentanaAdministrador;
 
 public class Controlador implements ActionListener {
 	
@@ -9,7 +11,8 @@ public class Controlador implements ActionListener {
 	private static Controlador instancia = null;
 	
 	private Controlador () {
-		v = new VentanaAdministrador();
+		this.v = new VentanaAdministrador();
+		this.v.setControlador(this);
 	}
 	
 	public static Controlador getInstancia() {
