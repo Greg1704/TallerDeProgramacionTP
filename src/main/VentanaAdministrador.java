@@ -11,6 +11,7 @@ import javax.swing.JTabbedPane;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.border.TitledBorder;
@@ -61,10 +62,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JTextField textFieldOperarioUsuarioModif;
 	private JLabel lblOperarioContraseniaModif;
 	private JLabel lblOperarioNyAModif;
-	private JLabel lblOperarioEstadoModif;
 	private JTextField textFieldOperarioContraseniaModif;
 	private JTextField textFieldOperarioNyAModif;
-	private JComboBox comboBoxOperarioEstadoModif;
 	private JButton btnOperarioModificacion;
 	private JPanel panelMesaCreacion;
 	private JTextField textFieldMesaNumeroAlta;
@@ -78,7 +77,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JLabel lblMesaNumeroModif;
 	private JTextField textFieldMesaNumeroModif;
 	private JLabel lblMesaCantidadComensalesModif;
-	private JLabel lblMesaEstadoModif;
 	private JTextField textFieldMesaCantidadComensalesModif;
 	private JButton btnMesaModificacion;
 	private JPanel panelPromPerm;
@@ -222,7 +220,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JTextField textFieldOcupacionComensales;
 	private JList listComandasActivas;
 	private JScrollPane scrollPaneComandasActivas;
-	private JList list;
+	private JList listProductosGeneral;
 	private JScrollPane scrollPaneProductosPedidos;
 	private JPanel panelAgregaPedido;
 	private JPanel panelCerrarComanda;
@@ -456,8 +454,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.scrollPaneProductosPedidos.setBounds(10, 276, 425, 284);
 		this.panelFacturacion.add(this.scrollPaneProductosPedidos);
 		
-		this.list = new JList();
-		this.scrollPaneProductosPedidos.setViewportView(this.list);
+		this.listProductosGeneral = new JList();
+		this.scrollPaneProductosPedidos.setViewportView(this.listProductosGeneral);
 		
 		this.panelAgregaPedido = new JPanel();
 		this.panelAgregaPedido.setBorder(new TitledBorder(null, "Agregar pedido a Comanda", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -551,30 +549,22 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelOperarioModif.add(this.textFieldOperarioUsuarioModif);
 		
 		this.lblOperarioContraseniaModif = new JLabel("Contraseña");
-		this.lblOperarioContraseniaModif.setBounds(65, 76, 102, 14);
+		this.lblOperarioContraseniaModif.setBounds(65, 104, 102, 14);
 		this.panelOperarioModif.add(this.lblOperarioContraseniaModif);
 		
 		this.lblOperarioNyAModif = new JLabel("Nombre y Apellido");
-		this.lblOperarioNyAModif.setBounds(65, 115, 122, 17);
+		this.lblOperarioNyAModif.setBounds(62, 164, 122, 17);
 		this.panelOperarioModif.add(this.lblOperarioNyAModif);
-		
-		this.lblOperarioEstadoModif = new JLabel("Estado");
-		this.lblOperarioEstadoModif.setBounds(65, 155, 61, 14);
-		this.panelOperarioModif.add(this.lblOperarioEstadoModif);
 		
 		this.textFieldOperarioContraseniaModif = new JTextField();
 		this.textFieldOperarioContraseniaModif.setColumns(10);
-		this.textFieldOperarioContraseniaModif.setBounds(216, 73, 122, 20);
+		this.textFieldOperarioContraseniaModif.setBounds(216, 101, 122, 20);
 		this.panelOperarioModif.add(this.textFieldOperarioContraseniaModif);
 		
 		this.textFieldOperarioNyAModif = new JTextField();
 		this.textFieldOperarioNyAModif.setColumns(10);
-		this.textFieldOperarioNyAModif.setBounds(216, 112, 122, 20);
+		this.textFieldOperarioNyAModif.setBounds(216, 162, 122, 20);
 		this.panelOperarioModif.add(this.textFieldOperarioNyAModif);
-		
-		this.comboBoxOperarioEstadoModif = new JComboBox();
-		this.comboBoxOperarioEstadoModif.setBounds(216, 152, 122, 20);
-		this.panelOperarioModif.add(this.comboBoxOperarioEstadoModif);
 		
 		this.btnOperarioModificacion = new JButton("Modificar");
 		this.btnOperarioModificacion.setBounds(156, 217, 89, 23);
@@ -614,11 +604,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 		this.textFieldMesaCantidadComensalesAlta = new JTextField();
 		this.textFieldMesaCantidadComensalesAlta.setColumns(10);
-		this.textFieldMesaCantidadComensalesAlta.setBounds(183, 131, 122, 20);
+		this.textFieldMesaCantidadComensalesAlta.setBounds(183, 81, 122, 20);
 		this.panelMesaCreacion.add(this.textFieldMesaCantidadComensalesAlta);
 		
 		this.lblMesaCantidadComensalesAlta = new JLabel("Cantidad de comensales");
-		this.lblMesaCantidadComensalesAlta.setBounds(22, 134, 151, 14);
+		this.lblMesaCantidadComensalesAlta.setBounds(22, 84, 151, 14);
 		this.panelMesaCreacion.add(this.lblMesaCantidadComensalesAlta);
 		
 		this.btnMesaAlta = new JButton("Crear");
@@ -656,18 +646,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.lblMesaCantidadComensalesModif.setBounds(65, 76, 122, 14);
 		this.panelMesaModif.add(this.lblMesaCantidadComensalesModif);
 		
-		this.lblMesaEstadoModif = new JLabel("Estado");
-		this.lblMesaEstadoModif.setBounds(65, 115, 102, 17);
-		this.panelMesaModif.add(this.lblMesaEstadoModif);
-		
 		this.textFieldMesaCantidadComensalesModif = new JTextField();
 		this.textFieldMesaCantidadComensalesModif.setColumns(10);
 		this.textFieldMesaCantidadComensalesModif.setBounds(216, 73, 122, 20);
 		this.panelMesaModif.add(this.textFieldMesaCantidadComensalesModif);
-		
-		JComboBox comboBoxMesaEstadoModif = new JComboBox();
-		comboBoxMesaEstadoModif.setBounds(216, 112, 122, 20);
-		this.panelMesaModif.add(comboBoxMesaEstadoModif);
 		
 		this.btnMesaModificacion = new JButton("Modificar");
 		this.btnMesaModificacion.setBounds(156, 217, 89, 23);
@@ -1245,6 +1227,81 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnGuardarSistema.addMouseListener(this);
 		this.btnRecuperarSistema.addMouseListener(this);
 		this.btnNuevoSistema.addMouseListener(this);
+		
+		this.btnLogin.setEnabled(false);
+		this.btnLogout.setEnabled(false);
+		
+		//Ventana general
+		
+		this.listMozosEstados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listMozosActivos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listMesasAsignables.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listComandasActivas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listProductosGeneral.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		this.textFieldOcupacionComensales.addKeyListener(this);
+		this.textFieldCantidadProducto.addKeyListener(this);
+		
+		this.btnEstadoConfirmar.setActionCommand(confirmaEstadoMozoDia);
+		this.btnAsignarMozoMesa.setActionCommand(asociaMozoAMesa);
+		this.btnOcuparMesa.setActionCommand(ocupaMesa);
+		this.btnAgregarPedidoAComanda.setActionCommand(agregaPedido);
+		this.btnCerrarComanda.setActionCommand(cerrarComanda);
+		
+		this.btnEstadoConfirmar.addActionListener(c);
+		this.btnAsignarMozoMesa.addActionListener(c);
+		this.btnOcuparMesa.addActionListener(c);
+		this.btnAgregarPedidoAComanda.addActionListener(c);
+		this.btnCerrarComanda.addActionListener(c);
+		
+		this.btnEstadoConfirmar.addMouseListener(this);
+		this.btnAsignarMozoMesa.addMouseListener(this);
+		this.btnOcuparMesa.addMouseListener(this);
+		this.btnAgregarPedidoAComanda.addMouseListener(this);
+		this.btnCerrarComanda.addMouseListener(this);
+		
+		this.btnEstadoConfirmar.setEnabled(false);
+		this.btnAsignarMozoMesa.setEnabled(false);
+		this.btnOcuparMesa.setEnabled(false);
+		this.btnAgregarPedidoAComanda.setEnabled(false);
+		this.btnCerrarComanda.setEnabled(false);
+		
+		//Ventana Operarios y Mesas
+		
+		this.listOperarios.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.listMesas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		
+		this.textFieldOperarioUsuarioAlta.addKeyListener(this);
+		this.textFieldOperarioContraseniaAlta.addKeyListener(this);
+		this.textFieldOperarioNyAAlta.addKeyListener(this);
+		this.textFieldOperarioUsuarioModif.addKeyListener(this);
+		this.textFieldOperarioContraseniaModif.addKeyListener(this);
+		this.textFieldOperarioNyAModif.addKeyListener(this);
+		this.textFieldMesaNumeroAlta.addKeyListener(this);
+		this.textFieldMesaCantidadComensalesAlta.addKeyListener(this);
+		this.textFieldMesaNumeroModif.addKeyListener(this);
+		this.textFieldMesaCantidadComensalesModif.addKeyListener(this);
+		
+		this.btnOperarioAlta.setActionCommand(crearOperario);
+		this.btnOperarioBaja.setActionCommand(eliminarOperario);
+		this.btnOperarioModificacion.setActionCommand(modificarOperario);
+		this.btnMesaAlta.setActionCommand(crearMesa);
+		this.btnMesaBaja.setActionCommand(eliminarMesa);
+		this.btnMesaModificacion.setActionCommand(modificarMesa);
+		
+		this.btnOperarioAlta.addActionListener(c);
+		this.btnOperarioBaja.addActionListener(c);
+		this.btnOperarioModificacion.addActionListener(c);
+		this.btnMesaAlta.addActionListener(c);
+		this.btnMesaBaja.addActionListener(c);
+		this.btnMesaModificacion.addActionListener(c);
+		
+		this.btnOperarioAlta.setEnabled(false);
+		this.btnOperarioBaja.setEnabled(false);
+		this.btnOperarioModificacion.setEnabled(false);
+		this.btnMesaAlta.setEnabled(false);
+		this.btnMesaBaja.setEnabled(false);
+		this.btnMesaModificacion.setEnabled(false);
 		
 		
 	}
