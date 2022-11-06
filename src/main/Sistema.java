@@ -314,11 +314,25 @@ public class Sistema {
 	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
 		Factura factura;
 		double total = 0;
+		int i = 0,j,k;
+		ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
 		
-		//total = calculaTot(); se necesita para calcular el total de la mesaS
+		//total = calculaTot(); se necesita para calcular el total de la mesas
 		
 		comanda.setEstado("Cerrada");
-		factura = new Factura(comanda.getPedidos(),formaDePago,comanda.getMesa(),total,comanda.getMozo());
+		
+		while (i < comanda.getPedidos().size()) {
+			j = 0;
+			
+			//while(j < ) {
+				
+			//}
+			
+			
+		}
+		
+		//factura = new Factura(comanda.getPedidos(),formaDePago,comanda.getMesa(),total,comanda.getMozo());
+		
 		
 	}
 	
