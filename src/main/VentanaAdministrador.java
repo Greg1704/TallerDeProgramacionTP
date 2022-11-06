@@ -224,7 +224,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JTextField textFieldCantidadProducto;
 	private JButton btnAgregarPedidoAComanda;
 	private JButton btnCerrarComanda;
-	private JPanel panelLoginSerialización;
+	private JPanel panelLoginSerializacion;
 	private JPanel panelLogin;
 	private JLabel lblLoginUsuario;
 	private JTextField textFieldLoginUsuario;
@@ -270,14 +270,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		this.contentPane.add(this.tabbedPane, BorderLayout.CENTER);
 		
-		this.panelLoginSerialización = new JPanel();
-		this.tabbedPane.addTab("Login", null, this.panelLoginSerialización, null);
-		this.panelLoginSerialización.setLayout(null);
+		this.panelLoginSerializacion = new JPanel();
+		this.tabbedPane.addTab("Login", null, this.panelLoginSerializacion, null);
+		this.panelLoginSerializacion.setLayout(null);
 		
 		this.panelLogin = new JPanel();
 		this.panelLogin.setBorder(new TitledBorder(null, "Login", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		this.panelLogin.setBounds(392, 139, 511, 176);
-		this.panelLoginSerialización.add(this.panelLogin);
+		this.panelLoginSerializacion.add(this.panelLogin);
 		this.panelLogin.setLayout(null);
 		
 		this.lblLoginUsuario = new JLabel("Usuario");
@@ -313,7 +313,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelSerializacion = new JPanel();
 		this.panelSerializacion.setBorder(new TitledBorder(null, "Serializaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		this.panelSerializacion.setBounds(392, 326, 511, 369);
-		this.panelLoginSerialización.add(this.panelSerializacion);
+		this.panelLoginSerializacion.add(this.panelSerializacion);
 		this.panelSerializacion.setLayout(null);
 		
 		this.btnRecuperarSistema = new JButton("Recuperar Sistema");
