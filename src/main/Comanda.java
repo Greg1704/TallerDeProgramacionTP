@@ -55,4 +55,28 @@ public class Comanda {
 			return Sistema.getInstancia().buscaMozo(mesa);
 	}
 	
+	public void agregarPedido(Pedido pedido) {
+		int i;	
+		boolean cumple = false;
+		
+		if(pedidos.isEmpty()) {
+			pedidos.add(pedido);
+		}else {
+			i = 0;		
+			while(i < pedidos.size() && !cumple) {			
+				if(this.pedidos.get(i).getProducto().getNombre().equals(pedido.getProducto().getNombre())) { //si entra significa que producto ya se pidio
+					this.pedidos.get(i).setCantidad(this.pedidos.get(i).getCantidad() + pedido.getCantidad());
+					cumple = true;
+				}else {
+					i++;
+				}
+			}
+			
+			if (!cumple) { //significa que no existia el producto no se habia pedido
+				pedidos.add(pedido);
+			}		
+		}	
+	}
+	
+	
 }

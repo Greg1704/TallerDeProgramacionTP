@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Factura {
 	//ArrayList de promociones
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
+	private ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
 	private LocalDate fecha= LocalDate.now();
 	private String formaDePago;
 	private Mesa mesa;
@@ -54,6 +55,12 @@ public class Factura {
 	}
 	public LocalDate getFecha() {
 		return fecha;
+	}
+	public ArrayList<Promocion> getPromocionesAplicadas() {
+		return promocionesAplicadas;
+	}
+	public void setPromocionesAplicadas(ArrayList<Promocion> promocionesAplicadas) {
+		this.promocionesAplicadas = promocionesAplicadas;
 	}
 	
 	

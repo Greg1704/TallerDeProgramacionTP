@@ -8,8 +8,6 @@ public class Pedido {
 	private Producto producto;
 	
 	
-	
-	
 	public Pedido(int cantidad, Producto producto) {
 		super();
 		this.cantidad = cantidad;
