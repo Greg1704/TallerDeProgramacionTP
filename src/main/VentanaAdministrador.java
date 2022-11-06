@@ -239,6 +239,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JPanel panel;
 	private JLabel lblNombreLocal;
 	private JTextField textFieldNombreLocal;
+	private JFormattedTextField formattedTextFieldFechaNacimientoAlta;
+	private JFormattedTextField formattedTextFieldFechaNacimientoModif;
 
 	/**
 	 * Launch the application.
@@ -957,8 +959,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.panelMozoAlta.add(this.textFieldMozoNyAAlta);
 		this.textFieldMozoNyAAlta.setColumns(10);
 		
-		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento");
-		this.lblMozoFechaDeNacimientoAlta.setBounds(10, 81, 130, 14);
+		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento (dd/MM/yyyy)");
+		this.lblMozoFechaDeNacimientoAlta.setBounds(10, 81, 193, 17);
 		this.panelMozoAlta.add(this.lblMozoFechaDeNacimientoAlta);
 		
 		this.lblMozoHijosAlta = new JLabel("Hijos");
@@ -973,6 +975,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.btnMozoAlta = new JButton("Crear");
 		this.btnMozoAlta.setBounds(114, 202, 89, 23);
 		this.panelMozoAlta.add(this.btnMozoAlta);
+		
+		this.formattedTextFieldFechaNacimientoAlta = new JFormattedTextField();
+		this.formattedTextFieldFechaNacimientoAlta.setBounds(213, 78, 111, 20);
+		this.panelMozoAlta.add(this.formattedTextFieldFechaNacimientoAlta);
+		this.formattedTextFieldFechaNacimientoAlta.setColumns(10);
+		this.formattedTextFieldFechaNacimientoAlta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 		
 		this.panelMozoModif = new JPanel();
 		this.panelMozoModif.setLayout(null);
@@ -989,8 +997,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.textFieldMozoNyAModif.setBounds(165, 30, 159, 20);
 		this.panelMozoModif.add(this.textFieldMozoNyAModif);
 		
-		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento");
-		this.lblMozoFechaDeNacimientoModif.setBounds(10, 81, 130, 14);
+		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento (dd/MM/yyyyy)");
+		this.lblMozoFechaDeNacimientoModif.setBounds(10, 81, 193, 14);
 		this.panelMozoModif.add(this.lblMozoFechaDeNacimientoModif);
 		
 		this.lblMozoHijosModif = new JLabel("Hijos");
@@ -1013,6 +1021,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.comboBoxMozoEstadoModif = new JComboBox();
 		this.comboBoxMozoEstadoModif.setBounds(165, 170, 159, 22);
 		this.panelMozoModif.add(this.comboBoxMozoEstadoModif);
+		
+		this.formattedTextFieldFechaNacimientoModif = new JFormattedTextField();
+		this.formattedTextFieldFechaNacimientoModif.setBounds(213, 78, 111, 20);
+		this.panelMozoModif.add(this.formattedTextFieldFechaNacimientoModif);
+		this.formattedTextFieldFechaNacimientoModif.setColumns(10);
+		this.formattedTextFieldFechaNacimientoModif.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
 		
 		this.scrollPaneListaMozos = new JScrollPane();
 		this.scrollPaneListaMozos.setViewportBorder(new TitledBorder(null, "Lista de Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
