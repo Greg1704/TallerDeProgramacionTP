@@ -311,9 +311,14 @@ public class Sistema {
 		return this.mozos.get(i).datosEmpleado();	
 	}
 	
-	public void cierraComanda(Comanda comanda){
+	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
+		Factura factura;
+		double total = 0;
 		
+		//total = calculaTot(); se necesita para calcular el total de la mesaS
 		
+		comanda.setEstado("Cerrada");
+		factura = new Factura(comanda.getPedidos(),formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
 	}
 	

@@ -8,7 +8,7 @@ import excepciones.MesaNoAsignadaException;
 public class Comanda {
 	private ArrayList<Pedido> pedidos = new ArrayList<>();
 	private String estado;
-	private LocalDate fecha= LocalDate.now();
+	private LocalDate fecha = LocalDate.now();
 	private Mesa mesa;
 	private Mozo mozo;
 	
@@ -41,7 +41,13 @@ public class Comanda {
 	public LocalDate getFecha() {
 		return fecha;
 	}
-	
+	public Mozo getMozo() {
+		return mozo;
+	}
+	public void setMozo(Mozo mozo) {
+		this.mozo = mozo;
+	}
+
 	public Mozo obtenerMozo() throws MesaNoAsignadaException{
 		if (Sistema.getInstancia().buscaMozo(mesa) == null) 
 			throw new MesaNoAsignadaException();
