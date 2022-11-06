@@ -231,7 +231,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	private JLabel lblLoginContrasenia;
 	private JTextField textFieldUsuarioContrasenia;
 	private JButton btnLogin;
-	private JPanel panelSerialización;
+	private JPanel panelSerializacion;
 	private JButton btnRecuperarSistema;
 	private JButton btnNuevoSistema;
 	private JButton btnGuardarSistema;
@@ -310,23 +310,23 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		this.btnLogout.setBounds(301, 123, 89, 23);
 		this.panelLogin.add(this.btnLogout);
 		
-		this.panelSerialización = new JPanel();
-		this.panelSerialización.setBorder(new TitledBorder(null, "Serializaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		this.panelSerialización.setBounds(392, 326, 511, 369);
-		this.panelLoginSerialización.add(this.panelSerialización);
-		this.panelSerialización.setLayout(null);
+		this.panelSerializacion = new JPanel();
+		this.panelSerializacion.setBorder(new TitledBorder(null, "Serializaci\u00F3n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		this.panelSerializacion.setBounds(392, 326, 511, 369);
+		this.panelLoginSerialización.add(this.panelSerializacion);
+		this.panelSerializacion.setLayout(null);
 		
 		this.btnRecuperarSistema = new JButton("Recuperar Sistema");
 		this.btnRecuperarSistema.setBounds(40, 117, 157, 47);
-		this.panelSerialización.add(this.btnRecuperarSistema);
+		this.panelSerializacion.add(this.btnRecuperarSistema);
 		
 		this.btnGuardarSistema = new JButton("Guardar Sistema");
 		this.btnGuardarSistema.setBounds(40, 45, 157, 47);
-		this.panelSerialización.add(this.btnGuardarSistema);
+		this.panelSerializacion.add(this.btnGuardarSistema);
 		
 		this.panel = new JPanel();
 		this.panel.setBounds(40, 214, 436, 69);
-		this.panelSerialización.add(this.panel);
+		this.panelSerializacion.add(this.panel);
 		this.panel.setLayout(null);
 		
 		this.btnNuevoSistema = new JButton("Nuevo Sistema");
