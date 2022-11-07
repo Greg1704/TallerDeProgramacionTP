@@ -1719,6 +1719,22 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.lblNombreLocalGrande.setText(nombreLocalGrande);
 	}
 	
+	public String getTextFieldLoginUsuario() {
+		return textFieldLoginUsuario.getText();
+	}
+
+	public void setTextFieldLoginUsuario(String textFieldLoginUsuario) {
+		this.textFieldLoginUsuario.setText(textFieldLoginUsuario);;
+	}
+
+	public String getTextFieldLoginContrasenia() {
+		return textFieldLoginContrasenia.getText();
+	}
+
+	public void setTextFieldLoginContrasenia(String textFieldLoginContrasenia) {
+		this.textFieldLoginContrasenia.setText(textFieldLoginContrasenia);
+	}
+
 	public void logueoAdmin() {
 		this.tabbedPane.setEnabledAt(1, true);
 		this.tabbedPane.setEnabledAt(2, true);
@@ -1732,6 +1748,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.tabbedPane.setEnabledAt(3, true);
 		this.tabbedPane.setEnabledAt(4, true);
 		this.tabbedPane.setEnabledAt(5, true);
+	}
+	
+	public void logout() {
+		this.tabbedPane.setEnabledAt(1, false);
+		this.tabbedPane.setEnabledAt(2, false);
+		this.tabbedPane.setEnabledAt(3, false);
+		this.tabbedPane.setEnabledAt(4, false);
+		this.tabbedPane.setEnabledAt(5, false);
 	}
 	
 }

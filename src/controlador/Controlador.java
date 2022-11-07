@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
+import excepciones.ContraseniaIncorrectaException;
+import excepciones.UsuarioIncorrectoException;
 import main.Operario;
 import main.Sistema;
 
@@ -37,9 +39,31 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
 			
 		}else if(e.getActionCommand().equals(IVista.confirmaLoginUsuario)) {
-			
+			if(v.getTextFieldLoginUsuario().equals("ADMIN")) {
+				try {
+					sistema.loginAdmin(v.getTextFieldLoginUsuario(), v.getTextFieldLoginContrasenia());
+					v.logueoAdmin();
+				} catch (ContraseniaIncorrectaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioIncorrectoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}else {
+				try {
+					sistema.loginOperario(v.getTextFieldLoginUsuario(), v.getTextFieldLoginContrasenia());
+					v.logueoOperario();
+				} catch (ContraseniaIncorrectaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (UsuarioIncorrectoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
 		}else if(e.getActionCommand().equals(IVista.confirmaLogoutUsuario)) {
-			
+			v.logout();
 		}else if(e.getActionCommand().equals(IVista.confirmaEstadoMozoDia)) { //Ventana general
 			
 		}else if(e.getActionCommand().equals(IVista.asociaMozoAMesa)) {
