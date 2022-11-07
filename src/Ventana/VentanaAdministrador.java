@@ -1520,10 +1520,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			hab = !(this.textFieldMesaNumeroModif.getText().isEmpty() || this.textFieldMesaCantidadComensalesModif.getText().isEmpty());
 			this.btnMesaModificacion.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoAlta || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioAlta) { //REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			hab = !(this.textFieldPromPermDtoPorCantMinimoAlta.getText().isEmpty() == this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText().isEmpty());
+			hab = !(this.textFieldPromPermDtoPorCantMinimoAlta.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText().isEmpty());
 			this.btnPromPermAlta.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoModif || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioModif) {//REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			hab = !(this.textFieldPromPermDtoPorCantMinimoModif.getText().isEmpty() == this.textFieldPromPermDtoPorCantPrecioUnitarioModif.getText().isEmpty());
+			hab = !(this.textFieldPromPermDtoPorCantMinimoModif.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioModif.getText().isEmpty());
 			this.btnPromPermModif.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromTempNombreAlta || e.getSource() == this.textFieldPromTempPorcentajeDtoAlta) {
 			hab = !(this.textFieldPromTempNombreAlta.getText().isEmpty() || this.textFieldPromTempPorcentajeDtoAlta.getText().isEmpty());
@@ -1533,7 +1533,23 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnPromTempModif.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldMozoNyAAlta || e.getSource() == this.formattedTextFieldFechaNacimientoAlta || e.getSource() == this.textFieldMozoHijosAlta) {
 			hab = !(this.textFieldMozoNyAAlta.getText().isEmpty() || this.formattedTextFieldFechaNacimientoAlta.getText().isEmpty() || this.textFieldMozoHijosAlta.getText().isEmpty());
-			this.btn
+			this.btnMozoAlta.setEnabled(hab);
+		}else if((e.getSource() == this.textFieldMozoNyAModif || e.getSource() == this.formattedTextFieldFechaNacimientoModif || e.getSource() == this.textFieldMozoHijosModif)) {
+			hab = !(this.textFieldMozoNyAModif.getText().isEmpty() || this.formattedTextFieldFechaNacimientoModif.getText().isEmpty() || this.textFieldMozoHijosModif.getText().isEmpty());
+			this.btnMozoModif.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldProductoNombreAlta || e.getSource() == this.textFieldProductoPrecioCostoAlta || e.getSource() == this.textFieldProductoPrecioVentaAlta || 
+				e.getSource() == this.textFieldProductoStockInicialAlta){
+			hab = !(this.textFieldProductoNombreAlta.getText().isEmpty() || this.textFieldProductoPrecioCostoAlta.getText().isEmpty() || this.textFieldProductoPrecioVentaAlta.getText().isEmpty() ||
+					this.textFieldProductoStockInicialAlta.getText().isEmpty());
+			this.btnProductoAlta.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldProductoNombreModif || e.getSource() == this.textFieldProductoPrecioCostoModif || e.getSource() == this.textFieldProductoPrecioVentaModif || 
+				e.getSource() == this.textFieldProductoStockInicialModif) {
+			hab = !(this.textFieldProductoNombreModif.getText().isEmpty() || this.textFieldProductoPrecioCostoModif.getText().isEmpty() || this.textFieldProductoPrecioVentaModif.getText().isEmpty() ||
+					this.textFieldProductoStockInicialModif.getText().isEmpty());
+			this.btnProductoModificacion.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldProductoNuevoStock) {
+			hab = !(this.textFieldProductoNuevoStock.getText().isEmpty() || this.listProductos.isSelectionEmpty());
+			this.btnProductoNuevoStock.setEnabled(hab);
 		}
 		
 	}
