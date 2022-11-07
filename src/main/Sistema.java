@@ -99,8 +99,14 @@ public class Sistema {
 	public void setSueldo(Sueldo sueldo) {
 		this.sueldo = sueldo;
 	}
-	
-		
+	public Operario getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Operario admin) {
+		this.admin = admin;
+	}
+
+
 	public Operario loginOperario(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException {
 		int i=0;
 		while(i<operarios.size()) {

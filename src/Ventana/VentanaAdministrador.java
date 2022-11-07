@@ -248,6 +248,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JFormattedTextField formattedTextFieldFechaNacimientoModif;
 	private JLabel lblOperarioEstadoModif;
 	private JComboBox comboBoxOperarioEstadoModif;
+	private JLabel lblNombreLocalGrande;
 	
 
 	/**
@@ -356,6 +357,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldNombreLocal.setBounds(10, 36, 204, 20);
 		this.panel.add(this.textFieldNombreLocal);
 		this.textFieldNombreLocal.setColumns(10);
+		
+		this.lblNombreLocalGrande = new JLabel("");
+		this.lblNombreLocalGrande.setFont(new Font("Tahoma", Font.PLAIN, 36));
+		this.lblNombreLocalGrande.setBounds(10, 11, 609, 117);
+		this.panelLoginSerializacion.add(this.lblNombreLocalGrande);
 		
 		this.panelGeneral = new JPanel();
 		this.tabbedPane.addTab("General", null, this.panelGeneral, null);
@@ -1708,7 +1714,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public String getTextFieldNombreLocal() {
 		return textFieldNombreLocal.getText();
 	}
-	
-	
 
+	public void setLblNombreLocalGrande(String nombreLocalGrande) {
+		this.lblNombreLocalGrande.setText(nombreLocalGrande);
+	}
+	
+	
 }

@@ -30,6 +30,8 @@ public class Controlador implements ActionListener {
 		if(e.getActionCommand().equals(IVista.nuevoSistema)) {  //Ventana login
 			sistema = Sistema.getInstancia();
 			sistema.setNombre(v.getTextFieldNombreLocal()); //Conseguir dato de ventana
+			v.setLblNombreLocalGrande(sistema.getNombre());
+			sistema.setAdmin(null);
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
