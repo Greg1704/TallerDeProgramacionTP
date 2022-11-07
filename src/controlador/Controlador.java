@@ -4,11 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import Ventana.VentanaAdministrador;
+import main.Sistema;
 
 public class Controlador implements ActionListener {
 	
 	VentanaAdministrador v;
 	private static Controlador instancia = null;
+	Sistema sistema = null;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -28,5 +30,9 @@ public class Controlador implements ActionListener {
 		
 		
 	}
-
+	
+	
+	public boolean existeSistema() {
+		return sistema != null ;
+	}
 }

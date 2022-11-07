@@ -1193,13 +1193,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnProductoNuevoStock.setBounds(158, 116, 101, 23);
 		this.panelNuevoStockProducto.add(this.btnProductoNuevoStock);
 		
-		/*
-		this.tabbedPane.setEnabledAt(1, false);
-		this.tabbedPane.setEnabledAt(2, false);
-		this.tabbedPane.setEnabledAt(3, false);
-		this.tabbedPane.setEnabledAt(4, false);
-		this.tabbedPane.setEnabledAt(5, false);
-		*/
 
 	}
 	
@@ -1211,6 +1204,15 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		setDefault();
 	}
 	public void setDefault() {
+		
+		/*
+		this.tabbedPane.setEnabledAt(1, false);
+		this.tabbedPane.setEnabledAt(2, false);
+		this.tabbedPane.setEnabledAt(3, false);
+		this.tabbedPane.setEnabledAt(4, false);
+		this.tabbedPane.setEnabledAt(5, false);
+		*/
+		
 		//Ventana Login--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.textFieldLoginUsuario.addKeyListener(this);
@@ -1237,6 +1239,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 		this.btnLogin.setEnabled(false);
 		this.btnLogout.setEnabled(false);
+		this.btnNuevoSistema.setEnabled(false);
 		
 		//Ventana general--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
@@ -1485,11 +1488,56 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 	}
 	
+
 	
-	public void mouseClicked(MouseEvent e) {
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		boolean hab;
+		
+		if(e.getSource() == this.textFieldNombreLocal) {
+			hab = !(this.textFieldNombreLocal.getText().isEmpty());
+			this.btnNuevoSistema.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldLoginUsuario || e.getSource() == this.textFieldLoginContrasenia) {
+			hab = !(this.textFieldLoginUsuario.getText().isEmpty() || this.textFieldLoginContrasenia.getText().isEmpty()) && c.existeSistema();
+			this.btnLogin.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldOcupacionComensales) {
+			hab = !(this.textFieldOcupacionComensales.getText().isEmpty() || this.listMozosActivos.isSelectionEmpty() || this.listMesasAsignables.isSelectionEmpty());
+			this.btnOcuparMesa.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldCantidadProducto) {
+			hab = !(this.textFieldCantidadProducto.getText().isEmpty() || this.listComandasActivas.isSelectionEmpty() || this.listProductosGeneral.isSelectionEmpty());
+			this.btnAgregarPedidoAComanda.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldOperarioUsuarioAlta ||  e.getSource() == this.textFieldOperarioContraseniaAlta ||  e.getSource() == this.textFieldOperarioNyAAlta) {
+			hab = !(this.textFieldOperarioUsuarioAlta.getText().isEmpty() || this.textFieldOperarioContraseniaAlta.getText().isEmpty() || this.textFieldOperarioNyAAlta.getText().isEmpty());
+			this.btnOperarioAlta.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldOperarioUsuarioModif ||  e.getSource() == this.textFieldOperarioContraseniaModif ||  e.getSource() == this.textFieldOperarioNyAModif) {
+			hab = !(this.textFieldOperarioUsuarioModif.getText().isEmpty() || this.textFieldOperarioContraseniaModif.getText().isEmpty() || this.textFieldOperarioNyAModif.getText().isEmpty());
+			this.btnOperarioModificacion.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldMesaNumeroAlta || e.getSource() == this.textFieldMesaCantidadComensalesAlta) {
+			hab = !(this.textFieldMesaNumeroAlta.getText().isEmpty() || this.textFieldMesaCantidadComensalesAlta.getText().isEmpty());
+			this.btnMesaAlta.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldMesaNumeroModif || e.getSource() == this.textFieldMesaCantidadComensalesModif) {
+			hab = !(this.textFieldMesaNumeroModif.getText().isEmpty() || this.textFieldMesaCantidadComensalesModif.getText().isEmpty());
+			this.btnMesaModificacion.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoAlta || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioAlta) { //REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			hab = !(this.textFieldPromPermDtoPorCantMinimoAlta.getText().isEmpty() == this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText().isEmpty());
+			this.btnPromPermAlta.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoModif || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioModif) {//REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			hab = !(this.textFieldPromPermDtoPorCantMinimoModif.getText().isEmpty() == this.textFieldPromPermDtoPorCantPrecioUnitarioModif.getText().isEmpty());
+			this.btnPromPermModif.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldPromTempNombreAlta || e.getSource() == this.textFieldPromTempPorcentajeDtoAlta) {
+			hab = !(this.textFieldPromTempNombreAlta.getText().isEmpty() || this.textFieldPromTempPorcentajeDtoAlta.getText().isEmpty());
+			this.btnPromTempAlta.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldPromTempNombreModif || e.getSource() == this.textFieldPromTempPorcentajeDtoModif) {
+			hab = !(this.textFieldPromTempNombreModif.getText().isEmpty() || this.textFieldPromTempPorcentajeDtoModif.getText().isEmpty());
+			this.btnPromTempModif.setEnabled(hab);
+		}else if(e.getSource() == this.textFieldMozoNyAAlta || e.getSource() == this.formattedTextFieldFechaNacimientoAlta || e.getSource() == this.textFieldMozoHijosAlta) {
+			hab = !(this.textFieldMozoNyAAlta.getText().isEmpty() || this.formattedTextFieldFechaNacimientoAlta.getText().isEmpty() || this.textFieldMozoHijosAlta.getText().isEmpty());
+			this.btn
+		}
 		
 	}
-
+	
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
@@ -1502,11 +1550,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -1528,6 +1571,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 
 	@Override
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
