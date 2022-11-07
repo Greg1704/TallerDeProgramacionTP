@@ -1309,6 +1309,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnMesaBaja.addActionListener(c);
 		this.btnMesaModificacion.addActionListener(c);
 		
+		this.btnOperarioAlta.addMouseListener(this);
+		this.btnOperarioBaja.addMouseListener(this);
+		this.btnOperarioModificacion.addMouseListener(this);
+		this.btnMesaAlta.addMouseListener(this);
+		this.btnMesaBaja.addMouseListener(this);
+		this.btnMesaModificacion.addMouseListener(this);
+		
 		this.btnOperarioAlta.setEnabled(false);
 		this.btnOperarioBaja.setEnabled(false);
 		this.btnOperarioModificacion.setEnabled(false);
@@ -1414,6 +1421,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnPromTempBaja.addActionListener(c);
 		this.btnPromTempModif.addActionListener(c);
 		
+		this.btnPromPermAlta.addMouseListener(this);
+		this.btnPromPermBaja.addMouseListener(this);
+		this.btnPromPermModif.addMouseListener(this);
+		this.btnPromTempAlta.addMouseListener(this);
+		this.btnPromTempBaja.addMouseListener(this);
+		this.btnPromTempModif.addMouseListener(this);
+		
 		this.btnPromPermAlta.setEnabled(false);
 		this.btnPromPermBaja.setEnabled(false);
 		this.btnPromPermModif.setEnabled(false);
@@ -1449,6 +1463,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnMozoEstadEmpMenorVolVenta.addActionListener(c);
 		this.btnMozoEstadMesaConsumoProm.addActionListener(c);
 		
+		this.btnMozoAlta.addMouseListener(this);
+		this.btnMozoBaja.addMouseListener(this);
+		this.btnMozoModif.addMouseListener(this);
+		this.btnMozoEstadEmp.addMouseListener(this);
+		this.btnMozoEstadEmpMayorVolVenta.addMouseListener(this);
+		this.btnMozoEstadEmpMenorVolVenta.addMouseListener(this);
+		this.btnMozoEstadMesaConsumoProm.addMouseListener(this);
+		
 		this.btnMozoAlta.setEnabled(false);
 		this.btnMozoBaja.setEnabled(false);
 		this.btnMozoModif.setEnabled(false);
@@ -1480,6 +1502,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnProductoBaja.addActionListener(c);
 		this.btnProductoModificacion.addActionListener(c);
 		this.btnProductoNuevoStock.addActionListener(c);
+		
+		this.btnProductoAlta.addMouseListener(this);
+		this.btnProductoBaja.addMouseListener(this);
+		this.btnProductoModificacion.addMouseListener(this);
+		this.btnProductoNuevoStock.addMouseListener(this);
 
 		this.btnProductoAlta.setEnabled(false);
 		this.btnProductoBaja.setEnabled(false);
@@ -1558,8 +1585,84 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	
 	@Override
-	public void mouseClicked(MouseEvent e) { //HAY QUE HACER ESTA TAMBIEN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-		// TODO Auto-generated method stub
+	public void mouseClicked(MouseEvent e) { //FALTARIA VER LOS BOTONES QUE NO TIENEN INVOLUCRACION DIRECTA CON LOS TEXTFIELDS 
+		if(e.getSource() == this.btnLogin && this.btnLogin.isEnabled()) {
+			this.textFieldLoginUsuario.setText("");
+			this.textFieldLoginContrasenia.setText("");
+			this.btnLogin.setEnabled(false);
+			this.btnLogout.setEnabled(true);
+		}else if (e.getSource() == this.btnLogout && this.btnLogout.isEnabled()) {
+			this.btnLogin.setEnabled(true);
+			this.btnLogout.setEnabled(false);
+		}else if(e.getSource() == this.btnNuevoSistema && this.btnNuevoSistema.isEnabled()) {
+			this.textFieldNombreLocal.setText("");
+			this.btnNuevoSistema.setEnabled(false);
+		}else if(e.getSource() == this.btnOcuparMesa && this.btnOcuparMesa.isEnabled()) {
+			this.textFieldOcupacionComensales.setText("");
+			this.btnOcuparMesa.setEnabled(false);
+		}else if(e.getSource() == this.btnAgregarPedidoAComanda && this.btnAgregarPedidoAComanda.isEnabled()) {
+			this.textFieldCantidadProducto.setText("");
+			this.btnAgregarPedidoAComanda.setEnabled(false);
+		}else if(e.getSource() == this.btnOperarioAlta && this.btnOperarioAlta.isEnabled()) {
+			this.textFieldOperarioNyAAlta.setText("");
+			this.textFieldOperarioUsuarioAlta.setText("");
+			this.textFieldOperarioContraseniaAlta.setText("");
+			this.btnOperarioAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnOperarioModificacion && this.btnOperarioModificacion.isEnabled()) {
+			this.textFieldOperarioNyAModif.setText("");
+			this.textFieldOperarioUsuarioModif.setText("");
+			this.textFieldOperarioContraseniaModif.setText("");
+			this.btnOperarioModificacion.setEnabled(false);
+		}else if(e.getSource() == this.btnMesaAlta && this.btnMesaAlta.isEnabled()) {
+			this.textFieldMesaCantidadComensalesAlta.setText("");
+			this.textFieldMesaNumeroAlta.setText("");
+			this.btnMesaAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnMesaModificacion && this.btnMesaModificacion.isEnabled()) {
+			this.textFieldMesaCantidadComensalesModif.setText("");
+			this.textFieldMesaNumeroAlta.setText("");
+			this.btnMesaModificacion.setEnabled(false);
+		}else if(e.getSource() == this.btnPromPermAlta && this.btnPromPermAlta.isEnabled()) {
+			this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
+			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
+			this.btnPromPermAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnPromPermModif && this.btnPromPermModif.isEnabled()) {
+			this.textFieldPromPermDtoPorCantMinimoModif.setText("");
+			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
+			this.btnPromPermModif.setEnabled(false);
+		}else if(e.getSource() == this.btnPromTempAlta && this.btnPromTempAlta.isEnabled()) {
+			this.textFieldPromTempNombreAlta.setText("");
+			this.textFieldPromTempPorcentajeDtoAlta.setText("");
+			this.btnPromTempAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnPromTempModif && this.btnPromTempModif.isEnabled()) {
+			this.textFieldPromTempNombreModif.setText("");
+			this.textFieldPromTempPorcentajeDtoModif.setText("");
+			this.btnPromTempModif.setEnabled(false);
+		}else if(e.getSource() == this.btnMozoAlta && this.btnMozoAlta.isEnabled()) {
+			this.textFieldMozoHijosAlta.setText("");
+			this.textFieldMozoNyAAlta.setText("");
+			this.formattedTextFieldFechaNacimientoAlta.setText("");
+			this.btnMozoAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) {
+			this.textFieldMozoHijosModif.setText("");
+			this.textFieldMozoNyAModif.setText("");
+			this.formattedTextFieldFechaNacimientoModif.setText("");
+			this.btnMozoModif.setEnabled(false);
+		}else if(e.getSource() == this.btnProductoAlta && this.btnProductoAlta.isEnabled()) {
+			this.textFieldProductoNombreAlta.setText("");
+			this.textFieldProductoPrecioCostoAlta.setText("");
+			this.textFieldProductoPrecioVentaAlta.setText("");
+			this.textFieldProductoStockInicialAlta.setText("");
+			this.btnProductoAlta.setEnabled(false);
+		}else if(e.getSource() == this.btnProductoModificacion && this.btnProductoModificacion.isEnabled()) {
+			this.textFieldProductoNombreModif.setText("");
+			this.textFieldProductoPrecioCostoModif.setText("");
+			this.textFieldProductoPrecioVentaModif.setText("");
+			this.textFieldProductoStockInicialModif.setText("");
+			this.btnProductoModificacion.setEnabled(false);
+		}else if(e.getSource() == this.btnProductoNuevoStock && this.btnProductoNuevoStock.isEnabled()) {
+			this.textFieldProductoNuevoStock.setText("");
+			this.btnProductoNuevoStock.setEnabled(false);
+		}
 	}
 	
 	
