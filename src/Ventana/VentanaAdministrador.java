@@ -1663,6 +1663,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldProductoNuevoStock.setText("");
 			this.btnProductoNuevoStock.setEnabled(false);
 		}
+		
+		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
 	
 	
