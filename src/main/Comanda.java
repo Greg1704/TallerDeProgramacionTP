@@ -64,7 +64,7 @@ public class Comanda {
 		}else {
 			i = 0;		
 			while(i < pedidos.size() && !cumple) {			
-				if(this.pedidos.get(i).getProducto().getNombre().equals(pedido.getProducto().getNombre())) { //si entra significa que producto ya se pidio
+				if(this.pedidos.get(i).getProducto().getNombre().equalsIgnoreCase(pedido.getProducto().getNombre())) { //si entra significa que producto ya se pidio
 					this.pedidos.get(i).setCantidad(this.pedidos.get(i).getCantidad() + pedido.getCantidad());
 					cumple = true;
 				}else {

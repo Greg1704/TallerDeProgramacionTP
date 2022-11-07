@@ -1,5 +1,6 @@
 package main;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import excepciones.*;
 
@@ -314,21 +315,19 @@ public class Sistema {
 	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
 		Factura factura;
 		double total = 0;
-		int i = 0,j,k;
+		int i = 0,j,k = 0;
 		ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
-		boolean tienePromoFija; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
+		boolean tienePromoFija = false; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
 		
 		//total = calculaTot(); se necesita para calcular el total de la mesas
 		
 		comanda.setEstado("Cerrada");
 		
 		while (i < comanda.getPedidos().size()) {
-			tienePromoFija = false;
 			j = 0;
-			k = 0;
 			
 			while(j < this.promosFijas.size()) {
-				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equals(comanda.getPedidos().get(i))) {
+				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
 					//situacion en la que se encuentra una promo fija vigente
 					
@@ -337,15 +336,25 @@ public class Sistema {
 				j++;
 			}
 			
-			while (k < this.promosTemporales.size()) {
-				
-				
-				
-				
-			}
 			
 			
 		}
+		
+		//promos temporales
+		
+		while(k < this.getPromosTemporales().size()) {
+			
+			if (this.getPromosTemporales().get(k).isActivo() && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) ) { //falta contemplar el dia y forma de pago
+			
+				total = total - total * this.getPromosTemporales().get(k).getPorcentajeDeDto();
+			
+			}
+			
+			k++;
+			
+		}
+		
+		//falta mandarle lo que se factura al mozo
 		
 		//factura = new Factura(comanda.getPedidos(),formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
