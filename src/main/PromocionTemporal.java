@@ -45,6 +45,16 @@ public class PromocionTemporal extends Promocion{
 	public void setEsAcumulable(boolean esAcumulable) {
 		this.esAcumulable = esAcumulable;
 	}
+
+
+	public String getFormaPago() {
+		return formaPago;
+	}
+
+
+	public void setFormaPago(String formaPago) {
+		this.formaPago = formaPago;
+	}
 	
 	
 	

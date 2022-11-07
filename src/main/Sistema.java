@@ -346,7 +346,6 @@ public class Sistema {
 			
 			if (this.getPromosTemporales().get(k).isActivo() && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) ) { //falta contemplar el dia y forma de pago
 			
-				total = total - total * this.getPromosTemporales().get(k).getPorcentajeDeDto();
 			
 			}
 			
