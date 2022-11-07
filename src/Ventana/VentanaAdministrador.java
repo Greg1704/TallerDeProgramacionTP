@@ -1520,10 +1520,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			hab = !(this.textFieldMesaNumeroModif.getText().isEmpty() || this.textFieldMesaCantidadComensalesModif.getText().isEmpty());
 			this.btnMesaModificacion.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoAlta || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioAlta) { //REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			hab = !(this.textFieldPromPermDtoPorCantMinimoAlta.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText().isEmpty());
+			hab = this.comboBoxPromPermDtoPorCantAlta.getSelectedItem().equals("Si") && 
+					!(this.textFieldPromPermDtoPorCantMinimoAlta.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText().isEmpty());
 			this.btnPromPermAlta.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromPermDtoPorCantMinimoModif || e.getSource() == this.textFieldPromPermDtoPorCantPrecioUnitarioModif) {//REVISAR DESPUES AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-			hab = !(this.textFieldPromPermDtoPorCantMinimoModif.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioModif.getText().isEmpty());
+			hab = this.comboBoxPromPermDtoPorCantModif.getSelectedItem().equals("Si") && 
+					!(this.textFieldPromPermDtoPorCantMinimoModif.getText().isEmpty() || this.textFieldPromPermDtoPorCantPrecioUnitarioModif.getText().isEmpty());
 			this.btnPromPermModif.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldPromTempNombreAlta || e.getSource() == this.textFieldPromTempPorcentajeDtoAlta) {
 			hab = !(this.textFieldPromTempNombreAlta.getText().isEmpty() || this.textFieldPromTempPorcentajeDtoAlta.getText().isEmpty());
@@ -1553,6 +1555,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		}
 		
 	}
+	
+	
+	@Override
+	public void mouseClicked(MouseEvent e) { //HAY QUE HACER ESTA TAMBIEN AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		// TODO Auto-generated method stub
+	}
+	
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
@@ -1591,9 +1600,4 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 }
