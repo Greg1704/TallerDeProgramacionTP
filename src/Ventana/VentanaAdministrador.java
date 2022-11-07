@@ -1705,4 +1705,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 	}
 
+	public String getTextFieldNombreLocal() {
+		return textFieldNombreLocal.getText();
+	}
+	
+	
+
 }

@@ -28,7 +28,8 @@ public class Controlador implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals(IVista.nuevoSistema)) {  //Ventana login
-			
+			sistema = Sistema.getInstancia();
+			sistema.setNombre(v.getTextFieldNombreLocal()); //Conseguir dato de ventana
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
