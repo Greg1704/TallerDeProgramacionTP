@@ -1211,13 +1211,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	public void setDefault() {
 		
-		/*
+		
 		this.tabbedPane.setEnabledAt(1, false);
 		this.tabbedPane.setEnabledAt(2, false);
 		this.tabbedPane.setEnabledAt(3, false);
 		this.tabbedPane.setEnabledAt(4, false);
 		this.tabbedPane.setEnabledAt(5, false);
-		*/
+		
 		
 		//Ventana Login--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
@@ -1719,5 +1719,19 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.lblNombreLocalGrande.setText(nombreLocalGrande);
 	}
 	
+	public void logueoAdmin() {
+		this.tabbedPane.setEnabledAt(1, true);
+		this.tabbedPane.setEnabledAt(2, true);
+		this.tabbedPane.setEnabledAt(3, true);
+		this.tabbedPane.setEnabledAt(4, true);
+		this.tabbedPane.setEnabledAt(5, true);
+	}
+	
+	public void logueoOperario() {
+		this.tabbedPane.setEnabledAt(2, true);
+		this.tabbedPane.setEnabledAt(3, true);
+		this.tabbedPane.setEnabledAt(4, true);
+		this.tabbedPane.setEnabledAt(5, true);
+	}
 	
 }

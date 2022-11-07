@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
+import main.Operario;
 import main.Sistema;
 
 public class Controlador implements ActionListener {
@@ -31,7 +32,6 @@ public class Controlador implements ActionListener {
 			sistema = Sistema.getInstancia();
 			sistema.setNombre(v.getTextFieldNombreLocal()); //Conseguir dato de ventana
 			v.setLblNombreLocalGrande(sistema.getNombre());
-			sistema.setAdmin(null);
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {

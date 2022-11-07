@@ -106,7 +106,17 @@ public class Sistema {
 		this.admin = admin;
 	}
 
-
+	
+	public Operario loginAdmin(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException{
+		if(Sistema.getInstancia().getAdmin().getNombreDeUsuario().compareTo(usuario) == 0) {
+			if(Sistema.getInstancia().getAdmin().getPassword().compareTo(password) == 0)
+				return Sistema.getInstancia().getAdmin();
+			else
+				throw new ContraseniaIncorrectaException();
+		}else
+			throw new UsuarioIncorrectoException();
+	}
+	
 	public Operario loginOperario(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException {
 		int i=0;
 		while(i<operarios.size()) {
