@@ -1518,6 +1518,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.listProductos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListProductos = new DefaultListModel<Producto>();
 		this.listProductos.setModel(modelListProductos);
+		this.listProductos.addMouseListener(this);
 		
 		this.textFieldProductoNombreAlta.addKeyListener(this);
 		this.textFieldProductoNombreModif.addKeyListener(this);
@@ -1683,7 +1684,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldMozoNyAAlta.setText("");
 			this.formattedTextFieldFechaNacimientoAlta.setText("");
 			this.btnMozoAlta.setEnabled(false);
-		}else if((e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) || e.getSource() == this.btnMozoBaja && this.btnMozoBaja.isEnabled()) {
+		}else if((e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) || (e.getSource() == this.btnMozoBaja && this.btnMozoBaja.isEnabled())) {
 			this.textFieldMozoHijosModif.setText("");
 			this.textFieldMozoNyAModif.setText("");
 			this.formattedTextFieldFechaNacimientoModif.setText("");
@@ -1696,12 +1697,17 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldProductoPrecioVentaAlta.setText("");
 			this.textFieldProductoStockInicialAlta.setText("");
 			this.btnProductoAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnProductoModificacion && this.btnProductoModificacion.isEnabled()) {
+		}else if((e.getSource() == this.btnProductoModificacion && this.btnProductoModificacion.isEnabled()) || (e.getSource() == this.btnProductoBaja && this.btnProductoBaja.isEnabled())
+				|| (e.getSource() == this.btnProductoNuevoStock && this.btnProductoNuevoStock.isEnabled())) {
 			this.textFieldProductoNombreModif.setText("");
 			this.textFieldProductoPrecioCostoModif.setText("");
 			this.textFieldProductoPrecioVentaModif.setText("");
 			this.textFieldProductoStockInicialModif.setText("");
+			this.textFieldProductoNuevoStock.setText("");
 			this.btnProductoModificacion.setEnabled(false);
+			this.btnProductoBaja.setEnabled(false);
+			this.btnProductoNuevoStock.setEnabled(false);
+			this.listProductos.clearSelection();
 		}else if(e.getSource() == this.btnProductoNuevoStock && this.btnProductoNuevoStock.isEnabled()) {
 			this.textFieldProductoNuevoStock.setText("");
 			this.btnProductoNuevoStock.setEnabled(false);
@@ -1717,6 +1723,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnMozoBaja.setEnabled(true);
 			this.btnMozoModif.setEnabled(true);
 			c.recuperaDatosMozo(getSelectedMozo());
+		}else if(e.getSource() == this.listProductos && !this.listProductos.isSelectionEmpty()) {
+			this.btnProductoBaja.setEnabled(true);
+			this.btnProductoModificacion.setEnabled(true);
+			boolean hab = !(this.textFieldProductoNuevoStock.getText().isEmpty() || this.listProductos.isSelectionEmpty());
+			this.btnProductoNuevoStock.setEnabled(hab);
+			c.recuperaDatosProducto(getSelectedProducto());
 		}
 		
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
@@ -2157,40 +2169,40 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return textFieldProductoNombreModif.getText();
 	}
 
-	public void setTextFieldProductoNombreModif(JTextField textFieldProductoNombreModif) {
-		this.textFieldProductoNombreModif = textFieldProductoNombreModif;
+	public void setTextFieldProductoNombreModif(String textFieldProductoNombreModif) {
+		this.textFieldProductoNombreModif.setText(textFieldProductoNombreModif);
 	}
 
 	public double getTextFieldProductoPrecioCostoModif() {
 		return Double.parseDouble(textFieldProductoPrecioCostoModif.getText());
 	}
 
-	public void setTextFieldProductoPrecioCostoModif(JTextField textFieldProductoPrecioCostoModif) {
-		this.textFieldProductoPrecioCostoModif = textFieldProductoPrecioCostoModif;
+	public void setTextFieldProductoPrecioCostoModif(double textFieldProductoPrecioCostoModif) {
+		this.textFieldProductoPrecioCostoModif.setText(Double.toString(textFieldProductoPrecioCostoModif));
 	}
 
 	public double getTextFieldProductoPrecioVentaModif() {
 		return Double.parseDouble(textFieldProductoPrecioVentaModif.getText());
 	}
 
-	public void setTextFieldProductoPrecioVentaModif(JTextField textFieldProductoPrecioVentaModif) {
-		this.textFieldProductoPrecioVentaModif = textFieldProductoPrecioVentaModif;
+	public void setTextFieldProductoPrecioVentaModif(double textFieldProductoPrecioVentaModif) {
+		this.textFieldProductoPrecioVentaModif.setText(Double.toString(textFieldProductoPrecioVentaModif));
 	}
 
 	public int getTextFieldProductoStockInicialModif() {
 		return Integer.parseInt(textFieldProductoStockInicialModif.getText());
 	}
 
-	public void setTextFieldProductoStockInicialModif(JTextField textFieldProductoStockInicialModif) {
-		this.textFieldProductoStockInicialModif = textFieldProductoStockInicialModif;
+	public void setTextFieldProductoStockInicialModif(int textFieldProductoStockInicialModif) {
+		this.textFieldProductoStockInicialModif.setText(Integer.toString(textFieldProductoStockInicialModif));
 	}
 
 	public int getTextFieldProductoNuevoStock() {
 		return Integer.parseInt(textFieldProductoNuevoStock.getText());
 	}
 
-	public void setTextFieldProductoNuevoStock(JTextField textFieldProductoNuevoStock) {
-		this.textFieldProductoNuevoStock = textFieldProductoNuevoStock;
+	public void setTextFieldProductoNuevoStock(int textFieldProductoNuevoStock) {
+		this.textFieldProductoNuevoStock.setText(Integer.toString(textFieldProductoNuevoStock));
 	}
 	
 	public Operario getSelectedOperario() {
@@ -2203,6 +2215,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	public Mozo getSelectedMozo() {
 		return (Mozo) this.listMozos.getSelectedValue();
+	}
+	
+	public Producto getSelectedProducto() {
+		return (Producto) this.listProductos.getSelectedValue();
 	}
 
 	public void logueoAdmin() {

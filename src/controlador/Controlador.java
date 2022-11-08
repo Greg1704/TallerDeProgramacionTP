@@ -35,6 +35,7 @@ public class Controlador implements ActionListener {
 	Operario operario=null;
 	Mesa mesa=null;
 	Mozo mozo=null;
+	Producto producto=null;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -229,11 +230,40 @@ public class Controlador implements ActionListener {
 				e1.printStackTrace();
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarProducto)) {
-			
+			sistema.sacaProducto(v.getSelectedProducto());
+			v.actualizarListaProductos();
 		}else if(e.getActionCommand().equals(IVista.modificarProducto)) {
-			
+			producto = v.getSelectedProducto();
+			if(!producto.getNombre().equals(v.getTextFieldProductoNombreModif()))
+				producto.setNombre(v.getTextFieldProductoNombreModif());
+			if(producto.getPrecioDeCosto() != v.getTextFieldProductoPrecioCostoModif()){
+				try {
+					producto.setPrecioDeCosto(v.getTextFieldProductoPrecioCostoModif());
+				} catch (NegativoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (PrecioVentaMenorCostoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			if(producto.getPrecioDeVenta() != v.getTextFieldProductoPrecioVentaModif())
+				try {
+					producto.setPrecioDeVenta(v.getTextFieldProductoPrecioVentaModif());
+				} catch (NegativoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (PrecioVentaMenorCostoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			if(producto.getStock() != v.getTextFieldProductoStockInicialModif())
+				producto.setStock(v.getTextFieldProductoStockInicialModif());
+			v.actualizarListaProductos();
 		}else if(e.getActionCommand().equals(IVista.actualizarStockProducto)) {
-			
+			producto = v.getSelectedProducto();
+			producto.setStock(v.getTextFieldProductoNuevoStock());
+			v.actualizarListaProductos();
 		}
 		
 		
@@ -269,6 +299,12 @@ public class Controlador implements ActionListener {
 		v.setFormattedTextFieldFechaNacimientoModif(mozo.getFechaDeNacimiento());
 	}
 	
+	public void recuperaDatosProducto(Producto producto) {
+		v.setTextFieldProductoNombreModif(producto.getNombre());
+		v.setTextFieldProductoPrecioCostoModif(producto.getPrecioDeCosto());
+		v.setTextFieldProductoPrecioVentaModif(producto.getPrecioDeVenta());
+		v.setTextFieldProductoStockInicialModif(producto.getStock());
+	}
 	public ArrayList<Operario> recuperaListaOperarios() {
 		return sistema.getOperarios();
 	}
