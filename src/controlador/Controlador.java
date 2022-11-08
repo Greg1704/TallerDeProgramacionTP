@@ -2,12 +2,14 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.OperarioDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
 import main.Operario;
 import main.Sistema;
@@ -82,7 +84,13 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesa
-			
+			try {
+				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
+				
+			} catch (OperarioDuplicadoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(e.getActionCommand().equals(IVista.eliminarOperario)) {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarOperario)) {
@@ -135,5 +143,9 @@ public class Controlador implements ActionListener {
 	
 	public boolean existeSistema() {
 		return sistema != null ;
+	}
+	
+	public ArrayList<Operario> recuperaListaOperarios() {
+		return sistema.getOperarios();
 	}
 }

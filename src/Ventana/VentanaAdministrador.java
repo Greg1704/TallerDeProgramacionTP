@@ -1735,6 +1735,63 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public void setTextFieldLoginContrasenia(String textFieldLoginContrasenia) {
 		this.textFieldLoginContrasenia.setText(textFieldLoginContrasenia);
 	}
+	
+	
+	public String getTextFieldOperarioUsuarioAlta() {
+		return textFieldOperarioUsuarioAlta.getText();
+	}
+
+	public void setTextFieldOperarioUsuarioAlta(JTextField textFieldOperarioUsuarioAlta) {
+		this.textFieldOperarioUsuarioAlta = textFieldOperarioUsuarioAlta;
+	}
+
+	public String getTextFieldOperarioContraseniaAlta() {
+		return textFieldOperarioContraseniaAlta.getText();
+	}
+
+	public void setTextFieldOperarioContraseniaAlta(JTextField textFieldOperarioContraseniaAlta) {
+		this.textFieldOperarioContraseniaAlta = textFieldOperarioContraseniaAlta;
+	}
+
+	public String getTextFieldOperarioNyAAlta() {
+		return textFieldOperarioNyAAlta.getText();
+	}
+
+	public void setTextFieldOperarioNyAAlta(JTextField textFieldOperarioNyAAlta) {
+		this.textFieldOperarioNyAAlta = textFieldOperarioNyAAlta;
+	}
+
+	public String getTextFieldOperarioUsuarioModif() {
+		return textFieldOperarioUsuarioModif.getText();
+	}
+
+	public void setTextFieldOperarioUsuarioModif(JTextField textFieldOperarioUsuarioModif) {
+		this.textFieldOperarioUsuarioModif = textFieldOperarioUsuarioModif;
+	}
+
+	public String getTextFieldOperarioContraseniaModif() {
+		return textFieldOperarioContraseniaModif.getText();
+	}
+
+	public void setTextFieldOperarioContraseniaModif(JTextField textFieldOperarioContraseniaModif) {
+		this.textFieldOperarioContraseniaModif = textFieldOperarioContraseniaModif;
+	}
+
+	public String getTextFieldOperarioNyAModif() {
+		return textFieldOperarioNyAModif.getText();
+	}
+
+	public void setTextFieldOperarioNyAModif(JTextField textFieldOperarioNyAModif) {
+		this.textFieldOperarioNyAModif = textFieldOperarioNyAModif;
+	}
+
+	public JComboBox getComboBoxOperarioEstadoModif() {
+		return comboBoxOperarioEstadoModif;
+	}
+
+	public void setComboBoxOperarioEstadoModif(JComboBox comboBoxOperarioEstadoModif) {
+		this.comboBoxOperarioEstadoModif = comboBoxOperarioEstadoModif;
+	}
 
 	public void logueoAdmin() {
 		this.btnGuardarSistema.setEnabled(false);
@@ -1771,6 +1828,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	public String NyANueva() {
 		return JOptionPane.showInputDialog("Introduzca nombre y apellido: ");
+	}
+	
+	public void actualizarListaOperarios() {
+		
 	}
 	
 }
