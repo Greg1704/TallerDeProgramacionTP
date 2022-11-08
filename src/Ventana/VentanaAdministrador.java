@@ -18,12 +18,15 @@ import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
+import main.Mesa;
+import main.Operario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -36,6 +39,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JTextArea;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 
@@ -250,7 +254,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JLabel lblOperarioEstadoModif;
 	private JComboBox comboBoxOperarioEstadoModif;
 	private JLabel lblNombreLocalGrande;
-	
+	private DefaultListModel<Operario> modelListOperarios;
+	private DefaultListModel<Mesa> modelListMesas;
 
 	/**
 	 * Launch the application.
@@ -1286,8 +1291,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana Operarios y Mesas--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listOperarios.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListOperarios = new DefaultListModel<Operario>();
+		this.listOperarios.setModel(modelListOperarios);
 		this.listMesas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		
+		this.modelListMesas = new DefaultListModel<Mesa>();
+		this.listMesas.setModel(modelListMesas);
 		this.comboBoxOperarioEstadoModif.addItem("Activo");
 		this.comboBoxOperarioEstadoModif.addItem("Inactivo");
 		
@@ -1831,7 +1839,19 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	public void actualizarListaOperarios() {
-		
+		this.modelListOperarios.clear();
+		ArrayList<Operario> it = c.recuperaListaOperarios();
+		for(int i=0;i<it.size();i++) {
+			this.modelListOperarios.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaMesas() {
+		this.modelListMesas.clear();
+		ArrayList<Mesa> it = c.recuperaListaMesas();
+		for(int i=0;i<it.size();i++) {
+			this.modelListMesas.addElement(it.get(i));
+		}
 	}
 	
 }

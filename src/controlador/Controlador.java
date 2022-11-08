@@ -11,6 +11,7 @@ import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
+import main.Mesa;
 import main.Operario;
 import main.Sistema;
 
@@ -37,7 +38,7 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getActionCommand().equals(IVista.nuevoSistema)) {  //Ventana login
 			sistema = Sistema.getInstancia();
-			sistema.setNombre(v.getTextFieldNombreLocal()); //Conseguir dato de ventana
+			sistema.setNombre(v.getTextFieldNombreLocal());
 			v.setLblNombreLocalGrande(sistema.getNombre());
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			
@@ -86,7 +87,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesa
 			try {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
-				
+				v.actualizarListaOperarios();
 			} catch (OperarioDuplicadoException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -147,5 +148,9 @@ public class Controlador implements ActionListener {
 	
 	public ArrayList<Operario> recuperaListaOperarios() {
 		return sistema.getOperarios();
+	}
+	
+	public ArrayList<Mesa> recuperaListaMesas() {
+		return sistema.getMesas();
 	}
 }

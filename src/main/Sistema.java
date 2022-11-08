@@ -202,12 +202,12 @@ public class Sistema {
 		this.productos.remove(p);
 	}
 	
-	public void agregaMesa(int numero) throws MesaYaExistenteException{
+	public void agregaMesa(int numero,int cantComensales) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
 			if(this.mesas.get(i).getNumero() == numero)
 				throw new MesaYaExistenteException();
 		}
-		mesas.add(new Mesa(0,"libre",numero));
+		mesas.add(new Mesa(cantComensales,"libre",numero));
 	}
 	
 	public void sacaMesa(Mesa mesa) {
