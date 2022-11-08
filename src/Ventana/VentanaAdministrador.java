@@ -1751,10 +1751,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnGuardarSistema.setEnabled(false);
 		this.textFieldNombreLocal.setEnabled(false);
 		this.btnRecuperarSistema.setEnabled(false);
-		this.tabbedPane.setEnabledAt(2, true);
-		this.tabbedPane.setEnabledAt(3, true);
-		this.tabbedPane.setEnabledAt(4, true);
-		this.tabbedPane.setEnabledAt(5, true);
+		this.tabbedPane.setEnabledAt(1, true);
 	}
 	
 	public void logout() {
