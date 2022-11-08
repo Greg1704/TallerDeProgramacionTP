@@ -20,6 +20,8 @@ import javax.swing.border.TitledBorder;
 import controlador.Controlador;
 import main.Mesa;
 import main.Operario;
+import main.PromocionPermanente;
+import main.PromocionTemporal;
 
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -256,6 +258,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JLabel lblNombreLocalGrande;
 	private DefaultListModel<Operario> modelListOperarios;
 	private DefaultListModel<Mesa> modelListMesas;
+	private DefaultListModel<PromocionPermanente> modelListPromPerm;
+	private DefaultListModel<PromocionTemporal> modelListPromTemp;
 
 	/**
 	 * Launch the application.
@@ -1341,7 +1345,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana promociones--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listPromPerm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListPromPerm = new DefaultListModel<PromocionPermanente>();
+		this.listPromPerm.setModel(modelListPromPerm);
 		this.listPromTemp.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListPromTemp = new DefaultListModel<PromocionTemporal>();
+		this.listPromTemp.setModel(modelListPromTemp);
 		
 		this.comboBoxPromPermDiasAlta.addItem("Lunes");
 		this.comboBoxPromPermDiasAlta.addItem("Martes");
@@ -1835,6 +1843,202 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldMesaCantidadComensalesModif = textFieldMesaCantidadComensalesModif;
 	}
 
+	
+	public String getComboBoxPromPermDiasAlta() {
+		return (String) comboBoxPromPermDiasAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDiasAlta(JComboBox comboBoxPromPermDiasAlta) {
+		this.comboBoxPromPermDiasAlta = comboBoxPromPermDiasAlta;
+	}
+
+	public String getComboBoxPromPermDosPorUnoAlta() {
+		return (String) comboBoxPromPermDosPorUnoAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDosPorUnoAlta(JComboBox comboBoxPromPermDosPorUnoAlta) {
+		this.comboBoxPromPermDosPorUnoAlta = comboBoxPromPermDosPorUnoAlta;
+	}
+
+	public String getComboBoxPromPermDtoPorCantAlta() {
+		return (String) comboBoxPromPermDtoPorCantAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDtoPorCantAlta(JComboBox comboBoxPromPermDtoPorCantAlta) {
+		this.comboBoxPromPermDtoPorCantAlta = comboBoxPromPermDtoPorCantAlta;
+	}
+
+	public int getTextFieldPromPermDtoPorCantMinimoAlta() {
+		return Integer.parseInt(textFieldPromPermDtoPorCantMinimoAlta.getText());
+	}
+
+	public void setTextFieldPromPermDtoPorCantMinimoAlta(JTextField textFieldPromPermDtoPorCantMinimoAlta) {
+		this.textFieldPromPermDtoPorCantMinimoAlta = textFieldPromPermDtoPorCantMinimoAlta;
+	}
+
+	public double getTextFieldPromPermDtoPorCantPrecioUnitarioAlta() {
+		return Double.parseDouble(textFieldPromPermDtoPorCantPrecioUnitarioAlta.getText());
+	}
+
+	public void setTextFieldPromPermDtoPorCantPrecioUnitarioAlta(JTextField textFieldPromPermDtoPorCantPrecioUnitarioAlta) {
+		this.textFieldPromPermDtoPorCantPrecioUnitarioAlta = textFieldPromPermDtoPorCantPrecioUnitarioAlta;
+	}
+
+	public String getComboBoxPromPermDiasModif() {
+		return (String) comboBoxPromPermDiasModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDiasModif(JComboBox comboBoxPromPermDiasModif) {
+		this.comboBoxPromPermDiasModif = comboBoxPromPermDiasModif;
+	}
+
+	public String getComboBoxPromPermDosPorUnoModif() {
+		return (String) comboBoxPromPermDosPorUnoModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDosPorUnoModif(JComboBox comboBoxPromPermDosPorUnoModif) {
+		this.comboBoxPromPermDosPorUnoModif = comboBoxPromPermDosPorUnoModif;
+	}
+
+	public String getComboBoxPromPermDtoPorCantModif() {
+		return (String) comboBoxPromPermDtoPorCantModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermDtoPorCantModif(JComboBox comboBoxPromPermDtoPorCantModif) {
+		this.comboBoxPromPermDtoPorCantModif = comboBoxPromPermDtoPorCantModif;
+	}
+
+	public int getTextFieldPromPermDtoPorCantMinimoModif() {
+		return Integer.parseInt(textFieldPromPermDtoPorCantMinimoModif.getText());
+	}
+
+	public void setTextFieldPromPermDtoPorCantMinimoModif(JTextField textFieldPromPermDtoPorCantMinimoModif) {
+		this.textFieldPromPermDtoPorCantMinimoModif = textFieldPromPermDtoPorCantMinimoModif;
+	}
+
+	public double getTextFieldPromPermDtoPorCantPrecioUnitarioModif() {
+		return Double.parseDouble(textFieldPromPermDtoPorCantPrecioUnitarioModif.getText());
+	}
+
+	public void setTextFieldPromPermDtoPorCantPrecioUnitarioModif(
+			JTextField textFieldPromPermDtoPorCantPrecioUnitarioModif) {
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif = textFieldPromPermDtoPorCantPrecioUnitarioModif;
+	}
+
+	public String getComboBoxPromPermProductoAlta() {
+		return (String) comboBoxPromPermProductoAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermProductoAlta(JComboBox comboBoxPromPermProductoAlta) {
+		this.comboBoxPromPermProductoAlta = comboBoxPromPermProductoAlta;
+	}
+
+	public String getComboBoxPromPermProductoModif() {
+		return (String) comboBoxPromPermProductoModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermProductoModif(JComboBox comboBoxPromPermProductoModif) {
+		this.comboBoxPromPermProductoModif = comboBoxPromPermProductoModif;
+	}
+
+	public String getComboBoxPromPermEstadoModif() {
+		return (String) comboBoxPromPermEstadoModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromPermEstadoModif(JComboBox comboBoxPromPermEstadoModif) {
+		this.comboBoxPromPermEstadoModif = comboBoxPromPermEstadoModif;
+	}
+	
+	
+
+	public String getComboBoxPromTempDiasAlta() {
+		return (String) comboBoxPromTempDiasAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempDiasAlta(JComboBox comboBoxPromTempDiasAlta) {
+		this.comboBoxPromTempDiasAlta = comboBoxPromTempDiasAlta;
+	}
+
+	public int getTextFieldPromTempPorcentajeDtoAlta() {
+		return Integer.parseInt(textFieldPromTempPorcentajeDtoAlta.getText());
+	}
+
+	public void setTextFieldPromTempPorcentajeDtoAlta(JTextField textFieldPromTempPorcentajeDtoAlta) {
+		this.textFieldPromTempPorcentajeDtoAlta = textFieldPromTempPorcentajeDtoAlta;
+	}
+
+	public String getComboBoxPromTempAcumulableAlta() {
+		return (String) comboBoxPromTempAcumulableAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempAcumulableAlta(JComboBox comboBoxPromTempAcumulableAlta) {
+		this.comboBoxPromTempAcumulableAlta = comboBoxPromTempAcumulableAlta;
+	}
+
+	public String getComboBoxPromTempMetodoPagoAlta() {
+		return (String) comboBoxPromTempMetodoPagoAlta.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempMetodoPagoAlta(JComboBox comboBoxPromTempMetodoPagoAlta) {
+		this.comboBoxPromTempMetodoPagoAlta = comboBoxPromTempMetodoPagoAlta;
+	}
+
+	public String getTextFieldPromTempNombreAlta() {
+		return textFieldPromTempNombreAlta.getText();
+	}
+
+	public void setTextFieldPromTempNombreAlta(JTextField textFieldPromTempNombreAlta) {
+		this.textFieldPromTempNombreAlta = textFieldPromTempNombreAlta;
+	}
+
+	public String getComboBoxPromTempDiasModif() {
+		return (String) comboBoxPromTempDiasModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempDiasModif(JComboBox comboBoxPromTempDiasModif) {
+		this.comboBoxPromTempDiasModif = comboBoxPromTempDiasModif;
+	}
+
+	public int getTextFieldPromTempPorcentajeDtoModif() {
+		return Integer.parseInt(textFieldPromTempPorcentajeDtoModif.getText());
+	}
+
+	public void setTextFieldPromTempPorcentajeDtoModif(JTextField textFieldPromTempPorcentajeDtoModif) {
+		this.textFieldPromTempPorcentajeDtoModif = textFieldPromTempPorcentajeDtoModif;
+	}
+
+	public String getComboBoxPromTempAcumulableModif() {
+		return (String) comboBoxPromTempAcumulableModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempAcumulableModif(JComboBox comboBoxPromTempAcumulableModif) {
+		this.comboBoxPromTempAcumulableModif = comboBoxPromTempAcumulableModif;
+	}
+
+	public String getComboBoxPromTempMetodoPagoModif() {
+		return (String) comboBoxPromTempMetodoPagoModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempMetodoPagoModif(JComboBox comboBoxPromTempMetodoPagoModif) {
+		this.comboBoxPromTempMetodoPagoModif = comboBoxPromTempMetodoPagoModif;
+	}
+
+	public String getTextFieldPromTempNombreModif() {
+		return (String) textFieldPromTempNombreModif.getText();
+	}
+
+	public void setTextFieldPromTempNombreModif(JTextField textFieldPromTempNombreModif) {
+		this.textFieldPromTempNombreModif = textFieldPromTempNombreModif;
+	}
+
+	public String getComboBoxPromTempEstadoModif() {
+		return (String) comboBoxPromTempEstadoModif.getSelectedItem();
+	}
+
+	public void setComboBoxPromTempEstadoModif(JComboBox comboBoxPromTempEstadoModif) {
+		this.comboBoxPromTempEstadoModif = comboBoxPromTempEstadoModif;
+	}
+
 	public void logueoAdmin() {
 		this.btnGuardarSistema.setEnabled(false);
 		this.textFieldNombreLocal.setEnabled(false);
@@ -1888,4 +2092,19 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		}
 	}
 	
+	public void actualizarListaPromPerm() {
+		this.modelListPromPerm.clear();
+		ArrayList<PromocionPermanente> it = c.recuperaListaPromPerm();
+		for(int i=0;i<it.size();i++) {
+			this.modelListPromPerm.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaPromTemp() {
+		this.modelListPromTemp.clear();
+		ArrayList<PromocionTemporal> it = c.recuperaListaPromTemp();
+		for(int i=0;i<it.size();i++) {
+			this.modelListPromTemp.addElement(it.get(i));
+		}
+	}
 }

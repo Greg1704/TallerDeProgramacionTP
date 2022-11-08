@@ -10,10 +10,14 @@ import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.MesaYaExistenteException;
+import excepciones.NegativoException;
+import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
 import main.Mesa;
 import main.Operario;
+import main.PromocionPermanente;
+import main.PromocionTemporal;
 import main.Sistema;
 
 public class Controlador implements ActionListener {
@@ -109,13 +113,40 @@ public class Controlador implements ActionListener {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarMesa)) {
 			
-		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) { //Ventana promociones
-			
+		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) { //Ventana promociones VER LO DE COMO METER EL PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+			boolean dosPorUno,dtoPorCantidad;
+			if(v.getComboBoxPromPermDosPorUnoAlta().equals("Si")) 
+				dosPorUno=true;
+			else
+				dosPorUno=false;
+			if(v.getComboBoxPromPermDtoPorCantAlta().equals("Si")) 
+				dtoPorCantidad=true;
+			else
+				dtoPorCantidad=false;
+			try {
+				sistema.agregaPromocionPermanente(new PromocionPermanente(true,v.getComboBoxPromPermDiasAlta(),null,dosPorUno,dtoPorCantidad,
+						v.getTextFieldPromPermDtoPorCantMinimoAlta(),v.getTextFieldPromPermDtoPorCantPrecioUnitarioAlta()));
+				v.actualizarListaPromPerm();
+			} catch (NoHayPromoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NegativoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(e.getActionCommand().equals(IVista.eliminarPromPerm)) {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarPromPerm)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearPromTemp)) {
+			boolean acumulable;
+			if(v.getComboBoxPromTempAcumulableAlta().equals("Si"))
+				acumulable=true;
+			else
+				acumulable=false;
+			sistema.agregaPromocionTemporal(new PromocionTemporal(true,v.getComboBoxPromTempDiasAlta(),v.getTextFieldPromTempNombreAlta(),
+					v.getTextFieldPromTempPorcentajeDtoAlta(),acumulable,v.getComboBoxPromTempMetodoPagoAlta()));
+			v.actualizarListaPromTemp();
 			
 		}else if(e.getActionCommand().equals(IVista.eliminarPromTemp)) {
 			
@@ -159,5 +190,15 @@ public class Controlador implements ActionListener {
 	
 	public ArrayList<Mesa> recuperaListaMesas() {
 		return sistema.getMesas();
+	}
+
+	public ArrayList<PromocionPermanente> recuperaListaPromPerm() {
+		// TODO Auto-generated method stub
+		return sistema.getPromosFijas();
+	}
+	
+	public ArrayList<PromocionTemporal> recuperaListaPromTemp() {
+		// TODO Auto-generated method stub
+		return sistema.getPromosTemporales();
 	}
 }
