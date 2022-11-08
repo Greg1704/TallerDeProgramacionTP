@@ -9,13 +9,19 @@ import javax.swing.JOptionPane;
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.HijosNegativosException;
 import excepciones.MesaYaExistenteException;
+import excepciones.MozoDuplicadoException;
 import excepciones.NegativoException;
 import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
+import excepciones.PrecioVentaMenorCostoException;
+import excepciones.ProductoDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
 import main.Mesa;
+import main.Mozo;
 import main.Operario;
+import main.Producto;
 import main.PromocionPermanente;
 import main.PromocionTemporal;
 import main.Sistema;
@@ -25,7 +31,7 @@ public class Controlador implements ActionListener {
 	VentanaAdministrador v;
 	private static Controlador instancia = null;
 	Sistema sistema = null;
-	Boolean primeraVez=true;
+	Boolean primeraVez=false;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -45,6 +51,7 @@ public class Controlador implements ActionListener {
 			sistema = Sistema.getInstancia();
 			sistema.setNombre(v.getTextFieldNombreLocal());
 			v.setLblNombreLocalGrande(sistema.getNombre());
+			primeraVez=true;
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
@@ -56,6 +63,7 @@ public class Controlador implements ActionListener {
 					if(primeraVez) {
 						sistema.getAdmin().setPassword(v.passwordNueva());
 						sistema.getAdmin().setNombreYApellido(v.NyANueva());
+						primeraVez=false;
 					}
 					v.logueoAdmin();
 				} catch (ContraseniaIncorrectaException e1) {
@@ -153,6 +161,16 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.modificarPromTemp)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearMozo)) { //Ventana mozos
+			try {
+				sistema.agregaMozo(new Mozo(null,"ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
+				v.actualizarListaMozos();
+			} catch (MozoDuplicadoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (HijosNegativosException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}else if(e.getActionCommand().equals(IVista.eliminarMozo)) {
 			
@@ -167,7 +185,19 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.estadPromMesas)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearProducto)) { //Ventana productos
-			
+			try {
+				sistema.agregaProductos(new Producto(v.getTextFieldProductoNombreAlta(),v.getTextFieldProductoPrecioCostoAlta(),v.getTextFieldProductoPrecioVentaAlta(),v.getTextFieldProductoStockInicialAlta()));
+				v.actualizarListaProductos();
+			} catch (ProductoDuplicadoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NegativoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (PrecioVentaMenorCostoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(e.getActionCommand().equals(IVista.eliminarProducto)) {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarProducto)) {
@@ -200,5 +230,15 @@ public class Controlador implements ActionListener {
 	public ArrayList<PromocionTemporal> recuperaListaPromTemp() {
 		// TODO Auto-generated method stub
 		return sistema.getPromosTemporales();
+	}
+	
+	public ArrayList<Mozo> recuperaListaMozos() {
+		// TODO Auto-generated method stub
+		return sistema.getMozos();
+	}
+	
+	public ArrayList<Producto> recuperaListaProductos() {
+		// TODO Auto-generated method stub
+		return sistema.getProducto();
 	}
 }

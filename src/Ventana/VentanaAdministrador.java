@@ -19,7 +19,9 @@ import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
 import main.Mesa;
+import main.Mozo;
 import main.Operario;
+import main.Producto;
 import main.PromocionPermanente;
 import main.PromocionTemporal;
 
@@ -28,6 +30,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.EtchedBorder;
@@ -260,6 +263,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private DefaultListModel<Mesa> modelListMesas;
 	private DefaultListModel<PromocionPermanente> modelListPromPerm;
 	private DefaultListModel<PromocionTemporal> modelListPromTemp;
+	private DefaultListModel<Mozo> modelListMozos;
+	private DefaultListModel<Producto> modelListProductos;
 
 	/**
 	 * Launch the application.
@@ -979,8 +984,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelMozoAlta.add(this.textFieldMozoNyAAlta);
 		this.textFieldMozoNyAAlta.setColumns(10);
 		
-		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento (dd/MM/yyyy)");
-		this.lblMozoFechaDeNacimientoAlta.setBounds(10, 81, 193, 17);
+		this.lblMozoFechaDeNacimientoAlta = new JLabel("Fecha de nacimiento(yyyy-MM-dd)");
+		this.lblMozoFechaDeNacimientoAlta.setBounds(10, 81, 205, 17);
 		this.panelMozoAlta.add(this.lblMozoFechaDeNacimientoAlta);
 		
 		this.lblMozoHijosAlta = new JLabel("Hijos");
@@ -997,10 +1002,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelMozoAlta.add(this.btnMozoAlta);
 		
 		this.formattedTextFieldFechaNacimientoAlta = new JFormattedTextField();
-		this.formattedTextFieldFechaNacimientoAlta.setBounds(213, 78, 111, 20);
+		this.formattedTextFieldFechaNacimientoAlta.setBounds(224, 78, 100, 20);
 		this.panelMozoAlta.add(this.formattedTextFieldFechaNacimientoAlta);
 		this.formattedTextFieldFechaNacimientoAlta.setColumns(10);
-		this.formattedTextFieldFechaNacimientoAlta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+		this.formattedTextFieldFechaNacimientoAlta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
 		
 		this.panelMozoModif = new JPanel();
 		this.panelMozoModif.setLayout(null);
@@ -1017,8 +1022,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldMozoNyAModif.setBounds(165, 30, 159, 20);
 		this.panelMozoModif.add(this.textFieldMozoNyAModif);
 		
-		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento (dd/MM/yyyyy)");
-		this.lblMozoFechaDeNacimientoModif.setBounds(10, 81, 193, 14);
+		this.lblMozoFechaDeNacimientoModif = new JLabel("Fecha de nacimiento(yyyy-MM-dd)");
+		this.lblMozoFechaDeNacimientoModif.setBounds(10, 81, 204, 14);
 		this.panelMozoModif.add(this.lblMozoFechaDeNacimientoModif);
 		
 		this.lblMozoHijosModif = new JLabel("Hijos");
@@ -1035,10 +1040,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelMozoModif.add(this.btnMozoModif);
 		
 		this.formattedTextFieldFechaNacimientoModif = new JFormattedTextField();
-		this.formattedTextFieldFechaNacimientoModif.setBounds(213, 78, 111, 20);
+		this.formattedTextFieldFechaNacimientoModif.setBounds(224, 78, 100, 20);
 		this.panelMozoModif.add(this.formattedTextFieldFechaNacimientoModif);
 		this.formattedTextFieldFechaNacimientoModif.setColumns(10);
-		this.formattedTextFieldFechaNacimientoModif.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+		this.formattedTextFieldFechaNacimientoModif.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy-MM-dd"))));
 		
 		this.scrollPaneListaMozos = new JScrollPane();
 		this.scrollPaneListaMozos.setViewportBorder(new TitledBorder(null, "Lista de Mozos", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -1134,7 +1139,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		
 		this.panelProductoModif = new JPanel();
 		this.panelProductoModif.setLayout(null);
-		this.panelProductoModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificaci\u00F3n de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		this.panelProductoModif.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Modificacion de Producto", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		this.panelProductoModif.setBounds(10, 384, 411, 289);
 		this.panelProducto.add(this.panelProductoModif);
 		
@@ -1461,6 +1466,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana Mozos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listMozos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListMozos = new DefaultListModel<Mozo>();
+		this.listMozos.setModel(modelListMozos);
 		this.textAreaEstadisticas.setEnabled(false);
 		
 		this.textFieldMozoNyAAlta.addKeyListener(this);
@@ -1505,6 +1512,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana Productos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listProductos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListProductos = new DefaultListModel<Producto>();
+		this.listProductos.setModel(modelListProductos);
 		
 		this.textFieldProductoNombreAlta.addKeyListener(this);
 		this.textFieldProductoNombreModif.addKeyListener(this);
@@ -2038,8 +2047,134 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public void setComboBoxPromTempEstadoModif(JComboBox comboBoxPromTempEstadoModif) {
 		this.comboBoxPromTempEstadoModif = comboBoxPromTempEstadoModif;
 	}
+	
+	
+	public String getTextFieldMozoNyAAlta() {
+		return textFieldMozoNyAAlta.getText();
+	}
+
+	public void setTextFieldMozoNyAAlta(JTextField textFieldMozoNyAAlta) {
+		this.textFieldMozoNyAAlta = textFieldMozoNyAAlta;
+	}
+
+	public int getTextFieldMozoHijosAlta() {
+		return Integer.parseInt(textFieldMozoHijosAlta.getText());
+	}
+
+	public void setTextFieldMozoHijosAlta(JTextField textFieldMozoHijosAlta) {
+		this.textFieldMozoHijosAlta = textFieldMozoHijosAlta;
+	}
+
+	public String getTextFieldMozoNyAModif() {
+		return textFieldMozoNyAModif.getText();
+	}
+
+	public void setTextFieldMozoNyAModif(JTextField textFieldMozoNyAModif) {
+		this.textFieldMozoNyAModif = textFieldMozoNyAModif;
+	}
+
+	public int getTextFieldMozoHijosModif() {
+		return Integer.parseInt(textFieldMozoHijosModif.getText());
+	}
+
+	public void setTextFieldMozoHijosModif(JTextField textFieldMozoHijosModif) {
+		this.textFieldMozoHijosModif = textFieldMozoHijosModif;
+	}
+
+	public LocalDate getFormattedTextFieldFechaNacimientoAlta() {
+		return LocalDate.parse(formattedTextFieldFechaNacimientoAlta.getText());
+	}
+
+	public void setFormattedTextFieldFechaNacimientoAlta(JFormattedTextField formattedTextFieldFechaNacimientoAlta) {
+		this.formattedTextFieldFechaNacimientoAlta = formattedTextFieldFechaNacimientoAlta;
+	}
+
+	public LocalDate getFormattedTextFieldFechaNacimientoModif() {
+		return  LocalDate.parse(formattedTextFieldFechaNacimientoModif.getText());
+	}
+
+	public void setFormattedTextFieldFechaNacimientoModif(JFormattedTextField formattedTextFieldFechaNacimientoModif) {
+		this.formattedTextFieldFechaNacimientoModif = formattedTextFieldFechaNacimientoModif;
+	}
+	
+	
+	public String getTextFieldProductoNombreAlta() {
+		return textFieldProductoNombreAlta.getText();
+	}
+
+	public void setTextFieldProductoNombreAlta(JTextField textFieldProductoNombreAlta) {
+		this.textFieldProductoNombreAlta = textFieldProductoNombreAlta;
+	}
+
+	public double getTextFieldProductoPrecioCostoAlta() {
+		return Double.parseDouble(textFieldProductoPrecioCostoAlta.getText());
+	}
+
+	public void setTextFieldProductoPrecioCostoAlta(JTextField textFieldProductoPrecioCostoAlta) {
+		this.textFieldProductoPrecioCostoAlta = textFieldProductoPrecioCostoAlta;
+	}
+
+	public double getTextFieldProductoPrecioVentaAlta() {
+		return Double.parseDouble(textFieldProductoPrecioVentaAlta.getText());
+	}
+
+	public void setTextFieldProductoPrecioVentaAlta(JTextField textFieldProductoPrecioVentaAlta) {
+		this.textFieldProductoPrecioVentaAlta = textFieldProductoPrecioVentaAlta;
+	}
+
+	public int getTextFieldProductoStockInicialAlta() {
+		return Integer.parseInt(textFieldProductoStockInicialAlta.getText());
+	}
+
+	public void setTextFieldProductoStockInicialAlta(JTextField textFieldProductoStockInicialAlta) {
+		this.textFieldProductoStockInicialAlta = textFieldProductoStockInicialAlta;
+	}
+
+	public String getTextFieldProductoNombreModif() {
+		return textFieldProductoNombreModif.getText();
+	}
+
+	public void setTextFieldProductoNombreModif(JTextField textFieldProductoNombreModif) {
+		this.textFieldProductoNombreModif = textFieldProductoNombreModif;
+	}
+
+	public double getTextFieldProductoPrecioCostoModif() {
+		return Double.parseDouble(textFieldProductoPrecioCostoModif.getText());
+	}
+
+	public void setTextFieldProductoPrecioCostoModif(JTextField textFieldProductoPrecioCostoModif) {
+		this.textFieldProductoPrecioCostoModif = textFieldProductoPrecioCostoModif;
+	}
+
+	public double getTextFieldProductoPrecioVentaModif() {
+		return Double.parseDouble(textFieldProductoPrecioVentaModif.getText());
+	}
+
+	public void setTextFieldProductoPrecioVentaModif(JTextField textFieldProductoPrecioVentaModif) {
+		this.textFieldProductoPrecioVentaModif = textFieldProductoPrecioVentaModif;
+	}
+
+	public int getTextFieldProductoStockInicialModif() {
+		return Integer.parseInt(textFieldProductoStockInicialModif.getText());
+	}
+
+	public void setTextFieldProductoStockInicialModif(JTextField textFieldProductoStockInicialModif) {
+		this.textFieldProductoStockInicialModif = textFieldProductoStockInicialModif;
+	}
+
+	public int getTextFieldProductoNuevoStock() {
+		return Integer.parseInt(textFieldProductoNuevoStock.getText());
+	}
+
+	public void setTextFieldProductoNuevoStock(JTextField textFieldProductoNuevoStock) {
+		this.textFieldProductoNuevoStock = textFieldProductoNuevoStock;
+	}
 
 	public void logueoAdmin() {
+		this.textFieldLoginUsuario.setText("");
+		this.textFieldLoginContrasenia.setText("");
+		this.btnLogin.setEnabled(false);
+		this.btnLogout.setEnabled(true);
 		this.btnGuardarSistema.setEnabled(false);
 		this.textFieldNombreLocal.setEnabled(false);
 		this.btnRecuperarSistema.setEnabled(false);
@@ -2051,6 +2186,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	public void logueoOperario() {
+		this.textFieldLoginUsuario.setText("");
+		this.textFieldLoginContrasenia.setText("");
+		this.btnLogin.setEnabled(false);
+		this.btnLogout.setEnabled(true);
 		this.btnGuardarSistema.setEnabled(false);
 		this.textFieldNombreLocal.setEnabled(false);
 		this.btnRecuperarSistema.setEnabled(false);
@@ -2105,6 +2244,22 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		ArrayList<PromocionTemporal> it = c.recuperaListaPromTemp();
 		for(int i=0;i<it.size();i++) {
 			this.modelListPromTemp.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaMozos() {
+		this.modelListMozos.clear();
+		ArrayList<Mozo> it = c.recuperaListaMozos();
+		for(int i=0;i<it.size();i++) {
+			this.modelListMozos.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaProductos() {
+		this.modelListProductos.clear();
+		ArrayList<Producto> it = c.recuperaListaProductos();
+		for(int i=0;i<it.size();i++) {
+			this.modelListProductos.addElement(it.get(i));
 		}
 	}
 }

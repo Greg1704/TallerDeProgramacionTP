@@ -4,16 +4,16 @@ import excepciones.NegativoException;
 import excepciones.PrecioVentaMenorCostoException;
 
 public class Producto {
-	private int id;
+	private static int id = 0;
 	private String nombre;
 	private double precioDeCosto;
 	private double precioDeVenta;
 	private int stock;
 	
 	
-	public Producto(int id, String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
+	public Producto(String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
-		this.id = id;
+		this.id = this.id++;
 		this.nombre = nombre;
 		this.precioDeVenta = precioDeVenta;
 		this.stock = stock;
