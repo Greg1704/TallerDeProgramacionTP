@@ -32,6 +32,8 @@ public class Controlador implements ActionListener {
 	private static Controlador instancia = null;
 	Sistema sistema = null;
 	Boolean primeraVez=false;
+	Operario operario=null;
+	Mesa mesa=null;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -106,9 +108,21 @@ public class Controlador implements ActionListener {
 				e1.printStackTrace();
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarOperario)) {
-			
+			sistema.sacaOperario(v.getSelectedOperario());
+			v.actualizarListaOperarios();
 		}else if(e.getActionCommand().equals(IVista.modificarOperario)) {
-			
+			operario = v.getSelectedOperario();
+			if(!operario.getNombreDeUsuario().equals(v.getTextFieldOperarioUsuarioModif()))
+				operario.setNombreDeUsuario(v.getTextFieldOperarioUsuarioModif());
+			if(!operario.getPassword().equals(v.getTextFieldOperarioContraseniaModif()))
+				operario.setPassword(v.getTextFieldOperarioContraseniaModif());
+			if(!operario.getNombreYApellido().equals(v.getTextFieldOperarioNyAModif()))
+				operario.setNombreYApellido(v.getTextFieldOperarioNyAModif());
+		    if(operario.isActivo() == true && v.getComboBoxOperarioEstadoModif().equals("Inactivo"))
+		    	operario.setActivo(false);
+		    if(operario.isActivo() == false && v.getComboBoxOperarioEstadoModif().equals("Activo"))
+		    	operario.setActivo(true);
+		    v.actualizarListaOperarios();
 		}else if(e.getActionCommand().equals(IVista.crearMesa)) {
 			try {
 				sistema.agregaMesa(v.getTextFieldMesaNumeroAlta(),v.getTextFieldMesaCantidadComensalesAlta());
@@ -118,9 +132,16 @@ public class Controlador implements ActionListener {
 				e1.printStackTrace();
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarMesa)) {
-			
+			sistema.sacaMesa(v.getSelectedMesa());
+			v.actualizarListaMesas();
 		}else if(e.getActionCommand().equals(IVista.modificarMesa)) {
-			
+			mesa = v.getSelectedMesa();
+			if(mesa.getNumero() != v.getTextFieldMesaNumeroModif())
+				mesa.setNumero(v.getTextFieldMesaNumeroModif());
+			if(mesa.getComensales() != v.getTextFieldMesaCantidadComensalesModif()) {
+				mesa.setComensales(v.getTextFieldMesaCantidadComensalesModif());
+			}
+			v.actualizarListaMesas();
 		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) { //Ventana promociones VER LO DE COMO METER EL PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			boolean dosPorUno,dtoPorCantidad;
 			if(v.getComboBoxPromPermDosPorUnoAlta().equals("Si")) 
@@ -214,6 +235,24 @@ public class Controlador implements ActionListener {
 		return sistema != null ;
 	}
 	
+	public void recuperaDatosOperario(Operario operario) {
+		String activo;
+		v.setTextFieldOperarioUsuarioModif(operario.getNombreDeUsuario());
+		v.setTextFieldOperarioContraseniaModif(operario.getPassword());
+		v.setTextFieldOperarioNyAModif(operario.getNombreYApellido());
+		if(operario.isActivo())
+			activo = "Si";
+		else
+			activo = "No";
+		v.setComboBoxOperarioEstadoModif(activo);
+	}
+	
+	public void recuperaDatosMesa(Mesa mesa) {
+		// TODO Auto-generated method stub
+		v.setTextFieldMesaNumeroModif(mesa.getNumero());
+		v.setTextFieldMesaCantidadComensalesModif(mesa.getComensales());
+	}
+	
 	public ArrayList<Operario> recuperaListaOperarios() {
 		return sistema.getOperarios();
 	}
@@ -241,4 +280,6 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		return sistema.getProducto();
 	}
+
+	
 }

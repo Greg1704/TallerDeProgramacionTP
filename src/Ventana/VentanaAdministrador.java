@@ -670,21 +670,21 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelMesaABM.add(this.panelMesaModif);
 		
 		this.lblMesaNumeroModif = new JLabel("Numero de Mesa");
-		this.lblMesaNumeroModif.setBounds(65, 38, 102, 14);
+		this.lblMesaNumeroModif.setBounds(65, 38, 129, 14);
 		this.panelMesaModif.add(this.lblMesaNumeroModif);
 		
 		this.textFieldMesaNumeroModif = new JTextField();
 		this.textFieldMesaNumeroModif.setColumns(10);
-		this.textFieldMesaNumeroModif.setBounds(216, 35, 122, 20);
+		this.textFieldMesaNumeroModif.setBounds(246, 35, 122, 20);
 		this.panelMesaModif.add(this.textFieldMesaNumeroModif);
 		
 		this.lblMesaCantidadComensalesModif = new JLabel("Cantidad de comensales");
-		this.lblMesaCantidadComensalesModif.setBounds(65, 76, 122, 14);
+		this.lblMesaCantidadComensalesModif.setBounds(65, 76, 171, 14);
 		this.panelMesaModif.add(this.lblMesaCantidadComensalesModif);
 		
 		this.textFieldMesaCantidadComensalesModif = new JTextField();
 		this.textFieldMesaCantidadComensalesModif.setColumns(10);
-		this.textFieldMesaCantidadComensalesModif.setBounds(216, 73, 122, 20);
+		this.textFieldMesaCantidadComensalesModif.setBounds(246, 73, 122, 20);
 		this.panelMesaModif.add(this.textFieldMesaCantidadComensalesModif);
 		
 		this.btnMesaModificacion = new JButton("Modificar");
@@ -1302,9 +1302,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.listOperarios.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListOperarios = new DefaultListModel<Operario>();
 		this.listOperarios.setModel(modelListOperarios);
+		this.listOperarios.addMouseListener(this);
 		this.listMesas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListMesas = new DefaultListModel<Mesa>();
 		this.listMesas.setModel(modelListMesas);
+		this.listMesas.addMouseListener(this);
+		
 		this.comboBoxOperarioEstadoModif.addItem("Activo");
 		this.comboBoxOperarioEstadoModif.addItem("Inactivo");
 		
@@ -1617,7 +1620,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	
 	@Override
-	public void mouseClicked(MouseEvent e) { //FALTARIA VER LOS BOTONES QUE NO TIENEN INVOLUCRACION DIRECTA CON LOS TEXTFIELDS 
+	public void mouseClicked(MouseEvent e) { //FALTARIA VER LOS BOTONES QUE NO TIENEN INVOLUCRACION DIRECTA O EXCLUSIVA CON LOS TEXTFIELDS 
 		if(e.getSource() == this.btnLogin && this.btnLogin.isEnabled()) {
 			this.textFieldLoginUsuario.setText("");
 			this.textFieldLoginContrasenia.setText("");
@@ -1640,19 +1643,24 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldOperarioUsuarioAlta.setText("");
 			this.textFieldOperarioContraseniaAlta.setText("");
 			this.btnOperarioAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnOperarioModificacion && this.btnOperarioModificacion.isEnabled()) {
+		}else if((e.getSource() == this.btnOperarioModificacion && this.btnOperarioModificacion.isEnabled()) || (e.getSource() == this.btnOperarioBaja && this.btnOperarioBaja.isEnabled())) {
 			this.textFieldOperarioNyAModif.setText("");
 			this.textFieldOperarioUsuarioModif.setText("");
 			this.textFieldOperarioContraseniaModif.setText("");
+			this.comboBoxOperarioEstadoModif.setSelectedIndex(0);
 			this.btnOperarioModificacion.setEnabled(false);
+			this.btnOperarioBaja.setEnabled(false);
+			this.listOperarios.clearSelection();
 		}else if(e.getSource() == this.btnMesaAlta && this.btnMesaAlta.isEnabled()) {
 			this.textFieldMesaCantidadComensalesAlta.setText("");
 			this.textFieldMesaNumeroAlta.setText("");
 			this.btnMesaAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnMesaModificacion && this.btnMesaModificacion.isEnabled()) {
+		}else if((e.getSource() == this.btnMesaModificacion && this.btnMesaModificacion.isEnabled()) || e.getSource() == this.btnMesaBaja && this.btnMesaBaja.isEnabled()) {
 			this.textFieldMesaCantidadComensalesModif.setText("");
 			this.textFieldMesaNumeroAlta.setText("");
 			this.btnMesaModificacion.setEnabled(false);
+			this.btnMesaBaja.setEnabled(false);
+			this.listMesas.clearSelection();
 		}else if(e.getSource() == this.btnPromPermAlta && this.btnPromPermAlta.isEnabled()) {
 			this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
 			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
@@ -1694,6 +1702,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		}else if(e.getSource() == this.btnProductoNuevoStock && this.btnProductoNuevoStock.isEnabled()) {
 			this.textFieldProductoNuevoStock.setText("");
 			this.btnProductoNuevoStock.setEnabled(false);
+		}else if(e.getSource() == this.listOperarios && !this.listOperarios.isSelectionEmpty()) {
+			this.btnOperarioBaja.setEnabled(true);
+			this.btnOperarioModificacion.setEnabled(true);
+			c.recuperaDatosOperario(getSelectedOperario());
+		}else if(e.getSource() == this.listMesas && !this.listMesas.isSelectionEmpty()) {
+			this.btnMesaBaja.setEnabled(true);
+			this.btnMesaModificacion.setEnabled(true);
+			c.recuperaDatosMesa(getSelectedMesa());
 		}
 		
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
@@ -1721,7 +1737,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -1790,32 +1806,32 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return textFieldOperarioUsuarioModif.getText();
 	}
 
-	public void setTextFieldOperarioUsuarioModif(JTextField textFieldOperarioUsuarioModif) {
-		this.textFieldOperarioUsuarioModif = textFieldOperarioUsuarioModif;
+	public void setTextFieldOperarioUsuarioModif(String textFieldOperarioUsuarioModif) {
+		this.textFieldOperarioUsuarioModif.setText(textFieldOperarioUsuarioModif);;
 	}
 
 	public String getTextFieldOperarioContraseniaModif() {
 		return textFieldOperarioContraseniaModif.getText();
 	}
 
-	public void setTextFieldOperarioContraseniaModif(JTextField textFieldOperarioContraseniaModif) {
-		this.textFieldOperarioContraseniaModif = textFieldOperarioContraseniaModif;
+	public void setTextFieldOperarioContraseniaModif(String textFieldOperarioContraseniaModif) {
+		this.textFieldOperarioContraseniaModif.setText(textFieldOperarioContraseniaModif);;
 	}
 
 	public String getTextFieldOperarioNyAModif() {
 		return textFieldOperarioNyAModif.getText();
 	}
 
-	public void setTextFieldOperarioNyAModif(JTextField textFieldOperarioNyAModif) {
-		this.textFieldOperarioNyAModif = textFieldOperarioNyAModif;
+	public void setTextFieldOperarioNyAModif(String textFieldOperarioNyAModif) {
+		this.textFieldOperarioNyAModif.setText(textFieldOperarioNyAModif);;
 	}
 
 	public JComboBox getComboBoxOperarioEstadoModif() {
 		return comboBoxOperarioEstadoModif;
 	}
 
-	public void setComboBoxOperarioEstadoModif(JComboBox comboBoxOperarioEstadoModif) {
-		this.comboBoxOperarioEstadoModif = comboBoxOperarioEstadoModif;
+	public void setComboBoxOperarioEstadoModif(String comboBoxOperarioEstadoModif) {
+		this.comboBoxOperarioEstadoModif.setSelectedItem(comboBoxOperarioEstadoModif);
 	}
 	
 	
@@ -1840,16 +1856,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return Integer.parseInt(textFieldMesaNumeroModif.getText());
 	}
 
-	public void setTextFieldMesaNumeroModif(JTextField textFieldMesaNumeroModif) {
-		this.textFieldMesaNumeroModif = textFieldMesaNumeroModif;
+	public void setTextFieldMesaNumeroModif(int textFieldMesaNumeroModif) {
+		this.textFieldMesaNumeroModif.setText(Integer.toString(textFieldMesaNumeroModif));
 	}
 
 	public int getTextFieldMesaCantidadComensalesModif() {
 		return Integer.parseInt(textFieldMesaCantidadComensalesModif.getText());
 	}
 
-	public void setTextFieldMesaCantidadComensalesModif(JTextField textFieldMesaCantidadComensalesModif) {
-		this.textFieldMesaCantidadComensalesModif = textFieldMesaCantidadComensalesModif;
+	public void setTextFieldMesaCantidadComensalesModif(int textFieldMesaCantidadComensalesModif) {
+		this.textFieldMesaCantidadComensalesModif.setText(Integer.toString(textFieldMesaCantidadComensalesModif));
 	}
 
 	
@@ -2168,6 +2184,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 
 	public void setTextFieldProductoNuevoStock(JTextField textFieldProductoNuevoStock) {
 		this.textFieldProductoNuevoStock = textFieldProductoNuevoStock;
+	}
+	
+	public Operario getSelectedOperario() {
+		return (Operario) this.listOperarios.getSelectedValue();
+	}
+	
+	public Mesa getSelectedMesa() {
+		return (Mesa) this.listMesas.getSelectedValue();
 	}
 
 	public void logueoAdmin() {
