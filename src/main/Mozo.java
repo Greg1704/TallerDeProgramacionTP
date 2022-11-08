@@ -75,9 +75,15 @@ public class Mozo {
 
 
 	public String datosEmpleado() {
-		
 		return this.NombreYApellido + " recaudo $" + this.cantidadRecaudada + " y atendio " + this.mesasAtendidas + " mesas.";
-		
 	}
+
+
+	@Override
+	public String toString() {
+		return "NombreYApellido=" + NombreYApellido +" estado: " + estado;
+	}
+	
+	
 
 }

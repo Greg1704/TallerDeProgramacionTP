@@ -337,7 +337,7 @@ public class Sistema {
 		return this.mozos.get(i).datosEmpleado();	
 	}
 	
-	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
+	public void cierraComanda(Comanda comanda,String formaDePago){
 		Factura factura;
 		double total = 0,parcialPorProducto, porcentajeDescuento;
 		int j,k, cantDosPorUno;
@@ -354,25 +354,27 @@ public class Sistema {
 			j = 0;
 			k = 0;
 			//promos fijas
-			while(j < this.promosFijas.size()){//falta condicion para dia
+			while(j < this.promosFijas.size() && !tienePromoFija){//falta condicion para dia
 				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
-					tienePromoFija = true;
-					
-					if(this.promosFijas.get(i).isAplicaDosPorUno()) {
+					if(this.promosFijas.get(i).isAplicaDosPorUno() && comanda.getPedidos().get(i).getCantidad() >= 2) {
+						tienePromoFija = true;
 						cantDosPorUno = (int) comanda.getPedidos().get(i).getCantidad() / 2;
-						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();			
+						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();	
+						promocionesAplicadas.add(this.promosFijas.get(j));
 						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {				
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
 							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;						
 						}				
-					}else {				
+					}else {		
 						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
+							tienePromoFija = true;
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
-							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;					
+							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;		
+							promocionesAplicadas.add(this.promosFijas.get(j));
 						}			
 					}
-					promocionesAplicadas.add(this.promosFijas.get(j));
+					
 				}		
 				j++;
 			}
