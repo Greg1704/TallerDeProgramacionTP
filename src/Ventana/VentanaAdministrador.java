@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
@@ -1765,6 +1766,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.tabbedPane.setEnabledAt(3, false);
 		this.tabbedPane.setEnabledAt(4, false);
 		this.tabbedPane.setEnabledAt(5, false);
+	}
+	
+	public String passwordNueva() {
+		return JOptionPane.showInputDialog("Introduzca contraseña nueva: ");
+	}
+	
+	public String NyANueva() {
+		return JOptionPane.showInputDialog("Introduzca nombre y apellido: ");
 	}
 	
 }

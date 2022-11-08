@@ -3,6 +3,8 @@ package controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
@@ -15,6 +17,7 @@ public class Controlador implements ActionListener {
 	VentanaAdministrador v;
 	private static Controlador instancia = null;
 	Sistema sistema = null;
+	Boolean primeraVez=true;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -42,6 +45,10 @@ public class Controlador implements ActionListener {
 			if(v.getTextFieldLoginUsuario().equals("ADMIN")) {
 				try {
 					sistema.loginAdmin(v.getTextFieldLoginUsuario(), v.getTextFieldLoginContrasenia());
+					if(primeraVez) {
+						sistema.getAdmin().setPassword(v.passwordNueva());
+						sistema.getAdmin().setNombreYApellido(v.NyANueva());
+					}
 					v.logueoAdmin();
 				} catch (ContraseniaIncorrectaException e1) {
 					// TODO Auto-generated catch block
