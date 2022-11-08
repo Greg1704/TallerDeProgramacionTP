@@ -1736,6 +1736,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 
 	public void logueoAdmin() {
+		this.btnGuardarSistema.setEnabled(false);
+		this.textFieldNombreLocal.setEnabled(false);
+		this.btnRecuperarSistema.setEnabled(false);
 		this.tabbedPane.setEnabledAt(1, true);
 		this.tabbedPane.setEnabledAt(2, true);
 		this.tabbedPane.setEnabledAt(3, true);
@@ -1744,6 +1747,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	public void logueoOperario() {
+		this.btnGuardarSistema.setEnabled(false);
+		this.textFieldNombreLocal.setEnabled(false);
+		this.btnRecuperarSistema.setEnabled(false);
 		this.tabbedPane.setEnabledAt(2, true);
 		this.tabbedPane.setEnabledAt(3, true);
 		this.tabbedPane.setEnabledAt(4, true);
@@ -1751,6 +1757,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	public void logout() {
+		this.btnGuardarSistema.setEnabled(true);
+		this.textFieldNombreLocal.setEnabled(true);
+		this.btnRecuperarSistema.setEnabled(true);
 		this.tabbedPane.setEnabledAt(1, false);
 		this.tabbedPane.setEnabledAt(2, false);
 		this.tabbedPane.setEnabledAt(3, false);
