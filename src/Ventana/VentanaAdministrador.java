@@ -1800,6 +1800,40 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public void setComboBoxOperarioEstadoModif(JComboBox comboBoxOperarioEstadoModif) {
 		this.comboBoxOperarioEstadoModif = comboBoxOperarioEstadoModif;
 	}
+	
+	
+
+	public int getTextFieldMesaNumeroAlta() {
+		return Integer.parseInt(textFieldMesaNumeroAlta.getText());
+	}
+
+	public void setTextFieldMesaNumeroAlta(JTextField textFieldMesaNumeroAlta) {
+		this.textFieldMesaNumeroAlta = textFieldMesaNumeroAlta;
+	}
+
+	public int getTextFieldMesaCantidadComensalesAlta() {
+		return Integer.parseInt(textFieldMesaCantidadComensalesAlta.getText());
+	}
+
+	public void setTextFieldMesaCantidadComensalesAlta(JTextField textFieldMesaCantidadComensalesAlta) {
+		this.textFieldMesaCantidadComensalesAlta = textFieldMesaCantidadComensalesAlta;
+	}
+
+	public int getTextFieldMesaNumeroModif() {
+		return Integer.parseInt(textFieldMesaNumeroModif.getText());
+	}
+
+	public void setTextFieldMesaNumeroModif(JTextField textFieldMesaNumeroModif) {
+		this.textFieldMesaNumeroModif = textFieldMesaNumeroModif;
+	}
+
+	public int getTextFieldMesaCantidadComensalesModif() {
+		return Integer.parseInt(textFieldMesaCantidadComensalesModif.getText());
+	}
+
+	public void setTextFieldMesaCantidadComensalesModif(JTextField textFieldMesaCantidadComensalesModif) {
+		this.textFieldMesaCantidadComensalesModif = textFieldMesaCantidadComensalesModif;
+	}
 
 	public void logueoAdmin() {
 		this.btnGuardarSistema.setEnabled(false);

@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.MesaYaExistenteException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
 import main.Mesa;
@@ -97,7 +98,13 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.modificarOperario)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearMesa)) {
-			
+			try {
+				sistema.agregaMesa(v.getTextFieldMesaNumeroAlta(),v.getTextFieldMesaCantidadComensalesAlta());
+				v.actualizarListaMesas();
+			} catch (MesaYaExistenteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(e.getActionCommand().equals(IVista.eliminarMesa)) {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarMesa)) {
