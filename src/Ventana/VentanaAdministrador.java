@@ -1471,6 +1471,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.listMozos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListMozos = new DefaultListModel<Mozo>();
 		this.listMozos.setModel(modelListMozos);
+		this.listMozos.addMouseListener(this);
 		this.textAreaEstadisticas.setEnabled(false);
 		
 		this.textFieldMozoNyAAlta.addKeyListener(this);
@@ -1655,9 +1656,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldMesaCantidadComensalesAlta.setText("");
 			this.textFieldMesaNumeroAlta.setText("");
 			this.btnMesaAlta.setEnabled(false);
-		}else if((e.getSource() == this.btnMesaModificacion && this.btnMesaModificacion.isEnabled()) || e.getSource() == this.btnMesaBaja && this.btnMesaBaja.isEnabled()) {
+		}else if((e.getSource() == this.btnMesaModificacion && this.btnMesaModificacion.isEnabled()) || (e.getSource() == this.btnMesaBaja && this.btnMesaBaja.isEnabled())) {
 			this.textFieldMesaCantidadComensalesModif.setText("");
-			this.textFieldMesaNumeroAlta.setText("");
+			this.textFieldMesaNumeroModif.setText("");
 			this.btnMesaModificacion.setEnabled(false);
 			this.btnMesaBaja.setEnabled(false);
 			this.listMesas.clearSelection();
@@ -1682,11 +1683,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldMozoNyAAlta.setText("");
 			this.formattedTextFieldFechaNacimientoAlta.setText("");
 			this.btnMozoAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) {
+		}else if((e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) || e.getSource() == this.btnMozoBaja && this.btnMozoBaja.isEnabled()) {
 			this.textFieldMozoHijosModif.setText("");
 			this.textFieldMozoNyAModif.setText("");
 			this.formattedTextFieldFechaNacimientoModif.setText("");
 			this.btnMozoModif.setEnabled(false);
+			this.btnMozoBaja.setEnabled(false);
+			this.listMozos.clearSelection();
 		}else if(e.getSource() == this.btnProductoAlta && this.btnProductoAlta.isEnabled()) {
 			this.textFieldProductoNombreAlta.setText("");
 			this.textFieldProductoPrecioCostoAlta.setText("");
@@ -1710,6 +1713,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnMesaBaja.setEnabled(true);
 			this.btnMesaModificacion.setEnabled(true);
 			c.recuperaDatosMesa(getSelectedMesa());
+		}else if(e.getSource() == this.listMozos && !this.listMozos.isSelectionEmpty()) {
+			this.btnMozoBaja.setEnabled(true);
+			this.btnMozoModif.setEnabled(true);
+			c.recuperaDatosMozo(getSelectedMozo());
 		}
 		
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
@@ -2085,16 +2092,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return textFieldMozoNyAModif.getText();
 	}
 
-	public void setTextFieldMozoNyAModif(JTextField textFieldMozoNyAModif) {
-		this.textFieldMozoNyAModif = textFieldMozoNyAModif;
+	public void setTextFieldMozoNyAModif(String textFieldMozoNyAModif) {
+		this.textFieldMozoNyAModif.setText(textFieldMozoNyAModif);
 	}
 
 	public int getTextFieldMozoHijosModif() {
 		return Integer.parseInt(textFieldMozoHijosModif.getText());
 	}
 
-	public void setTextFieldMozoHijosModif(JTextField textFieldMozoHijosModif) {
-		this.textFieldMozoHijosModif = textFieldMozoHijosModif;
+	public void setTextFieldMozoHijosModif(int textFieldMozoHijosModif) {
+		this.textFieldMozoHijosModif.setText(Integer.toString(textFieldMozoHijosModif));
 	}
 
 	public LocalDate getFormattedTextFieldFechaNacimientoAlta() {
@@ -2109,8 +2116,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return  LocalDate.parse(formattedTextFieldFechaNacimientoModif.getText());
 	}
 
-	public void setFormattedTextFieldFechaNacimientoModif(JFormattedTextField formattedTextFieldFechaNacimientoModif) {
-		this.formattedTextFieldFechaNacimientoModif = formattedTextFieldFechaNacimientoModif;
+	public void setFormattedTextFieldFechaNacimientoModif(LocalDate formattedTextFieldFechaNacimientoModif) {
+		this.formattedTextFieldFechaNacimientoModif.setText(formattedTextFieldFechaNacimientoModif.toString());
 	}
 	
 	
@@ -2192,6 +2199,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	public Mesa getSelectedMesa() {
 		return (Mesa) this.listMesas.getSelectedValue();
+	}
+	
+	public Mozo getSelectedMozo() {
+		return (Mozo) this.listMozos.getSelectedValue();
 	}
 
 	public void logueoAdmin() {

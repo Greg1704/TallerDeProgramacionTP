@@ -34,6 +34,7 @@ public class Controlador implements ActionListener {
 	Boolean primeraVez=false;
 	Operario operario=null;
 	Mesa mesa=null;
+	Mozo mozo=null;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -194,9 +195,17 @@ public class Controlador implements ActionListener {
 			}
 			
 		}else if(e.getActionCommand().equals(IVista.eliminarMozo)) {
-			
+			sistema.sacaMozo(v.getSelectedMozo());
+			v.actualizarListaMozos();
 		}else if(e.getActionCommand().equals(IVista.modificarMozo)) {
-			
+			mozo = v.getSelectedMozo();
+			if(!mozo.getNombreYApellido().equals(v.getTextFieldMozoNyAModif()))
+				mozo.setNombreYApellido(v.getTextFieldMozoNyAModif());
+			if(!mozo.getFechaDeNacimiento().equals(v.getFormattedTextFieldFechaNacimientoModif()))
+				mozo.setFechaDeNacimiento(v.getFormattedTextFieldFechaNacimientoModif());
+			if(mozo.getHijos() != v.getTextFieldMozoHijosModif())
+				mozo.setHijos(v.getTextFieldMozoHijosModif());
+			v.actualizarListaMozos();
 		}else if(e.getActionCommand().equals(IVista.estadEmpleado)) {
 			
 		}else if(e.getActionCommand().equals(IVista.estadEmpleadoMayorVol)) {
@@ -241,9 +250,9 @@ public class Controlador implements ActionListener {
 		v.setTextFieldOperarioContraseniaModif(operario.getPassword());
 		v.setTextFieldOperarioNyAModif(operario.getNombreYApellido());
 		if(operario.isActivo())
-			activo = "Si";
+			activo = "Activo";
 		else
-			activo = "No";
+			activo = "Inactivo";
 		v.setComboBoxOperarioEstadoModif(activo);
 	}
 	
@@ -251,6 +260,13 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		v.setTextFieldMesaNumeroModif(mesa.getNumero());
 		v.setTextFieldMesaCantidadComensalesModif(mesa.getComensales());
+	}
+	
+	public void recuperaDatosMozo(Mozo mozo) {
+		// TODO Auto-generated method stub
+		v.setTextFieldMozoNyAModif(mozo.getNombreYApellido());
+		v.setTextFieldMozoHijosModif(mozo.getHijos());
+		v.setFormattedTextFieldFechaNacimientoModif(mozo.getFechaDeNacimiento());
 	}
 	
 	public ArrayList<Operario> recuperaListaOperarios() {

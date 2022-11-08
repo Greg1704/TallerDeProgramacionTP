@@ -69,6 +69,11 @@ public class Mozo {
 		this.mesasAtendidas = mesasAtendidas;
 	}
 	
+	public void setFechaDeNacimiento(LocalDate fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+
+
 	public String datosEmpleado() {
 		
 		return this.NombreYApellido + " recaudo $" + this.cantidadRecaudada + " y atendio " + this.mesasAtendidas + " mesas.";
