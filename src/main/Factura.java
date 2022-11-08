@@ -14,8 +14,9 @@ public class Factura {
 	private Mozo mozo;
 	
 	
-	public Factura(ArrayList<Pedido> pedidos, String formaDePago, Mesa mesa, double total,Mozo mozo) {
+	public Factura(ArrayList<Pedido> pedidos,ArrayList<Promocion> promocionesAplicadas,String formaDePago, Mesa mesa, double total,Mozo mozo) {
 		this.pedidos = pedidos;
+		this.promocionesAplicadas = promocionesAplicadas;
 		this.formaDePago = formaDePago;
 		this.mesa = mesa;
 		this.total = total;

@@ -340,66 +340,64 @@ public class Sistema {
 	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
 		Factura factura;
 		double total = 0,parcialPorProducto, porcentajeDescuento;
-		int i = 0,j,k = 0, cantDosPorUno;
+		int j,k, cantDosPorUno;
 		ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
-		boolean tienePromoFija = false; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
+		boolean tienePromoFija; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
 		
 		//total = calculaTot(); se necesita para calcular el total de la mesas
 		
 		comanda.setEstado("Cerrada");
 		
-		while (i < comanda.getPedidos().size()) {
+		for (int i = 0; i < comanda.getPedidos().size(); i++){
 			parcialPorProducto = comanda.getPedidos().get(i).getProducto().getPrecioDeVenta() * comanda.getPedidos().get(i).getCantidad(); //precio total de los productos
-			
+			tienePromoFija = false;
 			j = 0;
-			
-			while(j < this.promosFijas.size()) {//falta condicion para dia
+			k = 0;
+			//promos fijas
+			while(j < this.promosFijas.size()){//falta condicion para dia
 				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
+					tienePromoFija = true;
+					
 					if(this.promosFijas.get(i).isAplicaDosPorUno()) {
-						
 						cantDosPorUno = (int) comanda.getPedidos().get(i).getCantidad() / 2;
-						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
-						
-						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
-							
+						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();			
+						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {				
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
-							parcialPorProducto = parcialPorProducto ;
-							
-						}
-						
-						
+							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;						
+						}				
+					}else {				
+						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
+							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
+							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;					
+						}			
 					}
-					
-					
-					
-					
-				}
-				
+					promocionesAplicadas.add(this.promosFijas.get(j));
+				}		
 				j++;
 			}
 			
-			
-			
-		}
-		
-		//promos temporales
-		
-		while(k < this.getPromosTemporales().size()) {
-			
-			if (this.getPromosTemporales().get(k).isActivo() && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) ) { //falta contemplar el dia y forma de pago
-			
-			
+			//promos temporales
+			while(k < this.getPromosTemporales().size()) {
+				//FALTA EL DIA DE LA PROMO
+				if (this.getPromosTemporales().get(k).isActivo() && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
+					parcialPorProducto = parcialPorProducto - parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto();	
+					promocionesAplicadas.add(this.promosTemporales.get(j));
+				}
+				
+				k++;	
 			}
 			
-			k++;
+			total += parcialPorProducto;
 			
 		}
 		
-		//falta mandarle lo que se factura al mozo
 		
-		//factura = new Factura(comanda.getPedidos(),formaDePago,comanda.getMesa(),total,comanda.getMozo());
+		comanda.getMozo().setCantidadRecaudada(comanda.getMozo().getCantidadRecaudada() + total);
+		comanda.getMesa().setCantCompras(comanda.getMesa().getCantCompras() + 1);
+		comanda.getMesa().setTotalGanado(comanda.getMesa().getTotalGanado() + total);
 		
+		factura = new Factura(comanda.getPedidos(),promocionesAplicadas,formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
 	}
 	
