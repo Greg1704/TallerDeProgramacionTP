@@ -237,6 +237,8 @@ public class Sistema {
 	}
 	
 	
+	
+	
 	/*No es posible crear una nueva comanda si el local:
 	  -no tiene mesas habilitadas--------------------------------->VERIFICADO DE ANTEMANO
 	  -la mesa asociada debe tener un mozo activo asociado-------->ESTO PODRIA SER VERIFICADO DESDE EL CONTROLADOR TAL VEZ?
@@ -252,6 +254,13 @@ public class Sistema {
 		return new Comanda(mesa);
 	}
 	
+	public void agregaPromocionPermanente(PromocionPermanente pp) {
+		this.promosFijas.add(pp) ;
+	}
+	
+	public void sacaPromocionTemporal(PromocionPermanente pp) {
+		this.promosFijas.remove(pp);
+	}
 	
 	public void agregaPromocionTemporal(PromocionTemporal pt) {
 		this.promosTemporales.add(pt);
@@ -330,8 +339,8 @@ public class Sistema {
 	
 	public void cierraComanda(Comanda comanda,String formaDePago){ //falta calcular el total
 		Factura factura;
-		double total = 0;
-		int i = 0,j,k = 0;
+		double total = 0,parcialPorProducto, porcentajeDescuento;
+		int i = 0,j,k = 0, cantDosPorUno;
 		ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
 		boolean tienePromoFija = false; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
 		
@@ -340,12 +349,30 @@ public class Sistema {
 		comanda.setEstado("Cerrada");
 		
 		while (i < comanda.getPedidos().size()) {
+			parcialPorProducto = comanda.getPedidos().get(i).getProducto().getPrecioDeVenta() * comanda.getPedidos().get(i).getCantidad(); //precio total de los productos
+			
 			j = 0;
 			
-			while(j < this.promosFijas.size()) {
+			while(j < this.promosFijas.size()) {//falta condicion para dia
 				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
-					//situacion en la que se encuentra una promo fija vigente
+					if(this.promosFijas.get(i).isAplicaDosPorUno()) {
+						
+						cantDosPorUno = (int) comanda.getPedidos().get(i).getCantidad() / 2;
+						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
+						
+						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
+							
+							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
+							parcialPorProducto = parcialPorProducto ;
+							
+						}
+						
+						
+					}
+					
+					
+					
 					
 				}
 				
