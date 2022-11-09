@@ -1793,6 +1793,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnAsignarMozoMesa.setEnabled(false);
 		}else if((e.getSource() == this.listMozosActivos || e.getSource() == this.listMesasAsignables) && !this.listMozosActivos.isSelectionEmpty() && !this.listMesasAsignables.isSelectionEmpty()) {
 			this.btnAsignarMozoMesa.setEnabled(true);
+		}else if(e.getSource() == this.btnOcuparMesa && this.btnOcuparMesa.isEnabled()) {
+			this.listMesasAsignables.clearSelection();
+			this.textFieldOcupacionComensales.setEnabled(false);
+			this.btnOcuparMesa.setEnabled(false);
+		}else if(e.getSource() == this.listMesasAsignables && !this.listMesasAsignables.isSelectionEmpty()) {
+			this.textFieldOcupacionComensales.setEnabled(true);
+			this.btnOcuparMesa.setEnabled(true);
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}

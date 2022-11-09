@@ -232,7 +232,7 @@ public class Sistema {
 		else {
 			mesa = this.mesas.get(i);
 			if(mesa.getEstado().equals("libre")) 
-				if((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
+				if(((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) && cantComensales <= mesa.getComensales()) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
 					mesa.setComensales(cantComensales);
 					mesa.setEstado("ocupada");
 					this.comandas.add(creaComanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
