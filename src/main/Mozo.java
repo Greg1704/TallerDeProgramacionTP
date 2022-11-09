@@ -16,7 +16,7 @@ public class Mozo implements Serializable{
 	private double cantidadRecaudada;
 	private int mesasAtendidas;
 	private LocalDate today; 
-	private LocalDate suma; 
+
 	
 	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException,MenorDeDieciochoException{
 		this.estado = estado;
@@ -30,10 +30,8 @@ public class Mozo implements Serializable{
 			this.hijos = hijos;
 		
 		this.today = LocalDate.now();
-		this.suma = fechaDeNacimiento;
-		suma.plusYears(18);
 		
-		if(today.isBefore(suma)) {
+		if(today.isBefore(fechaDeNacimiento.plusYears(18))) {
 			throw new MenorDeDieciochoException();
 		}else
 			this.fechaDeNacimiento = fechaDeNacimiento;
