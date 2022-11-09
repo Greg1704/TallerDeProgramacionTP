@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 
 import controlador.Controlador;
+import main.Comanda;
 import main.Mesa;
 import main.Mozo;
 import main.Operario;
@@ -262,11 +263,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private JComboBox comboBoxOperarioEstadoModif;
 	private JLabel lblNombreLocalGrande;
 	private DefaultListModel<Operario> modelListOperarios;
-	private DefaultListModel<Mesa> modelListMesas;
+	private DefaultListModel<Mesa> modelListMesas,modelListMesasAsignables;
 	private DefaultListModel<PromocionPermanente> modelListPromPerm;
 	private DefaultListModel<PromocionTemporal> modelListPromTemp;
-	private DefaultListModel<Mozo> modelListMozos;
+	private DefaultListModel<Mozo> modelListMozos,modelListMozosEstados,modelListMozosActivos;
 	private DefaultListModel<Producto> modelListProductos;
+	private DefaultListModel<Comanda> modelListComandasActivas;
 
 	/**
 	 * Launch the application.
@@ -404,6 +406,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelSeleccionEstadosMozos.setLayout(null);
 		
 		this.rdbtnEstadoActivo = new JRadioButton("Activo");
+		this.rdbtnEstadoActivo.setSelected(true);
 		buttonGroupEstadosMozos.add(this.rdbtnEstadoActivo);
 		this.rdbtnEstadoActivo.setBounds(69, 25, 69, 23);
 		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoActivo);
@@ -1267,10 +1270,25 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana general--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listMozosEstados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListMozosEstados = new DefaultListModel<Mozo>();
+		this.listMozosEstados.setModel(modelListMozosEstados);
+		this.listMozosEstados.addMouseListener(this);
 		this.listMozosActivos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListMozosActivos = new DefaultListModel<Mozo>();
+		this.listMozosActivos.setModel(modelListMozosActivos);
+		this.listMozosActivos.addMouseListener(this);
 		this.listMesasAsignables.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListMesasAsignables = new DefaultListModel<Mesa>();
+		this.listMesasAsignables.setModel(modelListMesasAsignables);
+		this.listMesasAsignables.addMouseListener(this);
 		this.listComandasActivas.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListComandasActivas = new DefaultListModel<Comanda>();
+		this.listComandasActivas.setModel(modelListComandasActivas);
+		this.listComandasActivas.addMouseListener(this);
 		this.listProductosGeneral.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+		this.modelListProductos = new DefaultListModel<Producto>();
+		this.listProductosGeneral.setModel(modelListProductos);
+		this.listProductosGeneral.addMouseListener(this);
 		
 		this.textFieldOcupacionComensales.addKeyListener(this);
 		this.textFieldCantidadProducto.addKeyListener(this);
@@ -1521,7 +1539,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		//Ventana Productos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
 		this.listProductos.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		this.modelListProductos = new DefaultListModel<Producto>();
 		this.listProductos.setModel(modelListProductos);
 		this.listProductos.addMouseListener(this);
 		
@@ -1765,6 +1782,17 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnPromTempBaja.setEnabled(true);
 			this.btnPromTempModif.setEnabled(true);
 			c.recuperarDatosPromTemp(getSelectedPromTemp());
+		}else if(e.getSource() == this.listMozosEstados && !this.listMozosEstados.isSelectionEmpty()) {
+			this.btnEstadoConfirmar.setEnabled(true);
+		}else if(e.getSource() == this.btnEstadoConfirmar && this.btnEstadoConfirmar.isEnabled()) {
+			this.listMozosEstados.clearSelection();
+			this.btnEstadoConfirmar.setEnabled(false);
+		}else if((e.getSource() == this.listMozosActivos || e.getSource() == this.listMesasAsignables) && !this.listMozosActivos.isSelectionEmpty() && !this.listMesasAsignables.isSelectionEmpty()) {
+			this.btnAsignarMozoMesa.setEnabled(true);
+		}else if (e.getSource() == this.btnAsignarMozoMesa && this.btnAsignarMozoMesa.isEnabled()){
+			this.listMozosActivos.clearSelection();
+			this.listMesasAsignables.clearSelection();
+			this.btnAsignarMozoMesa.setEnabled(false);
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
@@ -2306,6 +2334,20 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldProductoNuevoStock.setText(Integer.toString(textFieldProductoNuevoStock));
 	}
 	
+	
+	public boolean getRdbtnEstadoActivo() {
+		return rdbtnEstadoActivo.isSelected();
+	}
+
+	public boolean getRdbtnEstadoAusente() {
+		return rdbtnEstadoAusente.isSelected();
+	}
+
+	public boolean getRdbtnEstadoDeFranco() {
+		return rdbtnEstadoDeFranco.isSelected();
+	}
+	
+
 	public Operario getSelectedOperario() {
 		return (Operario) this.listOperarios.getSelectedValue();
 	}
@@ -2329,7 +2371,21 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public PromocionTemporal getSelectedPromTemp() {
 		return (PromocionTemporal) this.listPromTemp.getSelectedValue();
 	}
-
+	
+	public Mozo getSelectedMozoEstado() {
+		return (Mozo) this.listMozosEstados.getSelectedValue();
+	}
+	
+	public Mozo getSelectedMozoActivo() {
+		return (Mozo) this.listMozosActivos.getSelectedValue();
+	}
+	
+	public Mesa getSelectedMesaAsignable() {
+		return (Mesa) this.listMesasAsignables.getSelectedValue();
+	}
+	
+	
+	
 	public void logueoAdmin() {
 		this.textFieldLoginUsuario.setText("");
 		this.textFieldLoginContrasenia.setText("");
@@ -2439,12 +2495,40 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.comboBoxPromPermProductoModif.addItem(it.get(i).getNombre());
 	}
 	
+	public void actualizarListaMozosEstados() {
+		this.modelListMozosEstados.clear();
+		ArrayList<Mozo> it = c.recuperaListaMozos();
+		for(int i=0;i<it.size();i++) {
+			this.modelListMozosEstados.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaMozosActivos() {
+		this.modelListMozosActivos.clear();
+		ArrayList<Mozo> it = c.recuperaListaMozos();
+		for(int i=0;i<it.size();i++) {
+			if(c.mozoActivo(it.get(i)))
+				this.modelListMozosActivos.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaMesasAsignables() {
+		this.modelListMesasAsignables.clear();
+		ArrayList<Mesa> it = c.recuperaListaMesas();
+		for(int i=0;i<it.size();i++) {
+			this.modelListMesasAsignables.addElement(it.get(i));
+		}
+	}
+	
 	public void actualizar() {
 		actualizarListaOperarios();
 		actualizarListaMesas();
+		actualizarListaMesasAsignables();
 		actualizarListaPromPerm();
 		actualizarListaPromTemp();
 		actualizarListaMozos();
+		actualizarListaMozosEstados();
+		actualizarListaMozosActivos();
 		actualizarListaProductos();
 		actualizarComboBoxProductosAlta();
 		actualizarComboBoxProductosModif();

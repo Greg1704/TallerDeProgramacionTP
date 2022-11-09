@@ -84,7 +84,8 @@ public class Mozo implements Serializable{
 		return "NombreYApellido: " + NombreYApellido +" Estado: " + estado;
 	}
 	
-	public String toStringMozos() {
+	@Override
+	public String toString() {
 		return "NombreYApellido: " + NombreYApellido +" Estado: " + estado + " Fecha de nacimiento: " + fechaDeNacimiento +" Cantidad de Hijos: " + hijos;
 	}
 	

@@ -98,9 +98,23 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.confirmaLogoutUsuario)) {
 			v.logout();
 		}else if(e.getActionCommand().equals(IVista.confirmaEstadoMozoDia)) { //Ventana general
-			
+			mozo = v.getSelectedMozoEstado();
+			if(v.getRdbtnEstadoActivo()) 
+				mozo.setEstado("Activo");
+			else if(v.getRdbtnEstadoAusente())
+				mozo.setEstado("Ausente");
+			else if(v.getRdbtnEstadoDeFranco())
+				mozo.setEstado("De franco");
+			v.actualizarListaMozos();
+			v.actualizarListaMozosActivos();
+			v.actualizarListaMozosEstados();
 		}else if(e.getActionCommand().equals(IVista.asociaMozoAMesa)) {
-			
+			mesa = v.getSelectedMesaAsignable();
+			mozo = v.getSelectedMozoActivo();
+			mozo.agregarMesa(mesa); 
+			mesa.setEstado("Ocupada");
+			v.actualizarListaMesas();
+			v.actualizarListaMesasAsignables();
 		}else if(e.getActionCommand().equals(IVista.ocupaMesa)) {
 			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
@@ -135,6 +149,7 @@ public class Controlador implements ActionListener {
 			try {
 				sistema.agregaMesa(v.getTextFieldMesaNumeroAlta(),v.getTextFieldMesaCantidadComensalesAlta());
 				v.actualizarListaMesas();
+				v.actualizarListaMesasAsignables();
 			} catch (MesaYaExistenteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -142,6 +157,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.eliminarMesa)) {
 			sistema.sacaMesa(v.getSelectedMesa());
 			v.actualizarListaMesas();
+			v.actualizarListaMesasAsignables();
 		}else if(e.getActionCommand().equals(IVista.modificarMesa)) {
 			mesa = v.getSelectedMesa();
 			if(mesa.getNumero() != v.getTextFieldMesaNumeroModif())
@@ -150,6 +166,7 @@ public class Controlador implements ActionListener {
 				mesa.setComensales(v.getTextFieldMesaCantidadComensalesModif());
 			}
 			v.actualizarListaMesas();
+			v.actualizarListaMesasAsignables();
 		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) {
 			boolean dosPorUno,dtoPorCantidad;
 			if(v.getComboBoxPromPermDosPorUnoAlta().equals("Si")) 
@@ -270,6 +287,7 @@ public class Controlador implements ActionListener {
 			try {
 				sistema.agregaMozo(new Mozo(null,"ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
 				v.actualizarListaMozos();
+				v.actualizarListaMozosEstados();
 			} catch (MozoDuplicadoException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -281,6 +299,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.eliminarMozo)) {
 			sistema.sacaMozo(v.getSelectedMozo());
 			v.actualizarListaMozos();
+			v.actualizarListaMozosEstados();
 		}else if(e.getActionCommand().equals(IVista.modificarMozo)) {
 			mozo = v.getSelectedMozo();
 			if(!mozo.getNombreYApellido().equals(v.getTextFieldMozoNyAModif()))
@@ -290,6 +309,7 @@ public class Controlador implements ActionListener {
 			if(mozo.getHijos() != v.getTextFieldMozoHijosModif())
 				mozo.setHijos(v.getTextFieldMozoHijosModif());
 			v.actualizarListaMozos();
+			v.actualizarListaMozosEstados();
 		}else if(e.getActionCommand().equals(IVista.estadEmpleado)) {
 			
 		}else if(e.getActionCommand().equals(IVista.estadEmpleadoMayorVol)) {
@@ -466,6 +486,13 @@ public class Controlador implements ActionListener {
 	public ArrayList<Producto> recuperaListaProductos() {
 		// TODO Auto-generated method stub
 		return sistema.getProducto();
+	}
+
+	public boolean mozoActivo(Mozo mozo) {
+		if(mozo.getEstado().equals("Activo"))
+			return true;
+		else
+			return false;
 	}
 	
 }

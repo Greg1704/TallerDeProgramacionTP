@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Mesa implements Serializable{
 	private int comensales;
-	private transient String estado; //libre u ocupada
+	private transient String estado; //Libre u Ocupada
 	private int numero;
 	private int cantCompras;
 	private double totalGanado;
