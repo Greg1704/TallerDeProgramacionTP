@@ -36,6 +36,8 @@ public class Controlador implements ActionListener {
 	Mesa mesa=null;
 	Mozo mozo=null;
 	Producto producto=null;
+	PromocionPermanente promPerm = null;
+	
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -169,12 +171,44 @@ public class Controlador implements ActionListener {
 			sistema.sacaPromocionPermanente(v.getSelectedPromPerm());
 			v.actualizarListaPromPerm();
 		}else if(e.getActionCommand().equals(IVista.modificarPromPerm)) {
-			boolean activa;
+			
+			promPerm=v.getSelectedPromPerm();
+			boolean activa,dosPorUno,dtoPorCantidad;
+			
 			if(v.getComboBoxPromPermEstadoModif().equals("Activa"))
 				activa = true;
 			else
 				activa = false;
+			
+			if(activa != promPerm.isActivo())
+				promPerm.setActivo(activa);
+			
 			producto = sistema.buscaProducto(v.getComboBoxPromPermProductoModif());
+			if(!producto.equals(promPerm.getProducto()))
+				promPerm.setProducto(producto);
+			if(v.getComboBoxPromPermDosPorUnoModif().equals("Si")) 
+				dosPorUno=true;
+			else
+				dosPorUno=false;
+			if(dosPorUno != promPerm.isAplicaDosPorUno())
+				promPerm.setAplicaDosPorUno(dosPorUno);
+			
+			if(v.getComboBoxPromPermDtoPorCantModif().equals("Si")) 
+				dtoPorCantidad=true;
+			else
+				dtoPorCantidad=false;
+			
+			if(dtoPorCantidad != promPerm.isAplicaDtoPorCantidad())
+				promPerm.setAplicaDtoPorCantidad(dtoPorCantidad);
+			
+			if(v.getTextFieldPromPermDtoPorCantMinimoModif() != promPerm.getDtoPorCantidad_cantidadMinima())
+				promPerm.setDtoPorCantidad_cantidadMinima(v.getTextFieldPromPermDtoPorCantMinimoModif());
+			
+			if(v.getTextFieldPromPermDtoPorCantPrecioUnitarioModif() != promPerm.getDtoPorCantidad_PrecioUnitario())
+				promPerm.setDtoPorCantidad_PrecioUnitario(v.getTextFieldPromPermDtoPorCantPrecioUnitarioModif());
+			
+			v.actualizarListaPromPerm();
+			
 		}else if(e.getActionCommand().equals(IVista.crearPromTemp)) {
 			boolean acumulable;
 			if(v.getComboBoxPromTempAcumulableAlta().equals("Si"))

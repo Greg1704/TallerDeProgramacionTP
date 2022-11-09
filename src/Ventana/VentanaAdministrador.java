@@ -26,6 +26,8 @@ import main.PromocionPermanente;
 import main.PromocionTemporal;
 
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -48,7 +50,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 
-public class VentanaAdministrador extends JFrame implements ActionListener, KeyListener, IVista, MouseListener {
+public class VentanaAdministrador extends JFrame implements ActionListener, KeyListener, IVista, MouseListener, ItemListener {
 	Controlador c;
 
 	private JPanel contentPane;
@@ -1373,6 +1375,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.comboBoxPromPermDosPorUnoAlta.addItem("Si");
 		this.comboBoxPromPermDosPorUnoAlta.addItem("No");
 		
+		
+		this.comboBoxPromPermDtoPorCantAlta.addItemListener(this);
 		this.comboBoxPromPermDtoPorCantAlta.addItem("Si");
 		this.comboBoxPromPermDtoPorCantAlta.addItem("No");
 		
@@ -1391,6 +1395,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.comboBoxPromPermDosPorUnoModif.addItem("Si");
 		this.comboBoxPromPermDosPorUnoModif.addItem("No");
 		
+		this.comboBoxPromPermDtoPorCantModif.addItemListener(this);
 		this.comboBoxPromPermDtoPorCantModif.addItem("Si");
 		this.comboBoxPromPermDtoPorCantModif.addItem("No");
 		
@@ -1742,9 +1747,69 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnPromPermModif.setEnabled(true);
 			c.recuperarDatosPromPerm(getSelectedPromPerm());
 		}
-		
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
+	
+	@Override
+	public void itemStateChanged(ItemEvent e) {  //REVISAR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		// TODO Auto-generated method stub
+		if(e.getStateChange() == this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() && this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() == 0) {
+				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(true);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(true);
+				this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
+				this.btnPromPermAlta.setEnabled(false);
+		}else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() && this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() == 1){
+				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(false);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(false);
+				this.textFieldPromPermDtoPorCantMinimoAlta.setText("0");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("0");
+				this.btnPromPermAlta.setEnabled(true);
+		}
+		else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() && this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() == 0){
+				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(true);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(true);
+				this.textFieldPromPermDtoPorCantMinimoModif.setText("");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("");
+				this.btnPromPermModif.setEnabled(false);
+		}else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() && this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() == 1){
+				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(false);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(false);
+				this.textFieldPromPermDtoPorCantMinimoModif.setText("0");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("0");
+				this.btnPromPermModif.setEnabled(true);
+		}
+	}
+	
+	/*if(this.comboBoxPromPermDtoPorCantAlta.getSelectedItem().equals("Si")) {
+				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(true);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(true);
+				this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
+				this.btnPromPermAlta.setEnabled(false);
+			}else {
+				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(false);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(false);
+				this.textFieldPromPermDtoPorCantMinimoAlta.setText("0");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("0");
+				this.btnPromPermAlta.setEnabled(true);
+			}
+		else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantModif.getSelectedIndex())
+			if(this.comboBoxPromPermDtoPorCantModif.getSelectedItem().equals("Si")) {
+				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(true);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(true);
+				this.textFieldPromPermDtoPorCantMinimoModif.setText("");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("");
+				this.btnPromPermModif.setEnabled(false);
+			}else {
+				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(false);
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(false);
+				this.textFieldPromPermDtoPorCantMinimoModif.setText("0");
+				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("0");
+				this.btnPromPermModif.setEnabled(true);
+			}
+	*/
+
 	
 	
 	@Override
@@ -2343,3 +2408,4 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.comboBoxPromPermProductoModif.addItem(it.get(i).getNombre());
 	}
 }
+	
