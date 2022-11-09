@@ -84,8 +84,4 @@ public class Producto implements Serializable{
 		return "Nombre del producto: " + nombre + " ID del producto: " + getId() +  " Precio de costo: " + precioDeCosto + " Precio de venta: " + precioDeVenta+ " Stock: " + stock;
 	}
 	
-	public String toStringGeneral() {
-		return "Nombre del producto: " + nombre + " Precio de venta: " + precioDeVenta+ " Stock: " + stock;
-	}
-	
 }

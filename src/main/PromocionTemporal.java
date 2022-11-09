@@ -63,7 +63,4 @@ public class PromocionTemporal extends Promocion{
 				+ esAcumulable + " Forma de pago: " + formaPago + " Dia de promo: " + getDiaDePromo();
 	}
 	
-	
-	
-	
 }
