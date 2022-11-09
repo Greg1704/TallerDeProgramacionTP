@@ -2354,6 +2354,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return rdbtnEstadoDeFranco.isSelected();
 	}
 	
+	
+	public int getTextFieldOcupacionComensales() {
+		return Integer.parseInt(textFieldOcupacionComensales.getText());
+	}
+
+	public void setTextFieldOcupacionComensales(JTextField textFieldOcupacionComensales) {
+		this.textFieldOcupacionComensales = textFieldOcupacionComensales;
+	}
 
 	public Operario getSelectedOperario() {
 		return (Operario) this.listOperarios.getSelectedValue();

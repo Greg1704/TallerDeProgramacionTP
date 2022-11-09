@@ -116,6 +116,8 @@ public class Controlador implements ActionListener {
 			v.actualizarListaMesasAsignables();
 		}else if(e.getActionCommand().equals(IVista.ocupaMesa)) {
 			
+			mesa = v.getSelectedMesaAsignable();
+			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
 			
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
