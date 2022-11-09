@@ -79,8 +79,8 @@ public class Producto implements Serializable{
 		this.stock = stock;
 	}
 
-
-	public String toStringProductos() {
+	@Override
+	public String toString() {
 		return "Nombre del producto: " + nombre + " ID del producto: " + getId() +  " Precio de costo: " + precioDeCosto + " Precio de venta: " + precioDeVenta+ " Stock: " + stock;
 	}
 	

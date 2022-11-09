@@ -107,7 +107,7 @@ public class Controlador implements ActionListener {
 			
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
 			
-		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesa
+		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesas
 			try {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
 				v.actualizarListaOperarios();
@@ -187,6 +187,9 @@ public class Controlador implements ActionListener {
 			
 			if(activa != promPerm.isActivo())
 				promPerm.setActivo(activa);
+			
+			if(!promPerm.getDiaDePromo().equals(v.getComboBoxPromPermDiasModif()))
+				promPerm.setDiaDePromo(v.getComboBoxPromPermDiasModif());
 			
 			producto = sistema.buscaProducto(v.getComboBoxPromPermProductoModif());
 			if(!producto.equals(promPerm.getProducto()))
@@ -414,6 +417,7 @@ public class Controlador implements ActionListener {
 		else
 			dtoCantidad = "No";
 		v.setComboBoxPromPermDtoPorCantModif(dtoCantidad);
+		v.setComboBoxPromPermProductoModif(promPerm.getProducto().getNombre());
 	}
 	
 	public void recuperarDatosPromTemp(PromocionTemporal promTemp) {

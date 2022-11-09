@@ -1672,6 +1672,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnMesaBaja.setEnabled(false);
 			this.listMesas.clearSelection();
 		}else if(e.getSource() == this.btnPromPermAlta && this.btnPromPermAlta.isEnabled()) {
+			this.comboBoxPromPermDiasAlta.setSelectedIndex(0);
+			this.comboBoxPromPermDosPorUnoAlta.setSelectedIndex(0);
+			this.comboBoxPromPermDtoPorCantAlta.setSelectedIndex(0);
+			this.comboBoxPromPermProductoAlta.setSelectedIndex(0);
 			this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
 			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
 			this.btnPromPermAlta.setEnabled(false);
@@ -1681,13 +1685,15 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.comboBoxPromPermDtoPorCantModif.setSelectedIndex(0);
 			this.comboBoxPromPermEstadoModif.setSelectedIndex(0);
 			this.comboBoxPromPermProductoModif.setSelectedIndex(0);
-			this.comboBoxPromPermProductoModif.setSelectedIndex(0);
 			this.textFieldPromPermDtoPorCantMinimoModif.setText("");
 			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
 			this.btnPromPermModif.setEnabled(false);
 			this.btnPromPermBaja.setEnabled(false);
 			this.listPromPerm.clearSelection();
 		}else if(e.getSource() == this.btnPromTempAlta && this.btnPromTempAlta.isEnabled()) {
+			this.comboBoxPromTempAcumulableAlta.setSelectedIndex(0);
+			this.comboBoxPromTempDiasAlta.setSelectedIndex(0);
+			this.comboBoxPromTempMetodoPagoAlta.setSelectedIndex(0);
 			this.textFieldPromTempNombreAlta.setText("");
 			this.textFieldPromTempPorcentajeDtoAlta.setText("");
 			this.btnPromTempAlta.setEnabled(false);
@@ -1942,8 +1948,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldOperarioNyAModif.setText(textFieldOperarioNyAModif);;
 	}
 
-	public JComboBox getComboBoxOperarioEstadoModif() {
-		return comboBoxOperarioEstadoModif;
+	public String getComboBoxOperarioEstadoModif() {
+		return (String) comboBoxOperarioEstadoModif.getSelectedItem();
 	}
 
 	public void setComboBoxOperarioEstadoModif(String comboBoxOperarioEstadoModif) {
