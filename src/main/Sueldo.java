@@ -1,6 +1,8 @@
 package main;
 
-public class Sueldo {
+import java.io.Serializable;
+
+public class Sueldo implements Serializable{
 	private double basico;
 	private double porcentaje;
 	

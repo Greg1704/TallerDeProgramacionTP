@@ -1,6 +1,8 @@
 package main;
 
-public abstract class Promocion {
+import java.io.Serializable;
+
+public abstract class Promocion implements Serializable{
 	private boolean activo;
 	private String diaDePromo;
 	

@@ -17,7 +17,7 @@ public class PromocionPermanente extends Promocion{
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
 			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException,NegativoException{
 		super(activo, diaDePromo);
-		this.id_Promocion = ++numeroId;
+		this.id_Promocion = numeroId++;
 		this.producto = producto;
 		
 		

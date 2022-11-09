@@ -1,9 +1,11 @@
 package main;
 
+import java.io.Serializable;
+
 import excepciones.NegativoException;
 import excepciones.PrecioVentaMenorCostoException;
 
-public class Producto {
+public class Producto implements Serializable{
 	private static int id = 0;
 	private String nombre;
 	private double precioDeCosto;

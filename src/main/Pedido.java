@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pedido {
+public class Pedido implements Serializable{
 	private int cantidad;
 	private LocalDate fecha = LocalDate.now();
 	private Producto producto;

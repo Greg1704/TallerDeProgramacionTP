@@ -1,12 +1,13 @@
 package main;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.HijosNegativosException;
 
-public class Mozo {
-	private ArrayList<Mesa> mesas = new ArrayList<Mesa>();
+public class Mozo implements Serializable{
+	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>();
 	private String estado;
 	private int hijos;
 	private String NombreYApellido;

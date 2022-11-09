@@ -1,9 +1,10 @@
 package main;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Factura {
+public class Factura implements Serializable{
 	//ArrayList de promociones
 	private ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 	private ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
