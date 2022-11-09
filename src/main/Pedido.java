@@ -18,6 +18,7 @@ public class Pedido implements Serializable{
 		}else {
 			this.cantidad = cantidad;
 			this.producto = producto;
+			producto.setStock(producto.getStock() - cantidad);
 		}
 
 	}
