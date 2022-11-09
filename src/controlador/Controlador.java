@@ -224,8 +224,14 @@ public class Controlador implements ActionListener {
 			v.actualizarListaPromTemp();
 			
 		}else if(e.getActionCommand().equals(IVista.eliminarPromTemp)) {
+			sistema.sacaPromocionTemporal(v.getSelectedPromTemp());
+			v.actualizarListaPromTemp();
 			
 		}else if(e.getActionCommand().equals(IVista.modificarPromTemp)) {
+			
+			
+			
+			
 			
 		}else if(e.getActionCommand().equals(IVista.crearMozo)) { //Ventana mozos
 			try {

@@ -1631,10 +1631,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		if(e.getSource() == this.btnLogin && this.btnLogin.isEnabled()) {
 			this.textFieldLoginUsuario.setText("");
 			this.textFieldLoginContrasenia.setText("");
+			this.textFieldLoginUsuario.setEnabled(false);
+			this.textFieldLoginContrasenia.setEnabled(false);
 			this.btnLogin.setEnabled(false);
 			this.btnLogout.setEnabled(true);
 		}else if (e.getSource() == this.btnLogout && this.btnLogout.isEnabled()) {
-			this.btnLogin.setEnabled(true);
+			this.textFieldLoginUsuario.setEnabled(true);
+			this.textFieldLoginContrasenia.setEnabled(true);
 			this.btnLogout.setEnabled(false);
 		}else if(e.getSource() == this.btnNuevoSistema && this.btnNuevoSistema.isEnabled()) {
 			this.textFieldNombreLocal.setText("");
@@ -2076,7 +2079,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.comboBoxPromPermEstadoModif.setSelectedItem(comboBoxPromPermEstadoModif);
 	}
 	
-	
 
 	public String getComboBoxPromTempDiasAlta() {
 		return (String) comboBoxPromTempDiasAlta.getSelectedItem();
@@ -2306,6 +2308,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	
 	public PromocionPermanente getSelectedPromPerm() {
 		return (PromocionPermanente) this.listPromPerm.getSelectedValue();
+	}
+	
+	public PromocionTemporal getSelectedPromTemp() {
+		return (PromocionTemporal) this.listPromTemp.getSelectedValue();
 	}
 
 	public void logueoAdmin() {
