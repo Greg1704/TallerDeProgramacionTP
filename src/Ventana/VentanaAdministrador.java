@@ -1588,7 +1588,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			hab = !(this.textFieldLoginUsuario.getText().isEmpty() || this.textFieldLoginContrasenia.getText().isEmpty()) && c.existeSistema();
 			this.btnLogin.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldOcupacionComensales) {
-			hab = !(this.textFieldOcupacionComensales.getText().isEmpty() || this.listMozosActivos.isSelectionEmpty() || this.listMesasAsignables.isSelectionEmpty());
+			hab = !(this.textFieldOcupacionComensales.getText().isEmpty() || this.listMesasAsignables.isSelectionEmpty());
 			this.btnOcuparMesa.setEnabled(hab);
 		}else if(e.getSource() == this.textFieldCantidadProducto) {
 			hab = !(this.textFieldCantidadProducto.getText().isEmpty() || this.listComandasActivas.isSelectionEmpty() || this.listProductosGeneral.isSelectionEmpty());
@@ -1799,7 +1799,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnOcuparMesa.setEnabled(false);
 		}else if(e.getSource() == this.listMesasAsignables && !this.listMesasAsignables.isSelectionEmpty()) {
 			this.textFieldOcupacionComensales.setEnabled(true);
-			this.btnOcuparMesa.setEnabled(true);
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
@@ -2532,6 +2531,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		ArrayList<Mesa> it = c.recuperaListaMesas();
 		for(int i=0;i<it.size();i++) {
 			this.modelListMesasAsignables.addElement(it.get(i));
+		}
+	}
+	
+	public void actualizarListaComandasActivas() {
+		this.modelListComandasActivas.clear();
+		ArrayList<Comanda> it = c.recuperaListaComandas();
+		for(int i=0;i<it.size();i++) {
+			this.modelListComandasActivas.addElement(it.get(i));
 		}
 	}
 	

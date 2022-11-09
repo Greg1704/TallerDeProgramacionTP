@@ -8,16 +8,23 @@ import javax.swing.JOptionPane;
 
 import Ventana.IVista;
 import Ventana.VentanaAdministrador;
+import excepciones.ComensalesInsuficientesException;
 import excepciones.ContraseniaIncorrectaException;
 import excepciones.HijosNegativosException;
+import excepciones.MenorDeDieciochoException;
+import excepciones.MesaNoAsignadaException;
+import excepciones.MesaNoExistenteException;
+import excepciones.MesaOcupadaException;
 import excepciones.MesaYaExistenteException;
 import excepciones.MozoDuplicadoException;
 import excepciones.NegativoException;
+import excepciones.NoHayProductosException;
 import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.PrecioVentaMenorCostoException;
 import excepciones.ProductoDuplicadoException;
 import excepciones.UsuarioIncorrectoException;
+import main.Comanda;
 import main.Mesa;
 import main.Mozo;
 import main.Operario;
@@ -117,6 +124,27 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.ocupaMesa)) {
 			
 			mesa = v.getSelectedMesaAsignable();
+			try {
+				sistema.ocupaMesa(mesa.getNumero(), v.getTextFieldOcupacionComensales());
+				v.actualizarListaMesasAsignables();
+				v.actualizarListaMesas();
+				v.actualizarListaComandasActivas();
+			} catch (MesaNoExistenteException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ComensalesInsuficientesException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MesaOcupadaException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (NoHayProductosException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (MesaNoAsignadaException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
 			
@@ -285,17 +313,20 @@ public class Controlador implements ActionListener {
 			v.actualizarListaPromTemp();
 			
 		}else if(e.getActionCommand().equals(IVista.crearMozo)) { //Ventana mozos
-			try {
-				sistema.agregaMozo(new Mozo("ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
+				try {
+					sistema.agregaMozo(new Mozo("ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
+				} catch (MozoDuplicadoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (HijosNegativosException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (MenorDeDieciochoException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				v.actualizarListaMozos();
 				v.actualizarListaMozosEstados();
-			} catch (MozoDuplicadoException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (HijosNegativosException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
 			
 		}else if(e.getActionCommand().equals(IVista.eliminarMozo)) {
 			sistema.sacaMozo(v.getSelectedMozo());
@@ -487,6 +518,10 @@ public class Controlador implements ActionListener {
 	public ArrayList<Producto> recuperaListaProductos() {
 		// TODO Auto-generated method stub
 		return sistema.getProducto();
+	}
+	
+	public ArrayList<Comanda> recuperaListaComandas(){
+		return sistema.getComandas();
 	}
 
 	public boolean mozoActivo(Mozo mozo) {

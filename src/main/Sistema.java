@@ -234,7 +234,6 @@ public class Sistema {
 			if(mesa.getEstado().equals("Libre")) 
 				if(((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) && cantComensales <= mesa.getComensales()) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
 					mesa.setComensales(cantComensales);
-					mesa.setEstado("Ocupada");
 					this.comandas.add(creaComanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
 				}else
 					throw new ComensalesInsuficientesException();
@@ -257,7 +256,7 @@ public class Sistema {
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
-		
+		mesa.setEstado("Ocupada");
 		return new Comanda(mesa);
 	}
 	
