@@ -166,7 +166,7 @@ public class Controlador implements ActionListener {
 				e1.printStackTrace();
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarPromPerm)) {
-			
+			sistema.saca
 		}else if(e.getActionCommand().equals(IVista.modificarPromPerm)) {
 			
 		}else if(e.getActionCommand().equals(IVista.crearPromTemp)) {

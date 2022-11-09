@@ -258,7 +258,7 @@ public class Sistema {
 		this.promosFijas.add(pp) ;
 	}
 	
-	public void sacaPromocionTemporal(PromocionPermanente pp) {
+	public void sacaPromocionPermanente(PromocionPermanente pp) {
 		this.promosFijas.remove(pp);
 	}
 	

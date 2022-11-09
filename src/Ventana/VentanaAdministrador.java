@@ -2220,6 +2220,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public Producto getSelectedProducto() {
 		return (Producto) this.listProductos.getSelectedValue();
 	}
+	
+	public PromocionPermanente getSelectedPromPerm() {
+		return (PromocionPermanente) this.listPromPerm.getSelectedValue();
+	}
 
 	public void logueoAdmin() {
 		this.textFieldLoginUsuario.setText("");
