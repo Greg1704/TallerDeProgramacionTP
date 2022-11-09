@@ -398,8 +398,7 @@ public class Sistema {
 			
 			total += parcialPorProducto;
 			
-		}
-		
+		}	
 		
 		comanda.getMozo().setCantidadRecaudada(comanda.getMozo().getCantidadRecaudada() + total);
 		comanda.getMesa().setCantCompras(comanda.getMesa().getCantCompras() + 1);

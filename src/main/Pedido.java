@@ -3,16 +3,23 @@ package main;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import excepciones.StockNegativoException;
+
 public class Pedido implements Serializable{
 	private int cantidad;
 	private LocalDate fecha = LocalDate.now();
 	private Producto producto;
 	
 	
-	public Pedido(int cantidad, Producto producto) {
-		super();
-		this.cantidad = cantidad;
-		this.producto = producto;
+	public Pedido(int cantidad, Producto producto) throws StockNegativoException{
+	
+		if(producto.getStock() - cantidad < 0) {
+			throw new StockNegativoException();
+		}else {
+			this.cantidad = cantidad;
+			this.producto = producto;
+		}
+
 	}
 
 	public int getCantidad() {

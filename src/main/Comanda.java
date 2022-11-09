@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.MesaNoAsignadaException;
+import excepciones.StockNegativoException;
 
 public class Comanda {
 	private ArrayList<Pedido> pedidos = new ArrayList<>();
@@ -54,7 +55,7 @@ public class Comanda {
 			return Sistema.getInstancia().buscaMozo(mesa);
 	}
 	
-	public void agregarPedido(Pedido pedido) {
+	public void agregarPedido(Pedido pedido){
 		int i;	
 		boolean cumple = false;
 		
