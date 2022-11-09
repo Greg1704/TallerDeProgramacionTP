@@ -1691,10 +1691,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldPromTempNombreAlta.setText("");
 			this.textFieldPromTempPorcentajeDtoAlta.setText("");
 			this.btnPromTempAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnPromTempModif && this.btnPromTempModif.isEnabled()) {
+		}else if((e.getSource() == this.btnPromTempModif && this.btnPromTempModif.isEnabled()) || (e.getSource() == this.btnPromTempBaja && this.btnPromTempBaja.isEnabled()) ) {
+			this.comboBoxPromTempEstadoModif.setSelectedIndex(0);
+			this.comboBoxPromTempDiasModif.setSelectedIndex(0);
+			this.comboBoxPromTempAcumulableModif.setSelectedIndex(0);
+			this.comboBoxPromTempMetodoPagoModif.setSelectedIndex(0);
 			this.textFieldPromTempNombreModif.setText("");
 			this.textFieldPromTempPorcentajeDtoModif.setText("");
 			this.btnPromTempModif.setEnabled(false);
+			this.btnPromTempBaja.setEnabled(false);
+			this.listPromTemp.clearSelection();
 		}else if(e.getSource() == this.btnMozoAlta && this.btnMozoAlta.isEnabled()) {
 			this.textFieldMozoHijosAlta.setText("");
 			this.textFieldMozoNyAAlta.setText("");
@@ -1749,6 +1755,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnPromPermBaja.setEnabled(true);
 			this.btnPromPermModif.setEnabled(true);
 			c.recuperarDatosPromPerm(getSelectedPromPerm());
+		}else if(e.getSource() == this.listPromTemp && !this.listPromTemp.isSelectionEmpty()) {
+			this.btnPromTempBaja.setEnabled(true);
+			this.btnPromTempModif.setEnabled(true);
+			c.recuperarDatosPromTemp(getSelectedPromTemp());
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
@@ -2124,48 +2134,48 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return (String) comboBoxPromTempDiasModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromTempDiasModif(JComboBox comboBoxPromTempDiasModif) {
-		this.comboBoxPromTempDiasModif = comboBoxPromTempDiasModif;
+	public void setComboBoxPromTempDiasModif(String comboBoxPromTempDiasModif) {
+		this.comboBoxPromTempDiasModif.setSelectedItem(comboBoxPromTempDiasModif);
 	}
 
 	public int getTextFieldPromTempPorcentajeDtoModif() {
 		return Integer.parseInt(textFieldPromTempPorcentajeDtoModif.getText());
 	}
 
-	public void setTextFieldPromTempPorcentajeDtoModif(JTextField textFieldPromTempPorcentajeDtoModif) {
-		this.textFieldPromTempPorcentajeDtoModif = textFieldPromTempPorcentajeDtoModif;
+	public void setTextFieldPromTempPorcentajeDtoModif(int textFieldPromTempPorcentajeDtoModif) {
+		this.textFieldPromTempPorcentajeDtoModif.setText(Integer.toString(textFieldPromTempPorcentajeDtoModif));
 	}
 
 	public String getComboBoxPromTempAcumulableModif() {
 		return (String) comboBoxPromTempAcumulableModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromTempAcumulableModif(JComboBox comboBoxPromTempAcumulableModif) {
-		this.comboBoxPromTempAcumulableModif = comboBoxPromTempAcumulableModif;
+	public void setComboBoxPromTempAcumulableModif(String comboBoxPromTempAcumulableModif) {
+		this.comboBoxPromTempAcumulableModif.setSelectedItem(comboBoxPromTempAcumulableModif);
 	}
 
 	public String getComboBoxPromTempMetodoPagoModif() {
 		return (String) comboBoxPromTempMetodoPagoModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromTempMetodoPagoModif(JComboBox comboBoxPromTempMetodoPagoModif) {
-		this.comboBoxPromTempMetodoPagoModif = comboBoxPromTempMetodoPagoModif;
+	public void setComboBoxPromTempMetodoPagoModif(String comboBoxPromTempMetodoPagoModif) {
+		this.comboBoxPromTempMetodoPagoModif.setSelectedItem(comboBoxPromTempMetodoPagoModif);
 	}
 
 	public String getTextFieldPromTempNombreModif() {
 		return (String) textFieldPromTempNombreModif.getText();
 	}
 
-	public void setTextFieldPromTempNombreModif(JTextField textFieldPromTempNombreModif) {
-		this.textFieldPromTempNombreModif = textFieldPromTempNombreModif;
+	public void setTextFieldPromTempNombreModif(String textFieldPromTempNombreModif) {
+		this.textFieldPromTempNombreModif.setText(textFieldPromTempNombreModif);
 	}
 
 	public String getComboBoxPromTempEstadoModif() {
 		return (String) comboBoxPromTempEstadoModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromTempEstadoModif(JComboBox comboBoxPromTempEstadoModif) {
-		this.comboBoxPromTempEstadoModif = comboBoxPromTempEstadoModif;
+	public void setComboBoxPromTempEstadoModif(String comboBoxPromTempEstadoModif) {
+		this.comboBoxPromTempEstadoModif.setSelectedItem(comboBoxPromTempEstadoModif);
 	}
 	
 	

@@ -38,6 +38,7 @@ public class Controlador implements ActionListener {
 	Mozo mozo=null;
 	Producto producto=null;
 	PromocionPermanente promPerm = null;
+	PromocionTemporal promTemp = null;
 	
 	
 	private Controlador () {
@@ -229,9 +230,38 @@ public class Controlador implements ActionListener {
 			
 		}else if(e.getActionCommand().equals(IVista.modificarPromTemp)) {
 			
+			boolean activo,acumulable;
+			promTemp = v.getSelectedPromTemp();
 			
+			if(v.getComboBoxPromTempEstadoModif().equals("Activa"))
+				activo = true;
+			else
+				activo = false;
 			
+			if(activo != promTemp.isActivo())
+				promTemp.setActivo(activo);
 			
+			if(!promTemp.getDiaDePromo().equals(v.getComboBoxPromTempDiasModif()))
+				promTemp.setDiaDePromo(v.getComboBoxPromTempDiasModif());
+			
+			if(!promTemp.getNombre().equals(v.getTextFieldPromTempNombreModif()))
+				promTemp.setNombre(v.getTextFieldPromTempNombreModif());
+			
+			if(promTemp.getPorcentajeDeDto() != v.getTextFieldPromTempPorcentajeDtoModif())
+				promTemp.setPorcentajeDeDto(v.getTextFieldPromTempPorcentajeDtoModif());
+			
+			if(v.getComboBoxPromTempAcumulableModif().equals("Si"))
+				acumulable = true;
+			else
+				acumulable = false;
+			
+			if(promTemp.isEsAcumulable() != acumulable)
+				promTemp.setEsAcumulable(acumulable);
+			
+			if(!promTemp.getFormaPago().equals(v.getComboBoxPromTempMetodoPagoModif()))
+				promTemp.setFormaPago(v.getComboBoxPromTempMetodoPagoModif());
+			
+			v.actualizarListaPromTemp();
 			
 		}else if(e.getActionCommand().equals(IVista.crearMozo)) { //Ventana mozos
 			try {
@@ -385,6 +415,27 @@ public class Controlador implements ActionListener {
 			dtoCantidad = "No";
 		v.setComboBoxPromPermDtoPorCantModif(dtoCantidad);
 	}
+	
+	public void recuperarDatosPromTemp(PromocionTemporal promTemp) {
+		// TODO Auto-generated method stub
+		String activo,acumulable;
+		v.setComboBoxPromTempDiasModif(promTemp.getDiaDePromo());
+		v.setTextFieldPromTempNombreModif(promTemp.getNombre());
+		v.setTextFieldPromTempPorcentajeDtoModif(promTemp.getPorcentajeDeDto());
+		v.setComboBoxPromTempMetodoPagoModif(promTemp.getFormaPago());
+		if(promTemp.isActivo() == true)
+			activo = "Activa";
+		else
+			activo = "Inactiva";
+		v.setComboBoxPromTempEstadoModif(activo);
+		
+		if(promTemp.isEsAcumulable() == true)
+			acumulable = "Si";
+		else
+			acumulable = "No";
+		v.setComboBoxPromTempAcumulableModif(acumulable);
+		
+	}
 	public ArrayList<Operario> recuperaListaOperarios() {
 		return sistema.getOperarios();
 	}
@@ -412,8 +463,5 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		return sistema.getProducto();
 	}
-
-	
-
 	
 }
