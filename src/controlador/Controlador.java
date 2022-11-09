@@ -285,7 +285,7 @@ public class Controlador implements ActionListener {
 			
 		}else if(e.getActionCommand().equals(IVista.crearMozo)) { //Ventana mozos
 			try {
-				sistema.agregaMozo(new Mozo(null,"ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
+				sistema.agregaMozo(new Mozo("ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
 				v.actualizarListaMozos();
 				v.actualizarListaMozosEstados();
 			} catch (MozoDuplicadoException e1) {

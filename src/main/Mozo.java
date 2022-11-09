@@ -15,8 +15,7 @@ public class Mozo implements Serializable{
 	private double cantidadRecaudada;
 	private int mesasAtendidas;
 	
-	public Mozo(ArrayList<Mesa> mesas, String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException{
-		this.mesas = mesas;
+	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException{
 		this.estado = estado;
 		this.hijos = hijos;
 		this.NombreYApellido = nombreYApellido;

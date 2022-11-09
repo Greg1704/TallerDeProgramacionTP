@@ -1787,12 +1787,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		}else if(e.getSource() == this.btnEstadoConfirmar && this.btnEstadoConfirmar.isEnabled()) {
 			this.listMozosEstados.clearSelection();
 			this.btnEstadoConfirmar.setEnabled(false);
-		}else if((e.getSource() == this.listMozosActivos || e.getSource() == this.listMesasAsignables) && !this.listMozosActivos.isSelectionEmpty() && !this.listMesasAsignables.isSelectionEmpty()) {
-			this.btnAsignarMozoMesa.setEnabled(true);
 		}else if (e.getSource() == this.btnAsignarMozoMesa && this.btnAsignarMozoMesa.isEnabled()){
 			this.listMozosActivos.clearSelection();
 			this.listMesasAsignables.clearSelection();
 			this.btnAsignarMozoMesa.setEnabled(false);
+		}else if((e.getSource() == this.listMozosActivos || e.getSource() == this.listMesasAsignables) && !this.listMozosActivos.isSelectionEmpty() && !this.listMesasAsignables.isSelectionEmpty()) {
+			this.btnAsignarMozoMesa.setEnabled(true);
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
