@@ -202,6 +202,13 @@ public class Sistema {
 		this.productos.remove(p);
 	}
 	
+	public Producto buscaProducto(String nombre) {
+		int i = 0;
+		while (i<productos.size() && !this.productos.get(i).getNombre().equals(nombre))
+			i++;
+		return productos.get(i);
+	}
+	
 	public void agregaMesa(int numero,int cantComensales) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
 			if(this.mesas.get(i).getNumero() == numero)
