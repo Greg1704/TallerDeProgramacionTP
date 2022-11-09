@@ -40,7 +40,6 @@ public class Mozo implements Serializable{
 		
 	}
 	
-	
 	public ArrayList<Mesa> getMesas() {
 		return mesas;
 	}
@@ -97,6 +96,10 @@ public class Mozo implements Serializable{
 
 	public String toStringGeneral() {
 		return "NombreYApellido: " + NombreYApellido +" Estado: " + estado;
+	}
+	
+	public void inicializaArrayList() {
+		this.mesas = new ArrayList<Mesa>();
 	}
 	
 	@Override

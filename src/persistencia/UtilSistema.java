@@ -23,6 +23,7 @@ public class UtilSistema {
 	
 	public static void sistemafromSistemaDTO(SistemaDTO sist) {
 		Sistema sistema = Sistema.getInstancia();
+		int cant;
 		
 		sistema.setAdmin(sist.getAdmin());
 		sistema.setFacturas(sist.getFacturas());
@@ -34,6 +35,12 @@ public class UtilSistema {
 		sistema.setPromosFijas(sist.getPromosFijas());
 		sistema.setPromosTemporales(sist.getPromosTemporales());
 		sistema.setSueldo(sist.getSueldo());
+		
+		cant = sistema.getMozos().size();
+		
+		for(int i = 0; i < cant; i++) {
+			sistema.getMozos().get(i).inicializaArrayList();
+		}
 		
 	}
 
