@@ -1753,31 +1753,38 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	@Override
 	public void itemStateChanged(ItemEvent e) {  //REVISAR AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 		// TODO Auto-generated method stub
-		if(e.getStateChange() == this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() && this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() == 0) {
-				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(true);
-				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(true);
-				this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
-				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
-				this.btnPromPermAlta.setEnabled(false);
-		}else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() && this.comboBoxPromPermDtoPorCantAlta.getSelectedIndex() == 1){
-				this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(false);
-				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(false);
-				this.textFieldPromPermDtoPorCantMinimoAlta.setText("0");
-				this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("0");
-				this.btnPromPermAlta.setEnabled(true);
-		}
-		else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() && this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() == 0){
-				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(true);
-				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(true);
-				this.textFieldPromPermDtoPorCantMinimoModif.setText("");
-				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("");
-				this.btnPromPermModif.setEnabled(false);
-		}else if(e.getStateChange() == this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() && this.comboBoxPromPermDtoPorCantModif.getSelectedIndex() == 1){
-				this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(false);
-				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(false);
-				this.textFieldPromPermDtoPorCantMinimoModif.setText("0");
-				this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("0");
-				this.btnPromPermModif.setEnabled(true);
+		if(e.getStateChange() == ItemEvent.SELECTED) {
+			Object source = (JComboBox) e.getSource();
+			if(source.equals(this.comboBoxPromPermDtoPorCantAlta)) {
+				if(this.comboBoxPromPermDtoPorCantAlta.getSelectedItem().equals("Si")) {
+					this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(true);
+					this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(true);
+					this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
+					this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
+					this.btnPromPermAlta.setEnabled(false);
+				}else {
+					this.textFieldPromPermDtoPorCantMinimoAlta.setEnabled(false);
+					this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setEnabled(false);
+					this.textFieldPromPermDtoPorCantMinimoAlta.setText("0");
+					this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("0");
+					this.btnPromPermAlta.setEnabled(true);
+				}
+			}else if(source.equals(this.comboBoxPromPermDtoPorCantModif)) {
+				if(this.comboBoxPromPermDtoPorCantModif.getSelectedItem().equals("Si")) {
+					this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(true);
+					this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(true);
+					this.textFieldPromPermDtoPorCantMinimoModif.setText("");
+					this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("");
+					this.btnPromPermModif.setEnabled(false);
+				}else {
+					this.textFieldPromPermDtoPorCantMinimoModif.setEnabled(false);
+					this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setEnabled(false);
+					this.textFieldPromPermDtoPorCantMinimoModif.setText("0");
+					this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText("0");
+					this.btnPromPermModif.setEnabled(true);
+				}
+			}
+			
 		}
 	}
 	
@@ -2314,6 +2321,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.tabbedPane.setEnabledAt(3, true);
 		this.tabbedPane.setEnabledAt(4, true);
 		this.tabbedPane.setEnabledAt(5, true);
+		actualizar();
 	}
 	
 	public void logueoOperario() {
@@ -2325,6 +2333,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldNombreLocal.setEnabled(false);
 		this.btnRecuperarSistema.setEnabled(false);
 		this.tabbedPane.setEnabledAt(1, true);
+		actualizar();
 	}
 	
 	public void logout() {
@@ -2406,6 +2415,17 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		ArrayList<Producto> it = c.recuperaListaProductos();
 		for(int i=0;i<it.size();i++) 
 			this.comboBoxPromPermProductoModif.addItem(it.get(i).getNombre());
+	}
+	
+	public void actualizar() {
+		actualizarListaOperarios();
+		actualizarListaMesas();
+		actualizarListaPromPerm();
+		actualizarListaPromTemp();
+		actualizarListaMozos();
+		actualizarListaProductos();
+		actualizarComboBoxProductosAlta();
+		actualizarComboBoxProductosModif();
 	}
 }
 	

@@ -25,6 +25,7 @@ import main.Producto;
 import main.PromocionPermanente;
 import main.PromocionTemporal;
 import main.Sistema;
+import persistencia.PersistirSistema;
 
 public class Controlador implements ActionListener {
 	
@@ -59,9 +60,11 @@ public class Controlador implements ActionListener {
 			v.setLblNombreLocalGrande(sistema.getNombre());
 			primeraVez=true;
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
-			
+			PersistirSistema.EscrituraSistema();
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
-			
+			PersistirSistema.LecturaSistema();
+			sistema=Sistema.getInstancia();
+			v.setLblNombreLocalGrande(sistema.getNombre());
 		}else if(e.getActionCommand().equals(IVista.confirmaLoginUsuario)) {
 			if(v.getTextFieldLoginUsuario().equals("ADMIN")) {
 				try {
@@ -146,7 +149,7 @@ public class Controlador implements ActionListener {
 				mesa.setComensales(v.getTextFieldMesaCantidadComensalesModif());
 			}
 			v.actualizarListaMesas();
-		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) { //Ventana promociones VER LO DE COMO METER EL PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		}else if(e.getActionCommand().equals(IVista.crearPromPerm)) {
 			boolean dosPorUno,dtoPorCantidad;
 			if(v.getComboBoxPromPermDosPorUnoAlta().equals("Si")) 
 				dosPorUno=true;
@@ -156,8 +159,9 @@ public class Controlador implements ActionListener {
 				dtoPorCantidad=true;
 			else
 				dtoPorCantidad=false;
+			producto = sistema.buscaProducto(v.getComboBoxPromPermProductoAlta());
 			try {
-				sistema.agregaPromocionPermanente(new PromocionPermanente(true,v.getComboBoxPromPermDiasAlta(),null,dosPorUno,dtoPorCantidad,
+				sistema.agregaPromocionPermanente(new PromocionPermanente(true,v.getComboBoxPromPermDiasAlta(),producto,dosPorUno,dtoPorCantidad,
 						v.getTextFieldPromPermDtoPorCantMinimoAlta(),v.getTextFieldPromPermDtoPorCantPrecioUnitarioAlta()));
 				v.actualizarListaPromPerm();
 			} catch (NoHayPromoException e1) {
