@@ -3,7 +3,7 @@ package main;
 import java.io.Serializable;
 
 public class Operario implements Serializable{
-	private transient boolean activo;
+	private boolean activo;
 	private String nombreDeUsuario; //Tamaño 10
 	private String password;		//Tamaño de 6 a 12
 	private String nombreYApellido;

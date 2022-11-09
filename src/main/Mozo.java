@@ -9,7 +9,7 @@ import excepciones.MenorDeDieciochoException;
 
 public class Mozo implements Serializable{
 	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>();
-	private String estado;
+	private transient String estado;
 	private int hijos;
 	private String NombreYApellido;
 	private LocalDate fechaDeNacimiento;
