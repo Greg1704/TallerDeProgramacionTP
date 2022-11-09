@@ -71,13 +71,9 @@ public class Mesa implements Serializable{
 		return "Mesa numero: " + this.numero + " tiene un promedio de $" + generaPromedio();
 	}
 
-
-	public String toStringGeneral() {
+	@Override
+	public String toString() {
 		return "Mesa numero: " + numero + " Estado: " + estado + " Comensales: " + comensales ;
-	}
-	
-	public String toStringMesas() {
-		return "Mesa numero: " + numero + " Comensales: " + comensales ;
 	}
 	
 	
