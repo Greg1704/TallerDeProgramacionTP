@@ -166,9 +166,15 @@ public class Controlador implements ActionListener {
 				e1.printStackTrace();
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarPromPerm)) {
-			sistema.saca
+			sistema.sacaPromocionPermanente(v.getSelectedPromPerm());
+			v.actualizarListaPromPerm();
 		}else if(e.getActionCommand().equals(IVista.modificarPromPerm)) {
-			
+			boolean activa;
+			if(v.getComboBoxPromPermEstadoModif().equals("Activa"))
+				activa = true;
+			else
+				activa = false;
+			producto = sistema.buscaProducto(v.getComboBoxPromPermProductoModif());
 		}else if(e.getActionCommand().equals(IVista.crearPromTemp)) {
 			boolean acumulable;
 			if(v.getComboBoxPromTempAcumulableAlta().equals("Si"))
@@ -219,6 +225,8 @@ public class Controlador implements ActionListener {
 			try {
 				sistema.agregaProductos(new Producto(v.getTextFieldProductoNombreAlta(),v.getTextFieldProductoPrecioCostoAlta(),v.getTextFieldProductoPrecioVentaAlta(),v.getTextFieldProductoStockInicialAlta()));
 				v.actualizarListaProductos();
+				v.actualizarComboBoxProductosAlta();
+				v.actualizarComboBoxProductosModif();
 			} catch (ProductoDuplicadoException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -232,6 +240,8 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.eliminarProducto)) {
 			sistema.sacaProducto(v.getSelectedProducto());
 			v.actualizarListaProductos();
+			v.actualizarComboBoxProductosAlta();
+			v.actualizarComboBoxProductosModif();
 		}else if(e.getActionCommand().equals(IVista.modificarProducto)) {
 			producto = v.getSelectedProducto();
 			if(!producto.getNombre().equals(v.getTextFieldProductoNombreModif()))
@@ -260,10 +270,14 @@ public class Controlador implements ActionListener {
 			if(producto.getStock() != v.getTextFieldProductoStockInicialModif())
 				producto.setStock(v.getTextFieldProductoStockInicialModif());
 			v.actualizarListaProductos();
+			v.actualizarComboBoxProductosAlta();
+			v.actualizarComboBoxProductosModif();
 		}else if(e.getActionCommand().equals(IVista.actualizarStockProducto)) {
 			producto = v.getSelectedProducto();
 			producto.setStock(v.getTextFieldProductoNuevoStock());
 			v.actualizarListaProductos();
+			v.actualizarComboBoxProductosAlta();
+			v.actualizarComboBoxProductosModif();
 		}
 		
 		
@@ -305,6 +319,28 @@ public class Controlador implements ActionListener {
 		v.setTextFieldProductoPrecioVentaModif(producto.getPrecioDeVenta());
 		v.setTextFieldProductoStockInicialModif(producto.getStock());
 	}
+	
+	public void recuperarDatosPromPerm(PromocionPermanente promPerm) {
+		String activa,dosPorUno,dtoCantidad;
+		v.setTextFieldPromPermDtoPorCantMinimoModif(promPerm.getDtoPorCantidad_cantidadMinima());
+		v.setTextFieldPromPermDtoPorCantPrecioUnitarioModif(promPerm.getDtoPorCantidad_PrecioUnitario());
+		if(promPerm.isActivo())
+			activa = "Activa";
+		else
+			activa = "Inactiva";
+		v.setComboBoxPromPermEstadoModif(activa);
+		v.setComboBoxPromPermDiasModif(promPerm.getDiaDePromo());
+		if(promPerm.isAplicaDosPorUno())
+			dosPorUno = "Si";
+		else
+			dosPorUno = "No";
+		v.setComboBoxPromPermDosPorUnoModif(dosPorUno);
+		if(promPerm.isAplicaDtoPorCantidad())
+			dtoCantidad = "Si";
+		else
+			dtoCantidad = "No";
+		v.setComboBoxPromPermDtoPorCantModif(dtoCantidad);
+	}
 	public ArrayList<Operario> recuperaListaOperarios() {
 		return sistema.getOperarios();
 	}
@@ -332,6 +368,8 @@ public class Controlador implements ActionListener {
 		// TODO Auto-generated method stub
 		return sistema.getProducto();
 	}
+
+	
 
 	
 }

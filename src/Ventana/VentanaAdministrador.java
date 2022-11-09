@@ -1355,9 +1355,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.listPromPerm.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListPromPerm = new DefaultListModel<PromocionPermanente>();
 		this.listPromPerm.setModel(modelListPromPerm);
+		this.listPromPerm.addMouseListener(this);
 		this.listPromTemp.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListPromTemp = new DefaultListModel<PromocionTemporal>();
 		this.listPromTemp.setModel(modelListPromTemp);
+		this.listPromTemp.addMouseListener(this);
 		
 		this.comboBoxPromPermDiasAlta.addItem("Lunes");
 		this.comboBoxPromPermDiasAlta.addItem("Martes");
@@ -1367,7 +1369,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.comboBoxPromPermDiasAlta.addItem("Sabado");
 		this.comboBoxPromPermDiasAlta.addItem("Domingo");
 		
-		//QUE MIERDA HAGO CON PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 		
 		this.comboBoxPromPermDosPorUnoAlta.addItem("Si");
 		this.comboBoxPromPermDosPorUnoAlta.addItem("No");
@@ -1386,7 +1387,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.comboBoxPromPermDiasModif.addItem("Sabado");
 		this.comboBoxPromPermDiasModif.addItem("Domingo");
 		
-		//QUE MIERDA HAGO CON PRODUCTO AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 		
 		this.comboBoxPromPermDosPorUnoModif.addItem("Si");
 		this.comboBoxPromPermDosPorUnoModif.addItem("No");
@@ -1667,10 +1667,18 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldPromPermDtoPorCantMinimoAlta.setText("");
 			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
 			this.btnPromPermAlta.setEnabled(false);
-		}else if(e.getSource() == this.btnPromPermModif && this.btnPromPermModif.isEnabled()) {
+		}else if((e.getSource() == this.btnPromPermModif && this.btnPromPermModif.isEnabled()) || (e.getSource() == this.btnPromPermBaja && this.btnPromPermBaja.isEnabled())) {
+			this.comboBoxPromPermDiasModif.setSelectedIndex(0);
+			this.comboBoxPromPermDosPorUnoModif.setSelectedIndex(0);
+			this.comboBoxPromPermDtoPorCantModif.setSelectedIndex(0);
+			this.comboBoxPromPermEstadoModif.setSelectedIndex(0);
+			this.comboBoxPromPermProductoModif.setSelectedIndex(0);
+			this.comboBoxPromPermProductoModif.setSelectedIndex(0);
 			this.textFieldPromPermDtoPorCantMinimoModif.setText("");
 			this.textFieldPromPermDtoPorCantPrecioUnitarioAlta.setText("");
 			this.btnPromPermModif.setEnabled(false);
+			this.btnPromPermBaja.setEnabled(false);
+			this.listPromPerm.clearSelection();
 		}else if(e.getSource() == this.btnPromTempAlta && this.btnPromTempAlta.isEnabled()) {
 			this.textFieldPromTempNombreAlta.setText("");
 			this.textFieldPromTempPorcentajeDtoAlta.setText("");
@@ -1729,6 +1737,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			boolean hab = !(this.textFieldProductoNuevoStock.getText().isEmpty() || this.listProductos.isSelectionEmpty());
 			this.btnProductoNuevoStock.setEnabled(hab);
 			c.recuperaDatosProducto(getSelectedProducto());
+		}else if(e.getSource() == this.listPromPerm && !this.listPromPerm.isSelectionEmpty()) {
+			this.btnPromPermBaja.setEnabled(true);
+			this.btnPromPermModif.setEnabled(true);
+			c.recuperarDatosPromPerm(getSelectedPromPerm());
 		}
 		
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
@@ -1932,41 +1944,40 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return (String) comboBoxPromPermDiasModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromPermDiasModif(JComboBox comboBoxPromPermDiasModif) {
-		this.comboBoxPromPermDiasModif = comboBoxPromPermDiasModif;
+	public void setComboBoxPromPermDiasModif(String comboBoxPromPermDiasModif) {
+		this.comboBoxPromPermDiasModif.setSelectedItem(comboBoxPromPermDiasModif);
 	}
 
 	public String getComboBoxPromPermDosPorUnoModif() {
 		return (String) comboBoxPromPermDosPorUnoModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromPermDosPorUnoModif(JComboBox comboBoxPromPermDosPorUnoModif) {
-		this.comboBoxPromPermDosPorUnoModif = comboBoxPromPermDosPorUnoModif;
+	public void setComboBoxPromPermDosPorUnoModif(String comboBoxPromPermDosPorUnoModif) {
+		this.comboBoxPromPermDosPorUnoModif.setSelectedItem(comboBoxPromPermDosPorUnoModif);
 	}
 
 	public String getComboBoxPromPermDtoPorCantModif() {
 		return (String) comboBoxPromPermDtoPorCantModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromPermDtoPorCantModif(JComboBox comboBoxPromPermDtoPorCantModif) {
-		this.comboBoxPromPermDtoPorCantModif = comboBoxPromPermDtoPorCantModif;
+	public void setComboBoxPromPermDtoPorCantModif(String comboBoxPromPermDtoPorCantModif) {
+		this.comboBoxPromPermDtoPorCantModif.setSelectedItem(comboBoxPromPermDtoPorCantModif);
 	}
 
 	public int getTextFieldPromPermDtoPorCantMinimoModif() {
 		return Integer.parseInt(textFieldPromPermDtoPorCantMinimoModif.getText());
 	}
 
-	public void setTextFieldPromPermDtoPorCantMinimoModif(JTextField textFieldPromPermDtoPorCantMinimoModif) {
-		this.textFieldPromPermDtoPorCantMinimoModif = textFieldPromPermDtoPorCantMinimoModif;
+	public void setTextFieldPromPermDtoPorCantMinimoModif(int textFieldPromPermDtoPorCantMinimoModif) {
+		this.textFieldPromPermDtoPorCantMinimoModif.setText(Integer.toString(textFieldPromPermDtoPorCantMinimoModif));
 	}
 
 	public double getTextFieldPromPermDtoPorCantPrecioUnitarioModif() {
 		return Double.parseDouble(textFieldPromPermDtoPorCantPrecioUnitarioModif.getText());
 	}
 
-	public void setTextFieldPromPermDtoPorCantPrecioUnitarioModif(
-			JTextField textFieldPromPermDtoPorCantPrecioUnitarioModif) {
-		this.textFieldPromPermDtoPorCantPrecioUnitarioModif = textFieldPromPermDtoPorCantPrecioUnitarioModif;
+	public void setTextFieldPromPermDtoPorCantPrecioUnitarioModif(double textFieldPromPermDtoPorCantPrecioUnitarioModif) {
+		this.textFieldPromPermDtoPorCantPrecioUnitarioModif.setText(Double.toString(textFieldPromPermDtoPorCantPrecioUnitarioModif));
 	}
 
 	public String getComboBoxPromPermProductoAlta() {
@@ -1981,16 +1992,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return (String) comboBoxPromPermProductoModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromPermProductoModif(JComboBox comboBoxPromPermProductoModif) {
-		this.comboBoxPromPermProductoModif = comboBoxPromPermProductoModif;
+	public void setComboBoxPromPermProductoModif(String comboBoxPromPermProductoModif) {
+		this.comboBoxPromPermProductoModif.setSelectedItem(comboBoxPromPermProductoModif);
 	}
 
 	public String getComboBoxPromPermEstadoModif() {
 		return (String) comboBoxPromPermEstadoModif.getSelectedItem();
 	}
 
-	public void setComboBoxPromPermEstadoModif(JComboBox comboBoxPromPermEstadoModif) {
-		this.comboBoxPromPermEstadoModif = comboBoxPromPermEstadoModif;
+	public void setComboBoxPromPermEstadoModif(String comboBoxPromPermEstadoModif) {
+		this.comboBoxPromPermEstadoModif.setSelectedItem(comboBoxPromPermEstadoModif);
 	}
 	
 	
@@ -2316,5 +2327,19 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		for(int i=0;i<it.size();i++) {
 			this.modelListProductos.addElement(it.get(i));
 		}
+	}
+	
+	public void actualizarComboBoxProductosAlta() {
+		this.comboBoxPromPermProductoAlta.removeAllItems();
+		ArrayList<Producto> it = c.recuperaListaProductos();
+		for(int i=0;i<it.size();i++) 
+			this.comboBoxPromPermProductoAlta.addItem(it.get(i).getNombre());
+	}
+	
+	public void actualizarComboBoxProductosModif() {
+		this.comboBoxPromPermProductoModif.removeAllItems();
+		ArrayList<Producto> it = c.recuperaListaProductos();
+		for(int i=0;i<it.size();i++) 
+			this.comboBoxPromPermProductoModif.addItem(it.get(i).getNombre());
 	}
 }
