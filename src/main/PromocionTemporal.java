@@ -55,6 +55,13 @@ public class PromocionTemporal extends Promocion{
 	public void setFormaPago(String formaPago) {
 		this.formaPago = formaPago;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Promocion Temporal: nombre=" + nombre + " Porcentaje de descuento: " + porcentajeDeDto + " Se acumula: "
+				+ esAcumulable + " Forma de pago: " + formaPago + " Dia de promo: " + getDiaDePromo();
+	}
 	
 	
 	

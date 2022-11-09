@@ -89,6 +89,13 @@ public class PromocionPermanente extends Promocion{
 	public int getId_Promocion() {
 		return id_Promocion;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Promocion Permanente: ID Promocion: " + id_Promocion + " Producto: " + producto.getNombre() + " Aplica dos por uno: "
+				+ aplicaDosPorUno + " Aplica descuento por cantidad: " + aplicaDtoPorCantidad + " Dia de promo: " + getDiaDePromo();
+	}
 	
 	
 	

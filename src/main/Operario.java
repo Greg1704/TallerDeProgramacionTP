@@ -8,7 +8,6 @@ public class Operario {
 	
 	
 	public Operario(String nombreDeUsuario, String password, String nombreYApellido) {
-		super();
 		this.activo=true;
 		this.nombreDeUsuario = nombreDeUsuario;
 		this.password = password;
@@ -44,4 +43,12 @@ public class Operario {
 	public void asignaMozoAMesa(Mozo mozo,Mesa mesa) {
 		mozo.agregarMesa(mesa);
 	}
+
+
+	@Override
+	public String toString() {
+		return "Nombre y Apellido: " + nombreYApellido + " Nombre de usuario: " + nombreDeUsuario  + "Se encuentra activo:" + activo ;
+	}
+	
+	
 }

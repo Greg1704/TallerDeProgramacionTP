@@ -30,14 +30,9 @@ public class Producto {
 		}
 			
 	}
-	
-	
+		
 	public int getId() {
 		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getNombre() {
@@ -80,6 +75,15 @@ public class Producto {
 	
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+
+	public String toStringProductos() {
+		return "Nombre del producto: " + nombre + " ID del producto: " + getId() +  " Precio de costo: " + precioDeCosto + " Precio de venta: " + precioDeVenta+ " Stock: " + stock;
+	}
+	
+	public String toStringGeneral() {
+		return "Nombre del producto: " + nombre + " Precio de venta: " + precioDeVenta+ " Stock: " + stock;
 	}
 	
 }

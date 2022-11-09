@@ -14,7 +14,6 @@ public class Comanda {
 	
 	
 	public Comanda(Mesa mesa) throws MesaNoAsignadaException {
-		super();
 		this.estado = "Abierta";
 		this.mesa = mesa;
 		this.mozo = obtenerMozo();
@@ -77,6 +76,11 @@ public class Comanda {
 			}		
 		}	
 	}
-	
+
+	@Override
+	public String toString() {
+		return  "Mesa: " + mesa.getNumero() + " Estado: " + estado + " Fecha: " + fecha;
+	}
+
 	
 }

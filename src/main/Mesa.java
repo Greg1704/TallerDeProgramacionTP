@@ -68,5 +68,15 @@ public class Mesa {
 	public String muestraProm() {
 		return "Mesa numero: " + this.numero + " tiene un promedio de $" + generaPromedio();
 	}
+
+
+	public String toStringGeneral() {
+		return "Mesa numero: " + numero + " Estado: " + estado + " Comensales: " + comensales ;
+	}
+	
+	public String toStringMesas() {
+		return "Mesa numero: " + numero + " Comensales: " + comensales ;
+	}
+	
 	
 }

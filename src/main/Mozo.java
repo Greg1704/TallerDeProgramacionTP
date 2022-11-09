@@ -79,11 +79,13 @@ public class Mozo {
 	}
 
 
-	@Override
-	public String toString() {
-		return "NombreYApellido=" + NombreYApellido +" estado: " + estado;
+	public String toStringGeneral() {
+		return "NombreYApellido: " + NombreYApellido +" Estado: " + estado;
 	}
 	
+	public String toStringMozos() {
+		return "NombreYApellido: " + NombreYApellido +" Estado: " + estado + " Fecha de nacimiento: " + fechaDeNacimiento +" Cantidad de Hijos: " + hijos;
+	}
 	
 
 }
