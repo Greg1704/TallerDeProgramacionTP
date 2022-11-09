@@ -112,10 +112,11 @@ public class Controlador implements ActionListener {
 			mesa = v.getSelectedMesaAsignable();
 			mozo = v.getSelectedMozoActivo();
 			mozo.agregarMesa(mesa); 
-			mesa.setEstado("Ocupada");
 			v.actualizarListaMesas();
 			v.actualizarListaMesasAsignables();
 		}else if(e.getActionCommand().equals(IVista.ocupaMesa)) {
+			
+			mesa = v.getSelectedMesaAsignable();
 			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
 			
