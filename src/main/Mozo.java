@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import excepciones.HijosNegativosException;
+import excepciones.MenorDeDieciochoException;
 
 public class Mozo implements Serializable{
 	private transient ArrayList<Mesa> mesas = new ArrayList<Mesa>();
@@ -14,14 +15,29 @@ public class Mozo implements Serializable{
 	private LocalDate fechaDeNacimiento;
 	private double cantidadRecaudada;
 	private int mesasAtendidas;
+	private LocalDate today; 
+	private LocalDate suma; 
 	
-	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException{
+	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException,MenorDeDieciochoException{
 		this.estado = estado;
-		this.hijos = hijos;
 		this.NombreYApellido = nombreYApellido;
-		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.mesasAtendidas = 0;
 		this.cantidadRecaudada = 0;
+		
+		if (hijos < 0) {
+			throw new HijosNegativosException();
+		}else
+			this.hijos = hijos;
+		
+		this.today = LocalDate.now();
+		this.suma = fechaDeNacimiento;
+		suma.plusYears(18);
+		
+		if(today.isBefore(suma)) {
+			throw new MenorDeDieciochoException();
+		}else
+			this.fechaDeNacimiento = fechaDeNacimiento;
+		
 	}
 	
 	
