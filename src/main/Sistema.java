@@ -1,5 +1,6 @@
 package main;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import excepciones.*;
@@ -17,6 +18,8 @@ public class Sistema {
 	private Sueldo sueldo;
 	private static Sistema instancia = null;
 	private Operario admin;
+	private transient String diaActual;
+	private transient LocalDate diaHoy;
 	
 	/*
 	public Sistema(String nombre, Sueldo sueldo) {
@@ -361,7 +364,7 @@ public class Sistema {
 			k = 0;
 			//promos fijas
 			while(j < this.promosFijas.size() && !tienePromoFija){//falta condicion para dia
-				if(this.promosFijas.get(j).isActivo() && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
+				if(this.promosFijas.get(j).isActivo() && this.diaActual.equalsIgnoreCase(this.promosFijas.get(j).getDiaDePromo()) && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
 					if(this.promosFijas.get(i).isAplicaDosPorUno() && comanda.getPedidos().get(i).getCantidad() >= 2) {
 						tienePromoFija = true;
@@ -373,7 +376,7 @@ public class Sistema {
 							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;						
 						}				
 					}else {		
-						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
+						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && this.diaActual.equalsIgnoreCase(this.promosFijas.get(j).getDiaDePromo()) && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
 							tienePromoFija = true;
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
 							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;		
@@ -388,7 +391,7 @@ public class Sistema {
 			//promos temporales
 			while(k < this.getPromosTemporales().size()) {
 				//FALTA EL DIA DE LA PROMO
-				if (this.getPromosTemporales().get(k).isActivo() && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
+				if (this.getPromosTemporales().get(k).isActivo() && this.diaActual.equalsIgnoreCase(this.promosTemporales.get(k).getDiaDePromo()) && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
 					parcialPorProducto = parcialPorProducto - parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto();	
 					promocionesAplicadas.add(this.promosTemporales.get(j));
 				}
@@ -407,5 +410,34 @@ public class Sistema {
 		factura = new Factura(comanda.getPedidos(),promocionesAplicadas,formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
 	}
+	
+	public void diaActualAlEspanol() {
+		this.diaHoy = LocalDate.now();
+		
+		switch(diaHoy.getDayOfWeek()) {
+		case SUNDAY:
+			this.diaActual = "Domingo";
+			break;
+		case MONDAY:
+			this.diaActual = "Lunes";
+			break;
+		case TUESDAY:
+			this.diaActual = "Martes";
+			break;
+		case WEDNESDAY:
+			this.diaActual = "Miercoles";
+			break;
+		case THURSDAY:
+			this.diaActual = "Jueves";
+			break;
+		case FRIDAY:
+			this.diaActual = "Viernes";
+			break;
+		case SATURDAY:
+			this.diaActual = "Sabado";
+			break;
+		}	
+	}
+	
 	
 }

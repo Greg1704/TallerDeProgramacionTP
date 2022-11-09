@@ -48,6 +48,8 @@ public class UtilSistema {
 			sistema.getMesas().get(i).setEstado("Libre");
 		}
 		
+		sistema.diaActualAlEspanol();
+		
 	}
 
 }
