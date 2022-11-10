@@ -269,6 +269,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	private DefaultListModel<Mozo> modelListMozos,modelListMozosEstados,modelListMozosActivos;
 	private DefaultListModel<Producto> modelListProductos;
 	private DefaultListModel<Comanda> modelListComandasActivas;
+	private JLabel lblMetodoDePagoGeneral;
+	private JComboBox comboBoxMetodoPagoGeneral;
 
 	/**
 	 * Launch the application.
@@ -516,8 +518,16 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelCerrarComanda.setLayout(null);
 		
 		this.btnCerrarComanda = new JButton("Cerrar");
-		this.btnCerrarComanda.setBounds(56, 67, 89, 23);
+		this.btnCerrarComanda.setBounds(59, 103, 89, 23);
 		this.panelCerrarComanda.add(this.btnCerrarComanda);
+		
+		this.lblMetodoDePagoGeneral = new JLabel("Metodo de pago");
+		this.lblMetodoDePagoGeneral.setBounds(56, 30, 104, 14);
+		this.panelCerrarComanda.add(this.lblMetodoDePagoGeneral);
+		
+		this.comboBoxMetodoPagoGeneral = new JComboBox();
+		this.comboBoxMetodoPagoGeneral.setBounds(25, 60, 135, 22);
+		this.panelCerrarComanda.add(this.comboBoxMetodoPagoGeneral);
 		
 		this.panelOperarioYMesa = new JPanel();
 		this.tabbedPane.addTab("Operarios y Mesas", null, this.panelOperarioYMesa, null);
@@ -1268,6 +1278,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnNuevoSistema.setEnabled(false);
 		
 		//Ventana general--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		
+		this.comboBoxMetodoPagoGeneral.addItem("Efectivo");
+		this.comboBoxMetodoPagoGeneral.addItem("Tarjeta");
+		this.comboBoxMetodoPagoGeneral.addItem("MercPago");
+		this.comboBoxMetodoPagoGeneral.addItem("CtaDNI");
 		
 		this.listMozosEstados.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.modelListMozosEstados = new DefaultListModel<Mozo>();
@@ -2377,6 +2392,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 
 	public void setTextFieldCantidadProducto(JTextField textFieldCantidadProducto) {
 		this.textFieldCantidadProducto = textFieldCantidadProducto;
+	}
+	
+	public String getComboBoxMetodoPagoGeneral() {
+		return (String) comboBoxMetodoPagoGeneral.getSelectedItem();
+	}
+
+	public void setComboBoxMetodoPagoGeneral(JComboBox comboBoxMetodoPagoGeneral) {
+		this.comboBoxMetodoPagoGeneral = comboBoxMetodoPagoGeneral;
 	}
 
 	public Operario getSelectedOperario() {

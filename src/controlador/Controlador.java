@@ -162,7 +162,9 @@ public class Controlador implements ActionListener {
 			}
 			
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
-			sistema.cierraComanda(comanda, null);
+			comanda = v.getSelectedComandaActiva();
+			sistema.cierraComanda(comanda, v.getComboBoxMetodoPagoGeneral());
+			//Habria que hacer algo para que muestre la modif por pantalla
 		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesas
 			try {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
