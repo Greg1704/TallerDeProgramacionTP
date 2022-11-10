@@ -1663,7 +1663,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldOcupacionComensales.setText("");
 			this.btnOcuparMesa.setEnabled(false);
 		}else if(e.getSource() == this.btnAgregarPedidoAComanda && this.btnAgregarPedidoAComanda.isEnabled()) {
+			this.listComandasActivas.clearSelection();
+			this.listProductosGeneral.clearSelection();
 			this.textFieldCantidadProducto.setText("");
+			this.btnAgregarPedidoAComanda.setEnabled(false);
+		}else if(e.getSource() == this.btnCerrarComanda && this.btnCerrarComanda.isEnabled()) {
+			this.listComandasActivas.clearSelection();
+			this.btnCerrarComanda.setEnabled(false);
 			this.btnAgregarPedidoAComanda.setEnabled(false);
 		}else if(e.getSource() == this.btnOperarioAlta && this.btnOperarioAlta.isEnabled()) {
 			this.textFieldOperarioNyAAlta.setText("");
@@ -1799,6 +1805,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.btnOcuparMesa.setEnabled(false);
 		}else if(e.getSource() == this.listMesasAsignables && !this.listMesasAsignables.isSelectionEmpty()) {
 			this.textFieldOcupacionComensales.setEnabled(true);
+		}else if(e.getSource() == this.listComandasActivas && !this.listComandasActivas.isSelectionEmpty()) {
+			this.btnCerrarComanda.setEnabled(true);
 		}
 		//this.listComandasActivas.isSelectionEmpty()  TAL VEZ PODRIA SERVIR CLICKEAR AHI PARA HABILITAR ALGUNOS BOTONES :)
 	}
@@ -2361,6 +2369,15 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public void setTextFieldOcupacionComensales(JTextField textFieldOcupacionComensales) {
 		this.textFieldOcupacionComensales = textFieldOcupacionComensales;
 	}
+	
+	
+	public int getTextFieldCantidadProducto() {
+		return Integer.parseInt(textFieldCantidadProducto.getText());
+	}
+
+	public void setTextFieldCantidadProducto(JTextField textFieldCantidadProducto) {
+		this.textFieldCantidadProducto = textFieldCantidadProducto;
+	}
 
 	public Operario getSelectedOperario() {
 		return (Operario) this.listOperarios.getSelectedValue();
@@ -2397,6 +2414,15 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public Mesa getSelectedMesaAsignable() {
 		return (Mesa) this.listMesasAsignables.getSelectedValue();
 	}
+	
+	public Comanda getSelectedComandaActiva() {
+		return (Comanda) this.listComandasActivas.getSelectedValue();
+	}
+	
+	public Producto getSelectedProductoGeneral() {
+		return (Producto) this.listProductosGeneral.getSelectedValue();
+	}
+	
 	
 	
 	
@@ -2554,6 +2580,13 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		actualizarListaProductos();
 		actualizarComboBoxProductosAlta();
 		actualizarComboBoxProductosModif();
+	}
+	
+	public void cleanMesa() {
+		this.listComandasActivas.clearSelection();
+		this.listProductosGeneral.clearSelection();
+		this.textFieldCantidadProducto.setText("");
+		this.btnAgregarPedidoAComanda.setEnabled(false);
 	}
 }
 	

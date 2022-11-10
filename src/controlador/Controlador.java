@@ -23,11 +23,13 @@ import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
 import excepciones.PrecioVentaMenorCostoException;
 import excepciones.ProductoDuplicadoException;
+import excepciones.StockNegativoException;
 import excepciones.UsuarioIncorrectoException;
 import main.Comanda;
 import main.Mesa;
 import main.Mozo;
 import main.Operario;
+import main.Pedido;
 import main.Producto;
 import main.PromocionPermanente;
 import main.PromocionTemporal;
@@ -46,7 +48,8 @@ public class Controlador implements ActionListener {
 	Producto producto=null;
 	PromocionPermanente promPerm = null;
 	PromocionTemporal promTemp = null;
-	
+	Pedido pedido;
+	Comanda comanda;
 	
 	private Controlador () {
 		this.v = new VentanaAdministrador();
@@ -148,8 +151,18 @@ public class Controlador implements ActionListener {
 			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
 			
-		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
+			try {
+				pedido = new Pedido(v.getTextFieldCantidadProducto(),v.getSelectedProductoGeneral());
+				comanda = v.getSelectedComandaActiva();
+				comanda.agregarPedido(pedido);
+				v.actualizarListaProductos();
+			} catch (StockNegativoException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			
+		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
+			sistema.cierraComanda(comanda, null);
 		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesas
 			try {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
@@ -179,6 +192,7 @@ public class Controlador implements ActionListener {
 				sistema.agregaMesa(v.getTextFieldMesaNumeroAlta(),v.getTextFieldMesaCantidadComensalesAlta());
 				v.actualizarListaMesas();
 				v.actualizarListaMesasAsignables();
+				v.cleanMesa();
 			} catch (MesaYaExistenteException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
