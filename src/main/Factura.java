@@ -65,5 +65,9 @@ public class Factura implements Serializable{
 		this.promocionesAplicadas = promocionesAplicadas;
 	}
 	
+	public String DatosFactura() {	
+		return "El total a pagar de la mesa: " + this.mesa +" es $" + this.total;
+	}
+	
 	
 }
