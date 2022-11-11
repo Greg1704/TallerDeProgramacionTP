@@ -361,6 +361,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.estadEmpleado)) {
 			mozo = v.getSelectedMozo();
 			v.actualizarTextAreaEstadisticas(sistema.retornaEstadisticasMozo(mozo.getNombreYApellido()));
+			
 		}else if(e.getActionCommand().equals(IVista.estadEmpleadoMayorVol)) {
 			v.actualizarTextAreaEstadisticas(sistema.informeMasVende());
 			
