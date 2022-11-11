@@ -256,13 +256,27 @@ public class Sistema {
 	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
 	 * */
 	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException {
-		int i = 0;
+		int i = 0,j;
 		boolean encontrado = false;
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
 		
-		while(i < this.mozos.size() && !encontrado) {
+		while(i < this.mozos.size() && !encontrado && this.mozos.get(i).getEstado().equalsIgnoreCase("Activo")) {
+			j = 0;
+			while(j < this.mozos.get(i).getMesasAtendidas() && !encontrado) {
+				if(this.mozos.get(i).getMesas().get(j).getNumero() == mesa.getNumero()) {
+					encontrado = true;
+				}
+				j++;
+			}	
+			i++;
+		}
+		if(!encontrado) {
+			throw new MesaNoAsignadaException();
+		}
+		
+		for(i = 0; i < this.mozos.size(); i++) {
 			
 		}
 		
@@ -313,9 +327,9 @@ public class Sistema {
 		while(i < this.mozos.size()) {
 			if (maxCant < this.mozos.get(i).getCantidadRecaudada()) {
 				maxCant = this.mozos.get(i).getCantidadRecaudada();
-				masVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que mas dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
-				i++;
+				masVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que mas dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();	
 			}
+			i++;
 		}
 		
 		return masVendio;
@@ -331,8 +345,8 @@ public class Sistema {
 			if (minCant > this.mozos.get(i).getCantidadRecaudada()) {
 				minCant = this.mozos.get(i).getCantidadRecaudada();
 				menosVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
-				i++;
 			}
+			i++;
 		}
 		
 		return menosVendio;
