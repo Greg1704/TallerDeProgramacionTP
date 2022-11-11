@@ -359,12 +359,17 @@ public class Controlador implements ActionListener {
 			v.actualizarListaMozos();
 			v.actualizarListaMozosEstados();
 		}else if(e.getActionCommand().equals(IVista.estadEmpleado)) {
-			
+			mozo = v.getSelectedMozo();
+			v.actualizarTextAreaEstadisticas(sistema.retornaEstadisticasMozo(mozo.getNombreYApellido()));
 		}else if(e.getActionCommand().equals(IVista.estadEmpleadoMayorVol)) {
+			v.actualizarTextAreaEstadisticas(sistema.informeMasVende());
 			
 		}else if(e.getActionCommand().equals(IVista.estadEmpleadoMenorVol)) {
+			v.actualizarTextAreaEstadisticas(sistema.informeMenosVende());
 			
 		}else if(e.getActionCommand().equals(IVista.estadPromMesas)) {
+			for(int i=0;i<sistema.getMesas().size();i++)
+				v.actualizarTextAreaEstadisticas(sistema.retornaMesaConEstadisticas(i));
 			
 		}else if(e.getActionCommand().equals(IVista.crearProducto)) { //Ventana productos
 			try {

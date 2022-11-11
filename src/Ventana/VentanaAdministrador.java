@@ -1510,7 +1510,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.modelListMozos = new DefaultListModel<Mozo>();
 		this.listMozos.setModel(modelListMozos);
 		this.listMozos.addMouseListener(this);
-		this.textAreaEstadisticas.setEnabled(false);
+		this.textAreaEstadisticas.setEnabled(true);
 		
 		this.textFieldMozoNyAAlta.addKeyListener(this);
 		this.textFieldMozoNyAModif.addKeyListener(this);
@@ -1547,9 +1547,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.btnMozoBaja.setEnabled(false);
 		this.btnMozoModif.setEnabled(false);
 		this.btnMozoEstadEmp.setEnabled(false);
-		this.btnMozoEstadEmpMayorVolVenta.setEnabled(false);
-		this.btnMozoEstadEmpMenorVolVenta.setEnabled(false);
-		this.btnMozoEstadMesaConsumoProm.setEnabled(false);
+		this.btnMozoEstadEmpMayorVolVenta.setEnabled(true);
+		this.btnMozoEstadEmpMenorVolVenta.setEnabled(true);
+		this.btnMozoEstadMesaConsumoProm.setEnabled(true);
 		
 		//Ventana Productos--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 		
@@ -1750,12 +1750,14 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldMozoNyAAlta.setText("");
 			this.formattedTextFieldFechaNacimientoAlta.setText("");
 			this.btnMozoAlta.setEnabled(false);
-		}else if((e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) || (e.getSource() == this.btnMozoBaja && this.btnMozoBaja.isEnabled())) {
+		}else if((e.getSource() == this.btnMozoModif && this.btnMozoModif.isEnabled()) || (e.getSource() == this.btnMozoBaja && this.btnMozoBaja.isEnabled()) ||
+				(e.getSource() == this.btnMozoEstadEmp && this.btnMozoEstadEmp.isEnabled())) {
 			this.textFieldMozoHijosModif.setText("");
 			this.textFieldMozoNyAModif.setText("");
 			this.formattedTextFieldFechaNacimientoModif.setText("");
 			this.btnMozoModif.setEnabled(false);
 			this.btnMozoBaja.setEnabled(false);
+			this.btnMozoEstadEmp.setEnabled(false);
 			this.listMozos.clearSelection();
 		}else if(e.getSource() == this.btnProductoAlta && this.btnProductoAlta.isEnabled()) {
 			this.textFieldProductoNombreAlta.setText("");
@@ -1788,6 +1790,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		}else if(e.getSource() == this.listMozos && !this.listMozos.isSelectionEmpty()) {
 			this.btnMozoBaja.setEnabled(true);
 			this.btnMozoModif.setEnabled(true);
+			this.btnMozoEstadEmp.setEnabled(true);
 			c.recuperaDatosMozo(getSelectedMozo());
 		}else if(e.getSource() == this.listProductos && !this.listProductos.isSelectionEmpty()) {
 			this.btnProductoBaja.setEnabled(true);
@@ -2610,6 +2613,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.listProductosGeneral.clearSelection();
 		this.textFieldCantidadProducto.setText("");
 		this.btnAgregarPedidoAComanda.setEnabled(false);
+	}
+	
+	public void actualizarTextAreaEstadisticas(String mensaje) {
+		this.textAreaEstadisticas.append(mensaje);
 	}
 }
 	

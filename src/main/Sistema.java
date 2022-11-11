@@ -330,7 +330,7 @@ public class Sistema {
 	}
 	
 	// desde el controlador hay que invocar las mesas que haya
-	public String retornaMesaConEstadisticas(Mesa mesa,int i) {
+	public String retornaMesaConEstadisticas(int i) {
 		
 		return this.mesas.get(i).getNumero() + " recaudo $" + this.mesas.get(i).generaPromedio();
 		
