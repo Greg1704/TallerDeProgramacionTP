@@ -256,11 +256,13 @@ public class Sistema {
 	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
 	 * */
 	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException {
+		int i = 0;
+		boolean encontrado = false;
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
 		
-		for(int i = 0 ; i < this.mesas.size() ; i++) {
+		while(i < this.mozos.size() && !encontrado) {
 			
 		}
 		
@@ -323,7 +325,7 @@ public class Sistema {
 	public String informeMenosVende() {
 		int i = 1;
 		double minCant = this.mozos.get(0).getCantidadRecaudada();
-		String menosVendio = this.mozos.get(0).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
+		String menosVendio = this.mozos.get(0).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(0).getCantidadRecaudada();
 		
 		while(i < this.mozos.size()) {
 			if (minCant > this.mozos.get(i).getCantidadRecaudada()) {
