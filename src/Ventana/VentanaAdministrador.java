@@ -2616,7 +2616,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	public void actualizarTextAreaEstadisticas(String mensaje) {
-		this.textAreaEstadisticas.append(mensaje);
+		this.textAreaEstadisticas.append(mensaje + "\n");
 	}
 }
 	
