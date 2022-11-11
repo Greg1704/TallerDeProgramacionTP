@@ -565,4 +565,8 @@ public class Controlador implements ActionListener {
 			return false;
 	}
 	
+	public void recuperaMensaje(String mensaje) {
+		v.popUp(mensaje);
+	}
+	
 }

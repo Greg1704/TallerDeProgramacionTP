@@ -3,6 +3,8 @@ package main;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import controlador.Controlador;
 import excepciones.*;
 
 public class Sistema {
@@ -461,6 +463,7 @@ public class Sistema {
 		
 		factura = new Factura(comanda.getPedidos(),promocionesAplicadas,formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
+		muestraFactura(factura.DatosFactura());
 	}
 	
 	public void diaActualAlEspanol() {
@@ -491,5 +494,8 @@ public class Sistema {
 		}	
 	}
 	
+	public void muestraFactura(String mensaje) {
+		Controlador.getInstancia().recuperaMensaje(mensaje);
+	}
 	
 }
