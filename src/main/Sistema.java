@@ -250,8 +250,8 @@ public class Sistema {
 	
 	/*No es posible crear una nueva comanda si el local:
 	  -no tiene mesas habilitadas--------------------------------->VERIFICADO DE ANTEMANO
-	  -la mesa asociada debe tener un mozo activo asociado-------->ESTO PODRIA SER VERIFICADO DESDE EL CONTROLADOR TAL VEZ?
-	  -no tiene mozos activos------------------------------------->ESTO PODRIA SER VERIFICADO DESDE EL CONTROLADOR TAL VEZ?
+	  -la mesa asociada debe tener un mozo activo asociado
+	  -no tiene mozos activos
 	  -al menos 2 productos están en promoción activa
 	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
 	 * */
@@ -260,6 +260,11 @@ public class Sistema {
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
 		mesa.setEstado("Ocupada");
+		
+		
+		
+		
+		
 		return new Comanda(mesa);
 	}
 	
