@@ -2499,6 +2499,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		return JOptionPane.showInputDialog("Introduzca nombre y apellido: ");
 	}
 	
+	public void popUp(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
+	}
+	
 	public void actualizarListaOperarios() {
 		this.modelListOperarios.clear();
 		ArrayList<Operario> it = c.recuperaListaOperarios();

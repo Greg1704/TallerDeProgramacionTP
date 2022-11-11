@@ -18,6 +18,8 @@ import excepciones.MesaOcupadaException;
 import excepciones.MesaYaExistenteException;
 import excepciones.MozoDuplicadoException;
 import excepciones.NegativoException;
+import excepciones.NoHayDosPromosException;
+import excepciones.NoHayMozosException;
 import excepciones.NoHayProductosException;
 import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
@@ -88,10 +90,10 @@ public class Controlador implements ActionListener {
 					v.logueoAdmin();
 				} catch (ContraseniaIncorrectaException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (UsuarioIncorrectoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				}
 			}else {
 				try {
@@ -99,10 +101,10 @@ public class Controlador implements ActionListener {
 					v.logueoOperario();
 				} catch (ContraseniaIncorrectaException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (UsuarioIncorrectoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				}
 			}
 		}else if(e.getActionCommand().equals(IVista.confirmaLogoutUsuario)) {
@@ -134,19 +136,25 @@ public class Controlador implements ActionListener {
 				v.actualizarListaComandasActivas();
 			} catch (MesaNoExistenteException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (ComensalesInsuficientesException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (MesaOcupadaException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (NoHayProductosException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (MesaNoAsignadaException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
+			} catch (NoHayMozosException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
+			} catch (NoHayDosPromosException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
 			}
 			
 		}else if(e.getActionCommand().equals(IVista.agregaPedido)) {
@@ -158,7 +166,7 @@ public class Controlador implements ActionListener {
 				v.actualizarListaProductos();
 			} catch (StockNegativoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			}
 			
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
@@ -171,7 +179,7 @@ public class Controlador implements ActionListener {
 				v.actualizarListaOperarios();
 			} catch (OperarioDuplicadoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarOperario)) {
 			sistema.sacaOperario(v.getSelectedOperario());
@@ -197,7 +205,7 @@ public class Controlador implements ActionListener {
 				v.cleanMesa();
 			} catch (MesaYaExistenteException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarMesa)) {
 			sistema.sacaMesa(v.getSelectedMesa());
@@ -229,10 +237,10 @@ public class Controlador implements ActionListener {
 				v.actualizarListaPromPerm();
 			} catch (NoHayPromoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (NegativoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarPromPerm)) {
 			sistema.sacaPromocionPermanente(v.getSelectedPromPerm());
@@ -333,13 +341,13 @@ public class Controlador implements ActionListener {
 					sistema.agregaMozo(new Mozo("ausente",v.getTextFieldMozoHijosAlta(),v.getTextFieldMozoNyAAlta(),v.getFormattedTextFieldFechaNacimientoAlta()));
 				} catch (MozoDuplicadoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (HijosNegativosException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (MenorDeDieciochoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				}
 				v.actualizarListaMozos();
 				v.actualizarListaMozosEstados();
@@ -380,13 +388,13 @@ public class Controlador implements ActionListener {
 				v.actualizarComboBoxProductosModif();
 			} catch (ProductoDuplicadoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (NegativoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			} catch (PrecioVentaMenorCostoException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				v.popUp(e1.getMessage());
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarProducto)) {
 			sistema.sacaProducto(v.getSelectedProducto());
@@ -402,10 +410,10 @@ public class Controlador implements ActionListener {
 					producto.setPrecioDeCosto(v.getTextFieldProductoPrecioCostoModif());
 				} catch (NegativoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (PrecioVentaMenorCostoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				}
 			}
 			if(producto.getPrecioDeVenta() != v.getTextFieldProductoPrecioVentaModif())
@@ -413,10 +421,10 @@ public class Controlador implements ActionListener {
 					producto.setPrecioDeVenta(v.getTextFieldProductoPrecioVentaModif());
 				} catch (NegativoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				} catch (PrecioVentaMenorCostoException e1) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					v.popUp(e1.getMessage());
 				}
 			if(producto.getStock() != v.getTextFieldProductoStockInicialModif())
 				producto.setStock(v.getTextFieldProductoStockInicialModif());

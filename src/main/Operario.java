@@ -2,6 +2,8 @@ package main;
 
 import java.io.Serializable;
 
+import excepciones.ContraseniaNoCreadaException;
+
 public class Operario implements Serializable{
 	private boolean activo;
 	private String nombreDeUsuario; //Tamaño 10
@@ -12,11 +14,11 @@ public class Operario implements Serializable{
 	public Operario(String nombreDeUsuario, String password, String nombreYApellido) {
 		this.activo=true;
 		this.nombreDeUsuario = nombreDeUsuario;
-		this.password = password;
+		if(verificarPassword(password))
+			this.password = password;
 		this.nombreYApellido = nombreYApellido;
 	}
-	
-	
+
 	public boolean isActivo() {
 		return activo;
 	}
@@ -44,6 +46,22 @@ public class Operario implements Serializable{
 	
 	public void asignaMozoAMesa(Mozo mozo,Mesa mesa) {
 		mozo.agregarMesa(mesa);
+	}
+
+	
+	private boolean verificarPassword(String password) {
+		// TODO Auto-generated method stub
+		if(password.length()<6)
+			throw new ContraseniaNoCreadaException("La contraseña es menor a 6 caracteres");
+		else if(password.length()>12)
+			throw new ContraseniaNoCreadaException("La contraseña es mayor a 12 caracteres");
+		else {
+			for(int i=0;i<password.length();i++) {
+				
+			}
+		}
+			
+		return true;
 	}
 
 
