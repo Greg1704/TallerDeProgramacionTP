@@ -11,7 +11,7 @@ public class Operario implements Serializable{
 	private String nombreYApellido;
 	
 	
-	public Operario(String nombreDeUsuario, String password, String nombreYApellido) {
+	public Operario(String nombreDeUsuario, String password, String nombreYApellido) throws ContraseniaNoCreadaException {
 		this.activo=true;
 		this.nombreDeUsuario = nombreDeUsuario;
 		if(verificarPassword(password))
@@ -49,15 +49,16 @@ public class Operario implements Serializable{
 	}
 
 	
-	private boolean verificarPassword(String password) {
-		// TODO Auto-generated method stub
+	private boolean verificarPassword(String password) throws ContraseniaNoCreadaException {
+		char aux;
 		if(password.length()<6)
-			throw new ContraseniaNoCreadaException("La contraseña es menor a 6 caracteres");
+			throw new ContraseniaNoCreadaException("La contrasenia es menor a 6 caracteres");
 		else if(password.length()>12)
-			throw new ContraseniaNoCreadaException("La contraseña es mayor a 12 caracteres");
+			throw new ContraseniaNoCreadaException("La contrasenia es mayor a 12 caracteres");
 		else {
 			for(int i=0;i<password.length();i++) {
-				
+				aux = password.charAt(i);
+				if(aux >= 'A' && aux <= 'Z')
 			}
 		}
 			

@@ -10,6 +10,7 @@ import Ventana.IVista;
 import Ventana.VentanaAdministrador;
 import excepciones.ComensalesInsuficientesException;
 import excepciones.ContraseniaIncorrectaException;
+import excepciones.ContraseniaNoCreadaException;
 import excepciones.HijosNegativosException;
 import excepciones.MenorDeDieciochoException;
 import excepciones.MesaNoAsignadaException;
@@ -178,6 +179,9 @@ public class Controlador implements ActionListener {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
 				v.actualizarListaOperarios();
 			} catch (OperarioDuplicadoException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
+			} catch (ContraseniaNoCreadaException e1) {
 				// TODO Auto-generated catch block
 				v.popUp(e1.getMessage());
 			}
