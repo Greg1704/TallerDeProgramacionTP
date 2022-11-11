@@ -123,7 +123,7 @@ public class Sistema {
 	public Operario loginOperario(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException {
 		int i=0;
 		while(i<operarios.size()) {
-			if(Sistema.getInstancia().getOperarios().get(i).getNombreDeUsuario().compareTo(usuario) == 0) {
+			if(Sistema.getInstancia().getOperarios().get(i).getNombreDeUsuario().compareTo(usuario) == 0 && this.operarios.get(i).isActivo()) {
 				if(Sistema.getInstancia().getOperarios().get(i).getPassword().compareTo(password) == 0)
 					return Sistema.getInstancia().getOperarios().get(i);
 				else
@@ -224,7 +224,7 @@ public class Sistema {
 		this.mesas.remove(mesa);
 	}
 	
-	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException, MesaNoAsignadaException {
+	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i=0,j=this.mesas.size();
 		Mesa mesa;
 		while(i<j && this.mesas.get(i).getNumero() != numero)
@@ -255,15 +255,18 @@ public class Sistema {
 	  -al menos 2 productos están en promoción activa
 	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
 	 * */
-	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException {
+	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i = 0,j;
 		boolean encontrado = false;
+		boolean haymozo = false;
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
 		
 		while(i < this.mozos.size() && !encontrado && this.mozos.get(i).getEstado().equalsIgnoreCase("Activo")) {
 			j = 0;
+			
+			haymozo = true;
 			while(j < this.mozos.get(i).getMesasAtendidas() && !encontrado) {
 				if(this.mozos.get(i).getMesas().get(j).getNumero() == mesa.getNumero()) {
 					encontrado = true;
@@ -272,15 +275,18 @@ public class Sistema {
 			}	
 			i++;
 		}
+		
+		if(!haymozo) {
+			throw new NoHayMozosException("No hay mozos en el sistema.");
+		}
+		
 		if(!encontrado) {
 			throw new MesaNoAsignadaException();
 		}
-		
-		for(i = 0; i < this.mozos.size(); i++) {
-			
+				
+		if (!analizaDosOMasPromos()) {
+			throw new NoHayDosPromosException();
 		}
-		
-		
 		
 		mesa.setEstado("Ocupada");
 		return new Comanda(mesa);
@@ -302,6 +308,24 @@ public class Sistema {
 		this.promosTemporales.remove(pt);
 	}
 	
+	public boolean analizaDosOMasPromos() {
+		int i = 0;
+		String producto1;
+		
+		if (this.promosFijas.isEmpty())
+			return false;
+		else {
+			producto1 = this.promosFijas.get(0).getProducto().getNombre();		
+			
+			while(i < this.promosFijas.size()) {
+				if(!this.promosFijas.get(i).getProducto().getNombre().equalsIgnoreCase(producto1))				
+					return true;
+				i++;
+			}	
+			return false; //no retorna el true previamente		
+		}
+
+	}
 	
 	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
 		int i = 0;
