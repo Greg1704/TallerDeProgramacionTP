@@ -30,7 +30,12 @@ public class Sistema {
 	*/
 	
 	private Sistema() {
-		admin = new Operario("ADMIN","ADMIN1234",""); //Creacion de Operario Admin
+		try {
+			admin = new Operario("ADMIN","ADMIN1234","");
+		} catch (ContraseniaNoCreadaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} //Creacion de Operario Admin
 	}
 	
 	
