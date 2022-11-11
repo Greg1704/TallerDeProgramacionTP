@@ -51,6 +51,7 @@ public class Operario implements Serializable{
 	
 	private boolean verificarPassword(String password) throws ContraseniaNoCreadaException {
 		char aux;
+		boolean mayus = false,digito = false;
 		if(password.length()<6)
 			throw new ContraseniaNoCreadaException("La contrasenia es menor a 6 caracteres");
 		else if(password.length()>12)
@@ -58,8 +59,16 @@ public class Operario implements Serializable{
 		else {
 			for(int i=0;i<password.length();i++) {
 				aux = password.charAt(i);
-				if(aux >= 'A' && aux <= 'Z')
+				if(aux >= 'A' && aux <= 'Z') 
+					mayus = true;
+				
+				if(aux >= '0' && aux <= '9')
+					digito = true;
 			}
+			if(!mayus)
+				throw new ContraseniaNoCreadaException("La contrasenia no cuenta con al menos una mayuscula");
+			if(!digito)
+				throw new ContraseniaNoCreadaException("La contrasenia no cuenta con al menos un digito");
 		}
 			
 		return true;
