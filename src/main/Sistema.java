@@ -259,12 +259,14 @@ public class Sistema {
 		
 		if(this.productos.size() == 0)
 			throw new NoHayProductosException();
+		
+		for(int i = 0 ; i < this.mesas.size() ; i++) {
+			
+		}
+		
+		
+		
 		mesa.setEstado("Ocupada");
-		
-		
-		
-		
-		
 		return new Comanda(mesa);
 	}
 	
@@ -321,7 +323,7 @@ public class Sistema {
 	public String informeMenosVende() {
 		int i = 1;
 		double minCant = this.mozos.get(0).getCantidadRecaudada();
-		String menosVendio = this.mozos.get(i).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
+		String menosVendio = this.mozos.get(0).getNombreYApellido() + " fue el mozo que menos dinero facturo: $" + this.mozos.get(i).getCantidadRecaudada();
 		
 		while(i < this.mozos.size()) {
 			if (minCant > this.mozos.get(i).getCantidadRecaudada()) {

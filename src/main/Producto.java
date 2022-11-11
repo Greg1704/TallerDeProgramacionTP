@@ -6,7 +6,7 @@ import excepciones.NegativoException;
 import excepciones.PrecioVentaMenorCostoException;
 
 public class Producto implements Serializable{
-	private static int id = 0;
+	private int id = 0;
 	private String nombre;
 	private double precioDeCosto;
 	private double precioDeVenta;
@@ -15,10 +15,16 @@ public class Producto implements Serializable{
 	
 	public Producto(String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
-		this.id = this.id++;
 		this.nombre = nombre;
 		this.precioDeVenta = precioDeVenta;
 		this.stock = stock;
+		
+		if(Sistema.getInstancia().getProducto().isEmpty()) {
+			this.id = 1;
+		}else {
+			this.id = Sistema.getInstancia().getProducto().get(Sistema.getInstancia().getProducto().size() - 1).id + 1 ;
+		}
+		
 		
 		if(precioDeCosto < 0)
 			throw new NegativoException("Precio de costo negativo.");

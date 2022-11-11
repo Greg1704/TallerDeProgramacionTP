@@ -10,15 +10,20 @@ public class PromocionPermanente extends Promocion{
 	private boolean aplicaDtoPorCantidad;
 	private int dtoPorCantidad_cantidadMinima;
 	private double dtoPorCantidad_PrecioUnitario;
-	private static int numeroId=0;
+	private int numeroId=0;
 	
 	
 	public PromocionPermanente(boolean activo, String diaDePromo, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
 			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException,NegativoException{
 		super(activo, diaDePromo);
-		this.id_Promocion = numeroId++;
 		this.producto = producto;
+		
+		if(Sistema.getInstancia().getPromosFijas().isEmpty()) {
+			this.numeroId = 1;
+		}else {
+			this.numeroId = Sistema.getInstancia().getPromosFijas().get(Sistema.getInstancia().getPromosFijas().size() - 1).numeroId + 1 ;
+		}
 		
 		
 		if(aplicaDosPorUno == false && aplicaDtoPorCantidad == false)
