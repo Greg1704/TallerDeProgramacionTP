@@ -468,6 +468,7 @@ public class Sistema {
 		}	
 		
 		comanda.getMozo().setCantidadRecaudada(comanda.getMozo().getCantidadRecaudada() + total);
+		comanda.getMozo().setMesasAtendidas(comanda.getMozo().getMesasAtendidas() + 1);
 		comanda.getMesa().setCantCompras(comanda.getMesa().getCantCompras() + 1);
 		comanda.getMesa().setTotalGanado(comanda.getMesa().getTotalGanado() + total);
 		
