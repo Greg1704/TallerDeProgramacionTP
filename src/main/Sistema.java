@@ -470,6 +470,7 @@ public class Sistema {
 		comanda.getMozo().setMesasAtendidas(comanda.getMozo().getMesasAtendidas() + 1);
 		comanda.getMesa().setCantCompras(comanda.getMesa().getCantCompras() + 1);
 		comanda.getMesa().setTotalGanado(comanda.getMesa().getTotalGanado() + total);
+		comanda.getMesa().setEstado("Libre");
 		
 		factura = new Factura(comanda.getPedidos(),promocionesAplicadas,formaDePago,comanda.getMesa(),total,comanda.getMozo());
 		
