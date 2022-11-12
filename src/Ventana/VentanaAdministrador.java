@@ -51,6 +51,9 @@ import javax.swing.DefaultListModel;
 import javax.swing.border.LineBorder;
 import java.awt.Font;
 
+/**
+ * Clase en la cual se codifico la ventana del Adminsitrador y consecuentemente la del resto de operarios, que seria solo una parte de la ventana completa del administrador
+ */
 public class VentanaAdministrador extends JFrame implements ActionListener, KeyListener, IVista, MouseListener, ItemListener {
 	Controlador c;
 

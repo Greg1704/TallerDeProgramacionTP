@@ -7,11 +7,7 @@ import java.util.ArrayList;
 import controlador.Controlador;
 import excepciones.*;
 
-/**
- * @author Tomi
- * <br>
- * Clase que representa al Administrador del sistema, solamente se puede crear 1. Almacena toda la informacion que se genera.
- */
+
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
@@ -29,7 +25,7 @@ public class Sistema {
 	private transient LocalDate diaHoy;
 	
 	/**
-	 * Metodo que permite crear el operario <br>
+	 * Metodo que permite crear el operario administrador<br>
 	 */
 	private Sistema() {
 		try {
@@ -172,7 +168,7 @@ public class Sistema {
 	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
 	 * <b>Post: </b> Se almacena en el sistema un nuevo operario.<br>
 	 * @param o Es un objeto de tipo operario.
-	 * @throws OperarioDuplicadoException Se lanza cuando se quiere agregar un operario con datos similares a uno ya existente.
+	 * @throws OperarioDuplicadoException Se lanza cuando se quiere agregar un operario con datos identicos a uno ya existente.
 	 * 
 	 */
 	public void agregaOperario(Operario o) throws OperarioDuplicadoException{
@@ -201,7 +197,7 @@ public class Sistema {
 	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
 	 * <b>Post: </b> Se almacena en el sistema un nuevo mozo.<br>
 	 * @param m Es un objeto de tipo mozo.
-	 * @throws MozoDuplicadoException Se lanza cuando se quiere agregar un mozo con datos similares a uno ya existente.
+	 * @throws MozoDuplicadoException Se lanza cuando se quiere agregar un mozo con datos identicos a uno ya existente.
 	 */
 	public void agregaMozo(Mozo m) throws MozoDuplicadoException{
 		int j,i=0;
@@ -229,7 +225,7 @@ public class Sistema {
 	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Producto.<br>
 	 * <b>Post: </b> Se almacena en el sistema un nuevo producto.<br>
 	 * @param p Es un objeto de tipo producto.
-	 * @throws ProductoDuplicadoException Se lanza cuando se quiere agregar un producto con datos similares a uno ya existente.
+	 * @throws ProductoDuplicadoException Se lanza cuando se quiere agregar un producto con datos identicos a uno ya existente.
 	 */
 	public void agregaProductos(Producto p) throws ProductoDuplicadoException{
 		int j,i=0;
@@ -282,7 +278,7 @@ public class Sistema {
 	 * <b>Post: </b> Se almacena en el sistema una nueva mesa.<br>
 	 * @param numero Numero de la mesa.
 	 * @param cantComensales Cantidad maxima de clientes que pueden ocupar la mesa.
-	 * @throws MesaYaExistenteException Se lanza cuando se quiere agregar una mesa con datos similares a una ya existente.
+	 * @throws MesaYaExistenteException Se lanza cuando se quiere agregar una mesa con datos identicos a una ya existente.
 	 */
 	public void agregaMesa(int numero,int cantComensales) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
