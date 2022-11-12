@@ -16,14 +16,17 @@ public class Producto implements Serializable{
 	public Producto(String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
 		this.nombre = nombre;
-		this.precioDeVenta = precioDeVenta;
-		this.stock = stock;
 		
 		if(Sistema.getInstancia().getProducto().isEmpty()) {
 			this.id = 1;
 		}else {
 			this.id = Sistema.getInstancia().getProducto().get(Sistema.getInstancia().getProducto().size() - 1).id + 1 ;
 		}
+		
+		if(stock < 1)
+			throw new NegativoException("Stock menor a por lo menos 1 producto.");
+		else
+			this.stock = stock;
 		
 		
 		if(precioDeCosto < 0)
@@ -81,7 +84,13 @@ public class Producto implements Serializable{
 		return stock;
 	}
 	
-	public void setStock(int stock) {
+	public void setStock(int stock) throws NegativoException {
+		
+		if(stock < 1)
+			throw new NegativoException("Stock menor a por lo menos 1 producto.");
+		else
+			this.stock = stock;
+		
 		this.stock = stock;
 	}
 
