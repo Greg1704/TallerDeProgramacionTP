@@ -1255,6 +1255,10 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.textFieldLoginContrasenia.addKeyListener(this);
 		this.textFieldNombreLocal.addKeyListener(this);
 		
+		this.textFieldLoginUsuario.setEnabled(false);
+		this.textFieldLoginContrasenia.setEnabled(false);
+		
+		
 		this.btnLogin.setActionCommand(confirmaLoginUsuario);
 		this.btnLogout.setActionCommand(confirmaLogoutUsuario);
 		this.btnGuardarSistema.setActionCommand(guardaSistema);
@@ -1671,9 +1675,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.textFieldLoginUsuario.setEnabled(true);
 			this.textFieldLoginContrasenia.setEnabled(true);
 			this.btnLogout.setEnabled(false);
-		}else if(e.getSource() == this.btnNuevoSistema && this.btnNuevoSistema.isEnabled()) {
+		}else if((e.getSource() == this.btnNuevoSistema && this.btnNuevoSistema.isEnabled()) || (e.getSource() == this.btnGuardarSistema && this.btnGuardarSistema.isEnabled()) 
+				|| (e.getSource() == this.btnRecuperarSistema || this.btnRecuperarSistema.isEnabled())) {
 			this.textFieldNombreLocal.setText("");
 			this.btnNuevoSistema.setEnabled(false);
+			this.textFieldLoginUsuario.setEnabled(true);
+			this.textFieldLoginContrasenia.setEnabled(true);
 		}else if(e.getSource() == this.btnOcuparMesa && this.btnOcuparMesa.isEnabled()) {
 			this.textFieldOcupacionComensales.setText("");
 			this.btnOcuparMesa.setEnabled(false);
@@ -2451,6 +2458,12 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	}
 	
 	
+	public void sistemaInicio() {
+		this.textFieldNombreLocal.setText("");
+		this.btnNuevoSistema.setEnabled(false);
+		this.textFieldLoginUsuario.setEnabled(true);
+		this.textFieldLoginContrasenia.setEnabled(true);
+	}
 	
 	
 	public void logueoAdmin() {

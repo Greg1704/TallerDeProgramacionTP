@@ -75,14 +75,18 @@ public class Controlador implements ActionListener {
 			v.setLblNombreLocalGrande(sistema.getNombre());
 			primeraVez=true;
 			v.popUp("Sistema creado");
+			v.sistemaInicio();
 		}else if(e.getActionCommand().equals(IVista.guardaSistema)) {
 			PersistirSistema.EscrituraSistema();
 			v.popUp("Sistema guardado");
+			v.sistemaInicio();
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
 			PersistirSistema.LecturaSistema();
 			sistema=Sistema.getInstancia();
 			v.popUp("Sistema recuperado");
 			v.setLblNombreLocalGrande(sistema.getNombre());
+			if(sistema != null)
+				v.sistemaInicio();
 		}else if(e.getActionCommand().equals(IVista.confirmaLoginUsuario)) {
 			if(v.getTextFieldLoginUsuario().equals("ADMIN")) {
 				try {
