@@ -412,7 +412,7 @@ public class Sistema {
 	
 	public void cierraComanda(Comanda comanda,String formaDePago){
 		Factura factura;
-		double total = 0,parcialPorProducto, porcentajeDescuento;
+		double total = 0,parcialPorProducto, porcentajeDescuento,porcentajeDtoTemporal;
 		int j,k, cantDosPorUno;
 		ArrayList<Promocion> promocionesAplicadas = new ArrayList<Promocion>();
 		boolean tienePromoFija; //sirve para ver si tiene o no promo fija para ver si se acumula la promo temporal
@@ -455,7 +455,8 @@ public class Sistema {
 			//promos temporales
 			while(k < this.getPromosTemporales().size()) {
 				if (this.getPromosTemporales().get(k).isActivo() && this.diaActual.equalsIgnoreCase(this.promosTemporales.get(k).getDiaDePromo()) && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
-					parcialPorProducto = parcialPorProducto - (parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto());	
+					porcentajeDtoTemporal = this.promosTemporales.get(k).getPorcentajeDeDto() / 100;
+					parcialPorProducto = parcialPorProducto - (parcialPorProducto * porcentajeDtoTemporal);	
 					promocionesAplicadas.add(this.promosTemporales.get(k));
 				}
 				
