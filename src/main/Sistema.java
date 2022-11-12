@@ -7,6 +7,11 @@ import java.util.ArrayList;
 import controlador.Controlador;
 import excepciones.*;
 
+/**
+ * @author Tomi
+ * <br>
+ * Clase que representa al Administrador del sistema, solamente se puede crear 1. Almacena toda la informacion que se genera.
+ */
 public class Sistema {
 	private ArrayList<PromocionPermanente> promosFijas = new ArrayList<PromocionPermanente>();
 	private ArrayList<PromocionTemporal> promosTemporales = new ArrayList<PromocionTemporal>();
