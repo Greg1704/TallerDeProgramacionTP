@@ -463,6 +463,7 @@ public class Sistema {
 			}
 			
 			total += parcialPorProducto;
+			parcialPorProducto = 0;
 			
 		}	
 		
