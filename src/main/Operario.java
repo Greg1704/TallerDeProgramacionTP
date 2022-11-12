@@ -11,6 +11,12 @@ public class Operario implements Serializable{
 	private String nombreYApellido;
 	
 	
+	/**
+	 * @param nombreDeUsuario
+	 * @param password
+	 * @param nombreYApellido
+	 * @throws ContraseniaNoCreadaException
+	 */
 	public Operario(String nombreDeUsuario, String password, String nombreYApellido) throws ContraseniaNoCreadaException {
 		this.activo=true;
 		this.nombreDeUsuario = nombreDeUsuario;
@@ -50,6 +56,11 @@ public class Operario implements Serializable{
 	}
 
 	
+	/**
+	 * @param password
+	 * @return
+	 * @throws ContraseniaNoCreadaException
+	 */
 	private boolean verificarPassword(String password) throws ContraseniaNoCreadaException {
 		char aux;
 		boolean mayus = false,digito = false;

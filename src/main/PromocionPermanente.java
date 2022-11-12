@@ -12,6 +12,17 @@ public class PromocionPermanente extends Promocion{
 	private double dtoPorCantidad_PrecioUnitario;
 	
 	
+	/**
+	 * @param activo
+	 * @param diaDePromo
+	 * @param producto
+	 * @param aplicaDosPorUno
+	 * @param aplicaDtoPorCantidad
+	 * @param dtoPorCantidad_cantidadMinima
+	 * @param dtoPorCantidad_PrecioUnitario
+	 * @throws NoHayPromoException
+	 * @throws NegativoException
+	 */
 	public PromocionPermanente(boolean activo, String diaDePromo, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,
 			double dtoPorCantidad_PrecioUnitario) throws NoHayPromoException,NegativoException{

@@ -13,6 +13,14 @@ public class Producto implements Serializable{
 	private int stock;
 	
 	
+	/**
+	 * @param nombre
+	 * @param precioDeCosto
+	 * @param precioDeVenta
+	 * @param stock
+	 * @throws NegativoException
+	 * @throws PrecioVentaMenorCostoException
+	 */
 	public Producto(String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
 		this.nombre = nombre;
@@ -58,6 +66,11 @@ public class Producto implements Serializable{
 		return precioDeCosto;
 	}
 	
+	/**
+	 * @param precioDeCosto
+	 * @throws NegativoException
+	 * @throws PrecioVentaMenorCostoException
+	 */
 	public void setPrecioDeCosto(double precioDeCosto) throws NegativoException, PrecioVentaMenorCostoException {
 		if(precioDeCosto < 0)
 			throw new NegativoException("Precio de costo negativo.");
@@ -71,6 +84,11 @@ public class Producto implements Serializable{
 		return precioDeVenta;
 	}
 	
+	/**
+	 * @param precioDeVenta
+	 * @throws NegativoException
+	 * @throws PrecioVentaMenorCostoException
+	 */
 	public void setPrecioDeVenta(double precioDeVenta) throws NegativoException, PrecioVentaMenorCostoException {
 		if (precioDeVenta < 0)
 			throw new NegativoException("Precio de venta negativo.");
@@ -84,6 +102,10 @@ public class Producto implements Serializable{
 		return stock;
 	}
 	
+	/**
+	 * @param stock
+	 * @throws NegativoException
+	 */
 	public void setStock(int stock) throws NegativoException {
 		
 		if(stock < 1)

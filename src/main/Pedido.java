@@ -12,6 +12,12 @@ public class Pedido implements Serializable{
 	private Producto producto;
 	
 	
+	/**
+	 * @param cantidad
+	 * @param producto
+	 * @throws StockNegativoException
+	 * @throws NegativoException
+	 */
 	public Pedido(int cantidad, Producto producto) throws StockNegativoException, NegativoException{
 	
 		if(producto.getStock() - cantidad < 0) {

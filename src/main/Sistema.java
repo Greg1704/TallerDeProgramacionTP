@@ -28,14 +28,9 @@ public class Sistema {
 	private transient String diaActual;
 	private transient LocalDate diaHoy;
 	
-	/*
-	public Sistema(String nombre, Sueldo sueldo) {
-		super();
-		this.nombre = nombre;
-		this.sueldo = sueldo;
-	}
-	*/
-	
+	/**
+	 * Metodo que permite crear el operario <br>
+	 */
 	private Sistema() {
 		try {
 			admin = new Operario("ADMIN","ADMIN1234","");
@@ -44,7 +39,6 @@ public class Sistema {
 			e.printStackTrace();
 		} //Creacion de Operario Admin
 	}
-	
 	
 	public static Sistema getInstancia() {
 		if(instancia == null)
@@ -122,6 +116,14 @@ public class Sistema {
 	}
 
 	
+	/**
+	 * Es el metodo que permite loguear al administrador al sistema<br>
+	 * @param usuario
+	 * @param password
+	 * @return Un objeto de tipo Admin
+	 * @throws ContraseniaIncorrectaException Se lanza cuando la contrasenia es incorrecta
+	 * @throws UsuarioIncorrectoException se lanza si el nombre del usuario es incorrecto
+	 */
 	public Operario loginAdmin(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException{
 		if(Sistema.getInstancia().getAdmin().getNombreDeUsuario().compareTo(usuario) == 0) {
 			if(Sistema.getInstancia().getAdmin().getPassword().compareTo(password) == 0)
@@ -132,6 +134,14 @@ public class Sistema {
 			throw new UsuarioIncorrectoException();
 	}
 	
+	/**
+	 * Es el metodo que permite loguear a un operario al sistema<br>
+	 * @param usuario
+	 * @param password
+	 * @return Un objeto de tipo Admin
+	 * @throws ContraseniaIncorrectaException Se lanza cuando la contrasenia es incorrecta
+	 * @throws UsuarioIncorrectoException se lanza si el nombre del usuario es incorrecto
+	 */
 	public Operario loginOperario(String usuario,String password) throws ContraseniaIncorrectaException, UsuarioIncorrectoException {
 		int i=0;
 		while(i<operarios.size()) {
@@ -146,15 +156,25 @@ public class Sistema {
 		throw new UsuarioIncorrectoException();
 	}
 	
+	/*
 	public void estadoMozo(Mozo mozo, String estado) {
 		int i=0;
 		if(mozos.contains(mozo)) {
 			while(!mozos.get(i).equals(mozo))
 				i++;
 			mozos.get(i).setEstado(estado);
-		}//No se si podria llegar a existir el caso donde el mozo buscado no se encuentre en el sistema
+		}
 	}
+	*/
 	
+	/**
+	 * Metodo utilizado para agregar un operario al arraylist de Operarios <br>
+	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
+	 * <b>Post: </b> Se almacena en el sistema un nuevo operario.<br>
+	 * @param o es un objeto operario.
+	 * @throws OperarioDuplicadoException se lanza cuando se quiere agregar un operario con datos similares a uno ya existente
+	 * 
+	 */
 	public void agregaOperario(Operario o) throws OperarioDuplicadoException{
 		int j,i=0;
 		
@@ -176,6 +196,13 @@ public class Sistema {
 		this.operarios.remove(o);
 	}
 	
+	/**
+	 * Metodo utilizado para agregar un mozo al arraylist de Mozo <br>
+	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
+	 * <b>Post: </b> Se almacena en el sistema un nuevo operario.<br>
+	 * @param m
+	 * @throws MozoDuplicadoException
+	 */
 	public void agregaMozo(Mozo m) throws MozoDuplicadoException{
 		int j,i=0;
 		
@@ -197,6 +224,10 @@ public class Sistema {
 		this.mozos.remove(m);
 	}
 	
+	/**
+	 * @param p
+	 * @throws ProductoDuplicadoException
+	 */
 	public void agregaProductos(Producto p) throws ProductoDuplicadoException{
 		int j,i=0;
 		
@@ -213,6 +244,10 @@ public class Sistema {
 		}
 	}
 	
+	/**
+	 * @param p
+	 * @throws PedidoAsociadoAComandaException
+	 */
 	public void sacaProducto(Producto p) throws PedidoAsociadoAComandaException{
 		Comanda com;
 		Pedido ped;
@@ -235,6 +270,11 @@ public class Sistema {
 		return productos.get(i);
 	}
 	
+	/**
+	 * @param numero
+	 * @param cantComensales
+	 * @throws MesaYaExistenteException
+	 */
 	public void agregaMesa(int numero,int cantComensales) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
 			if(this.mesas.get(i).getNumero() == numero)
@@ -247,6 +287,17 @@ public class Sistema {
 		this.mesas.remove(mesa);
 	}
 	
+	/**
+	 * @param numero
+	 * @param cantComensales
+	 * @throws MesaNoExistenteException
+	 * @throws ComensalesInsuficientesException
+	 * @throws MesaOcupadaException
+	 * @throws NoHayProductosException
+	 * @throws MesaNoAsignadaException
+	 * @throws NoHayMozosException
+	 * @throws NoHayDosPromosException
+	 */
 	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i=0,j=this.mesas.size();
 		Mesa mesa;
@@ -268,15 +319,15 @@ public class Sistema {
 	}
 	
 	
-	
-	
-	/*No es posible crear una nueva comanda si el local:
-	  -no tiene mesas habilitadas--------------------------------->VERIFICADO DE ANTEMANO
-	  -la mesa asociada debe tener un mozo activo asociado
-	  -no tiene mozos activos
-	  -al menos 2 productos están en promoción activa
-	  -la lista de productos no puede estar vacía----------------->ENCARADO EN LA FUNCION DE ABAJO
-	 * */
+
+	/**
+	 * @param mesa
+	 * @return
+	 * @throws NoHayProductosException
+	 * @throws MesaNoAsignadaException
+	 * @throws NoHayMozosException
+	 * @throws NoHayDosPromosException
+	 */
 	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i = 0,j;
 		boolean encontrado = false;
@@ -330,6 +381,9 @@ public class Sistema {
 		this.promosTemporales.remove(pt);
 	}
 	
+	/**
+	 * @return
+	 */
 	public boolean analizaDosOMasPromos() {
 		int i = 0;
 		String producto1;
@@ -349,6 +403,10 @@ public class Sistema {
 
 	}
 	
+	/**
+	 * @param mesa
+	 * @return
+	 */
 	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
 		int i = 0;
 		int j;
@@ -365,6 +423,9 @@ public class Sistema {
 		return null;
 	}
 	
+	/**
+	 * @return
+	 */
 	public String informeMasVende() {
 		int i = 0;
 		double maxCant = 0;
@@ -382,6 +443,9 @@ public class Sistema {
 		
 	}
 	
+	/**
+	 * @return
+	 */
 	public String informeMenosVende() {
 		int i = 1;
 		double minCant = this.mozos.get(0).getCantidadRecaudada();
@@ -399,6 +463,10 @@ public class Sistema {
 	}
 	
 	// desde el controlador hay que invocar las mesas que haya
+	/**
+	 * @param i
+	 * @return
+	 */
 	public String retornaMesaConEstadisticas(int i) {
 		
 		return this.mesas.get(i).getNumero() + " recaudo $" + this.mesas.get(i).generaPromedio();
@@ -406,6 +474,10 @@ public class Sistema {
 	}
 	
 	//precondicion: el nombre debe existir
+	/**
+	 * @param nombre
+	 * @return
+	 */
 	public String retornaEstadisticasMozo(String nombre) {
 		int i = 0;
 		
@@ -415,6 +487,10 @@ public class Sistema {
 		return this.mozos.get(i).datosEmpleado();	
 	}
 	
+	/**
+	 * @param comanda
+	 * @param formaDePago
+	 */
 	public void cierraComanda(Comanda comanda,String formaDePago){
 		Factura factura;
 		double total = 0,parcialPorProducto, porcentajeDescuento,porcentajeDtoTemporal;

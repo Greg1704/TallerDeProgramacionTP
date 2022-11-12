@@ -48,6 +48,10 @@ public class Comanda {
 		this.mozo = mozo;
 	}
 
+	/**
+	 * @return
+	 * @throws MesaNoAsignadaException
+	 */
 	public Mozo obtenerMozo() throws MesaNoAsignadaException{
 		if (Sistema.getInstancia().buscaMozo(mesa) == null) 
 			throw new MesaNoAsignadaException();
@@ -55,6 +59,9 @@ public class Comanda {
 			return Sistema.getInstancia().buscaMozo(mesa);
 	}
 	
+	/**
+	 * @param pedido
+	 */
 	public void agregarPedido(Pedido pedido){
 		int i;	
 		boolean cumple = false;

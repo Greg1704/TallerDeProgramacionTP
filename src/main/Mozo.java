@@ -18,6 +18,14 @@ public class Mozo implements Serializable{
 	private LocalDate today; 
 
 	
+	/**
+	 * @param estado
+	 * @param hijos
+	 * @param nombreYApellido
+	 * @param fechaDeNacimiento
+	 * @throws HijosNegativosException
+	 * @throws MenorDeDieciochoException
+	 */
 	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException,MenorDeDieciochoException{
 		this.estado = estado;
 		this.NombreYApellido = nombreYApellido;
@@ -87,6 +95,9 @@ public class Mozo implements Serializable{
 	}
 
 
+	/**
+	 * @return
+	 */
 	public String datosEmpleado() {
 		return this.NombreYApellido + " recaudo $" + this.cantidadRecaudada + " y atendio " + this.mesasAtendidas + " mesas.";
 	}
