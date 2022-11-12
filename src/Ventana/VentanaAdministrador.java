@@ -2595,7 +2595,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.modelListComandasActivas.clear();
 		ArrayList<Comanda> it = c.recuperaListaComandas();
 		for(int i=0;i<it.size();i++) {
-			this.modelListComandasActivas.addElement(it.get(i));
+			if(c.comandaActiva(it.get(i)))
+				this.modelListComandasActivas.addElement(it.get(i));
 		}
 	}
 	

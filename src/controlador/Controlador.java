@@ -172,6 +172,9 @@ public class Controlador implements ActionListener {
 			} catch (StockNegativoException e1) {
 				// TODO Auto-generated catch block
 				v.popUp(e1.getMessage());
+			} catch (NegativoException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
 			}
 			
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
@@ -445,13 +448,23 @@ public class Controlador implements ActionListener {
 					v.popUp(e1.getMessage());
 				}
 			if(producto.getStock() != v.getTextFieldProductoStockInicialModif())
-				producto.setStock(v.getTextFieldProductoStockInicialModif());
+				try {
+					producto.setStock(v.getTextFieldProductoStockInicialModif());
+				} catch (NegativoException e1) {
+					// TODO Auto-generated catch block
+					v.popUp(e1.getMessage());
+				}
 			v.actualizarListaProductos();
 			v.actualizarComboBoxProductosAlta();
 			v.actualizarComboBoxProductosModif();
 		}else if(e.getActionCommand().equals(IVista.actualizarStockProducto)) {
 			producto = v.getSelectedProducto();
-			producto.setStock(v.getTextFieldProductoNuevoStock());
+			try {
+				producto.setStock(v.getTextFieldProductoNuevoStock());
+			} catch (NegativoException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
+			}
 			v.actualizarListaProductos();
 			v.actualizarComboBoxProductosAlta();
 			v.actualizarComboBoxProductosModif();
@@ -574,6 +587,13 @@ public class Controlador implements ActionListener {
 
 	public boolean mozoActivo(Mozo mozo) {
 		if(mozo.getEstado().equals("Activo"))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean comandaActiva(Comanda comanda) {
+		if(comanda.getEstado().equals("Abierta"))
 			return true;
 		else
 			return false;

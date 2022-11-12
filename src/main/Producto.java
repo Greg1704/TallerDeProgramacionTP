@@ -90,8 +90,6 @@ public class Producto implements Serializable{
 			throw new NegativoException("Stock menor a por lo menos 1 producto.");
 		else
 			this.stock = stock;
-		
-		this.stock = stock;
 	}
 
 	@Override
