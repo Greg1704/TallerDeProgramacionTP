@@ -208,7 +208,18 @@ public class Sistema {
 		}
 	}
 	
-	public void sacaProducto(Producto p){
+	public void sacaProducto(Producto p) throws PedidoAsociadoAComandaException{
+		Comanda com;
+		Pedido ped;
+		for(int i=0;i<this.comandas.size();i++) {
+			com = comandas.get(i);
+			for(int j=0;j<com.getPedidos().size();j++) {
+				ped = com.getPedidos().get(j);
+				if(ped.getProducto().equals(p))
+					throw new PedidoAsociadoAComandaException();
+			}
+		}
+		
 		this.productos.remove(p);
 	}
 	
@@ -243,7 +254,6 @@ public class Sistema {
 			mesa = this.mesas.get(i);
 			if(mesa.getEstado().equals("Libre")) 
 				if(((mesa.getNumero() != 0 && cantComensales>=2) || mesa.getNumero() == 0) && cantComensales <= mesa.getComensales()) { //Error del enunciado: (la cantidad de comensales debe ser > =2 cuando el nro de mesa es > 1) ??????
-					mesa.setComensales(cantComensales);
 					this.comandas.add(creaComanda(mesa));  //Tal vez habria que hacer una funcion de la creacion de la comanda que verifique todos los requisitos
 				}else
 					throw new ComensalesInsuficientesException();
@@ -274,7 +284,7 @@ public class Sistema {
 			j = 0;
 			
 			haymozo = true;
-			while(j < this.mozos.get(i).getMesasAtendidas() && !encontrado) {
+			while(j < this.mozos.get(i).getMesas().size() && !encontrado) {
 				if(this.mozos.get(i).getMesas().get(j).getNumero() == mesa.getNumero()) {
 					encontrado = true;
 				}
@@ -410,14 +420,14 @@ public class Sistema {
 		//total = calculaTot(); se necesita para calcular el total de la mesas
 		
 		comanda.setEstado("Cerrada");
-		
+		diaActualAlEspanol();
 		for (int i = 0; i < comanda.getPedidos().size(); i++){
 			parcialPorProducto = comanda.getPedidos().get(i).getProducto().getPrecioDeVenta() * comanda.getPedidos().get(i).getCantidad(); //precio total de los productos
 			tienePromoFija = false;
 			j = 0;
 			k = 0;
 			//promos fijas
-			while(j < this.promosFijas.size() && !tienePromoFija){//falta condicion para dia
+			while(j < this.promosFijas.size() && !tienePromoFija){
 				if(this.promosFijas.get(j).isActivo() && this.diaActual.equalsIgnoreCase(this.promosFijas.get(j).getDiaDePromo()) && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
 					if(this.promosFijas.get(i).isAplicaDosPorUno() && comanda.getPedidos().get(i).getCantidad() >= 2) {
@@ -444,10 +454,9 @@ public class Sistema {
 			
 			//promos temporales
 			while(k < this.getPromosTemporales().size()) {
-				//FALTA EL DIA DE LA PROMO
 				if (this.getPromosTemporales().get(k).isActivo() && this.diaActual.equalsIgnoreCase(this.promosTemporales.get(k).getDiaDePromo()) && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
 					parcialPorProducto = parcialPorProducto - parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto();	
-					promocionesAplicadas.add(this.promosTemporales.get(j));
+					promocionesAplicadas.add(this.promosTemporales.get(k));
 				}
 				
 				k++;	

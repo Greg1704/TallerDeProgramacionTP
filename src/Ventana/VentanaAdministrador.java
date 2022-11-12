@@ -1682,6 +1682,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 			this.listProductosGeneral.clearSelection();
 			this.textFieldCantidadProducto.setText("");
 			this.btnAgregarPedidoAComanda.setEnabled(false);
+			this.btnCerrarComanda.setEnabled(false);
 		}else if(e.getSource() == this.btnCerrarComanda && this.btnCerrarComanda.isEnabled()) {
 			this.listComandasActivas.clearSelection();
 			this.btnCerrarComanda.setEnabled(false);

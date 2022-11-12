@@ -24,6 +24,7 @@ import excepciones.NoHayMozosException;
 import excepciones.NoHayProductosException;
 import excepciones.NoHayPromoException;
 import excepciones.OperarioDuplicadoException;
+import excepciones.PedidoAsociadoAComandaException;
 import excepciones.PrecioVentaMenorCostoException;
 import excepciones.ProductoDuplicadoException;
 import excepciones.StockNegativoException;
@@ -93,6 +94,9 @@ public class Controlador implements ActionListener {
 					// TODO Auto-generated catch block
 					v.popUp(e1.getMessage());
 				} catch (UsuarioIncorrectoException e1) {
+					// TODO Auto-generated catch block
+					v.popUp(e1.getMessage());
+				} catch (ContraseniaNoCreadaException e1) {
 					// TODO Auto-generated catch block
 					v.popUp(e1.getMessage());
 				}
@@ -173,7 +177,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.cerrarComanda)) {
 			comanda = v.getSelectedComandaActiva();
 			sistema.cierraComanda(comanda, v.getComboBoxMetodoPagoGeneral());
-			//Habria que hacer algo para que muestre la modif por pantalla
+			v.actualizarListaComandasActivas();
 		}else if(e.getActionCommand().equals(IVista.crearOperario)) { //Ventana operarios y mesas
 			try {
 				sistema.agregaOperario(new Operario(v.getTextFieldOperarioUsuarioAlta(),v.getTextFieldOperarioContraseniaAlta(),v.getTextFieldOperarioNyAAlta()));
@@ -193,7 +197,12 @@ public class Controlador implements ActionListener {
 			if(!operario.getNombreDeUsuario().equals(v.getTextFieldOperarioUsuarioModif()))
 				operario.setNombreDeUsuario(v.getTextFieldOperarioUsuarioModif());
 			if(!operario.getPassword().equals(v.getTextFieldOperarioContraseniaModif()))
-				operario.setPassword(v.getTextFieldOperarioContraseniaModif());
+				try {
+					operario.setPassword(v.getTextFieldOperarioContraseniaModif());
+				} catch (ContraseniaNoCreadaException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			if(!operario.getNombreYApellido().equals(v.getTextFieldOperarioNyAModif()))
 				operario.setNombreYApellido(v.getTextFieldOperarioNyAModif());
 		    if(operario.isActivo() == true && v.getComboBoxOperarioEstadoModif().equals("Inactivo"))
@@ -401,7 +410,12 @@ public class Controlador implements ActionListener {
 				v.popUp(e1.getMessage());
 			}
 		}else if(e.getActionCommand().equals(IVista.eliminarProducto)) {
-			sistema.sacaProducto(v.getSelectedProducto());
+			try {
+				sistema.sacaProducto(v.getSelectedProducto());
+			} catch (PedidoAsociadoAComandaException e1) {
+				// TODO Auto-generated catch block
+				v.popUp(e1.getMessage());
+			}
 			v.actualizarListaProductos();
 			v.actualizarComboBoxProductosAlta();
 			v.actualizarComboBoxProductosModif();
