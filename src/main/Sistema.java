@@ -430,20 +430,20 @@ public class Sistema {
 			while(j < this.promosFijas.size() && !tienePromoFija){
 				if(this.promosFijas.get(j).isActivo() && this.diaActual.equalsIgnoreCase(this.promosFijas.get(j).getDiaDePromo()) && this.promosFijas.get(j).getProducto().getNombre().equalsIgnoreCase(comanda.getPedidos().get(i).getProducto().getNombre())) {
 					
-					if(this.promosFijas.get(i).isAplicaDosPorUno() && comanda.getPedidos().get(i).getCantidad() >= 2) {
+					if(this.promosFijas.get(j).isAplicaDosPorUno() && comanda.getPedidos().get(i).getCantidad() >= 2) {
 						tienePromoFija = true;
 						cantDosPorUno = (int) comanda.getPedidos().get(i).getCantidad() / 2;
 						parcialPorProducto -= cantDosPorUno * comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();	
 						promocionesAplicadas.add(this.promosFijas.get(j));
 						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {				
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
-							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;						
+							parcialPorProducto = parcialPorProducto - (parcialPorProducto * porcentajeDescuento);						
 						}				
 					}else {		
 						if(this.promosFijas.get(j).isAplicaDtoPorCantidad() && this.diaActual.equalsIgnoreCase(this.promosFijas.get(j).getDiaDePromo()) && comanda.getPedidos().get(i).getCantidad() >= this.promosFijas.get(j).getDtoPorCantidad_cantidadMinima()) {
 							tienePromoFija = true;
 							porcentajeDescuento = this.promosFijas.get(j).getDtoPorCantidad_PrecioUnitario() / comanda.getPedidos().get(i).getProducto().getPrecioDeVenta();
-							parcialPorProducto = parcialPorProducto - parcialPorProducto * porcentajeDescuento;		
+							parcialPorProducto = parcialPorProducto - (parcialPorProducto * porcentajeDescuento);		
 							promocionesAplicadas.add(this.promosFijas.get(j));
 						}			
 					}
@@ -455,7 +455,7 @@ public class Sistema {
 			//promos temporales
 			while(k < this.getPromosTemporales().size()) {
 				if (this.getPromosTemporales().get(k).isActivo() && this.diaActual.equalsIgnoreCase(this.promosTemporales.get(k).getDiaDePromo()) && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
-					parcialPorProducto = parcialPorProducto - parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto();	
+					parcialPorProducto = parcialPorProducto - (parcialPorProducto * this.promosTemporales.get(k).getPorcentajeDeDto());	
 					promocionesAplicadas.add(this.promosTemporales.get(k));
 				}
 				
@@ -463,7 +463,6 @@ public class Sistema {
 			}
 			
 			total += parcialPorProducto;
-			parcialPorProducto = 0;
 			
 		}	
 		
