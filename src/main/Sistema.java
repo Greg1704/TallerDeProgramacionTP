@@ -455,7 +455,7 @@ public class Sistema {
 			//promos temporales
 			while(k < this.getPromosTemporales().size()) {
 				if (this.getPromosTemporales().get(k).isActivo() && this.diaActual.equalsIgnoreCase(this.promosTemporales.get(k).getDiaDePromo()) && (!tienePromoFija || this.getPromosTemporales().get(k).isEsAcumulable()) && this.getPromosTemporales().get(k).getFormaPago().equalsIgnoreCase(formaDePago) ) { //falta contemplar el dia y forma de pago
-					porcentajeDtoTemporal = this.promosTemporales.get(k).getPorcentajeDeDto() / 100;
+					porcentajeDtoTemporal = this.promosTemporales.get(k).getPorcentajeDeDto() / 100.00;
 					parcialPorProducto = parcialPorProducto - (parcialPorProducto * porcentajeDtoTemporal);	
 					promocionesAplicadas.add(this.promosTemporales.get(k));
 				}

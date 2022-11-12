@@ -424,7 +424,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 		this.panelSeleccionEstadosMozos.add(this.rdbtnEstadoDeFranco);
 		
 		this.btnEstadoConfirmar = new JButton("Confirmar");
-		this.btnEstadoConfirmar.setBounds(153, 80, 89, 23);
+		this.btnEstadoConfirmar.setBounds(140, 80, 104, 23);
 		this.panelSeleccionEstadosMozos.add(this.btnEstadoConfirmar);
 		
 		this.panelAsignacionMesas = new JPanel();
