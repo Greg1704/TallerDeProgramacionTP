@@ -13,6 +13,7 @@ public class PromocionPermanente extends Promocion{
 	
 	
 	/**
+	 * Metodo constructor de las promociones permanentes.
 	 * @param activo
 	 * @param diaDePromo
 	 * @param producto
@@ -20,8 +21,8 @@ public class PromocionPermanente extends Promocion{
 	 * @param aplicaDtoPorCantidad
 	 * @param dtoPorCantidad_cantidadMinima
 	 * @param dtoPorCantidad_PrecioUnitario
-	 * @throws NoHayPromoException
-	 * @throws NegativoException
+	 * @throws NoHayPromoException Se lanza cuando al crear la promocion no se le asigna si es de tipo 2x1 o por cantidad.
+	 * @throws NegativoException Se lanza cuando un dato es menor a 0.
 	 */
 	public PromocionPermanente(boolean activo, String diaDePromo, Producto producto,
 			boolean aplicaDosPorUno, boolean aplicaDtoPorCantidad, int dtoPorCantidad_cantidadMinima,

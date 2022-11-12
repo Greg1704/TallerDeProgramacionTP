@@ -171,8 +171,8 @@ public class Sistema {
 	 * Metodo utilizado para agregar un operario al arraylist de Operarios <br>
 	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
 	 * <b>Post: </b> Se almacena en el sistema un nuevo operario.<br>
-	 * @param o es un objeto operario.
-	 * @throws OperarioDuplicadoException se lanza cuando se quiere agregar un operario con datos similares a uno ya existente
+	 * @param o Es un objeto de tipo operario.
+	 * @throws OperarioDuplicadoException Se lanza cuando se quiere agregar un operario con datos similares a uno ya existente.
 	 * 
 	 */
 	public void agregaOperario(Operario o) throws OperarioDuplicadoException{
@@ -199,9 +199,9 @@ public class Sistema {
 	/**
 	 * Metodo utilizado para agregar un mozo al arraylist de Mozo <br>
 	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Operario.<br>
-	 * <b>Post: </b> Se almacena en el sistema un nuevo operario.<br>
-	 * @param m
-	 * @throws MozoDuplicadoException
+	 * <b>Post: </b> Se almacena en el sistema un nuevo mozo.<br>
+	 * @param m Es un objeto de tipo mozo.
+	 * @throws MozoDuplicadoException Se lanza cuando se quiere agregar un mozo con datos similares a uno ya existente.
 	 */
 	public void agregaMozo(Mozo m) throws MozoDuplicadoException{
 		int j,i=0;
@@ -225,8 +225,11 @@ public class Sistema {
 	}
 	
 	/**
-	 * @param p
-	 * @throws ProductoDuplicadoException
+	 * Metodo utilizado para agregar un producto al arraylist de productos <br>
+	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Producto.<br>
+	 * <b>Post: </b> Se almacena en el sistema un nuevo producto.<br>
+	 * @param p Es un objeto de tipo producto.
+	 * @throws ProductoDuplicadoException Se lanza cuando se quiere agregar un producto con datos similares a uno ya existente.
 	 */
 	public void agregaProductos(Producto p) throws ProductoDuplicadoException{
 		int j,i=0;
@@ -245,8 +248,11 @@ public class Sistema {
 	}
 	
 	/**
-	 * @param p
-	 * @throws PedidoAsociadoAComandaException
+	 * Metodo utilizado para sacar un producto del sistema.
+	 * <b>Pre: </b> El objeto pasado por parametros debe ser de tipo Producto y se debe encontrar en el sistema.<br>
+	 * <b>Post: </b> Se borra del sistema el producto.<br>
+	 * @param p Es un objeto de tipo Producto.
+	 * @throws PedidoAsociadoAComandaException Se lanza si el pedido que se quiere eliminar se encuentra en una comanda activa.
 	 */
 	public void sacaProducto(Producto p) throws PedidoAsociadoAComandaException{
 		Comanda com;
@@ -271,9 +277,12 @@ public class Sistema {
 	}
 	
 	/**
-	 * @param numero
-	 * @param cantComensales
-	 * @throws MesaYaExistenteException
+	 * Metodo utilizado para agregar una mesa al arraylist de mesas <br>
+	 * <b>Pre: </b> numero debe ser mayor o igual a 0, cantComensales debe ser mayor que 0.<br>
+	 * <b>Post: </b> Se almacena en el sistema una nueva mesa.<br>
+	 * @param numero Numero de la mesa.
+	 * @param cantComensales Cantidad maxima de clientes que pueden ocupar la mesa.
+	 * @throws MesaYaExistenteException Se lanza cuando se quiere agregar una mesa con datos similares a una ya existente.
 	 */
 	public void agregaMesa(int numero,int cantComensales) throws MesaYaExistenteException{
 		for(int i=0;i<mesas.size();i++){
@@ -288,15 +297,17 @@ public class Sistema {
 	}
 	
 	/**
-	 * @param numero
-	 * @param cantComensales
-	 * @throws MesaNoExistenteException
-	 * @throws ComensalesInsuficientesException
-	 * @throws MesaOcupadaException
-	 * @throws NoHayProductosException
-	 * @throws MesaNoAsignadaException
-	 * @throws NoHayMozosException
-	 * @throws NoHayDosPromosException
+	 * Metodo utilizado en el momento que se quiere ocupar una mesa, verificando que exista, se encuentre libre y que la cantidad de clientes que quieran ocuparla sea adecuada. <br>
+	 * <b>Post: </b> Se ocupa una mesa. <br>
+	 * @param numero Identificador de la mesa.
+	 * @param cantComensales Cantidad de clientes que van a ocupar la mesa.
+	 * @throws MesaNoExistenteException Se lanza si la mesa no se encuentra registrada en el sistema.
+	 * @throws ComensalesInsuficientesException Se lanza en caso que sean menos de 2 comensales en una mesa o 1 en la barra.
+	 * @throws MesaOcupadaException Se lanza si la mesa que se quiere ocupar estaba previamente ocupada.
+	 * @throws NoHayProductosException Se lanza si no se encuentran productos en el sistema.
+	 * @throws MesaNoAsignadaException Se lanza si previamente no se le asigno un mozo a la mesa.
+	 * @throws NoHayMozosException Se lanza si no hay mozos registrados en el sistema.
+	 * @throws NoHayDosPromosException Se lanza cuando no hay al menos 2 promos para productos en el sistema.
 	 */
 	public void ocupaMesa(int numero, int cantComensales) throws MesaNoExistenteException, ComensalesInsuficientesException, MesaOcupadaException, NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i=0,j=this.mesas.size();
@@ -321,12 +332,15 @@ public class Sistema {
 	
 
 	/**
-	 * @param mesa
-	 * @return
-	 * @throws NoHayProductosException
-	 * @throws MesaNoAsignadaException
-	 * @throws NoHayMozosException
-	 * @throws NoHayDosPromosException
+	 * Metodo encargado de verificar que se cumplan todas las condiciones para crear una comanda, y si se cumplen, crearla
+	 * <b>Pre: </b> mesa debe ser distinto de null. <br>
+	 * <b>Post: </b> Se crea un objeto de tipo comanda. <br>
+	 * @param mesa 
+	 * @return Un objeto de tipo Comanda.
+	 * @throws NoHayProductosException Se lanza si no se encuentran productos en el sistema.
+	 * @throws MesaNoAsignadaException Se lanza si previamente no se le asigno un mozo a la mesa.
+	 * @throws NoHayMozosException Se lanza si no hay mozos registrados en el sistema.
+	 * @throws NoHayDosPromosException Se lanza cuando no hay al menos 2 promos para productos en el sistema.
 	 */
 	public Comanda creaComanda(Mesa mesa) throws NoHayProductosException, MesaNoAsignadaException, NoHayMozosException, NoHayDosPromosException {
 		int i = 0,j;
@@ -382,7 +396,8 @@ public class Sistema {
 	}
 	
 	/**
-	 * @return
+	 * Metodo utilizado para corroborar si se cumple la condicion de existencia de dos o mas promociones en el sistema. <br>
+	 * @return Un booleano.
 	 */
 	public boolean analizaDosOMasPromos() {
 		int i = 0;
@@ -402,11 +417,7 @@ public class Sistema {
 		}
 
 	}
-	
-	/**
-	 * @param mesa
-	 * @return
-	 */
+
 	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
 		int i = 0;
 		int j;
@@ -424,7 +435,8 @@ public class Sistema {
 	}
 	
 	/**
-	 * @return
+	 * Metodo utilizado para encontrar cual fue el mozo que mas dinero recaudo.<br>
+	 * @return Un String con el nombre del mozo que mas facturo y cual fue la cantidad recaudada.
 	 */
 	public String informeMasVende() {
 		int i = 0;
@@ -444,7 +456,8 @@ public class Sistema {
 	}
 	
 	/**
-	 * @return
+	 * Metodo utilizado para encontrar cual fue el mozo que menos dinero recaudo.<br>
+	 * @return Un String con el nombre del mozo que menos facturo y cual fue la cantidad recaudada.
 	 */
 	public String informeMenosVende() {
 		int i = 1;
@@ -462,21 +475,19 @@ public class Sistema {
 		return menosVendio;
 	}
 	
-	// desde el controlador hay que invocar las mesas que haya
-	/**
-	 * @param i
-	 * @return
-	 */
+
 	public String retornaMesaConEstadisticas(int i) {
 		
 		return this.mesas.get(i).getNumero() + " recaudo $" + this.mesas.get(i).generaPromedio();
 		
 	}
 	
-	//precondicion: el nombre debe existir
 	/**
+	 * Metodo que retorna las estadisticas de un mozo.
+	 * <b>Pre: </b> nombre debe corresponder al nombre de un mozo registrado en el sistema.<br>
+	 * <b>Post: </b> Se almacena en el sistema una nueva mesa.<br>
 	 * @param nombre
-	 * @return
+	 * @return Un String que contiene las estadisticas del mozo.
 	 */
 	public String retornaEstadisticasMozo(String nombre) {
 		int i = 0;
@@ -488,6 +499,9 @@ public class Sistema {
 	}
 	
 	/**
+	 * Metodo utilizado para cerrar una comanda, calcular el total a pagar, crear una factura y almacenarla en el sistema.
+	 * <b>Pre: </b> La comanda debe existir en el sistema y encontrars en estado "abierta".<br>
+	 * <b>Post: </b> Se cierra la comanda, se crea un objeto de tipo Factura y se almacena el mismo en el sistema.<br>
 	 * @param comanda
 	 * @param formaDePago
 	 */

@@ -49,8 +49,9 @@ public class Comanda {
 	}
 
 	/**
-	 * @return
-	 * @throws MesaNoAsignadaException
+	 * Metodo que invoca al metodo "buscaMozo" del sistema. <br>
+	 * @return Objeto de tipo Mesa.
+	 * @throws MesaNoAsignadaException Se lanza cuando una mesa no fue asignada.
 	 */
 	public Mozo obtenerMozo() throws MesaNoAsignadaException{
 		if (Sistema.getInstancia().buscaMozo(mesa) == null) 
