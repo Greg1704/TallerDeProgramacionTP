@@ -12,10 +12,11 @@ public class Operario implements Serializable{
 	
 	
 	/**
+	 * Metodo constructor de la clase Operario. <br>
 	 * @param nombreDeUsuario
 	 * @param password
 	 * @param nombreYApellido
-	 * @throws ContraseniaNoCreadaException
+	 * @throws ContraseniaNoCreadaException Se lanza cuando no se cumple el contrato preestablecido para la creacion de la contrasenia.
 	 */
 	public Operario(String nombreDeUsuario, String password, String nombreYApellido) throws ContraseniaNoCreadaException {
 		this.activo=true;
@@ -40,6 +41,7 @@ public class Operario implements Serializable{
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) throws ContraseniaNoCreadaException {
 		if(verificarPassword(password))
 			this.password = password;
@@ -57,9 +59,12 @@ public class Operario implements Serializable{
 
 	
 	/**
+	 * Metodo utilizado para la verificacion de la existencia de la contrasenia.
+	 * <b> Pre: </b> password no debe ser nula <br>
+	 * <b> Post: </b> Se determina si la contrasenia es valida con un booleano. <br>
 	 * @param password
-	 * @return
-	 * @throws ContraseniaNoCreadaException
+	 * @return Un booleano.
+	 * @throws ContraseniaNoCreadaException Se lanza cuando no se cumple el contrato preestablecido para la creacion de la contrasenia.
 	 */
 	private boolean verificarPassword(String password) throws ContraseniaNoCreadaException {
 		char aux;

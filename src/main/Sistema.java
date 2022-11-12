@@ -418,7 +418,7 @@ public class Sistema {
 
 	}
 
-	public Mozo buscaMozo(Mesa mesa) { //no se si sea muy programacion estructurada retornar en 2 while, perdon Sandra
+	public Mozo buscaMozo(Mesa mesa) { 
 		int i = 0;
 		int j;
 		

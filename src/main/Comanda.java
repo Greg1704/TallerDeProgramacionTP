@@ -51,7 +51,7 @@ public class Comanda {
 	/**
 	 * Metodo que invoca al metodo "buscaMozo" del sistema. <br>
 	 * @return Objeto de tipo Mesa.
-	 * @throws MesaNoAsignadaException Se lanza cuando una mesa no fue asignada.
+	 * @throws MesaNoAsignadaException Se lanza cuando una mesa no fue asignada a ningun mozo.
 	 */
 	public Mozo obtenerMozo() throws MesaNoAsignadaException{
 		if (Sistema.getInstancia().buscaMozo(mesa) == null) 
@@ -61,6 +61,9 @@ public class Comanda {
 	}
 	
 	/**
+	 * Metodo utilizado para agregar un pedido a una comanda.<br>
+	 * <b> Pre: </b> pedido debe ser distinto de null. <br>
+	 * <b> Post: </b> Se agrega un producto al arreglo de Pedidos. <br>
 	 * @param pedido
 	 */
 	public void agregarPedido(Pedido pedido){

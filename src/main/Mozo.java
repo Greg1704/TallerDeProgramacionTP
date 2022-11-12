@@ -19,12 +19,13 @@ public class Mozo implements Serializable{
 
 	
 	/**
+	 * Metodo constructor de la clase Mozo. <br>
 	 * @param estado
 	 * @param hijos
 	 * @param nombreYApellido
 	 * @param fechaDeNacimiento
-	 * @throws HijosNegativosException
-	 * @throws MenorDeDieciochoException
+	 * @throws HijosNegativosException Se lanza si el dato ingresado en el campo hijos es menor a 0.
+	 * @throws MenorDeDieciochoException Se lanza si la fecha de nacimiento ingresada no cumple la condicion de ser de al menos hace 18 anios.
 	 */
 	public Mozo(String estado, int hijos, String nombreYApellido, LocalDate fechaDeNacimiento) throws HijosNegativosException,MenorDeDieciochoException{
 		this.estado = estado;
@@ -94,10 +95,6 @@ public class Mozo implements Serializable{
 		this.fechaDeNacimiento = fechaDeNacimiento;
 	}
 
-
-	/**
-	 * @return
-	 */
 	public String datosEmpleado() {
 		return this.NombreYApellido + " recaudo $" + this.cantidadRecaudada + " y atendio " + this.mesasAtendidas + " mesas.";
 	}

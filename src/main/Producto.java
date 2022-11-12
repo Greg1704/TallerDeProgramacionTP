@@ -18,8 +18,8 @@ public class Producto implements Serializable{
 	 * @param precioDeCosto
 	 * @param precioDeVenta
 	 * @param stock
-	 * @throws NegativoException
-	 * @throws PrecioVentaMenorCostoException
+	 * @throws NegativoException Se lanza si el dato de cantidad es negativo.
+	 * @throws PrecioVentaMenorCostoException Se lanza si el precio de venta ingresado es menor al precio de costo.
 	 */
 	public Producto(String nombre, double precioDeCosto, double precioDeVenta, int stock) throws NegativoException, PrecioVentaMenorCostoException{
 		super();
@@ -85,9 +85,10 @@ public class Producto implements Serializable{
 	}
 	
 	/**
+	 * Metodo constructor de la clase Producto. <br>
 	 * @param precioDeVenta
-	 * @throws NegativoException
-	 * @throws PrecioVentaMenorCostoException
+	 * @throws NegativoException Se lanza si el dato de precioDeVenta es negativo.
+	 * @throws PrecioVentaMenorCostoException Se lanza si el precio de venta es menor que el precio de costo.
 	 */
 	public void setPrecioDeVenta(double precioDeVenta) throws NegativoException, PrecioVentaMenorCostoException {
 		if (precioDeVenta < 0)
@@ -102,10 +103,6 @@ public class Producto implements Serializable{
 		return stock;
 	}
 	
-	/**
-	 * @param stock
-	 * @throws NegativoException
-	 */
 	public void setStock(int stock) throws NegativoException {
 		
 		if(stock < 1)

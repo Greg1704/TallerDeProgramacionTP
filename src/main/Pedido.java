@@ -13,10 +13,11 @@ public class Pedido implements Serializable{
 	
 	
 	/**
+	 * Metodo constructor de la clase Pedido. <br>
 	 * @param cantidad
 	 * @param producto
-	 * @throws StockNegativoException
-	 * @throws NegativoException
+	 * @throws StockNegativoException Se lanza si el stock ingresado es menor a 0.
+	 * @throws NegativoException Se lanza si el dato de cantidad es negativo.
 	 */
 	public Pedido(int cantidad, Producto producto) throws StockNegativoException, NegativoException{
 	
