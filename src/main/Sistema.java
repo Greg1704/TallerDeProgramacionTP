@@ -44,6 +44,7 @@ public class Sistema {
 	
 	
 	
+	
 	public ArrayList<Factura> getFacturas() {
 		return facturas;
 	}

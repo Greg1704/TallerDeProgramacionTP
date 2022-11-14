@@ -18,6 +18,7 @@ public class PersistirSistema {
 			//devolverError("Se guardo mal\n");
 		}
 		
+		
 	}
 	
 	public static void LecturaSistema() {

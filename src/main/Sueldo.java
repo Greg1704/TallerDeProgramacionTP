@@ -1,5 +1,7 @@
 package main;
 
+import static org.junit.Assert.assertEquals;
+
 import java.io.Serializable;
 
 public class Sueldo implements Serializable{
@@ -11,7 +13,8 @@ public class Sueldo implements Serializable{
 		super();
 		this.basico = basico;
 		this.porcentaje = porcentaje;
-	}
+		
+		}
 	
 	
 	public double getBasico() {
