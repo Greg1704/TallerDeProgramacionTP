@@ -288,7 +288,6 @@ public class Sistema {
 		}
 		mesas.add(new Mesa(cantComensales,"Libre",numero));
 	}
-	
 	public void sacaMesa(Mesa mesa) {
 		this.mesas.remove(mesa);
 	}

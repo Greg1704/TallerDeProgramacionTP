@@ -115,7 +115,8 @@ public class TestSistema {
 	
 	/**
 	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
-	 * Escenario lista mesas en sistema vacia
+	 * Escenario lista mesas en sistema vacia o numeroMesa no coincide con
+	 * ninguna mesa en sistema
 	 * */
 	@Test
 	public void camino1() {
@@ -142,43 +143,10 @@ public class TestSistema {
 	/**
 	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
 	 * Escenario lista mesas en sistema con elementos, y parametro numeroMesa igual a 
-	 * el numero de mesa de una del sistema.
-	 * */
-	@Test
-	public void camino2() {
-		try {
-			this.sistema.agregaMesa(1, 0);
-			System.out.println(this.sistema.getMesas().size());
-			try {
-				this.sistema.ocupaMesa(0, 0);
-			} catch (MesaNoExistenteException e) {
-				
-			} catch (ComensalesInsuficientesException e) {
-				fail("No debe lanzar ComensalesInsuficientesException()");
-			} catch (MesaOcupadaException e) {
-				fail("No debe lanzar MesaOcupadaException()");
-			} catch (NoHayProductosException e) {
-				fail("No debe lanzar NoHayProductosException()");
-			} catch (MesaNoAsignadaException e) {
-				fail("No debe lanzar MesaNoAsignadaException()");
-			} catch (NoHayMozosException e) {
-				fail("No debe lanzar NoHayMozosException()");
-			} catch (NoHayDosPromosException e) {
-				fail("No debe lanzar NoHayDosPromosException()");
-			}
-		} catch (MesaYaExistenteException e) {
-			fail("No debe lanzar MesaYaExistenteException" );
-		}
-		
-	}
-	
-	/**
-	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
-	 * Escenario lista mesas en sistema con elementos, y parametro numeroMesa distinto a 
 	 * el numero de mesa de las del sistema y las mesas con estado distinto a libre.
 	 */
 	@Test
-	public void camino3() {
+	public void camino2() {
 		try {
 			this.sistema.agregaMesa(0, 0);
 			this.sistema.getMesas().get(0).setEstado("");
@@ -203,10 +171,52 @@ public class TestSistema {
 			fail("No debe lanzar MesaYaExistenteException" );
 		}
 	}
+	
+	
+	/**
+	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
+	 * Escenario lista mesas en sistema con elementos, y parametro numeroMesa igual a 
+	 * el numero de mesa de una del sistema y estado libre.
+	 * */
+	@Test
+	public void camino3() {
+		try {
+			this.sistema.agregaMesa(0, 0);
+			try {
+				this.sistema.ocupaMesa(0, 5);
+			} catch (MesaNoExistenteException e) {
+				fail("No debe lanzar MesaNoExistenteException()");
+			} catch (ComensalesInsuficientesException e) {
+				
+			} catch (MesaOcupadaException e) {
+				fail("No debe lanzar MesaOcupadaException()");
+			} catch (NoHayProductosException e) {
+				fail("No debe lanzar NoHayProductosException()");
+			} catch (MesaNoAsignadaException e) {
+				fail("No debe lanzar MesaNoAsignadaException()");
+			} catch (NoHayMozosException e) {
+				fail("No debe lanzar NoHayMozosException()");
+			} catch (NoHayDosPromosException e) {
+				fail("No debe lanzar NoHayDosPromosException()");
+			}
+		} catch (MesaYaExistenteException e) {
+			fail("No debe lanzar MesaYaExistenteException" );
+		}
+		
+	}
+	
+	/**
+	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
+	 * Escenario lista mesas en sistema con elementos, y parametro numeroMesa igual a 
+	 * el numero de mesa de una del sistema con estado libre, con mozo en sistema, con un mozo 
+	 * ue tenga asignada la mesa y ue haya dos promos activas en sistema
+	 */
+	
 	@Test
 	public void camino4() {
 		try {
-			this.sistema.agregaMesa(3, 6);
+			this.sistema.agregaMesa(0, 2);
+			//this.sistema.agregaMesa(1, 3);
 			try {
 				try {
 					this.sistema.agregaProductos(new Producto("hola",50,100,20));
@@ -221,9 +231,8 @@ public class TestSistema {
 							fail("No debe lanzar NoHayPromoException");
 						}
 						
-						//falta agregar dos promos al sistema
 						try {
-							this.sistema.ocupaMesa(3, 4);
+							this.sistema.ocupaMesa(0, 2);
 						} catch (MesaNoExistenteException e) {
 							fail("No debe lanzar MesaNoExistenteException");
 						} catch (ComensalesInsuficientesException e) {
@@ -260,7 +269,7 @@ public class TestSistema {
 		}
 		
 	}
-	@Test
+	/*@Test
 	public void camino5() {
 		try {
 			this.sistema.agregaMesa(3, 2);
@@ -285,7 +294,7 @@ public class TestSistema {
 			fail("No debe lanzar MesaYaExistenteException" );
 		}
 		
-	}
+	}*/
 	
 
 }

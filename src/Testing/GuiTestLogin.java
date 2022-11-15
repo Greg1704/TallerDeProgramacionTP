@@ -73,7 +73,6 @@ public class GuiTestLogin {
 		robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 		robot.delay(10);
 		robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-		robot.delay(5000);
 	}
 	
 	@Test
