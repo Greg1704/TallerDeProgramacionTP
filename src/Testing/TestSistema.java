@@ -140,13 +140,40 @@ public class TestSistema {
 		
 	}
 	
+	@Test
+	public void camino2() {
+		try {
+			try {
+				this.sistema.agregaMesa(0, 0);
+			} catch (MesaYaExistenteException e) {
+				fail("No debe lanzar MesaYaExistenteException()");
+			}
+			this.sistema.ocupaMesa(1, 0);
+		} catch (MesaNoExistenteException e) {
+			
+		} catch (ComensalesInsuficientesException e) {
+			fail("No debe lanzar ComensalesInsuficientesException()");
+		} catch (MesaOcupadaException e) {
+			fail("No debe lanzar MesaOcupadaException()");
+		} catch (NoHayProductosException e) {
+			fail("No debe lanzar NoHayProductosException()");
+		} catch (MesaNoAsignadaException e) {
+			fail("No debe lanzar MesaNoAsignadaException()");
+		} catch (NoHayMozosException e) {
+			fail("No debe lanzar NoHayMozosException()");
+		} catch (NoHayDosPromosException e) {
+			fail("No debe lanzar NoHayDosPromosException()");
+		}
+		
+	}
+	
 	/**
 	 * Test metodo ocupaMesa(int numeroMesa,int cantComensales)
 	 * Escenario lista mesas en sistema con elementos, y parametro numeroMesa igual a 
 	 * el numero de mesa de las del sistema y las mesas con estado distinto a libre.
 	 */
 	@Test
-	public void camino2() {
+	public void camino3() {
 		try {
 			this.sistema.agregaMesa(0, 0);
 			this.sistema.getMesas().get(0).setEstado("");
@@ -179,7 +206,7 @@ public class TestSistema {
 	 * el numero de mesa de una del sistema y estado libre.
 	 * */
 	@Test
-	public void camino3() {
+	public void camino4() {
 		try {
 			this.sistema.agregaMesa(0, 0);
 			try {
@@ -213,7 +240,7 @@ public class TestSistema {
 	 */
 	
 	@Test
-	public void camino4() {
+	public void camino5() {
 		try {
 			this.sistema.agregaMesa(0, 2);
 			//this.sistema.agregaMesa(1, 3);
