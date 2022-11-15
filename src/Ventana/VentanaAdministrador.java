@@ -1949,6 +1949,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public String getTextFieldNombreLocal() {
 		return textFieldNombreLocal.getText();
 	}
+	public JTextField getTextFieldNombreLocal2() {
+		return textFieldNombreLocal;
+	}
 
 	public void setLblNombreLocalGrande(String nombreLocalGrande) {
 		this.lblNombreLocalGrande.setText(nombreLocalGrande);
@@ -1957,6 +1960,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public String getTextFieldLoginUsuario() {
 		return textFieldLoginUsuario.getText();
 	}
+	public JTextField getTextFieldLoginUsuario2() {
+		return textFieldLoginUsuario;
+	}
 
 	public void setTextFieldLoginUsuario(String textFieldLoginUsuario) {
 		this.textFieldLoginUsuario.setText(textFieldLoginUsuario);;
@@ -1964,6 +1970,9 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 
 	public String getTextFieldLoginContrasenia() {
 		return textFieldLoginContrasenia.getText();
+	}
+	public JTextField getTextFieldLoginContrasenia2() {
+		return textFieldLoginContrasenia;
 	}
 
 	public void setTextFieldLoginContrasenia(String textFieldLoginContrasenia) {
@@ -2640,5 +2649,655 @@ public class VentanaAdministrador extends JFrame implements ActionListener, KeyL
 	public void actualizarTextAreaEstadisticas(String mensaje) {
 		this.textAreaEstadisticas.append(mensaje + "\n");
 	}
+
+	public Controlador getC() {
+		return c;
+	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public JTabbedPane getTabbedPane() {
+		return tabbedPane;
+	}
+
+	public JPanel getPanelOperarioYMesa() {
+		return panelOperarioYMesa;
+	}
+
+	public JPanel getPanelPromociones() {
+		return panelPromociones;
+	}
+
+	public JPanel getPanelMozo() {
+		return panelMozo;
+	}
+
+	public JPanel getPanelProducto() {
+		return panelProducto;
+	}
+
+	public JPanel getPanelGeneral() {
+		return panelGeneral;
+	}
+
+	public JPanel getPanelOperarioABM() {
+		return panelOperarioABM;
+	}
+
+	public JPanel getPanelMesaABM() {
+		return panelMesaABM;
+	}
+
+	public JPanel getPanelOperarioCreacion() {
+		return panelOperarioCreacion;
+	}
+
+	public JLabel getLblOperarioUsuarioAlta() {
+		return lblOperarioUsuarioAlta;
+	}
+
+	public JLabel getLblOperarioContraseniaAlta() {
+		return lblOperarioContraseniaAlta;
+	}
+
+	public JLabel getLblOperarioNyAAlta() {
+		return lblOperarioNyAAlta;
+	}
+
+	public JButton getBtnOperarioAlta() {
+		return btnOperarioAlta;
+	}
+
+	public JList getListOperarios() {
+		return listOperarios;
+	}
+
+	public JButton getBtnOperarioBaja() {
+		return btnOperarioBaja;
+	}
+
+	public JPanel getPanelOperarioModif() {
+		return panelOperarioModif;
+	}
+
+	public JLabel getLblOperarioUsuarioModif() {
+		return lblOperarioUsuarioModif;
+	}
+
+	public JLabel getLblOperarioContraseniaModif() {
+		return lblOperarioContraseniaModif;
+	}
+
+	public JLabel getLblOperarioNyAModif() {
+		return lblOperarioNyAModif;
+	}
+
+	public JButton getBtnOperarioModificacion() {
+		return btnOperarioModificacion;
+	}
+
+	public JPanel getPanelMesaCreacion() {
+		return panelMesaCreacion;
+	}
+
+	public JLabel getLblMesaNumeroAlta() {
+		return lblMesaNumeroAlta;
+	}
+
+	public JLabel getLblMesaCantidadComensalesAlta() {
+		return lblMesaCantidadComensalesAlta;
+	}
+
+	public JButton getBtnMesaAlta() {
+		return btnMesaAlta;
+	}
+
+	public JList getListMesas() {
+		return listMesas;
+	}
+
+	public JButton getBtnMesaBaja() {
+		return btnMesaBaja;
+	}
+
+	public JPanel getPanelMesaModif() {
+		return panelMesaModif;
+	}
+
+	public JLabel getLblMesaNumeroModif() {
+		return lblMesaNumeroModif;
+	}
+
+	public JLabel getLblMesaCantidadComensalesModif() {
+		return lblMesaCantidadComensalesModif;
+	}
+
+	public JButton getBtnMesaModificacion() {
+		return btnMesaModificacion;
+	}
+
+	public JPanel getPanelPromPerm() {
+		return panelPromPerm;
+	}
+
+	public JPanel getPanelPromTemp() {
+		return panelPromTemp;
+	}
+
+	public JPanel getPanelPromPermAlta() {
+		return panelPromPermAlta;
+	}
+
+	public JLabel getLblPromPermDiasAlta() {
+		return lblPromPermDiasAlta;
+	}
+
+	public JLabel getLblPromPermDosPorUnoAlta() {
+		return lblPromPermDosPorUnoAlta;
+	}
+
+	public JLabel getLblPromPermDtoPorCantAlta() {
+		return lblPromPermDtoPorCantAlta;
+	}
+
+	public JButton getBtnPromPermAlta() {
+		return btnPromPermAlta;
+	}
+
+	public JLabel getLblPromPermDtoPorCantMinimoAlta() {
+		return lblPromPermDtoPorCantMinimoAlta;
+	}
+
+	public JLabel getLblPromPermDtoPorCantPrecioUnitarioAlta() {
+		return lblPromPermDtoPorCantPrecioUnitarioAlta;
+	}
+
+	public JList getListPromPerm() {
+		return listPromPerm;
+	}
+
+	public JButton getBtnPromPermBaja() {
+		return btnPromPermBaja;
+	}
+
+	public JPanel getPanelPromPermModif() {
+		return panelPromPermModif;
+	}
+
+	public JLabel getLblPromPermDiasModif() {
+		return lblPromPermDiasModif;
+	}
+
+	public JLabel getLblPromPermDosPorUnoModif() {
+		return lblPromPermDosPorUnoModif;
+	}
+
+	public JLabel getLblPromPermDtoPorCantModif() {
+		return lblPromPermDtoPorCantModif;
+	}
+
+	public JButton getBtnPromPermModif() {
+		return btnPromPermModif;
+	}
+
+	public JLabel getLblPromPermDtoPorCantMinimoModif() {
+		return lblPromPermDtoPorCantMinimoModif;
+	}
+
+	public JLabel getLblPromPermDtoPorCantPrecioUnitarioModif() {
+		return lblPromPermDtoPorCantPrecioUnitarioModif;
+	}
+
+	public JLabel getLblPromPermProductoAlta() {
+		return lblPromPermProductoAlta;
+	}
+
+	public JLabel getLblPromPermProductoModif() {
+		return lblPromPermProductoModif;
+	}
+
+	public JLabel getLblPromPermEstadoModif() {
+		return lblPromPermEstadoModif;
+	}
+
+	public JPanel getPanelPromTempAlta() {
+		return panelPromTempAlta;
+	}
+
+	public JLabel getLblPromTempDiasAlta() {
+		return lblPromTempDiasAlta;
+	}
+
+	public JLabel getLblPromTempPorcentajeDtoAlta() {
+		return lblPromTempPorcentajeDtoAlta;
+	}
+
+	public JLabel getLblPromTempAcumulableAlta() {
+		return lblPromTempAcumulableAlta;
+	}
+
+	public JButton getBtnPromTempAlta() {
+		return btnPromTempAlta;
+	}
+
+	public JLabel getLblPromTempMetodoPagoAlta() {
+		return lblPromTempMetodoPagoAlta;
+	}
+
+	public JLabel getLblPromTempNombreAlta() {
+		return lblPromTempNombreAlta;
+	}
+
+	public JList getListPromTemp() {
+		return listPromTemp;
+	}
+
+	public JButton getBtnPromTempBaja() {
+		return btnPromTempBaja;
+	}
+
+	public JPanel getPanelPromTempModif() {
+		return panelPromTempModif;
+	}
+
+	public JLabel getLblPromTempDiasModif() {
+		return lblPromTempDiasModif;
+	}
+
+	public JLabel getLblPromTempPorcentajeDtoModif() {
+		return lblPromTempPorcentajeDtoModif;
+	}
+
+	public JLabel getLblPromTempAcumulableModif() {
+		return lblPromTempAcumulableModif;
+	}
+
+	public JButton getBtnPromTempModif() {
+		return btnPromTempModif;
+	}
+
+	public JLabel getLblPromTempMetodoPagoModif() {
+		return lblPromTempMetodoPagoModif;
+	}
+
+	public JLabel getLblPromTempNombreModif() {
+		return lblPromTempNombreModif;
+	}
+
+	public JLabel getLblPromTempEstadoModif() {
+		return lblPromTempEstadoModif;
+	}
+
+	public JPanel getPanelMozoAlta() {
+		return panelMozoAlta;
+	}
+
+	public JLabel getLblMozoNyAAlta() {
+		return lblMozoNyAAlta;
+	}
+
+	public JLabel getLblMozoFechaDeNacimientoAlta() {
+		return lblMozoFechaDeNacimientoAlta;
+	}
+
+	public JLabel getLblMozoHijosAlta() {
+		return lblMozoHijosAlta;
+	}
+
+	public JButton getBtnMozoAlta() {
+		return btnMozoAlta;
+	}
+
+	public JPanel getPanelMozoModif() {
+		return panelMozoModif;
+	}
+
+	public JLabel getLblMozoNyAModif() {
+		return lblMozoNyAModif;
+	}
+
+	public JLabel getLblMozoFechaDeNacimientoModif() {
+		return lblMozoFechaDeNacimientoModif;
+	}
+
+	public JLabel getLblMozoHijosModif() {
+		return lblMozoHijosModif;
+	}
+
+	public JButton getBtnMozoModif() {
+		return btnMozoModif;
+	}
+
+	public JList getListMozos() {
+		return listMozos;
+	}
+
+	public JButton getBtnMozoBaja() {
+		return btnMozoBaja;
+	}
+
+	public JPanel getPanelEstadisticas() {
+		return panelEstadisticas;
+	}
+
+	public JButton getBtnMozoEstadEmp() {
+		return btnMozoEstadEmp;
+	}
+
+	public JButton getBtnMozoEstadEmpMayorVolVenta() {
+		return btnMozoEstadEmpMayorVolVenta;
+	}
+
+	public JButton getBtnMozoEstadEmpMenorVolVenta() {
+		return btnMozoEstadEmpMenorVolVenta;
+	}
+
+	public JButton getBtnMozoEstadMesaConsumoProm() {
+		return btnMozoEstadMesaConsumoProm;
+	}
+
+	public JScrollPane getScrollPaneEstadisticas() {
+		return scrollPaneEstadisticas;
+	}
+
+	public JTextArea getTextAreaEstadisticas() {
+		return textAreaEstadisticas;
+	}
+
+	public JPanel getPanelProductoAlta() {
+		return panelProductoAlta;
+	}
+
+	public JLabel getLblProductoNombreAlta() {
+		return lblProductoNombreAlta;
+	}
+
+	public JLabel getLblProductoPrecioCostoAlta() {
+		return lblProductoPrecioCostoAlta;
+	}
+
+	public JLabel getLblProductoPrecioVentaAlta() {
+		return lblProductoPrecioVentaAlta;
+	}
+
+	public JLabel getLblProductoStockInicialAlta() {
+		return lblProductoStockInicialAlta;
+	}
+
+	public JButton getBtnProductoAlta() {
+		return btnProductoAlta;
+	}
+
+	public JPanel getPanelProductoModif() {
+		return panelProductoModif;
+	}
+
+	public JLabel getLblProductoNombreModif() {
+		return lblProductoNombreModif;
+	}
+
+	public JLabel getLblProductoPrecioCostoModif() {
+		return lblProductoPrecioCostoModif;
+	}
+
+	public JLabel getLblProductoPrecioVentaModif() {
+		return lblProductoPrecioVentaModif;
+	}
+
+	public JLabel getLblProductoStockInicialModif() {
+		return lblProductoStockInicialModif;
+	}
+
+	public JButton getBtnProductoModificacion() {
+		return btnProductoModificacion;
+	}
+
+	public JList getListProductos() {
+		return listProductos;
+	}
+
+	public JButton getBtnProductoBaja() {
+		return btnProductoBaja;
+	}
+
+	public JPanel getPanelNuevoStockProducto() {
+		return panelNuevoStockProducto;
+	}
+
+	public JLabel getLblProductoStockNuevo() {
+		return lblProductoStockNuevo;
+	}
+
+	public JButton getBtnProductoNuevoStock() {
+		return btnProductoNuevoStock;
+	}
+
+	public JScrollPane getScrollPaneListaOperarios() {
+		return scrollPaneListaOperarios;
+	}
+
+	public JScrollPane getScrollPaneListaMesas() {
+		return scrollPaneListaMesas;
+	}
+
+	public JScrollPane getScrollPaneListaPromPerm() {
+		return scrollPaneListaPromPerm;
+	}
+
+	public JScrollPane getScrollPaneListaPromTemp() {
+		return scrollPaneListaPromTemp;
+	}
+
+	public JScrollPane getScrollPaneListaMozos() {
+		return scrollPaneListaMozos;
+	}
+
+	public JScrollPane getScrollPaneListaProductos() {
+		return scrollPaneListaProductos;
+	}
+
+	public JPanel getPanelEstadoMozos() {
+		return panelEstadoMozos;
+	}
+
+	public JList getListMozosEstados() {
+		return listMozosEstados;
+	}
+
+	public JScrollPane getScrollPaneMozosEstado() {
+		return scrollPaneMozosEstado;
+	}
+
+	public JPanel getPanelSeleccionEstadosMozos() {
+		return panelSeleccionEstadosMozos;
+	}
+
+	public JButton getBtnEstadoConfirmar() {
+		return btnEstadoConfirmar;
+	}
+
+	public ButtonGroup getButtonGroupEstadosMozos() {
+		return buttonGroupEstadosMozos;
+	}
+
+	public JPanel getPanelAsignacionMesas() {
+		return panelAsignacionMesas;
+	}
+
+	public JList getListMozosActivos() {
+		return listMozosActivos;
+	}
+
+	public JScrollPane getScrollPaneMozosActivos() {
+		return scrollPaneMozosActivos;
+	}
+
+	public JScrollPane getScrollPaneMesas() {
+		return scrollPaneMesas;
+	}
+
+	public JList getListMesasAsignables() {
+		return listMesasAsignables;
+	}
+
+	public JButton getBtnAsignarMozoMesa() {
+		return btnAsignarMozoMesa;
+	}
+
+	public JPanel getPanelFacturacion() {
+		return panelFacturacion;
+	}
+
+	public JPanel getPanelOcupacionMesa() {
+		return panelOcupacionMesa;
+	}
+
+	public JLabel getLblOcupacionComensales() {
+		return lblOcupacionComensales;
+	}
+
+	public JButton getBtnOcuparMesa() {
+		return btnOcuparMesa;
+	}
+
+	public JList getListComandasActivas() {
+		return listComandasActivas;
+	}
+
+	public JScrollPane getScrollPaneComandasActivas() {
+		return scrollPaneComandasActivas;
+	}
+
+	public JList getListProductosGeneral() {
+		return listProductosGeneral;
+	}
+
+	public JScrollPane getScrollPaneProductosPedidos() {
+		return scrollPaneProductosPedidos;
+	}
+
+	public JPanel getPanelAgregaPedido() {
+		return panelAgregaPedido;
+	}
+
+	public JPanel getPanelCerrarComanda() {
+		return panelCerrarComanda;
+	}
+
+	public JLabel getLblCantidadProducto() {
+		return lblCantidadProducto;
+	}
+
+	public JButton getBtnAgregarPedidoAComanda() {
+		return btnAgregarPedidoAComanda;
+	}
+
+	public JButton getBtnCerrarComanda() {
+		return btnCerrarComanda;
+	}
+
+	public JPanel getPanelLoginSerializacion() {
+		return panelLoginSerializacion;
+	}
+
+	public JPanel getPanelLogin() {
+		return panelLogin;
+	}
+
+	public JLabel getLblLoginUsuario() {
+		return lblLoginUsuario;
+	}
+
+	public JLabel getLblLoginContrasenia() {
+		return lblLoginContrasenia;
+	}
+
+	public JButton getBtnLogin() {
+		return btnLogin;
+	}
+
+	public JPanel getPanelSerializacion() {
+		return panelSerializacion;
+	}
+
+	public JButton getBtnRecuperarSistema() {
+		return btnRecuperarSistema;
+	}
+
+	public JButton getBtnNuevoSistema() {
+		return btnNuevoSistema;
+	}
+
+	public JButton getBtnGuardarSistema() {
+		return btnGuardarSistema;
+	}
+
+	public JButton getBtnLogout() {
+		return btnLogout;
+	}
+
+	public JPanel getPanel() {
+		return panel;
+	}
+
+	public JLabel getLblNombreLocal() {
+		return lblNombreLocal;
+	}
+
+	public JLabel getLblOperarioEstadoModif() {
+		return lblOperarioEstadoModif;
+	}
+
+	public JLabel getLblNombreLocalGrande() {
+		return lblNombreLocalGrande;
+	}
+
+	public DefaultListModel<Operario> getModelListOperarios() {
+		return modelListOperarios;
+	}
+
+	public DefaultListModel<Mesa> getModelListMesas() {
+		return modelListMesas;
+	}
+
+	public DefaultListModel<Mesa> getModelListMesasAsignables() {
+		return modelListMesasAsignables;
+	}
+
+	public DefaultListModel<PromocionPermanente> getModelListPromPerm() {
+		return modelListPromPerm;
+	}
+
+	public DefaultListModel<PromocionTemporal> getModelListPromTemp() {
+		return modelListPromTemp;
+	}
+
+	public DefaultListModel<Mozo> getModelListMozos() {
+		return modelListMozos;
+	}
+
+	public DefaultListModel<Mozo> getModelListMozosEstados() {
+		return modelListMozosEstados;
+	}
+
+	public DefaultListModel<Mozo> getModelListMozosActivos() {
+		return modelListMozosActivos;
+	}
+
+	public DefaultListModel<Producto> getModelListProductos() {
+		return modelListProductos;
+	}
+
+	public DefaultListModel<Comanda> getModelListComandasActivas() {
+		return modelListComandasActivas;
+	}
+
+	public JLabel getLblMetodoDePagoGeneral() {
+		return lblMetodoDePagoGeneral;
+	}
+	
+	
 }
 	

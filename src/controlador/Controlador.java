@@ -83,7 +83,7 @@ public class Controlador implements ActionListener {
 		}else if(e.getActionCommand().equals(IVista.recuperaSistema)) {
 			PersistirSistema.LecturaSistema();
 			sistema=Sistema.getInstancia();
-			v.popUp("Sistema recuperado");
+			//v.popUp("Sistema recuperado");
 			v.setLblNombreLocalGrande(sistema.getNombre());
 			if(sistema != null)
 				v.sistemaInicio();
@@ -608,6 +608,10 @@ public class Controlador implements ActionListener {
 	
 	public void recuperaMensaje(String mensaje) {
 		v.popUp(mensaje);
+	}
+	
+	public VentanaAdministrador getVentana() {
+		return this.v;
 	}
 	
 }
