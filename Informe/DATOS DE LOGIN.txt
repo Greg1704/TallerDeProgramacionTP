@@ -1,0 +1,5 @@
+IMPORTANTE
+datos de log-in para testear el programa:
+
+usuario: ADMIN
+contraseña: Josesito124
